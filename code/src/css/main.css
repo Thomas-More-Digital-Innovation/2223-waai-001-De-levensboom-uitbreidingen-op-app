@@ -1,0 +1,10 @@
+.dragIcon {
+    cursor: move;
+    float: right;
+}
+
+.invalid-input {
+    padding-left: 3px;
+    color: #DC3545;
+}
+
