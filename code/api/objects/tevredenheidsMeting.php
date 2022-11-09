@@ -22,7 +22,7 @@ class TevredenheidsMeting{
         $query = 'SELECT
                     `tevredenheidsMetingId`, `formLink`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    tevredenheidsMeting
                 LIMIT 1';
     
         // prepare query statement
@@ -39,16 +39,16 @@ class TevredenheidsMeting{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    tevredenheidsMeting
                 SET
-                    formLink="'.$this->formLink.'"
+                    formLink=:formLink
                 WHERE
-                    tevredenheidsMetingId="'.$this->tevredenheidsMetingId.'"';
+                    tevredenheidsMetingId=:tevredenheidsMetingId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':formLink' => $this->formLink, ':tevredenheidsMetingId' => $this->tevredenheidsMetingId])){
             return true;
         }
         return false;
