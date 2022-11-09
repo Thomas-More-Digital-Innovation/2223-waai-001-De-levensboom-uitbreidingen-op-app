@@ -3,7 +3,6 @@ class ContactGegevens{
  
     // database connection and table name
     private $conn;
-    private $table_name = "contactGegevens";
  
     // object properties
     public $contactGegevensId;
