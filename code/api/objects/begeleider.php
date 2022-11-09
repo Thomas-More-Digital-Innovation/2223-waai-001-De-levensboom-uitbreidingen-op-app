@@ -3,7 +3,6 @@ class Begeleider{
  
     // database connection and table name
     private $conn;
-    private $table_name = "begeleider";
  
     // object properties
     public $begeleiderId;
@@ -27,7 +26,7 @@ class Begeleider{
         $query = 'SELECT
                     `begeleiderId`, `voornaam`, `achternaam`, `functie` , `contactGegevensId`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `begeleider` 
                 ORDER BY
                     begeleiderId';
     
@@ -47,15 +46,15 @@ class Begeleider{
         $query = 'SELECT
                     `begeleiderId`, `voornaam`, `achternaam`, `functie`, `contactGegevensId`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `begeleider` 
                 WHERE
-                    begeleiderId= "'.$this->begeleiderId.'"';
+                    begeleiderId= :begeleiderId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute(['begeleiderId' => $this->begeleiderId]);
         return $stmt;
     }
 
@@ -66,9 +65,9 @@ class Begeleider{
         $query = 'SELECT
                     `begeleiderId`, `wachtwoord`, `voornaam`, `achternaam`, `functie`
                 FROM
-                    ' . $this->table_name . ' 
+                    `begeleider` 
                 WHERE
-                    contactGegevensId= "'.$this->contactGegevensId.'"
+                    contactGegevensId= :contactGegevensId
                 AND 
                     isActief = 1';
     
@@ -76,7 +75,7 @@ class Begeleider{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute(['contactGegevensId' => $this->contactGegevensId]);
         return $stmt;
     }
 
@@ -87,9 +86,9 @@ class Begeleider{
         $query = 'SELECT
                     `wachtwoord`
                 FROM
-                    ' . $this->table_name . ' 
+                    `begeleider` 
                 WHERE
-                    begeleiderId= "'.$this->begeleiderId.'"
+                    begeleiderId= :begeleiderId
                 AND 
                     isActief = 1';
     
@@ -97,7 +96,7 @@ class Begeleider{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute(['begeleiderId' => $this->begeleiderId]);
         return $stmt;
     }
 
@@ -105,16 +104,16 @@ class Begeleider{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .' 
+        $query = 'INSERT INTO  `begeleider` 
                         ( `voornaam`, `achternaam`, `functie`, `isVerified`, `contactGegevensId`, `isActief`)
                   VALUES
-                        ("'.$this->voornaam.'", "'.$this->achternaam.'", "'.$this->functie.'", false , "'.$this->contactGegevensId.'", true)';
+                        (:voornaam , :achternaam, :functie, 0 , :contactGegevensId, 1)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute(['voornaam' => $this->voornaam, 'achternaam' => $this->achternaam, 'functie' => $this->functie, 'contactGegevensId' => $this->contactGegevensId])){
             $this->begeleiderId = $this->conn->lastInsertId();
             return true;
         }
@@ -127,16 +126,16 @@ class Begeleider{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `begeleider`
                 SET
-                    voornaam="'.$this->voornaam.'", achternaam="'.$this->achternaam.'", functie="'.$this->functie.'", contactGegevensId="'.$this->contactGegevensId.'"
+                    voornaam= :voornaam, achternaam= :achternaam, functie= :functie, contactGegevensId= :contactGegevensId
                 WHERE
-                    begeleiderId="'.$this->begeleiderId.'"';
+                    begeleiderId= :begeleiderId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute(['voornaam' => $this->voornaam, 'achternaam' => $this->achternaam, 'functie' => $this->functie, 'contactGegevensId' => $this->contactGegevensId, 'begeleiderId' => $this->begeleiderId])){
             return true;
         }
         return false;
@@ -147,16 +146,16 @@ class Begeleider{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `begeleider`
                 SET
-                    wachtwoord="'.$this->wachtwoord.'"
+                    wachtwoord= :wachtwoord
                 WHERE
-                    begeleiderId="'.$this->begeleiderId.'"';
+                    begeleiderId= :begeleiderId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute(['wachtwoord' => $this->wachtwoord, 'begeleiderId' => $this->begeleiderId])){
             return true;
         }
         return false;
@@ -167,16 +166,16 @@ class Begeleider{
         
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `begeleider`
                 SET
                     isActief=false
                 WHERE
-                    begeleiderId="'.$this->begeleiderId.'"';
+                    begeleiderId= :begeleiderId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute(['begeleiderId' => $this->begeleiderId])){
             return true;
         }
         return false;

@@ -3,7 +3,6 @@ class Mails{
  
     // database connection and table name
     private $conn;
-    private $table_name = "mails";
  
     // object properties
     public $mailId;
@@ -24,7 +23,7 @@ class Mails{
         $query = 'SELECT
                     `mailId`, `titel`, `inhoud`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `mails` 
                 ORDER BY
                     createdAt DESC';
     
@@ -45,15 +44,15 @@ class Mails{
         $query = 'SELECT
                     `mailId`, `titel`, `inhoud`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name .  ' 
+                    `mails`
                 WHERE
-                    mailId='.$this->mailId;
+                    mailId= :mailId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute(['mailId' => $this->mailId]);
         return $stmt;
     }
 
@@ -64,16 +63,16 @@ class Mails{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `mails`
                 SET
-                    titel="'.$this->titel.'", inhoud="'.$this->inhoud.'"
+                    titel= :titel, inhoud= :inhoud
                 WHERE
-                    mailId="'.$this->mailId.'"';
+                    mailId= :mailId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute(['titel' => $this->titel, 'inhoud' => $this->inhoud, 'mailId' => $this->mailId])){
             return true;
         }
         return false;
