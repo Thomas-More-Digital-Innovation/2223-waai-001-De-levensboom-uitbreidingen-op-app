@@ -91,7 +91,7 @@ class ContactGegevens{
                     `woonplaats` = :woonplaats,
                     `postcode` = :postcode,
                     `telNummer` = :telNummer,
-                    `email` = :email,
+                    `email` = :email
                 WHERE
                     `contactGegevensId` = :contactGegevensId';
         
