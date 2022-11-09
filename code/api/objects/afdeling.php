@@ -3,7 +3,6 @@ class Afdeling{
  
     // database connection and table name
     private $conn;
-    private $table_name = "afdeling";
  
     // object properties
     public $afdelingId;
@@ -24,7 +23,7 @@ class Afdeling{
         $query = 'SELECT
                     `afdelingId`, `naam`, `contactGegevensId`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `afdeling`
                 ORDER BY
                     afdelingId';
     
@@ -44,15 +43,16 @@ class Afdeling{
         $query = 'SELECT
                     `afdelingId`, `naam`, `contactGegevensId`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name .  ' 
+                    `afdeling`
                 WHERE
-                    afdelingId= "'.$this->afdelingId.'"';
+                    afdelingId= :afdelingId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':afdelingId' => $this->afdelingId]);
+
         return $stmt;
     }
 
@@ -60,16 +60,16 @@ class Afdeling{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .' 
+        $query = 'INSERT INTO  `afdeling`
                         (`naam`, `contactGegevensId`, `isActief`)
                   VALUES
-                        ("'.$this->naam.'", "'.$this->contactGegevensId.'", true)';
+                        (:naam, :contactGegevensId, :isActief)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':naam' => $this->naam, ':contactGegevensId' => $this->contactGegevensId, ':isActief' => true])){
             $this->afdelingId = $this->conn->lastInsertId();
             return true;
         }
@@ -82,16 +82,16 @@ class Afdeling{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `afdeling`
                 SET
-                    naam="'.$this->naam.'", contactGegevensId="'.$this->contactGegevensId.'"
+                    naam=:naam, contactGegevensId = :contactGegevensId
                 WHERE
-                    afdelingId="'.$this->afdelingId.'"';
+                    afdelingId = :afdelingId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':naam' => $this->naam, ':contactGegevensId' => $this->contactGegevensId, ':afdelingId' => $this->afdelingId])){
             return true;
         }
         return false;
@@ -102,16 +102,16 @@ class Afdeling{
         
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `afdeling`
                 SET
                     isActief=false
                 WHERE
-                    afdelingId="'.$this->afdelingId.'"';
+                    afdelingId=:afdelingId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingId' => $this->afdelingId])){
             return true;
         }
         return false;
