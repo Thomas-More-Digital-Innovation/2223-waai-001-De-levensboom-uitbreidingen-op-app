@@ -4,17 +4,17 @@ START TRANSACTION;
 SET time_zone = "+01:00";
 
 -- verwijder onderstaande DROP TABLE commando's bij eerste uitvoering
-DROP TABLE nieuwtjes;
-DROP TABLE infoBlok; 
-DROP TABLE infoSegment;
-DROP TABLE afdelingBegeleiderClient;
-DROP TABLE begeleider;
-DROP TABLE client;
-DROP TABLE afdeling;
-DROP TABLE contactGegevens;
-DROP TABLE secretCodes;
-DROP TABLE tevredenheidsMeting;
-DROP TABLE mails;
+-- DROP TABLE nieuwtjes;
+-- DROP TABLE infoBlok; 
+-- DROP TABLE infoSegment;
+-- DROP TABLE afdelingBegeleiderClient;
+-- DROP TABLE begeleider;
+-- DROP TABLE client;
+-- DROP TABLE afdeling;
+-- DROP TABLE contactGegevens;
+-- DROP TABLE secretCodes;
+-- DROP TABLE tevredenheidsMeting;
+-- DROP TABLE mails;
 
 
 -- Database: `waaiburg_db` - utf8mb4_unicode_ci

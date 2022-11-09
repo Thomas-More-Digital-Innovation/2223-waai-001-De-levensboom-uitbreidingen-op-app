@@ -3,7 +3,6 @@ class Nieuwtjes{
  
     // database connection and table name
     private $conn;
-    private $table_name = "nieuwtjes";
  
     // object properties
     public $nieuwtjesId;
@@ -25,7 +24,7 @@ class Nieuwtjes{
         $query = 'SELECT
                     `nieuwtjesId`, `titel`, `korteInhoud`, `inhoud`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `nieuwtjes`
                 ORDER BY
                     createdAt DESC';
     
@@ -46,15 +45,15 @@ class Nieuwtjes{
         $query = 'SELECT
                     `nieuwtjesId`, `titel`, `korteInhoud`, `inhoud`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name .  ' 
+                    `nieuwtjes`
                 WHERE
-                    nieuwtjesId= "'.$this->nieuwtjesId.'"';
+                    nieuwtjesId= :nieuwtjesId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute( [':nieuwtjesId' => $this->nieuwtjesId] );
         return $stmt;
     }
 
@@ -62,16 +61,16 @@ class Nieuwtjes{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .' 
+        $query = 'INSERT INTO `nieuwtjes`
                         (`titel`,`korteInhoud`, `inhoud`, `isActief`)
                   VALUES
-                        ("'.$this->titel.'", "'.$this->korteInhoud.'", "'.$this->inhoud.'",true)';
+                        (:titel, :korteInhoud, :inhoud, :isActief)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':titel' => $this->titel, ':korteInhoud' => $this->korteInhoud, ':inhoud' => $this->inhoud, ':isActief' => true] )){
             $this->nieuwtjesId = $this->conn->lastInsertId();
             return true;
         }
@@ -84,16 +83,16 @@ class Nieuwtjes{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `nieuwtjes`
                 SET
-                    titel="'.$this->titel.'", korteInhoud="'.$this->korteInhoud.'", inhoud="'.$this->inhoud.'"
+                    `titel` = :titel, korteInhoud = :korteInhoud, `inhoud` = :inhoud
                 WHERE
-                    nieuwtjesId="'.$this->nieuwtjesId.'"';
+                    nieuwtjesId= :nieuwtjesId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':titel' => $this->titel, ':korteInhoud' => $this->korteInhoud, ':inhoud' => $this->inhoud, ':nieuwtjesId' => $this->nieuwtjesId] )){
             return true;
         }
         return false;
@@ -104,16 +103,16 @@ class Nieuwtjes{
         
         // query to insert record
         $query = "UPDATE
-                    ". $this->table_name ."
+                    `nieuwtjes`
                 SET
-                    isActief=false
+                    isActief= :isActief
                 WHERE
-                    nieuwtjesId='".$this->nieuwtjesId."'";
+                    nieuwtjesId= :nieuwtjesId";
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':isActief' => false, ':nieuwtjesId' => $this->nieuwtjesId] )){
             return true;
         }
         return false;

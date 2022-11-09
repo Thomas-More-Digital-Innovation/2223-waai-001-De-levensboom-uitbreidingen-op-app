@@ -3,7 +3,6 @@ class InfoBlok{
  
     // database connection and table name
     private $conn;
-    private $table_name = "infoBlok";
  
     // object properties
     public $infoBlokId;
@@ -27,7 +26,7 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name . ' 
+                    `infoblok`
                 ORDER BY
                     volgordeNr';
     
@@ -47,9 +46,9 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name . ' 
-                WHERE 
-                    infoSegmentId = ' . $this->infoSegmentId . '
+                    `infoblok`
+                WHERE
+                    infoSegmentId= :infoSegmentId
                 ORDER BY
                     volgordeNr';
     
@@ -57,7 +56,7 @@ class InfoBlok{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute( [':infoSegmentId' => $this->infoSegmentId] );
         
         return $stmt;
     }
@@ -70,15 +69,15 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name .  ' 
+                    `infoblok`
                 WHERE
-                    infoBlokId= "'.$this->infoBlokId.'"';
+                    infoBlokId= :infoBlokId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute( [':infoBlokId' => $this->infoBlokId] );
         return $stmt;
     }
 
@@ -86,16 +85,16 @@ class InfoBlok{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .' 
+        $query = 'INSERT INTO `infoblok`
                         (`titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `isActief`)
                   VALUES
-                        ("'.$this->titel.'", "'.$this->inhoud.'", "'.$this->blokFotoUrl.'", "'.$this->meerInfoLink.'", "'.$this->infoSegmentId.'", "'.$this->volgordeNr.'", true)';
+                        (:titel, :inhoud, :blokFotoUrl, :meerInfoLink, :infoSegmentId, :volgordeNr, :isActief)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':titel' => $this->titel, ':inhoud' => $this->inhoud, ':blokFotoUrl' => $this->blokFotoUrl, ':meerInfoLink' => $this->meerInfoLink, ':infoSegmentId' => $this->infoSegmentId, ':volgordeNr' => $this->volgordeNr, ':isActief' => true] )){
             $this->infoBlokId = $this->conn->lastInsertId();
             return true;
         }
@@ -108,16 +107,16 @@ class InfoBlok{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `infoblok`
                 SET
-                    titel="'.$this->titel.'", inhoud="'.$this->inhoud.'", blokFotoUrl="'.$this->blokFotoUrl.'", meerInfoLink="'.$this->meerInfoLink.'", infoSegmentId="'.$this->infoSegmentId.'"
+                    `titel` = :titel, `inhoud` = :inhoud, `blokFotoUrl` = :blokFotoUrl, `meerInfoLink` = :meerInfoLink, `infoSegmentId` = :infoSegmentId
                 WHERE
-                    infoBlokId="'.$this->infoBlokId.'"';
+                    `infoBlokId` = :infoBlokId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':titel' => $this->titel, ':inhoud' => $this->inhoud, ':blokFotoUrl' => $this->blokFotoUrl, ':meerInfoLink' => $this->meerInfoLink, ':infoSegmentId' => $this->infoSegmentId, ':infoBlokId' => $this->infoBlokId] )){
             return true;
         }
         return false;
@@ -128,16 +127,16 @@ class InfoBlok{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `infoblok`
                 SET
-                    volgordeNr="'.$this->volgordeNr.'"
+                    `volgordeNr` = :volgordeNr
                 WHERE
-                    infoBlokId="'.$this->infoBlokId.'"';
+                    `infoBlokId` = :infoBlokId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':volgordeNr' => $this->volgordeNr, ':infoBlokId' => $this->infoBlokId] )){
             return true;
         }
         return false;
@@ -148,16 +147,16 @@ class InfoBlok{
         
         // query to insert record
         $query = "UPDATE
-                    ". $this->table_name ."
+                    `infoblok`
                 SET
-                    isActief=false
+                    isActief= :isActief
                 WHERE
-                    infoBlokId='".$this->infoBlokId."'";
+                    infoBlokId= :infoBlokId";
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':isActief' => false, ':infoBlokId' => $this->infoBlokId] )){
             return true;
         }
         return false;

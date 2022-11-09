@@ -3,7 +3,6 @@ class ContactGegevens{
  
     // database connection and table name
     private $conn;
-    private $table_name = "contactGegevens";
  
     // object properties
     public $contactGegevensId;
@@ -92,7 +91,7 @@ class ContactGegevens{
                     `woonplaats` = :woonplaats,
                     `postcode` = :postcode,
                     `telNummer` = :telNummer,
-                    `email` = :email,
+                    `email` = :email
                 WHERE
                     `contactGegevensId` = :contactGegevensId';
         

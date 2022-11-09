@@ -24,9 +24,9 @@ class AfdelingBegeleiderClient{
         $query = 'SELECT
                     `afdelingBegeleiderClientId`, `afdelingId`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    afdelingBegeleiderClient 
                 WHERE
-                    begeleiderId= "'.$this->begeleiderId.'"
+                    begeleiderId= :begeleiderId
                 AND afdelingId IS NOT NULL
                 ORDER BY
                     afdelingBegeleiderClientId';
@@ -35,7 +35,7 @@ class AfdelingBegeleiderClient{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':begeleiderId' => $this->begeleiderId]);
         
         return $stmt;
     }
@@ -47,9 +47,9 @@ class AfdelingBegeleiderClient{
         $query = 'SELECT
                     `afdelingBegeleiderClientId`, `afdelingId`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    afdelingBegeleiderClient
                 WHERE
-                    clientId= "'.$this->clientId.'"
+                    clientId= :clientId
                 AND afdelingId IS NOT NULL
                 ORDER BY
                     afdelingBegeleiderClientId';
@@ -58,7 +58,7 @@ class AfdelingBegeleiderClient{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':clientId' => $this->clientId]);
         
         return $stmt;
     }
@@ -70,9 +70,9 @@ class AfdelingBegeleiderClient{
         $query = 'SELECT
                     `afdelingBegeleiderClientId`, `begeleiderId`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    afdelingBegeleiderClient
                 WHERE
-                    afdelingId= "'.$this->afdelingId.'" 
+                    afdelingId= :afdelingId
                     
                 AND begeleiderId IS NOT NULL
                 ORDER BY
@@ -82,7 +82,7 @@ class AfdelingBegeleiderClient{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':afdelingId' => $this->afdelingId]);
         
         return $stmt;
     }
@@ -94,9 +94,9 @@ class AfdelingBegeleiderClient{
         $query = 'SELECT
                     `afdelingBegeleiderClientId`, `begeleiderId`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    afdelingBegeleiderClient
                 WHERE
-                    clientId= "'.$this->clientId.'" 
+                    clientId= :clientId
                 AND begeleiderId IS NOT NULL
                 ORDER BY
                     afdelingBegeleiderClientId';
@@ -105,25 +105,25 @@ class AfdelingBegeleiderClient{
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':clientId' => $this->clientId]);
         
         return $stmt;
     }
 
     // create afdelingBegeleider associatie 
     function createBegeleiderAfdeling(){
-        
+
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .'
+        $query = 'INSERT INTO  afdelingBegeleiderClient
                         (`afdelingId`, `begeleiderId`,`clientId`)
                   VALUES
-                        ("'.$this->afdelingId.'", "'.$this->begeleiderId.'", NULL)';
+                        (:afdelingId, :begeleiderId, NULL)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingId' => $this->afdelingId, ':begeleiderId' => $this->begeleiderId])){
             $this->afdelingBegeleiderClientId = $this->conn->lastInsertId();
             return true;
         }
@@ -135,16 +135,16 @@ class AfdelingBegeleiderClient{
     function createClientAfdeling(){
     
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .'
+        $query = 'INSERT INTO  afdelingBegeleiderClient
                         (`afdelingId`, `begeleiderId`,`clientId`)
                     VALUES
-                        ("'.$this->afdelingId.'", NULL, "'.$this->clientId.'")';
+                        (:afdelingId, NULL, :clientId)';
 
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingId' => $this->afdelingId, ':clientId' => $this->clientId])){
             $this->afdelingBegeleiderClientId = $this->conn->lastInsertId();
             return true;
         }
@@ -156,16 +156,16 @@ class AfdelingBegeleiderClient{
     function createClientBegeleider(){
     
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .'
+        $query = 'INSERT INTO  afdelingBegeleiderClient
                         (`afdelingId`, `begeleiderId`,`clientId`)
                     VALUES
-                        (NULL, "'.$this->begeleiderId.'", "'.$this->clientId.'")';
+                        (NULL, :begeleiderId, :clientId)';
 
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':begeleiderId' => $this->begeleiderId, ':clientId' => $this->clientId])){
             $this->afdelingBegeleiderClientId = $this->conn->lastInsertId();
             return true;
         }
@@ -178,16 +178,16 @@ class AfdelingBegeleiderClient{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    afdelingBegeleiderClient
                 SET
-                    afdelingId="'.$this->afdelingId.'", begeleiderId="'.$this->begeleiderId.'", clientId=NULL
+                    afdelingId=:afdelingId, begeleiderId=:begeleiderId, clientId=NULL
                 WHERE
-                    afdelingBegeleiderClientId="'.$this->afdelingBegeleiderClientId.'"';
+                    afdelingBegeleiderClientId=:afdelingBegeleiderClientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingId' => $this->afdelingId, ':begeleiderId' => $this->begeleiderId, ':afdelingBegeleiderClientId' => $this->afdelingBegeleiderClientId])){
             return true;
         }
         return false;
@@ -198,16 +198,16 @@ class AfdelingBegeleiderClient{
 
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    afdelingBegeleiderClient
                 SET
-                    afdelingId="'.$this->afdelingId.'", begeleiderId=Null , clientId="'.$this->clientId.'"
+                    afdelingId=:afdelingId, begeleiderId=Null , clientId=:clientId
                 WHERE
-                    afdelingBegeleiderClientId="'.$this->afdelingBegeleiderClientId.'"';
+                    afdelingBegeleiderClientId=:afdelingBegeleiderClientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingId' => $this->afdelingId, ':clientId' => $this->clientId, ':afdelingBegeleiderClientId' => $this->afdelingBegeleiderClientId])){
             return true;
         }
         return false;
@@ -218,16 +218,16 @@ class AfdelingBegeleiderClient{
 
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    afdelingBegeleiderClient
                 SET
-                    afdelingId=Null, begeleiderId="'.$this->begeleiderId.'" , clientId="'.$this->clientId.'"
+                    afdelingId=Null, begeleiderId=:begeleiderId , clientId=:clientId
                 WHERE
-                    afdelingBegeleiderClientId="'.$this->afdelingBegeleiderClientId.'"';
+                    afdelingBegeleiderClientId=:afdelingBegeleiderClientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':begeleiderId' => $this->begeleiderId, ':clientId' => $this->clientId, ':afdelingBegeleiderClientId' => $this->afdelingBegeleiderClientId])){
             return true;
         }
         return false;
@@ -238,15 +238,15 @@ class AfdelingBegeleiderClient{
         
         // query to insert record
         $query = 'DELETE FROM
-                    ' . $this->table_name . '
+                    afdelingBegeleiderClient
                 WHERE
-                    afdelingBegeleiderClientId= "'.$this->afdelingBegeleiderClientId.'"';
+                    afdelingBegeleiderClientId= :afdelingBegeleiderClientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':afdelingBegeleiderClientId' => $this->afdelingBegeleiderClientId])){
             return true;
         }
         return false;
