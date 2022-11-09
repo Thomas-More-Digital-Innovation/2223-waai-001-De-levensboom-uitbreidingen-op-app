@@ -26,7 +26,7 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    `infoblok`
+                    `infoBlok`
                 ORDER BY
                     volgordeNr';
     
@@ -46,7 +46,7 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    `infoblok`
+                    `infoBlok`
                 WHERE
                     infoSegmentId= :infoSegmentId
                 ORDER BY
@@ -69,7 +69,7 @@ class InfoBlok{
         $query = 'SELECT
                     `infoBlokId`, `titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    `infoblok`
+                    `infoBlok`
                 WHERE
                     infoBlokId= :infoBlokId';
     
@@ -85,7 +85,7 @@ class InfoBlok{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO `infoblok`
+        $query = 'INSERT INTO `infoBlok`
                         (`titel`, `inhoud`, `blokFotoUrl`, `meerInfoLink`, `infoSegmentId`, `volgordeNr`, `isActief`)
                   VALUES
                         (:titel, :inhoud, :blokFotoUrl, :meerInfoLink, :infoSegmentId, :volgordeNr, :isActief)';
@@ -107,7 +107,7 @@ class InfoBlok{
     
         // query to insert record
         $query = 'UPDATE
-                    `infoblok`
+                    `infoBlok`
                 SET
                     `titel` = :titel, `inhoud` = :inhoud, `blokFotoUrl` = :blokFotoUrl, `meerInfoLink` = :meerInfoLink, `infoSegmentId` = :infoSegmentId
                 WHERE
@@ -127,7 +127,7 @@ class InfoBlok{
     
         // query to insert record
         $query = 'UPDATE
-                    `infoblok`
+                    `infoBlok`
                 SET
                     `volgordeNr` = :volgordeNr
                 WHERE
@@ -147,7 +147,7 @@ class InfoBlok{
         
         // query to insert record
         $query = "UPDATE
-                    `infoblok`
+                    `infoBlok`
                 SET
                     isActief= :isActief
                 WHERE

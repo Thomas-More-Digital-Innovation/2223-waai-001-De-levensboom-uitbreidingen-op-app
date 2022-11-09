@@ -3,7 +3,6 @@ class InfoSegment{
  
     // database connection and table name
     private $conn;
-    private $table_name = "infoSegment";
  
     // object properties
     public $infoSegmentId;
