@@ -27,7 +27,7 @@ class ContactGegevens{
         $query = 'SELECT
                     `contactGegevensId`, `straat`, `huisNr`, `woonplaats`, `postcode`, `telNummer`, `email`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    `contactGegevens`
                 ORDER BY
                     contactGegevensId';
     
@@ -47,15 +47,15 @@ class ContactGegevens{
         $query = 'SELECT
                     `contactGegevensId`, `straat`, `huisNr`, `woonplaats`, `postcode`, `telNummer`, `email`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . '
+                    `contactGegevens`
                 WHERE
-                    contactGegevensId= "'.$this->contactGegevensId.'"';
+                    contactGegevensId= :contactGegevensId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute( [':contactGegevensId' => $this->contactGegevensId] );
         return $stmt;
     }
 
@@ -63,16 +63,16 @@ class ContactGegevens{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .'
+        $query = 'INSERT INTO `contactGegevens`
                         (`straat`, `huisNr`, `woonplaats`, `postcode`, `telNummer`, `email`, `isActief`)
                   VALUES
-                        ("'.$this->straat.'", "'.$this->huisNr.'", "'.$this->woonplaats.'", "'.$this->postcode.'", "'.$this->telNummer.'", "'.$this->email.'", 1 )';
+                        (:straat, :huisNr, :woonplaats, :postcode, :telNummer, :email, :isActief)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':straat' => $this->straat, ':huisNr' => $this->huisNr, ':woonplaats' => $this->woonplaats, ':postcode' => $this->postcode, ':telNummer' => $this->telNummer, ':email' => $this->email, ':isActief' => 1] )){
             $this->contactGegevensId = $this->conn->lastInsertId();
             return true;
         }
@@ -85,16 +85,21 @@ class ContactGegevens{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `contactGegevens`
                 SET
-                    straat="'.$this->straat.'", huisNr="'.$this->huisNr.'", woonplaats="'.$this->woonplaats.'", postcode="'.$this->postcode.'", telNummer="'.$this->telNummer.'", email="'.$this->email.'"
+                    `straat` = :straat,
+                    `huisNr` = :huisNr,
+                    `woonplaats` = :woonplaats,
+                    `postcode` = :postcode,
+                    `telNummer` = :telNummer,
+                    `email` = :email,
                 WHERE
-                    contactGegevensId="'.$this->contactGegevensId.'"';
+                    `contactGegevensId` = :contactGegevensId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':straat' => $this->straat, ':huisNr' => $this->huisNr, ':woonplaats' => $this->woonplaats, ':postcode' => $this->postcode, ':telNummer' => $this->telNummer, ':email' => $this->email, ':contactGegevensId' => $this->contactGegevensId] )){
             return true;
         }
         return false;
@@ -105,16 +110,16 @@ class ContactGegevens{
         
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `contactGegevens`       
                 SET
-                    isActief=false
+                    `isActief` = 0
                 WHERE
-                    contactGegevensId= "'.$this->contactGegevensId.'"';
+                    `contactGegevensId` = :contactGegevensId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':contactGegevensId' => $this->contactGegevensId] )){
             return true;
         }
         return false;
@@ -125,15 +130,15 @@ class ContactGegevens{
         
         // query to insert record
         $query = 'DELETE FROM
-                    ' . $this->table_name . '
+                    `contactGegevens`       
                 WHERE
-                    contactGegevensId= "'.$this->contactGegevensId.'"';
+                    `contactGegevensId` = :contactGegevensId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':contactGegevensId' => $this->contactGegevensId] )){
             return true;
         }
         return false;
