@@ -24,7 +24,7 @@ class InfoSegment{
         $query = 'SELECT
                     `infoSegmentId`, `titel`, `isVolwassenen`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name . ' 
+                    infoSegment
                 ORDER BY
                     volgordeNr';
     
@@ -44,7 +44,7 @@ class InfoSegment{
         $query = 'SELECT
                     `infoSegmentId`, `titel`, `isVolwassenen`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name . ' 
+                    infoSegment
                 WHERE 
                     isVolwassenen
                 ORDER BY
@@ -66,7 +66,7 @@ class InfoSegment{
         $query = 'SELECT
                     `infoSegmentId`, `titel`, `isVolwassenen`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name . ' 
+                    infoSegment
                 WHERE 
                     isVolwassenen = "0"
                 ORDER BY
@@ -88,15 +88,15 @@ class InfoSegment{
         $query = 'SELECT
                     `infoSegmentId`, `titel`, `isVolwassenen`, `volgordeNr`, `createdAt`, `isActief`
                 FROM
-                    ' . $this->table_name .  ' 
+                    infoSegment
                 WHERE
-                    infoSegmentId= "'.$this->infoSegmentId.'"';
+                    infoSegmentId= :infoSegmentId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':infoSegmentId' => $this->infoSegmentId]);
         return $stmt;
     }
 
@@ -104,16 +104,16 @@ class InfoSegment{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .' 
+        $query = 'INSERT INTO  infoSegment
                         (`titel`, `isVolwassenen`, `volgordeNr`, `isActief`)
                   VALUES
-                        ("'.$this->titel.'", "'.$this->isVolwassenen.'", "'.$this->volgordeNr.'",true)';
+                        (:title, :isVolwassenen, :volgordeNr ,true)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':title' => $this->titel, ':isVolwassenen' => $this->isVolwassenen, ':volgordeNr' => $this->volgordeNr])){
             $this->infoSegmentId = $this->conn->lastInsertId();
             return true;
         }
@@ -126,16 +126,16 @@ class InfoSegment{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    infoSegment
                 SET
-                    titel="'.$this->titel.'", isVolwassenen="'.$this->isVolwassenen.'"
+                    titel=:title, isVolwassenen=:isVolwassenen
                 WHERE
-                    infoSegmentId="'.$this->infoSegmentId.'"';
+                    infoSegmentId=:infoSegmentId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':title' => $this->titel, ':isVolwassenen' => $this->isVolwassenen, ':infoSegmentId' => $this->infoSegmentId])){
             return true;
         }
         return false;
@@ -146,16 +146,16 @@ class InfoSegment{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    infoSegment
                 SET
-                    volgordeNr="'.$this->volgordeNr.'"
+                    volgordeNr=:volgordeNr
                 WHERE
-                    infoSegmentId="'.$this->infoSegmentId.'"';
+                    infoSegmentId=:infoSegmentId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':volgordeNr' => $this->volgordeNr, ':infoSegmentId' => $this->infoSegmentId])){
             return true;
         }
         return false;
@@ -166,16 +166,16 @@ class InfoSegment{
         
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    infoSegment
                 SET
                     isActief=false
                 WHERE
-                    infoSegmentId="'.$this->infoSegmentId.'"';
+                    infoSegmentId=:infoSegmentId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':infoSegmentId' => $this->infoSegmentId])){
             return true;
         }
         return false;

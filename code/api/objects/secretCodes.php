@@ -22,7 +22,7 @@ class SecretCodes{
         $query = 'SELECT
                     `secretCodeId`, `secretCode`, `createdAt`
                 FROM
-                    ' . $this->table_name;
+                    secretCodes';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -40,15 +40,15 @@ class SecretCodes{
         $query = 'SELECT
                     `secretCode`, `createdAt`
                 FROM
-                    ' . $this->table_name .  ' 
+                    secretCodes
                 WHERE
-                    secretCodeId= '.$this->secretCodeId;
+                    secretCodeId= :secretCodeId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':secretCodeId' => $this->secretCodeId]);
         return $stmt;
     }
 
@@ -56,16 +56,16 @@ class SecretCodes{
     function create(){
         
         // query to insert record
-        $query = "INSERT INTO  ". $this->table_name ." 
+        $query = "INSERT INTO  secretCodes 
                         (`secretCode`,`createdAt`)
                   VALUES
-                        ('".$this->secretCode."','".$this->createdAt."')";
+                        (:secretCode,:createdAt)";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':secretCode' => $this->secretCode, ':createdAt' => $this->createdAt])){
             $this->secretCodesId = $this->conn->lastInsertId();
             return true;
         }
@@ -77,15 +77,15 @@ class SecretCodes{
         
         // query to insert record
         $query = 'DELETE FROM
-                    ' . $this->table_name . '
+                    secretCodes
                 WHERE
-                    secretCodeId= "'.$this->secretCodeId.'"';
+                    secretCodeId= :secretCodeId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':secretCodeId' => $this->secretCodeId])){
             return true;
         }
         return false;
