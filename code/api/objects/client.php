@@ -29,7 +29,7 @@ class Client{
         $query = 'SELECT
                     `clientId`, `voornaam`, `achternaam`, `geslacht`, `geboorteDatum`, `contactGegevensId`, `isActief`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `client`
                 ORDER BY
                     clientId';
     
@@ -49,15 +49,15 @@ class Client{
         $query = 'SELECT
                     `clientId`, `voornaam`, `achternaam`, `geslacht`, `geboorteDatum`, `contactGegevensId`, `isActief`, `tevredenheidsMetingVerstuurd`, `createdAt`
                 FROM
-                    ' . $this->table_name . ' 
+                    `client`
                 WHERE
-                    clientId= "'.$this->clientId.'"';
+                    clientId= :clientId';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':clientId' => $this->clientId]);
         return $stmt;
     }
 
@@ -68,17 +68,17 @@ class Client{
         $query = 'SELECT
                     `clientId`, `voornaam`, `achternaam`, `geslacht`, `geboorteDatum`, `wachtwoord`
                 FROM
-                    ' . $this->table_name . ' 
+                    `client`
                 WHERE
-                    contactGegevensId= "'.$this->contactGegevensId.'"
+                    contactGegevensId= :contactGegevensId
                 AND 
-                    isActief = 1';
+                    isActief = :isActief';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':contactGegevensId' => $this->contactGegevensId, ':isActief' => 1]);
         return $stmt;
     }
 
@@ -86,16 +86,16 @@ class Client{
     function create(){
         
         // query to insert record
-        $query = 'INSERT INTO  '. $this->table_name .'
+        $query = 'INSERT INTO `client`
                         ( `voornaam`, `achternaam`, `geslacht`, `geboorteDatum`, `contactGegevensId`, `isActief`)
                   VALUES
-                        ( "'.$this->voornaam.'", "'.$this->achternaam.'", "'.$this->geslacht.'", "'.$this->geboorteDatum.'", "'.$this->contactGegevensId.'",true)';
+                        ( :voornaam, :achternaam, :geslacht, :geboorteDatum, :contactGegevensId, :isActief)';
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute([':voornaam' => $this->voornaam, ':achternaam' => $this->achternaam, ':geslacht' => $this->geslacht, ':geboorteDatum' => $this->geboorteDatum, ':contactGegevensId' => $this->contactGegevensId, ':isActief' => true ] )){
             $this->clientId = $this->conn->lastInsertId();
             return true;
         }
@@ -110,17 +110,17 @@ class Client{
         $query = 'SELECT
                     `wachtwoord`
                 FROM
-                    ' . $this->table_name . ' 
+                    `client`
                 WHERE
-                    clientId= "'.$this->clientId.'"
+                    clientId= :clientId;
                 AND 
-                    isActief = 1';
+                    isActief = :isActief';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
     
         // execute query
-        $stmt->execute();
+        $stmt->execute([':clientId' => $this->clientId, ':isActief' => 1]);
         return $stmt;
     }
 
@@ -129,16 +129,16 @@ class Client{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `client`
                 SET
-                    wachtwoord="'.$this->wachtwoord.'"
+                    `wachtwoord` = :wachtwoord
                 WHERE
-                    clientId="'.$this->clientId.'"';
+                    clientId= :clientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':wachtwoord' => $this->wachtwoord, ':clientId' => $this->clientId] )){
             return true;
         }
         return false;
@@ -150,16 +150,21 @@ class Client{
     
         // query to insert record
         $query = 'UPDATE
-                    '. $this->table_name .'
+                    `client`
                 SET
-                    voornaam="'.$this->voornaam.'", achternaam="'.$this->achternaam.'", geslacht="'.$this->geslacht.'", geboorteDatum="'.$this->geboorteDatum.'", contactGegevensId="'.$this->contactGegevensId.'", tevredenheidsMetingVerstuurd="'.$this->tevredenheidsMetingVerstuurd.'"
+                    `voornaam` = :voornaam,
+                    `achternaam` = :achternaam,
+                    `geslacht` = :geslacht,
+                    `geboorteDatum` = :geboorteDatum,
+                    `contactGegevensId` = :contactGegevensId,
+                    `tevredenheidsMetingVerstuurd` = :tevredenheidsMetingVerstuurd
                 WHERE
-                    clientId="'.$this->clientId.'"';
+                    clientId= :clientId';
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':voornaam' => $this->voornaam, ':achternaam' => $this->achternaam, ':geslacht' => $this->geslacht, ':geboorteDatum' => $this->geboorteDatum, ':contactGegevensId' => $this->contactGegevensId, ':tevredenheidsMetingVerstuurd' => $this->tevredenheidsMetingVerstuurd, ':clientId' => $this->clientId] )){
             return true;
         }
         return false;
@@ -167,19 +172,18 @@ class Client{
 
     // delete client
     function delete(){
-        
         // query to insert record
         $query = "UPDATE
-                    ". $this->table_name ."
+                    `client`
                 SET
-                    isActief=false
+                    `isActief` = :isActief
                 WHERE
-                    clientId='".$this->clientId."'";
+                    clientId= :clientId";
         
         // prepare query
         $stmt = $this->conn->prepare($query);
         // execute query
-        if($stmt->execute()){
+        if($stmt->execute( [':isActief' => false, ':clientId' => $this->clientId] )){
             return true;
         }
         return false;
