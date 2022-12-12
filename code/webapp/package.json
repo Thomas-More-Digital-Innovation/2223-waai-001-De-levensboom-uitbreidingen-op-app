@@ -3,7 +3,6 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "watch": "mix watch"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.13",
