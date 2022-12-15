@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('info_contents', function (Blueprint $table) {
-            $table->id('infoContentId');
-            $table->foreignId('infoId')->constrained('infos');
+            $table->id();
+            $table->foreignId('info_id')->constrained('infos');
             $table->string('title');
             $table->string('titleImage')->nullable();
             $table->string('url')->nullable();

@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('department_lists', function (Blueprint $table) {
-            $table->foreignId('departmentId')->constrained('departments');
-            $table->foreignId('userId')->constrained('users');
-            $table->foreignId('roleId')->constrained('roles');
+            $table->foreignId('department_id')->constrained('departments');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('role_id')->constrained('roles');
             $table->timestamps();
         });
     }
