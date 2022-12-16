@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Info extends Model
 {
     use HasFactory;
+
+    public function sections()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function infoContents()
+    {
+        return $this->hasMany(InfoContent::class);
+    }
 }

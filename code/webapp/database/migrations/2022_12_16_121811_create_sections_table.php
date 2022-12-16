@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('info_contents', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('info_id')->constrained('infos');
-            $table->string('title');
-            $table->string('titleImage')->nullable();
-            $table->string('url')->nullable();
-            $table->string('shortContent')->nullable();
-            $table->string('content')->nullable();
+            $table->string('name')->nonNull();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_contents');
+        Schema::dropIfExists('sections');
     }
 };

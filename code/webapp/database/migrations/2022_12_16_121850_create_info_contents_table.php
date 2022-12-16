@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('info_contents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('infoId')->constrained('infos')->nonNull();
+            $table->string('title')->nonNull();
+            $table->string('titleImage')->nullable();
+            $table->string('url')->nullable();
+            $table->string('shortContent')->nullable();
+            $table->string('content')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('info_contents');
     }
 };
