@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sectionId')->constrained('sections')->nonNull();
+            $table->unsignedBigInteger('section_id')->nonNull();
             $table->string('title')->nonNull();
             $table->timestamps();
+
+            $table->foreign('section_id')->references('id')->on('sections');
         });
     }
 

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('my_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('typeId')->constrained('user_types');
+            $table->unsignedBigInteger('type_id')->nonNull();
             $table->string('firstname')->nonNull();
             $table->string('surname')->nonNull();
-            $table->string('birthdate')->nullable();
-            $table->sting('email')->nonNull();
+            $table->date('birthdate')->nullable();
+            $table->string('email')->nonNull();
             $table->string('password')->nonNull();
             $table->string('phoneNumber')->nullable();
             $table->string('gender')->nullable();
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('zipcode')->nullable();
             $table->timestamps();
+
+            $table->foreign('type_id')->references('id')->on('user_types');
         });
     }
 

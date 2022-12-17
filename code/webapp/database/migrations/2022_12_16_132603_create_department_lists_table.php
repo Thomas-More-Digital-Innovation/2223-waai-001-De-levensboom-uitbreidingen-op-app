@@ -14,10 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('department_lists', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('my_users');
-            $table->foreignId('role_id')->constrained('roles');
-            $table->foreignId('department_id')->constrained('departments');
+            $table->unsignedBigInteger('user_id')->nonNull();
+            $table->unsignedBigInteger('role_id')->nonNull();
+            $table->unsignedBigInteger('department_id')->nonNull();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('my_users');
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

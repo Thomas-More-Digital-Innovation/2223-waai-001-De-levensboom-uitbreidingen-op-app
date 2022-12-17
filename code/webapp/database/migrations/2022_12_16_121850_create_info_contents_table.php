@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('info_contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('infoId')->constrained('infos')->nonNull();
+            $table->unsignedBigInteger('info_id')->nonNull();
             $table->string('title')->nonNull();
             $table->string('titleImage')->nullable();
             $table->string('url')->nullable();
             $table->string('shortContent')->nullable();
             $table->string('content')->nullable();
             $table->timestamps();
+
+            $table->foreign('info_id')->references('id')->on('infos');
         });
     }
 
