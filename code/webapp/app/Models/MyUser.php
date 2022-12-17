@@ -20,7 +20,7 @@ class MyUser extends Model
     }
 
     public function mentors() {
-        return $this->belongsToMany(MyUser::class, 'UserList', 'mentor_id', 'client_id');
+        return $this->belongsToMany(MyUser::class, 'UserList', 'client_id', 'mentor_id');
     }
 
     public function clients() {

@@ -1,5 +1,8 @@
 <?php
 
+//!!!!!!!
+// DO NOT USE THIS FILE
+//!!!!!!!
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
