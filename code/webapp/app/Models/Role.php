@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    // allow mass assignment
+    protected $fillable = ['name',];
     
     public function department_lists()
     {

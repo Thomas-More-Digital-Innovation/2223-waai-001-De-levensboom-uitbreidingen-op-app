@@ -9,6 +9,9 @@ class InfoContent extends Model
 {
     use HasFactory;
 
+    // allow mass assignment
+    protected $fillable = ['info_id', 'title', 'titleImage', 'url', 'shortContent',  'content',];
+
     public function info()
     {
         return $this->belongsTo(Info::class);
