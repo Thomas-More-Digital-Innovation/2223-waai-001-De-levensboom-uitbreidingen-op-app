@@ -9,6 +9,9 @@ class UserType extends Model
 {
     use HasFactory;
 
+    // allow mass assignment
+    protected $fillable = ['name',];
+
     public function users()
     {
         return $this->hasMany(MyUser::class);

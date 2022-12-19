@@ -9,6 +9,10 @@ class MyUser extends Model
 {
     use HasFactory;
 
+    // allow mass assignment
+    protected $fillable = ['user_type_id', 'firstname', 'surname', 'birthdate', 'email', 'password', 'phoneNumber', 'gender',
+                             'street', 'houseNumber', 'city', 'zipCode',];
+
     public function user_types()
     {
         return $this->belongsTo(UserType::class);

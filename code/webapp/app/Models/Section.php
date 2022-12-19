@@ -9,6 +9,9 @@ class Section extends Model
 {
     use HasFactory;
 
+    // allow mass assignment
+    protected $fillable = ['name',];
+
     public function infos()
     {
         return $this->hasMany(Info::class);
