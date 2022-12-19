@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'status' => true,
+            'department' => []
+        ]);
     }
 
     /**
@@ -34,9 +38,9 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
