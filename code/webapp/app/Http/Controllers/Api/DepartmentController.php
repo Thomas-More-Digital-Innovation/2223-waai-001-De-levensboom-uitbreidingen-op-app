@@ -16,9 +16,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        $department = Department::all();
+
         return response()->json([
             'status' => true,
-            'department' => []
+            'departments' => [$department]
         ]);
     }
 
@@ -40,7 +42,13 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        dd($request->all());
+        $department = Department::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department created succesfully",
+            'department' => $department
+        ], 200);  
     }
 
     /**
@@ -72,9 +80,15 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(StoreDepartmentRequest $request, Department $department)
     {
-        //
+        $department->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department updated succesfully",
+            'department' => $department
+        ], 200);  
     }
 
     /**
@@ -85,6 +99,11 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department deleted succesfully",
+        ], 200);  
     }
 }
