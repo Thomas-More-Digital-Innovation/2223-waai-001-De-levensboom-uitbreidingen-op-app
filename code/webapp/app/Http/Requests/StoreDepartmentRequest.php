@@ -24,8 +24,7 @@ class StoreDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required",
-            "street" => "required"
+            "name" => "required"
         ];
     }
 }
