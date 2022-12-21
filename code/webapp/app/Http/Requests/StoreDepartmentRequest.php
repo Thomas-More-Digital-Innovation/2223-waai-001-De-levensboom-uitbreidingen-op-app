@@ -24,7 +24,13 @@ class StoreDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required"
+            "name" => "string|required",
+            "street" => "string|nullable",
+            "houseNumber" => "string|nullable",
+            "city" => "string|nullable",
+            "zipCode" => "string|nullable",
+            "email" => "string|nullable",
+            "phoneNumber" => "string|nullable"
         ];
     }
 }
