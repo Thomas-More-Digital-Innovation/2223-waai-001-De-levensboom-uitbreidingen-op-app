@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
+  @vite('resources/js/test.js')
   <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 </head>
-
 <body class="flex row">
   <x-navbar />
   <main class="w-full">
@@ -45,7 +45,7 @@
           <div class="bg-[#0073b7] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
           <div class="flex flex-col mx-2">
             <h3 class="">AFDELINGEN</h3>
-            <p>Amount</p>
+            <p id="afdelingen">Amount</p>
           </div>
         </a>
 
@@ -60,5 +60,4 @@
     </div>
   </main>
 </body>
-
 </html>
