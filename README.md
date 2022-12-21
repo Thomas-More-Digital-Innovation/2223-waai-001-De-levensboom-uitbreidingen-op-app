@@ -16,3 +16,4 @@
 8. Use php artisan serve in your terminal to run the application
 9. Use npm run dev to compile the assets (use 2 terminals!)
 10. Open the link to 127.0.0.1:8000 in your browser
+11. Use php artisan migrate in your terminal to create the database
