@@ -1,5 +1,8 @@
 <?php
 
+//!!!!!!!
+// DO NOT USE THIS FILE
+//!!!!!!!
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -41,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userTypes()
+    {
+        return $this->belongsTo(UserType::class);
+    }
 }
