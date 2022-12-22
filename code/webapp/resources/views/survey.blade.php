@@ -15,7 +15,7 @@
 
     <div class="m-5">
       <h1 class="text-3xl font-bold">
-        Client
+        Tevredenheids Meting
       </h1>
     </div>
   </main>
