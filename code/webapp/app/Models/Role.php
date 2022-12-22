@@ -10,7 +10,7 @@ class Role extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['name',];
+    protected $fillable = ['name'];
     
     public function department_lists()
     {
