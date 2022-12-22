@@ -9,18 +9,11 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 </head>
 
-<body class="flex row">
+<body class="flex">
   <x-navbar />
   <main class="w-full">
-    <div class="min-h-[56px] bg-[#3c8dbc] flex justify-between items-center px-5 text-white">
-      <iconify-icon icon="fa6-solid:bars" class="hover:cursor-pointer"></iconify-icon>
-      <p class="hover:cursor-pointer">John Doe</p>
-    </div>
-
-    <div class="flex gap-2 items-end ml-5 mt-5">
-      <h1 class="text-2xl">Dashboard</h1>
-      <p class="font-[300]">Welcome to Admin Dashboard</p>
-    </div>
+    <x-topbar />
+    <x-welcome />
 
     <div class="grid grid-cols-3 gap-5 m-5">
       <a href="" class="flex rounded-sm border shadow-md">
