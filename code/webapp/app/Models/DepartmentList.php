@@ -14,7 +14,7 @@ class DepartmentList extends Model
 
     public function users()
     {
-        return $this->belongsTo(MyUser::class);
+        return $this->belongsTo(User::class);
     }
 
     public function roles()

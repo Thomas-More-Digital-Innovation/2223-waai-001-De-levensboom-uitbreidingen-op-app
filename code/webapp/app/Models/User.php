@@ -1,8 +1,5 @@
 <?php
 
-//!!!!!!!
-// DO NOT USE THIS FILE
-//!!!!!!!
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,9 +18,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'user_type_id',
+        'firstname',
+        'surname', 
+        'birthdate', 
+        'email', 
+        'password', 
+        'phoneNumber', 
+        'gender',
+        'street', 
+        'houseNumber', 
+        'city', 
+        'zipCode',
     ];
 
     /**
@@ -48,5 +54,18 @@ class User extends Authenticatable
     public function userTypes()
     {
         return $this->belongsTo(UserType::class);
+    }
+
+    public function department_lists()
+    {
+        return $this->hasMany(DepartmentList::class);
+    }
+
+    public function mentors() {
+        return $this->belongsToMany(User::class, 'UserList', 'client_id', 'mentor_id');
+    }
+
+    public function clients() {
+        return $this->belongsToMany(User::class, 'UserList', 'mentor_id', 'client_id');
     }
 }
