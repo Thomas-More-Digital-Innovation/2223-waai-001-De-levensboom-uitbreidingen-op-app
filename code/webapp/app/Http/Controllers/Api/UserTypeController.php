@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserTypeRequest;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,12 @@ class UserTypeController extends Controller
      */
     public function index()
     {
-        //
+        $userTypes = UserType::all();
+
+        return response()->json([
+            'status' => true,
+            'userTypes' => $userTypes
+        ]);
     }
 
     /**
@@ -34,9 +40,15 @@ class UserTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserTypeRequest $request)
     {
-        //
+        $userType = UserType::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User type created succesfully",
+            'userType' => $userType
+        ], 200);
     }
 
     /**
@@ -68,9 +80,15 @@ class UserTypeController extends Controller
      * @param  \App\Models\UserType  $userType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserType $userType)
+    public function update(StoreUserTypeRequest $request, UserType $userType)
     {
-        //
+        $userType -> update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User type updated succesfully",
+            'userType' => $userType
+        ], 200);
     }
 
     /**
@@ -81,6 +99,11 @@ class UserTypeController extends Controller
      */
     public function destroy(UserType $userType)
     {
-        //
+        $userType -> delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "User type deleted succesfully"
+        ], 200);
     }
 }
