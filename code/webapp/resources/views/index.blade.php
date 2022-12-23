@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -29,7 +30,7 @@
           </div>
           <div class="flex flex-col mx-2">
             <h3 class="">CLIENTEN</h3>
-            <p>Amount</p>
+            <p>{{ \App\Models\User::count(); }}</p>
           </div>
         </a>
 
@@ -37,7 +38,7 @@
           <div class="bg-[#ff851b] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
           <div class="flex flex-col mx-2">
             <h3 class="">BEGELEIDERS</h3>
-            <p>Amount</p>
+            <p>{{ \App\Models\User::count(); }}</p>
           </div>
         </a>
 
@@ -45,7 +46,7 @@
           <div class="bg-[#0073b7] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
           <div class="flex flex-col mx-2">
             <h3 class="">AFDELINGEN</h3>
-            <p id="afdelingen">Amount</p>
+            <p>{{ \App\Models\Department::count(); }}</p>
           </div>
         </a>
 
@@ -53,7 +54,7 @@
           <div class="bg-[#dd4b39] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
           <div class="flex flex-col mx-2">
             <h3 class="">NIEUWTJES</h3>
-            <p>Amount</p>
+            <p>{{ \App\Models\Info::count(); }}</p>
           </div>
         </a>
       </div>
