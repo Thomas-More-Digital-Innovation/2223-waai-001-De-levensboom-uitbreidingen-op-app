@@ -10,7 +10,7 @@ class DepartmentList extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['my_user_id', 'role_id', 'department_id',];
+    protected $fillable = ['my_user_id', 'role_id', 'department_id'];
 
     public function users()
     {
