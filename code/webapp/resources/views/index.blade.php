@@ -9,56 +9,47 @@
   @vite('resources/js/test.js')
   <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 </head>
-<body class="flex row">
+
+<body class="flex">
   <x-navbar />
   <main class="w-full">
-    <div class="min-h-[56px] bg-[#3c8dbc] flex justify-between items-center px-5 text-white">
-      <iconify-icon icon="fa6-solid:bars" class="hover:cursor-pointer"></iconify-icon>
-      <p class="hover:cursor-pointer">John Doe</p>
-    </div>
-    <div class="m-5">
-      <div class="flex gap-2 items-end">
-        <h1 class="text-2xl">Dashboard</h1>
-        <p class="font-[300]">Welcome to Admin Dashboard</p>
-      </div>
+    <x-topbar />
+    <x-welcome />
 
-      <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-3 gap-5 m-5">
+      <a href="/clients" class="flex rounded-sm border shadow-md">
+        <iconify-icon icon="fa6-solid:users" class="bg-[#00a65a] self-center p-6 text-5xl text-white"></iconify-icon>
+        <div class="bg-white px-3 py-2 text-[#3c8dbc] font-medium">
+          <p>CLIENTEN</p>
+          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\User::count(); }}</p>
+        </div>
+      </a>
+      
+      <a href="/mentors" class="flex rounded-sm border shadow-md">
+        <iconify-icon icon="fa6-solid:address-card" class="bg-[#ff851b] self-center px-7 py-6 text-5xl text-white"></iconify-icon>
+        <div class="bg-white px-3 py-2 text-[#3c8dbc] font-medium">
+          <p>BEGELEIDERS</p>
+          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\User::count(); }}</p>
+        </div>
+      </a>
 
-        <a class="flex rounded-sm bg-white border shadow-md md:w-[260px] h-[90px]">
-          <div class="bg-[#00a65a] ">
-            <iconify-icon icon="fa6-solid:users" class="min-w-[80px] mx-auto md:h-auto hover:cursor-pointer"></iconify-icon>
-          </div>
-          <div class="flex flex-col mx-2">
-            <h3 class="">CLIENTEN</h3>
-            <p>{{ \App\Models\User::count(); }}</p>
-          </div>
-        </a>
+      <a href="/departments" class="flex rounded-sm border shadow-md">
+        <iconify-icon icon="fa6-solid:building" class="bg-[#0073b7] self-center px-9 py-6 text-5xl text-white"></iconify-icon>
+        <div class="bg-white px-3 py-2 text-[#3c8dbc] font-medium">
+          <p>AFDELINGEN</p>
+          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\Department::count(); }}</p>
+        </div>
+      </a>
 
-        <a class="flex rounded-sm bg-white border shadow-md md:w-[260px] h-[90px]">
-          <div class="bg-[#ff851b] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
-          <div class="flex flex-col mx-2">
-            <h3 class="">BEGELEIDERS</h3>
-            <p>{{ \App\Models\User::count(); }}</p>
-          </div>
-        </a>
-
-        <a class="flex rounded-sm bg-white border shadow-md md:w-[260px] h-[90px]">
-          <div class="bg-[#0073b7] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
-          <div class="flex flex-col mx-2">
-            <h3 class="">AFDELINGEN</h3>
-            <p>{{ \App\Models\Department::count(); }}</p>
-          </div>
-        </a>
-
-        <a class="flex rounded-sm bg-white border shadow-md md:w-[260px] h-[90px]">
-          <div class="bg-[#dd4b39] object-cover min-w-[80px] md:h-auto"> Font Awesome? </div>
-          <div class="flex flex-col mx-2">
-            <h3 class="">NIEUWTJES</h3>
-            <p>{{ \App\Models\Info::count(); }}</p>
-          </div>
-        </a>
-      </div>
+      <a href="/news" class="flex rounded-sm border shadow-md">
+        <iconify-icon icon="fa6-solid:info" class="bg-[#dd4b39] self-center px-11 py-6 text-5xl text-white"></iconify-icon>
+        <div class="bg-white px-3 py-2 text-[#3c8dbc] font-medium">
+          <p>NIEUWTJES</p>
+          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\Info::count(); }}</p>
+        </div>
+      </a>
     </div>
   </main>
 </body>
+
 </html>

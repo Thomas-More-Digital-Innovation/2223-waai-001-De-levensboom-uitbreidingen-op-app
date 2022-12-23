@@ -3,24 +3,24 @@
     <div>
         <p class="text-sm text-[#4b646f] bg-[#1a2226] px-6 py-3">Gegevens</p>
         <div class="flex flex-col text-[#b8c7ce]">
-            <a href="/client" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Clienten</a>
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Begeleiders</a>
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Afdelingen</a>
+            <a href="/clients" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Clienten</a>
+            <a href="/mentors" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Begeleiders</a>
+            <a href="/departments" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Afdelingen</a>
         </div>
     </div>
     <div>
         <p class="text-sm text-[#4b646f] bg-[#1a2226] px-6 py-3">Informatie</p>
         <div class="flex flex-col text-[#b8c7ce]">
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Volwassenen</a>
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Jongeren</a>
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Nieuwtjes</a>
+            <a href="/adults" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Volwassenen</a>
+            <a href="/teens" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Jongeren</a>
+            <a href="/news" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Nieuwtjes</a>
         </div>
     </div>
     <div>
         <p class="text-sm text-[#4b646f] bg-[#1a2226] px-6 py-3">Admin</p>
         <div class="flex flex-col text-[#b8c7ce]">
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Mails</a>
-            <a href="" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Tevredenheids meting</a>
+            <a href="/mails" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Mails</a>
+            <a href="/survey" class="px-6 py-3 hover:text-white hover:bg-[#202c2c]">Tevredenheids meting</a>
         </div>
     </div>
 </div>
