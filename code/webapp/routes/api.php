@@ -26,11 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResources([
-//     'department' => DepartmentController::class,
-//     'user-type' => UserTypeController::class,
-// ]);
-Route::apiResource('user-type', UserTypeController::class)->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group( function () {
+    Route::apiResources([
+        'department' => DepartmentController::class,
+        'user-type' => UserTypeController::class,
+    ]);
+});
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
