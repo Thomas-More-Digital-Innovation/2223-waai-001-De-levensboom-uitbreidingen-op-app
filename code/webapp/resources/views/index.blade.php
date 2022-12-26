@@ -21,7 +21,7 @@
         <iconify-icon icon="fa6-solid:users" class="bg-[#00a65a] self-center p-6 text-5xl text-white"></iconify-icon>
         <div class=" px-3 py-2 text-[#3c8dbc] font-medium">
           <p>CLIENTEN</p>
-          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\User::count(); }}</p>
+          <p class="font-bold text-[#3c8dbc]">{{ $clientcount }}</p>
         </div>
       </a>
       
@@ -29,7 +29,7 @@
         <iconify-icon icon="fa6-solid:address-card" class="bg-[#ff851b] self-center px-7 py-6 text-5xl text-white"></iconify-icon>
         <div class="px-3 py-2 text-[#3c8dbc] font-medium">
           <p>BEGELEIDERS</p>
-          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\User::count(); }}</p>
+          <p class="font-bold text-[#3c8dbc]">{{ $mentorcount }}</p>
         </div>
       </a>
 
@@ -37,7 +37,7 @@
         <iconify-icon icon="fa6-solid:building" class="bg-[#0073b7] self-center px-9 py-6 text-5xl text-white"></iconify-icon>
         <div class="px-3 py-2 text-[#3c8dbc] font-medium">
           <p>AFDELINGEN</p>
-          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\Department::count(); }}</p>
+          <p class="font-bold text-[#3c8dbc]">{{ $departmentcount }}</p>
         </div>
       </a>
 
@@ -45,7 +45,7 @@
         <iconify-icon icon="fa6-solid:info" class="bg-[#dd4b39] self-center px-11 py-6 text-5xl text-white"></iconify-icon>
         <div class="px-3 py-2 text-[#3c8dbc] font-medium">
           <p>NIEUWTJES</p>
-          <p class="font-bold text-[#3c8dbc]">{{ \App\Models\Info::count(); }}</p>
+          <p class="font-bold text-[#3c8dbc]">{{ $newscount }}</p>
         </div>
       </a>
     </div>

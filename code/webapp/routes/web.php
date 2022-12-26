@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Department;
+use App\Models\Info;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('index');
+    $clientcount = User::count();
+    $mentorcount = User::count();
+    $departmentcount = Department::count();
+    $newscount = Info::count();
+
+    return view('index', [
+        'clientcount' => $clientcount,
+        'mentorcount' => $mentorcount,
+        'departmentcount' => $departmentcount,
+        'newscount' => $newscount
+    ]);
 });
 
 Route::get('/adults', function () {
