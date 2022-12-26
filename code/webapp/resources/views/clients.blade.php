@@ -18,16 +18,37 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Clienten" />
-          <div class="mt-5 grid grid-cols-7">
-            <p>Voornaam</p>
-            <p>Achternaam</p>
-            <p>Afdeling&lpar;en&rpar;</p>
-            <p>Begeleider&lpar;s&rpar;</p>
-            <p>Geboortedatum</p>
-            <p>Contactgegevens</p>
-            <p>Acties</p>
-          </div>
+          <x-list-title title="Clienten lijst" />
+          <table class="border-collapse border border-[#f4f4f4] table-auto">
+            <thead>
+              <tr>
+                <th class="border border-[#f4f4f4] p-2">Voornaam</th>
+                <th class="border border-[#f4f4f4] p-2">Achternaam</th>
+                <th class="border border-[#f4f4f4] p-2">Afdeling&lpar;en&rpar;</th>
+                <th class="border border-[#f4f4f4] p-2">Begeleider&lpar;s&rpar;</th>
+                <th class="border border-[#f4f4f4] p-2">Geboortedatum</th>
+                <th class="border border-[#f4f4f4] p-2">Contactgegevens</th>
+                <th class="border border-[#f4f4f4] p-2">Acties</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($clients as $client)
+              <tr class="font-normal">
+                <td class="border border-[#f4f4f4] p-2">{{ $client->firstname }}</td>
+                <td class="border border-[#f4f4f4] p-2">{{ $client->lastname }}</td>
+                <td class="border border-[#f4f4f4] p-2">{{ $client->birthdate }}</td>
+                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
+                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
+                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
+                <td class="border border-[#f4f4f4] p-2">
+                  <a href="" class="text-[#3c8dbc]">Bewerk</a>
+                  <span class="">|</span>
+                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

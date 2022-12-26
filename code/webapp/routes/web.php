@@ -36,7 +36,9 @@ Route::get('/adults', function () {
 });
 
 Route::get('/clients', function () {
-    return view('clients');
+    return view('clients', [
+        'clients' => User::all()
+    ]);
 });
 
 Route::get('/departments', function () {
