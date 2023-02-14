@@ -17,7 +17,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Tevredenheids Meting" />
+          <x-list-title title="Tevredenheids Meting" function="addSurvey" />
           <div class="mt-5 grid grid-cols-2">
             <p>Google form link</p>
             <p>Acties</p>

@@ -17,7 +17,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Info Segmenten voor volwassenen" />
+          <x-list-title title="Info Segmenten voor volwassenen" function="addAdults" />
           <div class="mt-5 grid grid-cols-3">
             <p>Titel</p>
             <p>Info blokken</p>
