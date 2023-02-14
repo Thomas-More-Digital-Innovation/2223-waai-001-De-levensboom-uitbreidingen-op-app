@@ -18,13 +18,31 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Afdelingen lijst" function="addDepartment" />
-          <div class="mt-5 grid grid-cols-3">
-            <p>Naam</p>
-            <p>Contactgegevens</p>
-            <p>Acties</p>
-          </div>
+          <table class="border-collapse border border-[#f4f4f4] table-auto">
+            <thead>
+              <tr>
+                <th class="border border-[#f4f4f4] py-2 px-6">Naam</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($departments as $department)
+              <tr class="font-normal">
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->naam }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->contactgegevens }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">
+                  <a href="" class="text-[#3c8dbc]">Bewerk</a>
+                  <span>|</span>
+                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
+      <x-add-department />
     </div>
   </main>
 </body>

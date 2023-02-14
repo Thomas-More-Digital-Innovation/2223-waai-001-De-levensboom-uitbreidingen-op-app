@@ -38,7 +38,7 @@
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->lastname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->afdeling }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->begeleider }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->gweboortedatum }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->gkeboortedatum }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->contactgegevens }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>

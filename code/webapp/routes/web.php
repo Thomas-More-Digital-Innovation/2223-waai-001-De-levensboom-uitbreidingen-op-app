@@ -42,7 +42,9 @@ Route::get('/clients', function () {
 });
 
 Route::get('/departments', function () {
-    return view('departments');
+    return view('departments', [
+        'departments' => Department::all()
+    ]);
 });
 
 Route::get('/mails', function () {
