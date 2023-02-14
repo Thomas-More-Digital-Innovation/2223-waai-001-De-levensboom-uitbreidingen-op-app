@@ -9,7 +9,7 @@
   <title>Waaiburg - Clienten</title>
 </head>
 
-<body class="flex">
+<body class="flex relative">
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar />
@@ -42,7 +42,7 @@
                 <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
                 <td class="border border-[#f4f4f4] p-2">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
-                  <span class="">|</span>
+                  <span>|</span>
                   <a href="" class="text-[#3c8dbc]">Verwijder</a>
                 </td>
               </tr>
@@ -51,6 +51,7 @@
           </table>
         </div>
       </div>
+      <x-add-client />
     </div>
   </main>
 </body>
