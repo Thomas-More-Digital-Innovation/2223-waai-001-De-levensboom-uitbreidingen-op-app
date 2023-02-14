@@ -50,7 +50,9 @@ Route::get('/mails', function () {
 });
 
 Route::get('/mentors', function () {
-    return view('mentors');
+    return view('mentors', [
+        'mentors' => User::all()
+    ]);
 });
 
 Route::get('/news', function () {

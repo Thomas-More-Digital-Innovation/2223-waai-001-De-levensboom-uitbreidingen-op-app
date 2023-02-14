@@ -22,25 +22,25 @@
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>
-                <th class="border border-[#f4f4f4] p-2">Voornaam</th>
-                <th class="border border-[#f4f4f4] p-2">Achternaam</th>
-                <th class="border border-[#f4f4f4] p-2">Afdeling&lpar;en&rpar;</th>
-                <th class="border border-[#f4f4f4] p-2">Begeleider&lpar;s&rpar;</th>
-                <th class="border border-[#f4f4f4] p-2">Geboortedatum</th>
-                <th class="border border-[#f4f4f4] p-2">Contactgegevens</th>
-                <th class="border border-[#f4f4f4] p-2">Acties</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Achternaam</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Afdeling&lpar;en&rpar;</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Begeleider&lpar;s&rpar;</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Geboortedatum</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($clients as $client)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] p-2">{{ $client->firstname }}</td>
-                <td class="border border-[#f4f4f4] p-2">{{ $client->lastname }}</td>
-                <td class="border border-[#f4f4f4] p-2">{{ $client->birthdate }}</td>
-                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
-                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
-                <td class="border border-[#f4f4f4] p-2">{{ $client->email }}</td>
-                <td class="border border-[#f4f4f4] p-2">
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->lastname }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->afdeling }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->begeleider }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->gweboortedatum }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->contactgegevens }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>
                   <a href="" class="text-[#3c8dbc]">Verwijder</a>
