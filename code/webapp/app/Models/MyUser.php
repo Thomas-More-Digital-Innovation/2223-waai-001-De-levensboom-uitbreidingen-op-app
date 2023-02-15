@@ -30,4 +30,9 @@ class MyUser extends Model
     public function clients() {
         return $this->belongsToMany(MyUser::class, 'UserList', 'mentor_id', 'client_id');
     }
+
+    public function answers()
+    {
+        return $this->hasmany(Answer::class);
+    }
 }
