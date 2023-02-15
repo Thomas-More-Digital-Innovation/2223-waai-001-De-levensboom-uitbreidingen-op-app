@@ -32,7 +32,9 @@ Route::get('/', function () {
 });
 
 Route::get('/adults', function () {
-    return view('adults');
+    return view('adults', [
+        'adults' => User::all()
+    ]);
 });
 
 Route::get('/clients', function () {

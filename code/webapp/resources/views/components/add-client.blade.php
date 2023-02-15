@@ -1,4 +1,4 @@
-<div class="hidden fixed w-full h-full z-10 left-0 top-0" id="addClient">
+<div class="hidden fixed w-full h-full z-10 left-0 top-0 overflow-auto" id="addClient">
     <div class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white py-4 px-6 rounded-lg w-1/3">
         <div class="flex items-center justify-between mb-1">
             <p class="text-xl">Client toevoegen</p>
@@ -45,6 +45,7 @@
 
             <label for="phonenumber" class="font-bold">Telefoonnummer</label>
             <input type="text" name="phonenumber" id="phonenumber" placeholder="Enter telefoonnummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Aanmaken</button>
         </div>
     </div>
 </div>
