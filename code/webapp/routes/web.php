@@ -68,6 +68,8 @@ Route::get('/survey', function () {
 });
 
 Route::get('/teens', function () {
-    return view('teens');
+    return view('teens', [
+        'teens' => User::all()
+    ]);
 });
 
