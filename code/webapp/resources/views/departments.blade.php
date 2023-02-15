@@ -29,8 +29,8 @@
             <tbody>
               @foreach ($departments as $department)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->naam }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->contactgegevens }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->name }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->street . ' ' .  $department->houseNumber }} <br> {{ $department->city . ' ' . $department->zipcode}}  <br> {{ $department->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>

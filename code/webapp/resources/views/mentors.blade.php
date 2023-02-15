@@ -34,7 +34,7 @@
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->lastname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->role }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->contact }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->street . ' ' .  $mentor->houseNumber }} <br> {{ $mentor->city . ' ' . $mentor->zipcode}}  <br> {{ $mentor->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>
