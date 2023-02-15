@@ -5,7 +5,7 @@
             <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addDepartment").classList.add("hidden")'></iconify-icon>
         </div>
         <hr>
-        <div class="flex flex-col mt-3">
+        <form action="{{ route('department.store') }}" method="POST" class="flex flex-col mt-3">
             <label for="name" class="font-bold">Naam*</label>
             <input type="text" name="name" id="name" placeholder="Enter naam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
@@ -25,6 +25,6 @@
             <label for="phonenumber" class="font-bold">Telefoonnummer</label>
             <input type="text" name="phonenumber" id="phonenumber" placeholder="Enter telefoonnummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Aanmaken</button>
-        </div>
+        </form>
     </div>
 </div>
