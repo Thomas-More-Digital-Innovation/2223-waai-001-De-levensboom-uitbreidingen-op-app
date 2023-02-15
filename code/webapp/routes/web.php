@@ -50,7 +50,9 @@ Route::get('/departments', function () {
 });
 
 Route::get('/mails', function () {
-    return view('mails');
+    return view('mails', [
+        'mails' => User::all()
+    ]);
 });
 
 Route::get('/mentors', function () {

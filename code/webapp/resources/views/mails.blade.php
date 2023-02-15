@@ -17,13 +17,30 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Mails" function="addMails" />
-          <div class="mt-5 grid grid-cols-2">
-            <p>Onderwerp</p>
-            <p>Acties</p>
-          </div>
+          <x-list-title title="Mails" function="addMail" />
+          <table class="border-collapse border border-[#f4f4f4] table-auto">
+            <thead>
+              <tr>
+                <th class="border border-[#f4f4f4] py-2 px-6">Onderwerp</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($mails as $mail)
+              <tr class="font-normal">
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mail->onderwerp }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">
+                  <a href="" class="text-[#3c8dbc]">Bewerk</a>
+                  <span>|</span>
+                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
+      <x-add-mail />
     </div>
   </main>
 </body>

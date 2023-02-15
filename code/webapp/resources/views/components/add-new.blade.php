@@ -1,7 +1,7 @@
 <div class="hidden fixed w-full h-full z-10 left-0 top-0 overflow-auto" id="addNew">
     <div class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white py-4 px-6 rounded-lg w-1/3">
         <div class="flex items-center justify-between mb-1">
-            <p class="text-xl">Info segment toevoegen</p>
+            <p class="text-xl">Nieuwtje toevoegen</p>
             <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addNew").classList.add("hidden")'></iconify-icon>
         </div>
         <hr>
