@@ -4,6 +4,7 @@
 1. Make sure you have xammp installed on your computer.
 2. Make sure you have composer installed on your computer.
 3. Make sure you have apache running on your computer (xammp).
+4. Make sure you have MySQL running on your computer (xammp).
 
 ## Installation
 1. Make sure to install this repository in your xammp/htdocs folder.
