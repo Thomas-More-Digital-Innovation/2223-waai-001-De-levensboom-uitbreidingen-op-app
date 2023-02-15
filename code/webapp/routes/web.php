@@ -67,8 +67,10 @@ Route::get('/news', function () {
     ]);
 });
 
-Route::get('/survey', function () {
-    return view('survey');
+Route::get('/surveys', function () {
+    return view('surveys', [
+        'surveys' => User::all()
+    ]);
 });
 
 Route::get('/teens', function () {
