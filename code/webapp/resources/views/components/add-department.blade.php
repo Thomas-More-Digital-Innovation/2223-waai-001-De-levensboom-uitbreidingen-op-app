@@ -7,7 +7,7 @@
         <hr>
         <form action="{{ route('department.store') }}" method="POST" class="flex flex-col mt-3">
             <label for="name" class="font-bold">Naam*</label>
-            <input type="text" name="name" id="name" placeholder="Enter naam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="name" id="name" placeholder="Enter naam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <p class="mt-5 text-lg">Contactgegevens &lpar;optioneel&rpar;</p>
             <label for="street" class="font-bold">Straat</label>

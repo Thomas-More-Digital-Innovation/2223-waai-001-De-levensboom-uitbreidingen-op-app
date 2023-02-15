@@ -34,7 +34,9 @@
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>
-                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                  <form action="{{ route('department.destroy', ['department' => $department]) }}" method="delete">
+                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                  </form>
                 </td>
               </tr>
               @endforeach

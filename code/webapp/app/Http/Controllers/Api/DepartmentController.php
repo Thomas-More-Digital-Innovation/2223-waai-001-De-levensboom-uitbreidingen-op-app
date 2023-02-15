@@ -42,13 +42,14 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        $department = Department::create($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Department created succesfully",
-            'department' => $department
-        ], 200);  
+        $request->validate([
+            'name' => 'required',
+        ]);
+      
+        Department::create($request->all());
+       
+        return redirect()->route('departments')
+                        ->with('success','Department created successfully.');
     }
 
     /**
@@ -82,13 +83,14 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
+        $department->validate([
+            'name' => 'required',
+        ]);
+      
         $department->update($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Department updated succesfully",
-            'department' => $department
-        ], 200);  
+      
+        return redirect()->route('departments')
+                        ->with('success','Department updated successfully');
     }
 
     /**
@@ -100,10 +102,8 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => "Department deleted succesfully",
-        ], 200);  
+       
+        return redirect()->route('departments')
+                        ->with('success','Department deleted successfully');
     }
 }
