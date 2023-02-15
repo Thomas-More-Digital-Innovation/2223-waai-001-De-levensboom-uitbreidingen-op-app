@@ -60,7 +60,9 @@ Route::get('/mentors', function () {
 });
 
 Route::get('/news', function () {
-    return view('news');
+    return view('news', [
+        'news' => User::all()
+    ]);
 });
 
 Route::get('/survey', function () {
