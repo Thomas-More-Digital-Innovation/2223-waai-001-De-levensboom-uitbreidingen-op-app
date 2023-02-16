@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\UserTypeController;
 use App\Http\Controllers\Api\InfoController;
@@ -31,13 +32,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources([
-    'department' => DepartmentController::class,
-    'userType' => UserTypeController::class,
-    'info' => InfoController::class,
-    'infoContent' => InfoContentController::class,
-    'section' => SectionController::class,
-    'role' => RoleController::class,
-    'question' => QuestionController::class,
-    'answer' => AnswerController::class,
-]);
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::apiResources([
+        'department' => DepartmentController::class,
+        'userType' => UserTypeController::class,
+        'info' => InfoController::class,
+        'infoContent' => InfoContentController::class,
+        'section' => SectionController::class,
+        'role' => RoleController::class,
+        'question' => QuestionController::class,
+        'answer' => AnswerController::class,
+    ]);
+});
+
+Route::post('/auth/register', [AuthController::class, 'createUser']);
+Route::post('/auth/login', [AuthController::class, 'loginUser']);
+

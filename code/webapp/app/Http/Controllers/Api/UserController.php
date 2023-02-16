@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\MyUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class MyUserController extends Controller
+class \UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class MyUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MyUser  $myUser
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(MyUser $myUser)
+    public function show(User $user)
     {
         //
     }
@@ -53,10 +53,10 @@ class MyUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MyUser  $myUser
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(MyUser $myUser)
+    public function edit(User $user)
     {
         //
     }
@@ -65,10 +65,10 @@ class MyUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MyUser  $myUser
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MyUser $myUser)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -76,10 +76,10 @@ class MyUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MyUser  $myUser
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MyUser $myUser)
+    public function destroy(User $user)
     {
         //
     }

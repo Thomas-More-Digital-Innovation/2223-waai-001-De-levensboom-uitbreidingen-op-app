@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nonNull();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('my_users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('department_id')->references('id')->on('departments');
         });

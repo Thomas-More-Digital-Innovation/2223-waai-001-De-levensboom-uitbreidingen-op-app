@@ -10,11 +10,11 @@ class Answer extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['my_user_id', 'question_id', 'answer'];
+    protected $fillable = ['user_id', 'question_id', 'answer'];
 
     public function users()
     {
-        return $this->belongsTo(MyUser::class);
+        return $this->belongsTo(User::class);
     }
 
     public function questions()

@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('my_user_id')->nonNull();
+            $table->unsignedBigInteger('user_id')->nonNull();
             $table->unsignedBigInteger('question_id')->nonNull();
             $table->string('answer')->nonNull();
             $table->timestamps();
 
-            $table->foreign('my_user_id')->references('id')->on('my_users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('question_id')->references('id')->on('questions');
         });
     }
