@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQuestionRequest;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -14,7 +16,12 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $question = Question::all();
+
+        return response()->json([
+            'status' => true,
+            'questions' => [$question]
+        ]);
     }
 
     /**
@@ -33,18 +40,24 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        //
+        $question = Question::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Question created succesfully",
+            'question' => $question
+        ], 200);  
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Section $section)
+    public function show(Question $question)
     {
         //
     }
@@ -52,10 +65,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Section $section)
+    public function edit(Question $question)
     {
         //
     }
@@ -64,22 +77,33 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(StoreQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Question updated succesfully",
+            'question' => $question
+        ], 200); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Question deleted succesfully",
+        ], 200); 
     }
 }

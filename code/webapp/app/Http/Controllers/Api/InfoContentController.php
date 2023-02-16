@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreInfoContentRequest;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,12 @@ class InfoContentController extends Controller
      */
     public function index()
     {
-        //
+        $infoContent = InfoContent::all();
+
+        return response()->json([
+            'status' => true,
+            'infoContents' => [$infoContent]
+        ]);
     }
 
     /**
@@ -34,9 +40,15 @@ class InfoContentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInfoContentRequest $request)
     {
-        //
+        $infoContent = InfoContent::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Info content created succesfully",
+            'infoContent' => $infoContent
+        ], 200);  
     }
 
     /**
@@ -68,9 +80,15 @@ class InfoContentController extends Controller
      * @param  \App\Models\InfoContent  $infoContent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InfoContent $infoContent)
+    public function update(StoreInfoContentRequest $request, InfoContent $infoContent)
     {
-        //
+        $infoContent->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Info content updated succesfully",
+            'infoContent' => $infoContent
+        ], 200);  
     }
 
     /**
@@ -81,6 +99,11 @@ class InfoContentController extends Controller
      */
     public function destroy(InfoContent $infoContent)
     {
-        //
+        $infoContent->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Info content deleted succesfully",
+        ], 200); 
     }
 }

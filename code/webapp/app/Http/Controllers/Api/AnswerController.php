@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAnswerRequest;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -14,7 +16,12 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        //
+        $answer = Answer::all();
+
+        return response()->json([
+            'status' => true,
+            'answers' => [$answer]
+        ]);
     }
 
     /**
@@ -33,18 +40,24 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAnswerRequest $request)
     {
-        //
+        $answer = Answer::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Answer created succesfully",
+            'answer' => $answer
+        ], 200); 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Section $section)
+    public function show(Answer $answer)
     {
         //
     }
@@ -52,10 +65,10 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Section $section)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -64,22 +77,33 @@ class AnswerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(StoreAnswerRequest $request, Answer $answer)
     {
-        //
+        $answer->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Answer updated succesfully",
+            'answer' => $answer
+        ], 200); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function destroy(Answer $answer)
     {
-        //
+        $answer->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Answer deleted succesfully",
+        ], 200); 
     }
 }
