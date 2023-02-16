@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
-use App\Http\Controllers\Api\DepartmentListController;
 use App\Http\Controllers\Api\UserTypeController;
 use App\Http\Controllers\Api\InfoController;
+use App\Http\Controllers\Api\InfoContentController;
 use App\Http\Controllers\Api\SectionController;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\AnswerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,13 +32,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::middleware('auth:sanctum')->group( function () {
     Route::apiResources([
         'department' => DepartmentController::class,
-        'departmentList' => DepartmentListController::class,
         'userType' => UserTypeController::class,
         'info' => InfoController::class,
+        'infoContent' => InfoContentController::class,
         'section' => SectionController::class,
+        'role' => RoleController::class,
+        'question' => QuestionController::class,
+        'answer' => AnswerController::class,
     ]);
 });
 
