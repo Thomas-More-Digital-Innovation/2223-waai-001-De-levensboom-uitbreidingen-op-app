@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+
+        return response()->json([
+            'status' => true,
+            'roles' => [$role]
+        ]);
     }
 
     /**
@@ -34,9 +40,15 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        //
+        $role = Role::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Role created succesfully",
+            'role' => $role
+        ], 200);  
     }
 
     /**
@@ -68,9 +80,15 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(StoreRoleRequest $request, Role $role)
     {
-        //
+        $role->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Role updated succesfully",
+            'role' => $role
+        ], 200);  
     }
 
     /**
@@ -81,6 +99,11 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Role deleted succesfully",
+        ], 200); 
     }
 }

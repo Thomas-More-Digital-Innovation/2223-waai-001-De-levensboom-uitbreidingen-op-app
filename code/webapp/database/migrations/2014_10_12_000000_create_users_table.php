@@ -19,14 +19,23 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->date('birthdate');
+            $table->unsignedBigInteger('user_type_id')->nonNull();
+            $table->string('firstname')->nonNull();
+            $table->string('surname')->nonNull();
+            $table->date('birthdate')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nonNull();
+            $table->string('phoneNumber')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('street')->nullable();
+            $table->string('houseNumber')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zipcode')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('user_type_id')->references('id')->on('user_types');
         });
     }
 
