@@ -6,6 +6,9 @@
         </div>
         <hr>
         <form action="{{ route('department.store') }}" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('POST')
+
             <label for="name" class="font-bold">Naam*</label>
             <input type="text" name="name" id="name" placeholder="Enter naam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
