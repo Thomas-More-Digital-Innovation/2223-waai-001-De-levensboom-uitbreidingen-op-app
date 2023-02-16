@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDepartmentListRequest;
 use App\Models\DepartmentList;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,12 @@ class DepartmentListController extends Controller
      */
     public function index()
     {
-        //
+        $departmentList = DepartmentList::all();
+
+        return response()->json([
+            'status' => true,
+            'departmentLists' => [$departmentList]
+        ]);
     }
 
     /**
@@ -34,9 +40,15 @@ class DepartmentListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDepartmentListRequest $request)
     {
-        //
+        $departmentList = DepartmentList::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List created succesfully",
+            'department' => $departmentList
+        ], 200);  
     }
 
     /**
@@ -68,9 +80,15 @@ class DepartmentListController extends Controller
      * @param  \App\Models\DepartmentList  $departmentList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DepartmentList $departmentList)
+    public function update(StoreDepartmentRequest $request, DepartmentList $departmentList)
     {
-        //
+        $departmentList->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List updated succesfully",
+            'department' => $departmentList
+        ], 200); 
     }
 
     /**
@@ -81,6 +99,11 @@ class DepartmentListController extends Controller
      */
     public function destroy(DepartmentList $departmentList)
     {
-        //
+        $departmentList->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List deleted succesfully",
+        ], 200);  
     }
 }
