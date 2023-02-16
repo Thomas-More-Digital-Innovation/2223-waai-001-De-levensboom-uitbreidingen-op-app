@@ -7,10 +7,10 @@
         <hr>
         <form action="" class="flex flex-col mt-3">
             <label for="subject" class="font-bold">Onderwerp*</label>
-            <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             
             <label for="text" class="font-bold">Inhoud*</label>
-            <input type="text" name="text" id="text" placeholder="Enter inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="text" id="text" placeholder="Enter inhoud" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Toevoegen</button>
         </form>

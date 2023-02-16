@@ -7,7 +7,7 @@
         <hr>
         <form action="" class="flex flex-col mt-3">
             <label for="title" class="font-bold">Titel*</label>
-            <input type="text" name="title" id="title" placeholder="Enter titel" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="title" id="title" placeholder="Enter titel" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
            
             <label for="shorttext" class="font-bold">Korte inhoud</label>
             <input type="text" name="shorttext" id="shorttext" placeholder="Enter korte inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">

@@ -7,7 +7,7 @@
         <hr>
         <form action="" class="flex flex-col mt-3">
             <label for="link" class="font-bold">Google form link*</label>
-            <input type="text" name="link" id="link" placeholder="Enter google form link" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="link" id="link" placeholder="Enter google form link" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Toevoegen</button>
         </form>

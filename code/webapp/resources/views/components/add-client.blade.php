@@ -7,18 +7,18 @@
         <hr>
         <form action="" class="flex flex-col mt-3">
             <label for="firstname" class="font-bold">Voornaam*</label>
-            <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             
             <label for="lastname" class="font-bold">Achternaam*</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="lastname" id="lastname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
 
             <label for="email" class="font-bold">Email*</label>
-            <input type="text" name="email" id="email" placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="email" id="email" required placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
 
             <label for="birthdate" class="font-bold">Geboortedatum*</label>
-            <input type="text" name="birthdate" id="birthdate" placeholder="Enter geboortedatum Vb: 19-05-1989" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 19-05-1989" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <label for="gender" class="font-bold">Geslacht</label>
             {{-- select --}}

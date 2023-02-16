@@ -7,14 +7,14 @@
         <hr>
         <form action="" class="flex flex-col mt-3">
             <label for="firstname" class="font-bold">Voornaam*</label>
-            <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             
             <label for="lastname" class="font-bold">Achternaam*</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="lastname" id="lastname" placeholder="Enter achternaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
 
             <label for="email" class="font-bold">Email*</label>
-            <input type="text" name="email" id="email" placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="email" id="email" placeholder="Enter email" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <label for="department" class="font-bold">Afdeling</label>
             {{-- select met toevoegen van meerdere --}}
