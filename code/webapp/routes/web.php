@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Department;
+use App\Models\Info;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +18,64 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('index');
+    $clientcount = User::count();
+    $mentorcount = User::count();
+    $departmentcount = Department::count();
+    $newscount = Info::count();
+
+    return view('index', [
+        'clientcount' => $clientcount,
+        'mentorcount' => $mentorcount,
+        'departmentcount' => $departmentcount,
+        'newscount' => $newscount
+    ]);
 });
 
-Route::get('/client', function () {
-    return view('client');
+Route::get('/adults', function () {
+    return view('adults', [
+        'adults' => User::all()
+    ]);
+});
 
+Route::get('/clients', function () {
+    return view('clients', [
+        'clients' => User::all()
+    ]);
+});
+
+Route::get('/departments', function () {
+    return view('departments', [
+        'departments' => Department::all()
+    ]);
+});
+
+Route::get('/mails', function () {
+    return view('mails', [
+        'mails' => User::all()
+    ]);
+});
+
+Route::get('/mentors', function () {
+    return view('mentors', [
+        'mentors' => User::all()
+    ]);
+});
+
+Route::get('/news', function () {
+    return view('news', [
+        'news' => User::all()
+    ]);
+});
+
+Route::get('/surveys', function () {
+    return view('surveys', [
+        'surveys' => User::all()
+    ]);
+});
+
+Route::get('/teens', function () {
+    return view('teens', [
+        'teens' => User::all()
+    ]);
 });
 

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSectionRequest;
-use App\Models\Section;
 use Illuminate\Http\Request;
 
-class SectionController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +14,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $section = Section::all();
-
-        return response()->json([
-            'status' => true,
-            'sections' => [$section]
-        ]);
+        //
     }
 
     /**
@@ -40,15 +33,9 @@ class SectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSectionRequest $request)
+    public function store(Request $request)
     {
-        $section = Section::create($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Section created succesfully",
-            'section' => $section
-        ], 200);  
+        //
     }
 
     /**
@@ -80,15 +67,9 @@ class SectionController extends Controller
      * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSectionRequest $request, Section $section)
+    public function update(Request $request, Section $section)
     {
-        $section->update($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Section updated succesfully",
-            'section' => $section
-        ], 200); 
+        //
     }
 
     /**
@@ -99,11 +80,6 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
-        $section->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => "Section deleted succesfully",
-        ], 200);  
+        //
     }
 }
