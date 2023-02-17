@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class \UserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class \UserController extends Controller
      */
     public function index()
     {
-        //
+        $clients = User::all();
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -25,7 +26,7 @@ class \UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -58,7 +59,7 @@ class \UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('clients.edit', compact('clients'));
     }
 
     /**
