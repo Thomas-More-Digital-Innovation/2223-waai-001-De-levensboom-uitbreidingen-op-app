@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <h1 class="text-2xl">Afdeling toevoegen</h1>
-          <form action="{{ route('department.store') }}" method="POST" class="flex flex-col mt-3">
+          <form action="{{ route('departments.store') }}" method="POST" class="flex flex-col mt-3">
             @csrf
             @method('POST')
 
