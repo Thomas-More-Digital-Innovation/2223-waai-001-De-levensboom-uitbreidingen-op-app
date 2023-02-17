@@ -62,7 +62,7 @@ class NewController extends Controller
     public function edit($id)
     {
         $new = Info::find($id);
-        return view('news.edit', compact('teen'));
+        return view('news.edit', compact('new'));
     }
 
     /**
