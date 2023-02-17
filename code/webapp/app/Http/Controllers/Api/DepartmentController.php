@@ -20,7 +20,7 @@ class DepartmentController extends Controller
 
         return response()->json([
             'status' => true,
-            'departments' => [$department]
+            'department' => [$department]
         ]);
     }
 
@@ -48,7 +48,7 @@ class DepartmentController extends Controller
             'status' => true,
             'message' => "Department created succesfully",
             'department' => $department
-        ], 200);  
+        ], 200); 
     }
 
     /**
@@ -103,7 +103,7 @@ class DepartmentController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => "Department deleted succesfully",
-        ], 200);  
+            'message' => "Department List deleted succesfully",
+        ], 200); 
     }
 }

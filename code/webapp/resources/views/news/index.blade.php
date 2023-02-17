@@ -42,7 +42,6 @@
           </table>
         </div>
       </div>
-      <x-add-new />
     </div>
   </main>
 </body>

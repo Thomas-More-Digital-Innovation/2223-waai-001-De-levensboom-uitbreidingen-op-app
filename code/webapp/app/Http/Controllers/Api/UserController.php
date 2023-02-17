@@ -21,6 +21,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'users' => [$user]
+
         ]);
     }
 
@@ -49,6 +50,7 @@ class UserController extends Controller
             'message' => "User created succesfully",
             'user' => $user
         ], 200);  
+
     }
 
     /**

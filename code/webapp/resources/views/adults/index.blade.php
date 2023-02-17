@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  <title>Waaiburg - Jongeren</title>
+  <title>Waaiburg - Volwassenen</title>
 </head>
 
 <body class="flex">
@@ -17,7 +17,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Info Segmenten voor jongeren" function="addTeen" />
+          <x-list-title title="Info Segmenten voor volwassenen" name="adults.create" />
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>
@@ -27,10 +27,10 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($teens as $teen)
+              @foreach ($adults as $adult)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $teen->titel }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $teen->infoblokken }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $adult->titel }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $adult->infoblokken }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>
@@ -42,7 +42,6 @@
           </table>
         </div>
       </div>
-      <x-add-teen />
     </div>
   </main>
 </body>

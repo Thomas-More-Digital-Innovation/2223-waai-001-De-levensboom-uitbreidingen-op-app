@@ -42,13 +42,14 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        $answer = Answer::create($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Answer created succesfully",
-            'answer' => $answer
-        ], 200); 
+        $request->validate([
+            'answer' => 'required',
+        ]);
+      
+        Answer::create($request->all());
+       
+        return redirect()->route('answers')
+                        ->with('success','Answer created successfully.');
     }
 
     /**
@@ -82,13 +83,14 @@ class AnswerController extends Controller
      */
     public function update(StoreAnswerRequest $request, Answer $answer)
     {
+        $answer->validate([
+            'answer' => 'required',
+        ]);
+      
         $answer->update($request->all());
-
-        return response()->json([
-            'status' => true,
-            'message' => "Answer updated succesfully",
-            'answer' => $answer
-        ], 200); 
+      
+        return redirect()->route('answers')
+                        ->with('success','Answer updated successfully');
     }
 
     /**
@@ -100,10 +102,8 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         $answer->delete();
-
-        return response()->json([
-            'status' => true,
-            'message' => "Answer deleted succesfully",
-        ], 200); 
+       
+        return redirect()->route('answers')
+                        ->with('success','Answer deleted successfully');
     }
 }

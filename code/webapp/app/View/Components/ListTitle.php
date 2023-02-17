@@ -6,16 +6,16 @@ use Illuminate\View\Component;
 
 class ListTitle extends Component
 {
-    public $title, $function;
+    public $title, $name;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $function)
+    public function __construct($title, $name)
     {
         $this->title = $title;
-        $this->function = $function;
+        $this->name = $name;
     }
 
     /**
