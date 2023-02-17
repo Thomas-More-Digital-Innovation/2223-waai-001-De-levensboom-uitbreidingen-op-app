@@ -42,14 +42,13 @@ class SectionController extends Controller
      */
     public function store(StoreSectionRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-      
-        Section::create($request->all());
-       
-        return redirect()->route('adults')
-                        ->with('success','Section created successfully.');
+        $section = Section::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Section created succesfully",
+            'section' => $section
+        ], 200);  
     }
 
     /**
