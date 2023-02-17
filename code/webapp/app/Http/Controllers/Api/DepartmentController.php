@@ -16,8 +16,12 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
-        return view('departments.index', compact('departments'));
+        $department = Department::all();
+
+        return response()->json([
+            'status' => true,
+            'department' => [$department]
+        ]);
     }
 
     /**
@@ -27,7 +31,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('departments.create');
+        //
     }
 
     /**
@@ -38,14 +42,13 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-      
-        Department::create($request->all());
-       
-        return redirect()->route('departments')
-                        ->with('success','Department created successfully.');
+        $department = Department::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department created succesfully",
+            'department' => $department
+        ], 200); 
     }
 
     /**
@@ -67,7 +70,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        return view('departments.edit', compact('department'));
+        //
     }
 
     /**
@@ -79,14 +82,13 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
-        $department->validate([
-            'name' => 'required',
-        ]);
-      
         $department->update($request->all());
-      
-        return redirect()->route('departments')
-                        ->with('success','Department updated successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department updated succesfully",
+            'department' => $department
+        ], 200);  
     }
 
     /**
@@ -98,8 +100,10 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-       
-        return redirect()->route('departments')
-                        ->with('success','Department deleted successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List deleted succesfully",
+        ], 200); 
     }
 }

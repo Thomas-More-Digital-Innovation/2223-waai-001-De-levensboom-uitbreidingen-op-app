@@ -15,8 +15,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $clients = User::all();
-        return view('clients.index', compact('clients'));
+        $user = User::all();
+
+        return response()->json([
+            'status' => true,
+            'user' => [$user]
+        ]);
     }
 
     /**
@@ -26,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        //
     }
 
     /**
@@ -37,7 +41,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User created succesfully",
+            'user' => $user
+        ], 200); 
     }
 
     /**
@@ -59,7 +69,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('clients.edit', compact('clients'));
+        //
     }
 
     /**
@@ -71,7 +81,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User updated succesfully",
+            'user' => $user
+        ], 200);  
     }
 
     /**
@@ -82,6 +98,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "User deleted succesfully",
+        ], 200); 
     }
 }
