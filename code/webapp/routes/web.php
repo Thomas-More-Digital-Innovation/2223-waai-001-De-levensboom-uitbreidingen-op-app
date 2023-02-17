@@ -38,11 +38,6 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('home');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('home');
-
-
 Route::get('adults/index', function () {
     return view('adults/index', [
         'adults/index' => User::all()
@@ -105,7 +100,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
