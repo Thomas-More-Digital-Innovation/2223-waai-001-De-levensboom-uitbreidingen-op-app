@@ -5,7 +5,10 @@
             <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addClient").classList.add("hidden")'></iconify-icon>
         </div>
         <hr>
-        <form action="" class="flex flex-col mt-3">
+        <form action="{{ route('user.store') }}" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('POST')
+
             <label for="firstname" class="font-bold">Voornaam*</label>
             <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             

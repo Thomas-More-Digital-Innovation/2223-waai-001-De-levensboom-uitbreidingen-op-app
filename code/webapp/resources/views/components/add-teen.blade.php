@@ -5,7 +5,10 @@
             <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addTeen").classList.add("hidden")'></iconify-icon>
         </div>
         <hr>
-        <form action="" class="flex flex-col mt-3">
+        <form action="" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('POST')
+
             <label for="title" class="font-bold">Titel*</label>
             <input type="text" name="title" id="title" placeholder="Enter titel" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
