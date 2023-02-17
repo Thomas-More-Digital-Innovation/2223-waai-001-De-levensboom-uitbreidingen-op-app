@@ -12,7 +12,7 @@
 3. Do all these commands in the webapp folder! (2223-waai-001-waaiburg-web-app/code/webapp)
 4. composer install
 5. npm install
-6. Copy .env.example to .env
+6. Copy .env.example to .env and change the mail settings to mail server waaiburg
 7. Generate an app encryption key with php artisan key:generate
 8. Use php artisan serve in your terminal to run the application
 9. Use npm run dev to compile the assets (use 2 terminals!)
