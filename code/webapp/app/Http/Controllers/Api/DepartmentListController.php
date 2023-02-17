@@ -16,7 +16,12 @@ class DepartmentListController extends Controller
      */
     public function index()
     {
-        //
+        $departmentList = DepartmentList::all();
+
+        return response()->json([
+            'status' => true,
+            'departmentList' => [$departmentList]
+        ]);
     }
 
     /**
@@ -37,7 +42,13 @@ class DepartmentListController extends Controller
      */
     public function store(StoreDepartmentListRequest $request)
     {
-        //
+        $departmentList = DepartmentList::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List created succesfully",
+            'departmentList' => $departmentList
+        ], 200); 
     }
 
     /**
@@ -69,9 +80,15 @@ class DepartmentListController extends Controller
      * @param  \App\Models\DepartmentList  $departmentList
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreDepartmentRequest $request, DepartmentList $departmentList)
+    public function update(StoreDepartmentListRequest $request, DepartmentList $departmentList)
     {
-        //
+        $departmentList->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List updated succesfully",
+            'departmentList' => $departmentList
+        ], 200);  
     }
 
     /**
@@ -82,6 +99,11 @@ class DepartmentListController extends Controller
      */
     public function destroy(DepartmentList $departmentList)
     {
-        //
+        $departmentList->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Department List deleted succesfully",
+        ], 200); 
     }
 }

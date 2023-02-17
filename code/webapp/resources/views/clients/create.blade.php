@@ -1,24 +1,41 @@
-<div class="hidden fixed w-full h-full z-10 left-0 top-0 overflow-auto" id="addClient">
-    <div class="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white py-4 px-6 rounded-lg w-1/3">
-        <div class="flex items-center justify-between mb-1">
-            <p class="text-xl">Client toevoegen</p>
-            <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addClient").classList.add("hidden")'></iconify-icon>
-        </div>
-        <hr>
-        <div class="flex flex-col mt-3">
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @vite('resources/css/app.css')
+  <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+  <title>Waaiburg - Clienten</title>
+</head>
+
+<body class="flex relative">
+  <x-navbar />
+  <main class="w-full bg-[#ecf0f5]">
+    <x-topbar />
+    <x-welcome />
+
+    <div class="m-5 bg-white rounded border">
+      <div class="border-t-4 rounded border-[#3c8dbc]">
+        <div class="m-3">
+          <h1 class="text-2xl">Client toevoegen</h1>
+          <form action="" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('POST')
+
             <label for="firstname" class="font-bold">Voornaam*</label>
-            <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             
             <label for="lastname" class="font-bold">Achternaam*</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="lastname" id="lastname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
 
             <label for="email" class="font-bold">Email*</label>
-            <input type="text" name="email" id="email" placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="email" id="email" required placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
 
             <label for="birthdate" class="font-bold">Geboortedatum*</label>
-            <input type="text" name="birthdate" id="birthdate" placeholder="Enter geboortedatum Vb: 19-05-1989" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 19-05-1989" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <label for="gender" class="font-bold">Geslacht</label>
             {{-- select --}}
@@ -46,6 +63,11 @@
             <label for="phonenumber" class="font-bold">Telefoonnummer</label>
             <input type="text" name="phonenumber" id="phonenumber" placeholder="Enter telefoonnummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
             <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Aanmaken</button>
+        </form>
         </div>
+      </div>
     </div>
-</div>
+  </main>
+</body>
+
+</html>

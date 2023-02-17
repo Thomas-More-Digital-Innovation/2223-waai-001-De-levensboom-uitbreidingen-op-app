@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class \UserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,12 @@ class \UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+
+        return response()->json([
+            'status' => true,
+            'user' => [$user]
+        ]);
     }
 
     /**
@@ -36,7 +41,13 @@ class \UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User created succesfully",
+            'user' => $user
+        ], 200); 
     }
 
     /**
@@ -70,7 +81,13 @@ class \UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User updated succesfully",
+            'user' => $user
+        ], 200);  
     }
 
     /**
@@ -81,6 +98,11 @@ class \UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "User deleted succesfully",
+        ], 200); 
     }
 }

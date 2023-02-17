@@ -40,7 +40,6 @@
           </table>
         </div>
       </div>
-      <x-add-survey />
     </div>
   </main>
 </body>

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  <title>Waaiburg - Begeleiders</title>
+  <title>Waaiburg - Mails</title>
 </head>
 
 <body class="flex">
@@ -17,24 +17,18 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Begeleiders lijst" function="addMentor" />
+          <x-list-title title="Mails" function="addMail" />
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>
-                <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Achternaam</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Functie</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Onderwerp</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($mentors as $mentor)
+              @foreach ($mails as $mail)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->firstname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->lastname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->role }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->street . ' ' .  $mentor->houseNumber }} <br> {{ $mentor->city . ' ' . $mentor->zipcode}}  <br> {{ $mentor->phoneNumber }} </td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mail->onderwerp }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <a href="" class="text-[#3c8dbc]">Bewerk</a>
                   <span>|</span>
@@ -46,7 +40,6 @@
           </table>
         </div>
       </div>
-      <x-add-mentor />
     </div>
   </main>
 </body>
