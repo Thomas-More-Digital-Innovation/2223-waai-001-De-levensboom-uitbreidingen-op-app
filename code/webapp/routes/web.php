@@ -6,6 +6,8 @@ use App\Http\Controllers\DepartmentController as ControllersDepartmentController
 use App\Models\Department;
 use App\Models\Info;
 use App\Models\User;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +32,16 @@ Route::get('/', function () {
         'clientcount' => $clientcount,
         'mentorcount' => $mentorcount,
         'departmentcount' => $departmentcount,
-        'newscount' => $newscount
+        'newscount' => $newscount,
+        'user' => User::all()
     ]);
-})->name('index');
+})->middleware(['auth', 'verified'])->name('home');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('home');
+
 
 Route::get('adults/index', function () {
     return view('adults/index', [
@@ -84,4 +93,20 @@ Route::get('/teens', function () {
         'teens' => User::all()
     ]);
 })->name('teens');
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+
+
+
+
+
 
