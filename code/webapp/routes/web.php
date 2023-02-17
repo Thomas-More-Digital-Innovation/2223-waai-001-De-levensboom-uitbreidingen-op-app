@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController as ControllersDepartmentController;
 use App\Models\Department;
 use App\Models\Info;
 use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MentorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +52,8 @@ Route::get('/clients', function () {
     ]);
 })->name('clients');
 
-// Route::resource('clients', UserController::class);
-// Route::resource('mentors', UserController::class);
+Route::resource('clients', ClientController::class);
+Route::resource('mentors', MentorController::class);
 Route::resource('departments', ControllersDepartmentController::class);
 // Route::resource('adults', DepartmentController::class);
 // Route::resource('teens', DepartmentController::class);
@@ -64,12 +66,6 @@ Route::get('/mails', function () {
         'mails' => User::all()
     ]);
 })->name('mails');
-
-Route::get('/mentors', function () {
-    return view('mentors', [
-        'mentors' => User::all()
-    ]);
-})->name('mentors');
 
 Route::get('/news', function () {
     return view('news', [
