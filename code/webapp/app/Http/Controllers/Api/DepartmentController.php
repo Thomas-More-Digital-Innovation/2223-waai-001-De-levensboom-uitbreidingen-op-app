@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DepartmentController extends Controller
 {
@@ -16,6 +17,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        // Use this Gate function to authorize the action
+        Gate::authorize('mentor');
+
         $department = Department::all();
 
         return response()->json([
@@ -42,6 +46,9 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
+        // Use this Gate function to authorize the action
+        Gate::authorize('mentor');
+
         $department = Department::create($request->all());
 
         return response()->json([
@@ -82,6 +89,9 @@ class DepartmentController extends Controller
      */
     public function update(StoreDepartmentRequest $request, Department $department)
     {
+        // Use this Gate function to authorize the action
+        Gate::authorize('mentor');
+
         $department->update($request->all());
 
         return response()->json([
@@ -99,6 +109,9 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        // Use this Gate function to authorize the action
+        Gate::authorize('mentor');
+        
         $department->delete();
 
         return response()->json([

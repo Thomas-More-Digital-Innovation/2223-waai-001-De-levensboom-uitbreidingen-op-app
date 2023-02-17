@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Providers;
+use App\Models\Department;
+use App\Models\Question;
+use App\Policies\QuestionPolicy;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -14,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Question::class => QuestionPolicy::class,
     ];
 
     /**
@@ -25,6 +31,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate defines wether or not a user is allowed to do a specific action
+	    // This Gate is to check if a user is a mentor.
+        Gate::define('mentor', function (User $user) {
+            return $user->user_type_id === 1;
+        });
     }
 }

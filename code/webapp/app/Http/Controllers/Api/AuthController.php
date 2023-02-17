@@ -19,6 +19,8 @@ class AuthController extends Controller
     public function createUser(Request $request){
 
         try {
+            // Define what fields can be used when creating a user 
+            // Also define which fields are required
             $validateUser = Validator::make($request->all(),
             [
             'user_type_id' => 'required',
@@ -28,6 +30,7 @@ class AuthController extends Controller
             'password' => 'required',
             ]);
 
+            // When field is incorrect or missing, throw an error
             if($validateUser->fails()){
                 return response()->json([
                     'status' => false,
@@ -36,6 +39,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
+            // Create user with the send information
             $user = User::create([
                 'user_type_id' => $request->user_type_id,
                 'firstname' => $request->firstname,
@@ -44,6 +48,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
+            // When successfull send a message and create API Token
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
