@@ -3,6 +3,8 @@
 use App\Models\Department;
 use App\Models\Info;
 use App\Models\User;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +29,15 @@ Route::get('/', function () {
         'clientcount' => $clientcount,
         'mentorcount' => $mentorcount,
         'departmentcount' => $departmentcount,
-        'newscount' => $newscount
+        'newscount' => $newscount,
+        'user' => User::all()
     ]);
-});
+})->middleware(['auth', 'verified'])->name('home');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/adults', function () {
     return view('adults', [
@@ -78,4 +86,23 @@ Route::get('/teens', function () {
         'teens' => User::all()
     ]);
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+
+
+
+
+
 

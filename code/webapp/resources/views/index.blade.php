@@ -13,7 +13,7 @@
 <body class="flex">
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
-    <x-topbar />
+    <x-topbar/>
     <x-welcome />
 
     <div class="grid grid-cols-3 gap-5 m-5">
