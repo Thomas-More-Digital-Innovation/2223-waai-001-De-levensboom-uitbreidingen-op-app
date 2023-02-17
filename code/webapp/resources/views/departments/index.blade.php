@@ -32,7 +32,7 @@
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->name }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->street . ' ' .  $department->houseNumber }} <br> {{ $department->city . ' ' . $department->zipcode}}  <br> {{ $department->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
-                  <form action="{{ route('departments.destroy', $department->id) }}" method="delete">
+                  <form action="{{ route('departments.destroy', $department->id) }}" method="post">
                     @csrf
                     @method('delete')
 

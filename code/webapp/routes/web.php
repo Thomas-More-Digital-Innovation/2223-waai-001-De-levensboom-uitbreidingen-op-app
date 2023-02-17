@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\DepartmentController as ControllersDepartmentController;
 use App\Models\Department;
 use App\Models\Info;
 use App\Models\User;
@@ -45,9 +46,9 @@ Route::get('/clients', function () {
     ]);
 })->name('clients');
 
-Route::resource('clients', UserController::class);
-Route::resource('mentors', UserController::class);
-Route::resource('departments', DepartmentController::class);
+// Route::resource('clients', UserController::class);
+// Route::resource('mentors', UserController::class);
+Route::resource('departments', ControllersDepartmentController::class);
 // Route::resource('adults', DepartmentController::class);
 // Route::resource('teens', DepartmentController::class);
 // Route::resource('news', DepartmentController::class);
