@@ -17,7 +17,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Info Segmenten voor jongeren" function="addTeen" />
+          <x-list-title title="Info Segmenten voor jongeren" function="teens.create" />
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>

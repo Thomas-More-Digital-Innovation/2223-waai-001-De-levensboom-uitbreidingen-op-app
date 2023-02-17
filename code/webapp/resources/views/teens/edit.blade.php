@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
             <h1 class="text-2xl">Jonger wijzigen</h1>
-            <form action="{{ route('adults.update') }}" method="POST" class="flex flex-col mt-3">
+            <form action="{{ route('teens.update', $teen->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('POST')
     
