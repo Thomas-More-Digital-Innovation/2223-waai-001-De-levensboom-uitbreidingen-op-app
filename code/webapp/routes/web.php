@@ -10,8 +10,10 @@ use App\Models\Info;
 use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,8 +63,8 @@ Route::resource('departments', ControllersDepartmentController::class);
 Route::resource('adults', AdultController::class);
 Route::resource('teens', TeenController::class);
 Route::resource('news', NewController::class);
-// Route::resource('mails', DepartmentController::class);
-// Route::resource('surveys', DepartmentController::class);
+Route::resource('mails', MailController::class);
+Route::resource('surveys', SurveyController::class);
 
 
 
