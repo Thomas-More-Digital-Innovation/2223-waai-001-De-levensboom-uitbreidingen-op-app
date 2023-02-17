@@ -18,9 +18,9 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <h1 class="text-2xl">Afdeling wijzigen</h1>
-          <form action="{{ route('department.update', $department->id) }}" method="POST" class="flex flex-col mt-3">
+          <form action="{{ route('departments.update', $department->id) }}" method="POST" class="flex flex-col mt-3">
             @csrf
-            @method('POST')
+            @method('PUT')
 
             <label for="name" class="font-bold">Naam*</label>
             <input type="text" name="name" id="name" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $department->name }}>
