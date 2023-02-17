@@ -40,7 +40,6 @@
           </table>
         </div>
       </div>
-      <x-add-mail />
     </div>
   </main>
 </body>

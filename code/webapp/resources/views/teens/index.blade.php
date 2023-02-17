@@ -42,7 +42,6 @@
           </table>
         </div>
       </div>
-      <x-add-teen />
     </div>
   </main>
 </body>

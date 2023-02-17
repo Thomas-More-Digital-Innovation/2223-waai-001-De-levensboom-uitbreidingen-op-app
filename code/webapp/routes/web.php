@@ -33,9 +33,9 @@ Route::get('/', function () {
     ]);
 })->name('index');
 
-Route::get('/adults', function () {
-    return view('adults', [
-        'adults' => User::all()
+Route::get('adults/index', function () {
+    return view('adults/index', [
+        'adults/index' => User::all()
     ]);
 })->name('adults');
 
@@ -48,11 +48,11 @@ Route::get('/clients', function () {
 Route::resource('clients', UserController::class);
 Route::resource('mentors', UserController::class);
 Route::resource('departments', DepartmentController::class);
-Route::resource('adults', DepartmentController::class);
-Route::resource('teens', DepartmentController::class);
-Route::resource('news', DepartmentController::class);
-Route::resource('mails', DepartmentController::class);
-Route::resource('survey', DepartmentController::class);
+// Route::resource('adults', DepartmentController::class);
+// Route::resource('teens', DepartmentController::class);
+// Route::resource('news', DepartmentController::class);
+// Route::resource('mails', DepartmentController::class);
+// Route::resource('mails', DepartmentController::class);
 
 Route::get('/mails', function () {
     return view('mails', [
