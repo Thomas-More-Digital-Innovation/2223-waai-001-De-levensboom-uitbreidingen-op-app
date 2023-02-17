@@ -16,12 +16,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $department = Department::all();
-
-        return response()->json([
-            'status' => true,
-            'departments' => [$department]
-        ]);
+        $departments = Department::all();
+        return view('departments.index', compact('departments'));
     }
 
     /**
@@ -31,7 +27,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('departments.create');
     }
 
     /**
@@ -71,7 +67,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit', compact('department'));
     }
 
     /**

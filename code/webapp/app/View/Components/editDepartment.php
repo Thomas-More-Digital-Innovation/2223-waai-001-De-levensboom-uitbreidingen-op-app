@@ -4,18 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class ListTitle extends Component
+class editDepartment extends Component
 {
-    public $title, $name;
+    public $department;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $name)
+    public function __construct($department)
     {
-        $this->title = $title;
-        $this->name = $name;
+        $this->department = $department;
     }
 
     /**
@@ -25,6 +24,6 @@ class ListTitle extends Component
      */
     public function render()
     {
-        return view('components.list-title');
+        return view('components.edit-department');
     }
 }

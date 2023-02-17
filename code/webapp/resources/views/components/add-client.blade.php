@@ -5,7 +5,7 @@
             <iconify-icon icon="fa6-solid:xmark" class="text-3xl text-red-500 cursor-pointer" onClick='document.getElementById("addClient").classList.add("hidden")'></iconify-icon>
         </div>
         <hr>
-        <form action="{{ route('user.store') }}" method="POST" class="flex flex-col mt-3">
+        <form action="" method="POST" class="flex flex-col mt-3">
             @csrf
             @method('POST')
 
