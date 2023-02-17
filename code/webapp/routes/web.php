@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdultController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ClientController;
@@ -55,35 +56,11 @@ Route::get('/clients', function () {
 Route::resource('clients', ClientController::class);
 Route::resource('mentors', MentorController::class);
 Route::resource('departments', ControllersDepartmentController::class);
-// Route::resource('adults', DepartmentController::class);
+Route::resource('adults', AdultController::class);
 // Route::resource('teens', DepartmentController::class);
 // Route::resource('news', DepartmentController::class);
 // Route::resource('mails', DepartmentController::class);
-// Route::resource('mails', DepartmentController::class);
-
-Route::get('/mails', function () {
-    return view('mails', [
-        'mails' => User::all()
-    ]);
-})->name('mails');
-
-Route::get('/news', function () {
-    return view('news', [
-        'news' => User::all()
-    ]);
-})->name('news');
-
-Route::get('/surveys', function () {
-    return view('surveys', [
-        'surveys' => User::all()
-    ]);
-})->name('surveys');
-
-Route::get('/teens', function () {
-    return view('teens', [
-        'teens' => User::all()
-    ]);
-})->name('teens');
+// Route::resource('surveys', DepartmentController::class);
 
 
 

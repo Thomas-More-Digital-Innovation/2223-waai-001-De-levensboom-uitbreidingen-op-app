@@ -29,12 +29,18 @@
             <tbody>
               @foreach ($adults as $adult)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $adult->titel }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $adult->title }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $adult->infoblokken }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
-                  <a href="" class="text-[#3c8dbc]">Bewerk</a>
-                  <span>|</span>
-                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                  <form action="{{ route('adults.destroy', $adult->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+
+                    <a href="{{ route('adults.edit', $adult->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                    <span>|</span>
+
+                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                  </form>
                 </td>
               </tr>
               @endforeach
