@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\NewController;
+use App\Http\Controllers\TeenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,8 +59,8 @@ Route::resource('clients', ClientController::class);
 Route::resource('mentors', MentorController::class);
 Route::resource('departments', ControllersDepartmentController::class);
 Route::resource('adults', AdultController::class);
-// Route::resource('teens', DepartmentController::class);
-// Route::resource('news', DepartmentController::class);
+Route::resource('teens', TeenController::class);
+Route::resource('news', NewController::class);
 // Route::resource('mails', DepartmentController::class);
 // Route::resource('surveys', DepartmentController::class);
 
