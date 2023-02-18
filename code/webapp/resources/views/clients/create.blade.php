@@ -19,7 +19,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <h1 class="text-2xl">Client toevoegen</h1>
-          <form action="" method="POST" class="flex flex-col mt-3">
+          <form action="{{ route('clients.store') }}" method="POST" class="flex flex-col mt-3">
             @csrf
             @method('POST')
 
@@ -35,7 +35,7 @@
 
 
             <label for="birthdate" class="font-bold">Geboortedatum*</label>
-            <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 19-05-1989" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+            <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 1989-05-19" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <label for="gender" class="font-bold">Geslacht</label>
             {{-- select --}}

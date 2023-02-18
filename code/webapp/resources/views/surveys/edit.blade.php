@@ -18,12 +18,12 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
             <h1 class="text-2xl">Tevredenheids meting wijzigen</h1>
-            <form action="" method="POST" class="flex flex-col mt-3">
+            <form action="{{ route('surveys.update', $survey->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
-                @method('POST')
+                @method('PUT')
     
                 <label for="link" class="font-bold">Google form link*</label>
-                <input type="text" name="link" id="link" placeholder="Enter google form link" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                <input type="text" name="link" id="link" placeholder="Enter google form link" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $survey->link }}>
     
                 <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Wijzigen</button>
             </form>

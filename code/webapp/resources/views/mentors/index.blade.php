@@ -17,7 +17,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-          <x-list-title title="Begeleiders lijst" function="addMentor" />
+          <x-list-title title="Begeleiders lijst" name="mentors.create" />
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>
@@ -36,9 +36,15 @@
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->role }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->street . ' ' .  $mentor->houseNumber }} <br> {{ $mentor->city . ' ' . $mentor->zipcode}}  <br> {{ $mentor->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
-                  <a href="" class="text-[#3c8dbc]">Bewerk</a>
-                  <span>|</span>
-                  <a href="" class="text-[#3c8dbc]">Verwijder</a>
+                  <form action="{{ route('mentors.destroy', $mentor->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+
+                    <a href="{{ route('mentors.edit', $mentor->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                    <span>|</span>
+
+                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                  </form>
                 </td>
               </tr>
               @endforeach
