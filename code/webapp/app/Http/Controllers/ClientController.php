@@ -36,6 +36,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add(['user_type_id' => 2]);
+        $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
         $msg = "New Client Created successful! ";
