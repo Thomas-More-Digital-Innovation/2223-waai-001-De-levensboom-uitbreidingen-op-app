@@ -25,8 +25,8 @@
                 <label for="firstname" class="font-bold">Voornaam*</label>
                 <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                 
-                <label for="lastname" class="font-bold">Achternaam*</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Enter achternaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                <label for="surname" class="font-bold">Achternaam*</label>
+                <input type="text" name="surname" id="surname" placeholder="Enter achternaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
     
     
                 <label for="email" class="font-bold">Email*</label>

@@ -26,8 +26,8 @@
             <label for="firstname" class="font-bold">Voornaam*</label>
             <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->firstname }}>
             
-            <label for="lastname" class="font-bold">Achternaam*</label>
-            <input type="text" name="lastname" id="lastname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->surname }}>
+            <label for="surname" class="font-bold">Achternaam*</label>
+            <input type="text" name="surname" id="surname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->surname }}>
 
 
             <label for="email" class="font-bold">Email*</label>
