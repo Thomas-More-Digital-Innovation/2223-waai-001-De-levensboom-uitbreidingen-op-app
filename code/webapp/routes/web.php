@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdultController;
-use App\Http\Controllers\Api\DepartmentController;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController as ControllersDepartmentController;
 use App\Models\Department;
@@ -44,19 +42,6 @@ Route::get('/', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('home');
 
-
-Route::get('adults/index', function () {
-    return view('adults/index', [
-        'adults/index' => User::all()
-    ]);
-})->name('adults');
-
-Route::get('/clients', function () {
-    return view('clients', [
-        'clients' => User::all()
-    ]);
-})->name('clients');
-
 Route::resource('clients', ClientController::class);
 Route::resource('mentors', MentorController::class);
 Route::resource('departments', ControllersDepartmentController::class);
@@ -80,7 +65,3 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
-
