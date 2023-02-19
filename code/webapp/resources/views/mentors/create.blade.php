@@ -32,6 +32,13 @@
                 <label for="email" class="font-bold">Email*</label>
                 <input type="text" name="email" id="email" placeholder="Enter email" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
     
+                <label for="role" class="font-bold">Functie*</label>
+                <select name="role" id="role" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+                  @foreach ($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                  @endforeach
+                </select>
+
                 <div class="flex items-center gap-3 mt-3 mb-3">
                   <label for="department" class="font-bold">Afdeling</label>
                   <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />

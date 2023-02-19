@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class MentorController extends Controller
     {
         // send departments to the view
         $departments = Department::all();
-        return view('mentors.create', compact('departments'));
+        $roles = Role::all();
+        return view('mentors.create', compact('departments', 'roles'));
     }
 
     /**
@@ -70,7 +72,8 @@ class MentorController extends Controller
     {
         $mentor = User::find($id);
         $departments = Department::all();
-        return view('mentors.edit', compact('mentor', 'departments'));
+        $roles = Role::all();
+        return view('mentors.edit', compact('mentor', 'departments', 'roles'));
     }
 
     /**
