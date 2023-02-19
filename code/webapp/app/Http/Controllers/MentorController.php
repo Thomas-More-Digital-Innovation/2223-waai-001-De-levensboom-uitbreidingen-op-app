@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,9 +18,13 @@ class MentorController extends Controller
      */
     public function index()
     {
-        // only get the users with userType id 1 or 3
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
+        foreach ($mentors as $mentor) {
+            $user_type = UserType::find($mentor->user_type_id);
+            $mentor->user_type = $user_type->name;
+        }
+        
         return view('mentors.index', compact('mentors'));
     }
 
@@ -28,9 +35,13 @@ class MentorController extends Controller
      */
     public function create()
     {
+
         Gate::authorize('createDestroyTable');
 
-        return view('mentors.create');
+        // send departments to the view
+        $departments = Department::all();
+        $roles = Role::all();
+        return view('mentors.create', compact('departments', 'roles'));
     }
 
     /**
@@ -72,7 +83,9 @@ class MentorController extends Controller
     {
         Gate::authorize('editUser', $id);
         $mentor = User::find($id);
-        return view('mentors.edit', compact('mentor'));
+        $departments = Department::all();
+        $roles = Role::all();
+        return view('mentors.edit', compact('mentor', 'departments', 'roles'));
     }
 
     /**

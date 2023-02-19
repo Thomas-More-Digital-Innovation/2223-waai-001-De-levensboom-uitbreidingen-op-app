@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdultController;
-use App\Http\Controllers\Api\DepartmentController;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController as ControllersDepartmentController;
 use App\Models\Department;
@@ -14,6 +12,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
+use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,28 +42,6 @@ Route::get('/', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('home');
 
-
-// Route::get('adults/index', function () {
-//     return view('adults/index', [
-//         'adults/index' => User::all()
-//     ]);
-// })->middleware(['auth', 'verified'])->name('adults');
-
-// Route::get('/clients', function () {
-//     return view('clients', [
-//         'clients' => User::all()
-//     ]);
-// })->middleware(['auth', 'verified'])->name('clients');
-
-// Route::resource('clients', ClientController::class);
-// Route::resource('mentors', MentorController::class);
-// Route::resource('departments', ControllersDepartmentController::class);
-// Route::resource('adults', AdultController::class);
-// Route::resource('teens', TeenController::class);
-// Route::resource('news', NewController::class);
-// Route::resource('mails', MailController::class);
-// Route::resource('surveys', SurveyController::class);
-
 Route::middleware('auth', 'verified')->group( function () {
     Route::Resources([
         'clients' => ClientController::class,
@@ -75,24 +52,11 @@ Route::middleware('auth', 'verified')->group( function () {
         'news' => NewController::class,
         'mails' => MailController::class,
         'surveys' => SurveyController::class,
+        'user' => ControllersUserController::class,
     ]);
 });
 
 
-//needs to be deleted
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__.'/auth.php';
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
 

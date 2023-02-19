@@ -33,7 +33,7 @@
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->surname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->role }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->user_type }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->street . ' ' .  $mentor->houseNumber }} <br> {{ $mentor->city . ' ' . $mentor->zipcode}}  <br> {{ $mentor->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <form action="{{ route('mentors.destroy', $mentor->id) }}" method="post">
