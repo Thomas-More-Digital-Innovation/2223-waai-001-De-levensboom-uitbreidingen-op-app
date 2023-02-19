@@ -30,8 +30,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $clientcount = User::count();
-    $mentorcount = User::count();
+    $clientcount = User::where('user_type_id', 2)->count();
+    $mentorcount = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->count();
     $departmentcount = Department::count();
     $newscount = Info::count();
 

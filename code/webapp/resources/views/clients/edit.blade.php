@@ -26,8 +26,8 @@
             <label for="firstname" class="font-bold">Voornaam*</label>
             <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->firstname }}>
             
-            <label for="lastname" class="font-bold">Achternaam*</label>
-            <input type="text" name="lastname" id="lastname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->surname }}>
+            <label for="surname" class="font-bold">Achternaam*</label>
+            <input type="text" name="surname" id="surname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->surname }}>
 
 
             <label for="email" class="font-bold">Email*</label>
@@ -51,8 +51,8 @@
             <label for="street" class="font-bold">Straat</label>
             <input type="text" name="street" id="street" placeholder="Enter straat" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->street }}>
 
-            <label for="housenumber" class="font-bold">Huis nummer</label>
-            <input type="text" name="housenumber" id="housenumber" placeholder="Enter huis nummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->houseNumber }}>
+            <label for="houseNumber" class="font-bold">Huis nummer</label>
+            <input type="text" name="houseNumber" id="houseNumber" placeholder="Enter huis nummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->houseNumber }}>
 
             <label for="city" class="font-bold">Woonplaats</label>
             <input type="text" name="city" id="city" placeholder="Enter woonplaats" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->city }}>
@@ -60,8 +60,8 @@
             <label for="zipcode" class="font-bold">Postcode</label>
             <input type="text" name="zipcode" id="zipcode" placeholder="Enter postcode" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->zipcode }}>
 
-            <label for="phonenumber" class="font-bold">Telefoonnummer</label>
-            <input type="text" name="phonenumber" id="phonenumber" placeholder="Enter telefoonnummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->phoneNumber }}>
+            <label for="phoneNumber" class="font-bold">Telefoonnummer</label>
+            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter telefoonnummer" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $client->phoneNumber }}>
             <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Wijzigen</button>
         </form>
         </div>

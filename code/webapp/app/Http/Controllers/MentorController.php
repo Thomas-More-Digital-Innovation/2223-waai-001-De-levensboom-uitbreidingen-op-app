@@ -14,7 +14,9 @@ class MentorController extends Controller
      */
     public function index()
     {
-        $mentors = User::all();
+        // only get the users with userType id 1 or 3
+        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
+
         return view('mentors.index', compact('mentors'));
     }
 
@@ -36,6 +38,8 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add(['user_type_id' => 3]);
+        $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
         $msg = "New Mentor Created successful! ";
