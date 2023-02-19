@@ -30,7 +30,7 @@
     
     
                 <label for="email" class="font-bold">Email*</label>
-                <input type="text" name="email" id="email" placeholder="Enter email" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $user->email }}>
+                <input type="text" name="email" id="email" placeholder="Enter email" disabled class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $user->email }}>
     
                 <p class="mt-5 text-lg">Contactgegevens &lpar;optioneel&rpar;</p>
                 <label for="street" class="font-bold">Straat</label>

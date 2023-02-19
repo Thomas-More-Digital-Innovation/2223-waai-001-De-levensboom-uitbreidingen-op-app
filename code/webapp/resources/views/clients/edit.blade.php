@@ -31,7 +31,7 @@
 
 
             <label for="email" class="font-bold">Email*</label>
-            <input type="text" name="email" id="email" required placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->email }}>
+            <input type="text" name="email" id="email" disabled placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->email }}>
 
 
             <label for="birthdate" class="font-bold">Geboortedatum*</label>
