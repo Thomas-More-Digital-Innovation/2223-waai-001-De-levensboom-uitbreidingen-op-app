@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 
 class MentorController extends Controller
@@ -16,9 +17,13 @@ class MentorController extends Controller
      */
     public function index()
     {
-        // only get the users with userType id 1 or 3
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
+        foreach ($mentors as $mentor) {
+            $user_type = UserType::find($mentor->user_type_id);
+            $mentor->user_type = $user_type->name;
+        }
+        
         return view('mentors.index', compact('mentors'));
     }
 
