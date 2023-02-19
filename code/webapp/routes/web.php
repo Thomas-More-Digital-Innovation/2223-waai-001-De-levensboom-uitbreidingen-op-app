@@ -68,7 +68,7 @@ Route::resource('surveys', SurveyController::class);
 Route::resource('user', ControllersUserController::class);
 
 
-
+require __DIR__.'/auth.php';
 
 
 
