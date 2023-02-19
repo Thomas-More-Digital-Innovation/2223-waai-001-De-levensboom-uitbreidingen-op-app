@@ -3,6 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class Topbar extends Component
 {
@@ -23,6 +25,8 @@ class Topbar extends Component
      */
     public function render()
     {
-        return view('components.topbar');
+        return view('components.topbar', [
+            'user' => auth()->user()
+        ]);
     }
 }

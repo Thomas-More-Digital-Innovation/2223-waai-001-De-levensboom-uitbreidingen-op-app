@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class \UserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,13 @@ class \UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+
+        return response()->json([
+            'status' => true,
+            'users' => [$user]
+
+        ]);
     }
 
     /**
@@ -34,9 +41,16 @@ class \UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User created succesfully",
+            'user' => $user
+        ], 200);  
+
     }
 
     /**
@@ -68,9 +82,15 @@ class \UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUserRequest $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User updated succesfully",
+            'user' => $user
+        ], 200);  
     }
 
     /**
@@ -81,6 +101,11 @@ class \UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "User deleted succesfully",
+        ], 200); 
     }
 }

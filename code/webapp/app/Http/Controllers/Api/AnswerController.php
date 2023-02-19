@@ -48,7 +48,7 @@ class AnswerController extends Controller
             'status' => true,
             'message' => "Answer created succesfully",
             'answer' => $answer
-        ], 200); 
+        ], 200);  
     }
 
     /**
@@ -88,7 +88,7 @@ class AnswerController extends Controller
             'status' => true,
             'message' => "Answer updated succesfully",
             'answer' => $answer
-        ], 200); 
+        ], 200);  
     }
 
     /**
