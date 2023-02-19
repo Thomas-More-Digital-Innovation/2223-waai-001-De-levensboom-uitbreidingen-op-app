@@ -52,6 +52,7 @@
 
             <div class="flex items-center mb-5">
               <select name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                <option value=""></option>
                 @foreach ($departments as $department)
                   <option value="{{ $department->id }}">{{ $department->name }}</option>
                 @endforeach

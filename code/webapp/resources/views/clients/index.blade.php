@@ -36,7 +36,7 @@
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->surname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->afdeling }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->departments }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->begeleider }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->birthdate }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} </td>

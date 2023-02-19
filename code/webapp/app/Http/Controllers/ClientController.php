@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\DepartmentList;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,16 @@ class ClientController extends Controller
     public function index()
     {
         $clients = User::where('user_type_id', 2)->get();
+
+        foreach ($clients as $client) {
+            $departmentList = DepartmentList::where('user_id', $client->id)->first();
+            if ($departmentList) {
+                $department = Department::find($departmentList->department_id);
+                $client->departments = $department->name;
+            } else {
+                $client->departments = "";
+            }
+        }
         return view('clients.index', compact('clients'));
     }
 
@@ -42,6 +53,16 @@ class ClientController extends Controller
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
+
+        if (!$request->department == "") {
+            DepartmentList::create([
+                'user_id' => User::latest()->first()->id,
+                'department_id' => $request->department,
+                'role_id' => 2,
+            ]);
+        }
+
+
 
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -96,6 +117,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        DepartmentList::where('user_id', $id)->delete();
         $client = User::find($id);
         $client->delete();
 
