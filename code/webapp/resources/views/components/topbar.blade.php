@@ -7,7 +7,7 @@
     <div id="dropdown" class="z-10 absolute right-0 mx-5 w-52 top-16 shadow-lg bg-white rounded-md border-gray-500 border hidden">
         <ul class="py-2 text-sm text-black " aria-labelledby="dropdownDefaultButton">
             <li>
-                <a href="{{route('profile.edit')}}" class="block px-4 py-2 hover:bg-gray-200">Profile</a>
+                <a href="{{ route('user.index') }}" class="block px-4 py-2 hover:bg-gray-200">Manage Account</a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }} " >
