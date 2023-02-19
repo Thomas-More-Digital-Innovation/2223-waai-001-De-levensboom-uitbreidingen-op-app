@@ -38,14 +38,27 @@
             <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 1989-05-19" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
 
             <label for="gender" class="font-bold">Geslacht</label>
-            {{-- select --}}
+            <select name="gender" id="gender" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+              <option value="man">Man</option>
+              <option value="woman">Vrouw</option>
+            </select>
 
             <hr>
             <label for="department" class="font-bold">Afdeling</label>
-            {{-- select met toevoegen van meerdere --}}
+            <select name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+              @foreach ($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->name }}</option>
+              @endforeach
+            </select>
             <hr>
-            <label for="mentores" class="font-bold">Begeleiders</label>
+            
+            <label for="mentors" class="font-bold">Begeleiders</label>
             {{-- select met toevoegen van meerdere --}}
+            <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+              @foreach ($mentors as $mentor)
+                <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
+              @endforeach
+            </select>
             <hr>
             <p class="mt-5 text-lg">Contactgegevens &lpar;optioneel&rpar;</p>
             <label for="street" class="font-bold">Straat</label>

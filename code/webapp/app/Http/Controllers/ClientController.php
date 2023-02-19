@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $departments = Department::all();
+        $mentors = User::where('user_type_id', 1)->get();
+        return view('clients.create', compact('departments', 'mentors'));
     }
 
     /**
@@ -64,7 +67,9 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = User::find($id);
-        return view('clients.edit', compact('client'));
+        $departments = Department::all();
+        $mentors = User::where('user_type_id', 1)->get();
+        return view('clients.edit', compact('client', 'departments', 'mentors'));
     }
 
     /**
