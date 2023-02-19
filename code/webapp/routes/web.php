@@ -42,15 +42,20 @@ Route::get('/', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('home');
 
-Route::resource('clients', ClientController::class);
-Route::resource('mentors', MentorController::class);
-Route::resource('departments', ControllersDepartmentController::class);
-Route::resource('adults', AdultController::class);
-Route::resource('teens', TeenController::class);
-Route::resource('news', NewController::class);
-Route::resource('mails', MailController::class);
-Route::resource('surveys', SurveyController::class);
-Route::resource('user', ControllersUserController::class);
+Route::middleware('auth', 'verified')->group( function () {
+    Route::Resources([
+        'clients' => ClientController::class,
+        'mentors' => MentorController::class,
+        'departments' => ControllersDepartmentController::class,
+        'adults' => AdultController::class,
+        'teens' => TeenController::class,
+        'news' => NewController::class,
+        'mails' => MailController::class,
+        'surveys' => SurveyController::class,
+        'user' => ControllersUserController::class,
+    ]);
+});
+
 
 
 require __DIR__.'/auth.php';

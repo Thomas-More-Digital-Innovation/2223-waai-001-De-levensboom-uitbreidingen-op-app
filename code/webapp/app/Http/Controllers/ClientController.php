@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
@@ -37,6 +38,9 @@ class ClientController extends Controller
      */
     public function create()
     {
+
+        Gate::authorize('createDestroyTable');
+
         $departments = Department::all();
         $mentors = User::where('user_type_id', 1)->get();
         return view('clients.create', compact('departments', 'mentors'));
@@ -50,6 +54,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('createDestroyTable');
+
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
@@ -87,6 +93,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+    
+        Gate::authorize('editUser', $id);
+
         $client = User::find($id);
         $departments = Department::all();
         $mentors = User::where('user_type_id', 1)->get();
@@ -102,6 +111,8 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('editUser', $id);
+
         $client = User::find($id);
         $client->update($request->all());
 
@@ -117,6 +128,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('createDestroyTable');
+
         DepartmentList::where('user_id', $id)->delete();
         $client = User::find($id);
         $client->delete();

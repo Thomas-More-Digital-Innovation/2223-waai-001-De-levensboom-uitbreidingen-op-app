@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class DepartmentController extends Controller
 {
@@ -14,6 +15,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        
         $departments = Department::all();
         return view('departments.index', compact('departments'));
     }
@@ -25,6 +27,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
+        Gate::authorize('createDestroyTable');
+
         return view('departments.create');
     }
 
@@ -36,6 +40,8 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('createDestroyTable');
+
         Department::create($request->all());
 
         $msg = "New Department Created successful! ";
@@ -61,6 +67,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('editDepartment', $id);
+
         $department = Department::find($id);
         return view('departments.edit', compact('department'));
     }
@@ -74,6 +82,8 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('editDepartment', $id);
+
         $department = Department::find($id);
         $department->update($request->all());
 
@@ -89,6 +99,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('createDestroyTable');
+
         $department = Department::find($id);
         $department->delete();
 

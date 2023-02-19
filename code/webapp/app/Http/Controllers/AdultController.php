@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdultController extends Controller
 {
@@ -25,6 +26,8 @@ class AdultController extends Controller
      */
     public function create()
     {
+        Gate::authorize('createDestroyTable');
+
         return view('adults.create');
     }
 
@@ -36,6 +39,8 @@ class AdultController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('createDestroyTable');
+
         Info::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";
@@ -89,6 +94,8 @@ class AdultController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('createDestroyTable');
+        
         $adult = Info::find($id);
         $adult->delete();
 
