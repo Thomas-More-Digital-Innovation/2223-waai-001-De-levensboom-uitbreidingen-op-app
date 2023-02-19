@@ -23,18 +23,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Needs to be deleted -->
-        {{-- <div class="mt-4">
-            <x-input-label for="user_type" :value="__('User_type')" />
-            <select name="user type" id="user_type" class="block mt-1 w-full border-gray-400 focus:border-gray-500 focus:ring-gray-500 rounded-md shadow-sm border p-1" type="text" name="user_type" :value="old('user_type')" required autocomplete="user_type">
-                <option value="1">Admin</option>
-                <option value="2">Client</option>
-                <option value="3">Mentor</option>
-            </select>
-            <x-input-error :messages="$errors->get('user_type')" class="mt-2" />
-        </div> --}}
-
-
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
