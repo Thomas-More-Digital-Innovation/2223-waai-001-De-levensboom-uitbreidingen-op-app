@@ -73,5 +73,23 @@ class AuthServiceProvider extends ServiceProvider
                     && $userRole === 1) // Department Head
                     || $userType === 1; // Admin
         });
+
+        // This Gate is to check if a user is allowed to assign another user to a department.
+        Gate::define('createDepartmentList', function(User $user, int $departmentId) {
+            // Get the usertype of the user
+            $userTypeId = $user->user_type_id;
+            $userType = UserType::find($userTypeId)->id;
+
+            // Is the user a Department Head?
+            if(DepartmentList::where('department_id', $departmentId)
+                ->where('user_id', $user->id)
+                ->where('role_id', 1)
+                ->exists()) {
+                    return true;
+                }
+            else {
+                return $userType === 1; // Admin
+            }
+        });
     }
 }
