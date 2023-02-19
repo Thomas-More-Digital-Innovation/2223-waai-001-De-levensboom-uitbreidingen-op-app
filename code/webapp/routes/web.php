@@ -44,26 +44,39 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('home');
 
 
-Route::get('adults/index', function () {
-    return view('adults/index', [
-        'adults/index' => User::all()
-    ]);
-})->name('adults');
+// Route::get('adults/index', function () {
+//     return view('adults/index', [
+//         'adults/index' => User::all()
+//     ]);
+// })->middleware(['auth', 'verified'])->name('adults');
 
-Route::get('/clients', function () {
-    return view('clients', [
-        'clients' => User::all()
-    ]);
-})->name('clients');
+// Route::get('/clients', function () {
+//     return view('clients', [
+//         'clients' => User::all()
+//     ]);
+// })->middleware(['auth', 'verified'])->name('clients');
 
-Route::resource('clients', ClientController::class);
-Route::resource('mentors', MentorController::class);
-Route::resource('departments', ControllersDepartmentController::class);
-Route::resource('adults', AdultController::class);
-Route::resource('teens', TeenController::class);
-Route::resource('news', NewController::class);
-Route::resource('mails', MailController::class);
-Route::resource('surveys', SurveyController::class);
+// Route::resource('clients', ClientController::class);
+// Route::resource('mentors', MentorController::class);
+// Route::resource('departments', ControllersDepartmentController::class);
+// Route::resource('adults', AdultController::class);
+// Route::resource('teens', TeenController::class);
+// Route::resource('news', NewController::class);
+// Route::resource('mails', MailController::class);
+// Route::resource('surveys', SurveyController::class);
+
+Route::middleware('auth', 'verified')->group( function () {
+    Route::Resources([
+        'clients' => ClientController::class,
+        'mentors' => MentorController::class,
+        'departments' => ControllersDepartmentController::class,
+        'adults' => AdultController::class,
+        'teens' => TeenController::class,
+        'news' => NewController::class,
+        'mails' => MailController::class,
+        'surveys' => SurveyController::class,
+    ]);
+});
 
 
 //needs to be deleted

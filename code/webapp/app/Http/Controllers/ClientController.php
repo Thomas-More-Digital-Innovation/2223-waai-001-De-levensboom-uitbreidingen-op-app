@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
@@ -25,6 +26,8 @@ class ClientController extends Controller
      */
     public function create()
     {
+        Gate::authorize('createDestroyTable');
+
         return view('clients.create');
     }
 
@@ -36,6 +39,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('createDestroyTable');
+
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
@@ -63,6 +68,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+    
+        Gate::authorize('editUser', $id);
+
         $client = User::find($id);
         return view('clients.edit', compact('client'));
     }
@@ -76,6 +84,8 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('editUser', $id);
+
         $client = User::find($id);
         $client->update($request->all());
 
@@ -91,6 +101,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('createDestroyTable');
+
         $client = User::find($id);
         $client->delete();
 

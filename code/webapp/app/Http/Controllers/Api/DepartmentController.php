@@ -17,9 +17,6 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        // Use this Gate function to authorize the action
-        Gate::authorize('mentor');
-
         $department = Department::all();
 
         return response()->json([
@@ -47,7 +44,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('mentor');
+        Gate::authorize('createDestroyTable');
 
         $department = Department::create($request->all());
 
@@ -90,7 +87,7 @@ class DepartmentController extends Controller
     public function update(StoreDepartmentRequest $request, Department $department)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('mentor');
+        Gate::authorize('editDepartment', $department->id);
 
         $department->update($request->all());
 
@@ -110,7 +107,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('mentor');
+        Gate::authorize('createDestroyTable');
         
         $department->delete();
 

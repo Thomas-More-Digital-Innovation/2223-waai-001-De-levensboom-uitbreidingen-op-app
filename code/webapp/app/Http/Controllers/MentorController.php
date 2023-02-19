@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MentorController extends Controller
 {
@@ -27,6 +28,8 @@ class MentorController extends Controller
      */
     public function create()
     {
+        Gate::authorize('createDestroyTable');
+
         return view('mentors.create');
     }
 
@@ -38,6 +41,8 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('createDestroyTable');
+
         $request->request->add(['user_type_id' => 3]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
@@ -65,6 +70,7 @@ class MentorController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('editUser', $id);
         $mentor = User::find($id);
         return view('mentors.edit', compact('mentor'));
     }
@@ -78,6 +84,7 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('editUser', $id);
         $mentor = User::find($id);
         $mentor->update($request->all());
 
@@ -93,6 +100,8 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('createDestroyTable');
+        
         $mentor = User::find($id);
         $mentor->delete();
 
