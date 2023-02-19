@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 use App\Models\Department;
+use App\Models\DepartmentList;
+use App\Models\Role;
 use App\Models\Question;
-use App\Policies\QuestionPolicy;
 use App\Models\User;
+use App\Models\UserType;
+use App\Policies\QuestionPolicy;
 use Illuminate\Support\Facades\Gate;
 
 // use Illuminate\Support\Facades\Gate;
@@ -31,10 +34,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        
         // Gate defines wether or not a user is allowed to do a specific action
 	    // This Gate is to check if a user is a mentor.
         Gate::define('mentor', function (User $user) {
-            return $user->user_type_id === 1;
+            // Get the usertype of the user
+            $userTypeId = $user->user_type_id;
+            $userType = UserType::find($userTypeId);
+            // Get the role of the user
+            $userRoleId = $user->role_id;
+            $userRole = Role::find($userRoleId);
+
+
+            return $userType === 'Mentor' || $userType === 'Admin';
         });
     }
 }

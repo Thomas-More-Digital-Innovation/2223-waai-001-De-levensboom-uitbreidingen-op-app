@@ -48,13 +48,14 @@ class QuestionPolicy
     /**
      * Determine whether the user can update the model.
      *
+     * @param  \App\Models\UserType $userType
      * @param  \App\Models\User  $user
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Question $question)
     {
-        return $user->id === $question->id
+        return $user->user_type_id === $question->id
             ? Response::allow()
             : Response::deny('You do not own this post.');
     }
