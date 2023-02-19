@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserTypesSeeder::class,
-            SectionSeeder::class
+            SectionSeeder::class,
+            RoleSeeder::class
         ]);
     }
 }
