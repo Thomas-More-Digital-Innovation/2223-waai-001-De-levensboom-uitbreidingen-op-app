@@ -46,7 +46,8 @@ class AuthServiceProvider extends ServiceProvider
             $userRole = Role::find($userRoleId);
 
 
-            return $userType === 'Mentor' || $userType === 'Admin';
+            return ($userType === 'Mentor' || $userType === 'Admin') 
+                    && ($userRole === 'Mentor' || $userRole === 'Department Head');
         });
     }
 }
