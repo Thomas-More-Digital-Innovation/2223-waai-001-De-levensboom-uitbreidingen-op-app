@@ -20,7 +20,7 @@
             <h1 class="text-2xl">Mail wijzigen</h1>
             <form action="{{ route('mails.update', $mail->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
-                @method('PUT')
+                @method('PATCH')
     
                 <label for="subject" class="font-bold">Onderwerp*</label>
                 <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $mail->subject }}>
