@@ -100,6 +100,7 @@ class ClientController extends Controller
         $departments = Department::all();
         $mentors = User::where('user_type_id', 1)->get();
         return view('clients.edit', compact('client', 'departments', 'mentors'));
+
     }
 
     /**
@@ -115,6 +116,7 @@ class ClientController extends Controller
 
         $client = User::find($id);
         $client->update($request->all());
+        
 
         $msg = "Client Updated successful! ";
         return redirect('clients')->with('msg', $msg);
