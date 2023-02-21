@@ -12,3 +12,5 @@ Enkel computer versie
 
 Laten weten of GDPR na te laten kijken
 QR code voor app to downloaden
+
+Vakje bij tree of life met contactgegevens van cliënt hun begeleiders
