@@ -82,10 +82,13 @@ class AuthServiceProvider extends ServiceProvider
 
             // Is the user a Department Head?
             if(DepartmentList::where('department_id', $departmentId)
-                ->where('user_id', $user->id)
-                ->where('role_id', 1)
-                ->exists()) {
-                    return true;
+                ->where('user_id', $user->id)->exists()) {
+                    // Get the role of the user
+                    $roleId = DepartmentList::where('department_id', $departmentId)
+                    ->where('user_id', $user->id)->role_id;
+
+                    $role = Role::find($roleId)->id;
+                    return  $role === 1; // Department Head
                 }
             else {
                 return $userType === 1; // Admin
