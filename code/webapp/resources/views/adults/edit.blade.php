@@ -71,11 +71,11 @@
                   <tr class="font-normal">
                     <td class="border border-[#f4f4f4] py-2 px-6">{{ $infoContent->title }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6">
-                      <form action="{{ route('adults.destroy', $infoContent->id) }}" method="post">
+                      <form action="{{ route('adultInfoContents.destroy', $infoContent->id) }}" method="post">
                         @csrf
                         @method('delete')
     
-                        <a href="{{ route('adults.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                        <a href="{{ route('adultInfoContents.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                         <span>|</span>
     
                         <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
