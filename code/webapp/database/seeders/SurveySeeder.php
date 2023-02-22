@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class SurveySeeder extends Seeder
 {
@@ -15,6 +17,6 @@ class SurveySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('info')->insert(['title' => 'link']);
+        DB::table('infos')->insert(['title' => 'link', 'section_id' => '5']);
     }
 }

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             RoleSeeder::class,
             SurveySeeder::class,
+            MailSeeder::class,
         ]);
     }
 }
