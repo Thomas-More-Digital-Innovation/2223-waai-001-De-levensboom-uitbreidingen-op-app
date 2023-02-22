@@ -12,7 +12,7 @@ class ListTitle extends Component
      *
      * @return void
      */
-    public function __construct($title, $name)
+    public function __construct($title, $name = "")
     {
         $this->title = $title;
         $this->name = $name;
