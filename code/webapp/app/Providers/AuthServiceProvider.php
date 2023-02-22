@@ -37,10 +37,11 @@ class AuthServiceProvider extends ServiceProvider
         
         // Gate defines wether or not a user is allowed to do a specific action
 
-        // This Gate is to check if a user is allowed to create or destroy a table.
-        Gate::define('createDestroyTable', function (User $user){
-            // Get the usertype of the user
+        // This Gate is to check if a user is an Admin.
+        Gate::define('allowAdmin', function (User $user){
+            // Get the userTypeID of the user
             $userTypeId = $user->user_type_id;
+            // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
             return $userType === 1; // Admin
@@ -48,8 +49,9 @@ class AuthServiceProvider extends ServiceProvider
 
         // This Gate is to check if a user is allowed to edit a user.
         Gate::define('editUser', function (User $user, int $userId){
-            // Get the usertype of the user
+            // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
+            // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
             return $userType === 1 || $user->id === $userId; // Admin, user themselfs
@@ -57,17 +59,26 @@ class AuthServiceProvider extends ServiceProvider
 
 	    // This Gate is to check if a user is allowed to edit departments.
         Gate::define('editDepartment', function (User $user, int $departmentId) {
-            // Get the usertype of the user
+            // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
+            // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
-            // Find correct departmentList with departmentId and userId
-            $departmentList = DepartmentList::where('department_id', $departmentId)
-                ->where('user_id', $user->id)
-                ->first();
+            // check if there is a departmentList
+            if(DepartmentList::where('department_id', $departmentId)
+                ->where('user_id', $user->id)->exists()){
+                    // Find correct departmentList with departmentId and userId
+                    $departmentList = DepartmentList::where('department_id', $departmentId)
+                    ->where('user_id', $user->id)
+                    ->first();
+        
+                    // Get the role of the user
+                    $userRole = Role::find($departmentList->role_id)->id;
+                } else {
+                    $userRole = 0;
+                }
+
             
-            // Get the role of the user
-            $userRole = Role::find($departmentList->role_id)->id;
 
             return ($userType === 3 // Mentor
                     && $userRole === 1) // Department Head
@@ -76,8 +87,9 @@ class AuthServiceProvider extends ServiceProvider
 
         // This Gate is to check if a user is allowed to assign another user to a department.
         Gate::define('createDepartmentList', function(User $user, int $departmentId) {
-            // Get the usertype of the user
+            // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
+            // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
             // Is the user a Department Head?

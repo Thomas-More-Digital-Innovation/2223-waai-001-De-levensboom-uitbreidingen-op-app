@@ -26,7 +26,7 @@ class TeenController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('teens.create');
     }
@@ -39,7 +39,7 @@ class TeenController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         Info::create($request->all());
 
@@ -66,6 +66,8 @@ class TeenController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+
         $teen = Info::find($id);
         return view('teens.edit', compact('teen'));
     }
@@ -79,6 +81,8 @@ class TeenController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('allowAdmin');
+        
         $teen = Info::find($id);
         $teen->update($request->all());
 
@@ -94,7 +98,7 @@ class TeenController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
         
         $teen = Info::find($id);
         $teen->delete();

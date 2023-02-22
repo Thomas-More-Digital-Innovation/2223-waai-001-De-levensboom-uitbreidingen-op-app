@@ -26,7 +26,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('surveys.create');
     }
@@ -39,7 +39,7 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         Info::create($request->all());
 
@@ -66,6 +66,8 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+        
         $survey = Info::find($id);
         return view('surveys.edit', compact('survey'));
     }
@@ -79,6 +81,8 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('allowAdmin');
+
         $survey = Info::find($id);
         $survey->update($request->all());
 
@@ -94,7 +98,7 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
         
         $survey = Info::find($id);
         $survey->delete();

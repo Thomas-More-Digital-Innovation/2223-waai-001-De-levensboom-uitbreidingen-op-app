@@ -26,7 +26,7 @@ class AdultController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('adults.create');
     }
@@ -39,7 +39,7 @@ class AdultController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         Info::create($request->all());
 
@@ -94,7 +94,7 @@ class AdultController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
         
         $adult = Info::find($id);
         $adult->delete();
