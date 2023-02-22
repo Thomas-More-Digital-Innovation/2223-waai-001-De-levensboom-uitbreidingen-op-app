@@ -22,7 +22,7 @@
                 @csrf
                 @method('PATCH')
                 
-                <x-form-input name="subject" text="Onderwerp" :value="$mail" />
+                <x-form-input name="title" text="Onderwerp" :value="$mail" />
 
                 <label for="text" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
