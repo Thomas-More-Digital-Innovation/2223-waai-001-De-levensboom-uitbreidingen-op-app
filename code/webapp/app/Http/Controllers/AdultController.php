@@ -15,7 +15,7 @@ class AdultController extends Controller
      */
     public function index()
     {
-        $adults = Info::all();
+        $adults = Info::where('section_id', 1)->get();
         return view('adults.index', compact('adults'));
     }
 
@@ -41,6 +41,7 @@ class AdultController extends Controller
     {
         Gate::authorize('createDestroyTable');
 
+        $request->request->add(['section_id' => 1]);
         Info::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";

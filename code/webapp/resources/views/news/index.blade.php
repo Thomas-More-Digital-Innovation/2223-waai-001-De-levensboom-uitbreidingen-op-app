@@ -29,7 +29,7 @@
             <tbody>
               @foreach ($news as $new)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $new->titel }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $new->title }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $new->gecreerdop }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <form action="{{ route('news.destroy', $new->id) }}" method="post">
