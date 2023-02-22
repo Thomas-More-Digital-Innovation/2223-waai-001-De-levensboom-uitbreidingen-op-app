@@ -21,17 +21,11 @@
             <form action="{{ route('mentors.store') }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('POST')
-    
-                <label for="firstname" class="font-bold">Voornaam*</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
-                
-                <label for="surname" class="font-bold">Achternaam*</label>
-                <input type="text" name="surname" id="surname" placeholder="Enter achternaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
-    
-    
-                <label for="email" class="font-bold">Email*</label>
-                <input type="text" name="email" id="email" placeholder="Enter email" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
-    
+
+                <x-form-input name="firstname" text="Voornaam" />
+                <x-form-input name="surname" text="Achternaam" />
+                <x-form-input name="email" text="Email" />
+
                 <label for="role" class="font-bold">Functie*</label>
                 <select name="role" id="role" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
                   @foreach ($roles as $role)

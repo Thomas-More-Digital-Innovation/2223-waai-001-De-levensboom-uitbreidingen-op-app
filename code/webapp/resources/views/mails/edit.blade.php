@@ -21,10 +21,9 @@
             <form action="{{ route('mails.update', $mail->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
-    
-                <label for="subject" class="font-bold">Onderwerp*</label>
-                <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $mail->subject }}>
                 
+                <x-form-input name="subject" text="Onderwerp" :value="$mail" />
+
                 <label for="text" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
 

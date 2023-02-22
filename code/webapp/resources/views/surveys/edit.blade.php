@@ -22,9 +22,7 @@
                 @csrf
                 @method('PATCH')
     
-                <label for="title" class="font-bold">Google form link*</label>
-                <input type="text" name="title" id="title" placeholder="Enter google form link" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $survey->title }}>
-    
+                <x-form-input name="title" text="Google form link" :value="$survey" />
                 <x-form-button text="Wijzigen" />
             </form>
         </div>

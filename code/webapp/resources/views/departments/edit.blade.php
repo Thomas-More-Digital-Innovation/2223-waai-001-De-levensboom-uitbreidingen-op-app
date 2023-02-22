@@ -22,11 +22,10 @@
             @csrf
             @method('PATCH')
 
-            <label for="name" class="font-bold">Naam*</label>
-            <input type="text" name="name" id="name" required placeholder="Enter naam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $department->name }}>
+            <x-form-input name="name" text="Naam" :value="$department" />
 
             <x-contactgegevens :contactgegevens="$department" />
-             <x-form-button text="Bewerk" />
+            <x-form-button text="Bewerk" />
           </form>
         </div>
       </div>

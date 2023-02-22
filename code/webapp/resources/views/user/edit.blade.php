@@ -22,16 +22,10 @@
                 @csrf
                 @method('PATCH')
     
-                <label for="firstname" class="font-bold">Voornaam*</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Enter voornaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $user->firstname }}>
-                
-                <label for="surname" class="font-bold">Achternaam*</label>
-                <input type="text" name="surname" id="surname" placeholder="Enter achternaam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $user->surname }}>
-    
-    
-                <label for="email" class="font-bold">Email*</label>
-                <input type="text" name="email" id="email" placeholder="Enter email" disabled class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $user->email }}>
-    
+                <x-form-input name="firstname" text="Voornaam" :value="$user" />
+                <x-form-input name="surname" text="Achternaam" :value="$user" />
+                <x-form-input name="email" text="E-mail" :value="$user" disabled="disabled" />
+
                 <x-contactgegevens :contactgegevens="$user" />
                 <x-form-button text="Wijzigen" />
             </form>

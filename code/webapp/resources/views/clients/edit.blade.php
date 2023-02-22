@@ -23,20 +23,11 @@
             @csrf
             @method('PATCH')
 
-            <label for="firstname" class="font-bold">Voornaam*</label>
-            <input type="text" name="firstname" id="firstname" required placeholder="Enter voornaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->firstname }}>
-            
-            <label for="surname" class="font-bold">Achternaam*</label>
-            <input type="text" name="surname" id="surname" required placeholder="Enter achternaam" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->surname }}>
-
-
-            <label for="email" class="font-bold">Email*</label>
-            <input type="text" name="email" id="email" disabled placeholder="Enter email" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->email }}>
-
-
-            <label for="birthdate" class="font-bold">Geboortedatum*</label>
-            <input type="text" name="birthdate" id="birthdate" required placeholder="Enter geboortedatum Vb: 1989-05-19" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $client->birthdate }}>
-
+            <x-form-input name="firstname" text="Voornaam" :value="$client" />
+            <x-form-input name="surname" text="Achternaam" :value="$client" />
+            <x-form-input name="email" text="Email" type="email" :value="$client" />
+            <x-form-input name="birthdate" text="Geboortedatum" type="date" :value="$client" />
+  
             <label for="gender" class="font-bold">Geslacht</label>
             <select name="gender" id="gender" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-5">
               <option value="man">Man</option>

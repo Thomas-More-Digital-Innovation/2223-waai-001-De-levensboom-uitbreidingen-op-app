@@ -22,11 +22,10 @@
             @csrf
             @method('POST')
 
-            <label for="name" class="font-bold">Naam*</label>
-            <input type="text" name="name" id="name" placeholder="Enter naam" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+            <x-form-input name="name" text="Naam" />
 
             <x-contactgegevens />
-             <x-form-button text="Aanmaken" />
+            <x-form-button text="Aanmaken" />
           </form>
         </div>
       </div>
