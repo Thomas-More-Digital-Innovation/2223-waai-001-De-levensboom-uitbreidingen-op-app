@@ -21,24 +21,16 @@
           <table class="border-collapse border border-[#f4f4f4] table-auto">
             <thead>
               <tr>
-                <th class="border border-[#f4f4f4] py-2 px-6">Google form link</th>
+                <th class="border border-[#f4f4f4] py-2 px-6 text-left">Google form link</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($surveys as $survey)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $survey->link }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $survey->title }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
-                  <form action="{{ route('surveys.destroy', $survey->id) }}" method="post">
-                    @csrf
-                    @method('delete')
-
-                    <a href="{{ route('surveys.edit', $survey->id) }}" class="text-[#3c8dbc]">Bewerk</a>
-                    <span>|</span>
-
-                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
-                  </form>
+                  <a href="{{ route('surveys.edit', $survey->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                 </td>
               </tr>
               @endforeach

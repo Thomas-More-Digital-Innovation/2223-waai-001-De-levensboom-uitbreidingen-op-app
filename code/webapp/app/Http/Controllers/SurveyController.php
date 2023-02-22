@@ -41,6 +41,7 @@ class SurveyController extends Controller
     {
         Gate::authorize('createDestroyTable');
 
+        $request->request->add(['section_id' => 5]);
         Info::create($request->all());
 
         $msg = "New Survey Created successful! ";
@@ -94,12 +95,6 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
-        
-        $survey = Info::find($id);
-        $survey->delete();
-
-        $msg = "Survey Deleted successful! ";
-        return redirect('surveys')->with('msg', $msg);
+        //
     }
 }
