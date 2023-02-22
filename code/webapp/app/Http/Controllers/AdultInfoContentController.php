@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Info;
-use App\Models\InfoContent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-class AdultController extends Controller
+class AdultInfoContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class AdultController extends Controller
      */
     public function index()
     {
-        $adults = Info::where('section_id', 1)->get();
-        return view('adults.index', compact('adults'));
+        //
     }
 
     /**
@@ -27,9 +23,7 @@ class AdultController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
-
-        return view('adults.create');
+        return view('adults.infoContents.create');
     }
 
     /**
@@ -40,13 +34,7 @@ class AdultController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
-
-        $request->request->add(['section_id' => 1]);
-        Info::create($request->all());
-
-        $msg = "New Adult Info Content Created successful! ";
-        return redirect('adults')->with('msg', $msg);
+        //
     }
 
     /**
@@ -68,9 +56,7 @@ class AdultController extends Controller
      */
     public function edit($id)
     {
-        $adult = Info::find($id);
-        $infoContents = InfoContent::all();
-        return view('adults.edit', compact('adult','infoContents'));
+        //
     }
 
     /**
@@ -82,11 +68,7 @@ class AdultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $adult = Info::find($id);
-        $adult->update($request->all());
-
-        $msg = "Adult Info Content Updated successful! ";
-        return redirect('adults')->with('msg', $msg);
+        //
     }
 
     /**
@@ -97,12 +79,6 @@ class AdultController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
-        
-        $adult = Info::find($id);
-        $adult->delete();
-
-        $msg = "Adult Info Content Deleted successful! ";
-        return redirect('adults')->with('msg', $msg);
+        //
     }
 }
