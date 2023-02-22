@@ -35,7 +35,7 @@ class AdultInfoContentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add(['info_id' => 1]);
+        $request->request->add(['info_id' => 10]);
         InfoContent::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";
