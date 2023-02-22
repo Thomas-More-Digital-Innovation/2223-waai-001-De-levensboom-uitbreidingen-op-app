@@ -15,7 +15,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        $surveys = Info::all();
+        $surveys = Info::where('section_id', 5)->get();
         return view('surveys.index', compact('surveys'));
     }
 
@@ -41,6 +41,7 @@ class SurveyController extends Controller
     {
         Gate::authorize('createDestroyTable');
 
+        $request->request->add(['section_id' => 1]);
         Info::create($request->all());
 
         $msg = "New Survey Created successful! ";
