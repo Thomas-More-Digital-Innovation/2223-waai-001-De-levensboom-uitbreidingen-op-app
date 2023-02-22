@@ -15,7 +15,7 @@ class TeenController extends Controller
      */
     public function index()
     {
-        $teens = Info::all();
+        $teens = Info::where('section_id', 2)->get();
         return view('teens.index', compact('teens'));
     }
 
@@ -41,6 +41,7 @@ class TeenController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        $request->request->add(['section_id' => 2]);
         Info::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";

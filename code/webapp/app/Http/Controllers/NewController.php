@@ -15,7 +15,7 @@ class NewController extends Controller
      */
     public function index()
     {
-        $news = Info::all();
+        $news = Info::where('section_id', 3)->get();
         return view('news.index', compact('news'));
     }
 
@@ -41,6 +41,7 @@ class NewController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        $request->request->add(['section_id' => 3]);
         Info::create($request->all());
 
         $msg = "New New Info Content Created successful! ";
@@ -66,8 +67,8 @@ class NewController extends Controller
      */
     public function edit($id)
     {
-        $new = Info::find($id);
-        return view('news.edit', compact('new'));
+        $news = Info::find($id);
+        return view('news.edit', compact('news'));
     }
 
     /**

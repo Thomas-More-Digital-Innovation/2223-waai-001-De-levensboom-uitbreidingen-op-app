@@ -15,7 +15,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        $surveys = Info::all();
+        $surveys = Info::where('section_id', 5)->get();
         return view('surveys.index', compact('surveys'));
     }
 
@@ -26,9 +26,8 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
 
-        return view('surveys.create');
+        //
     }
 
     /**
@@ -39,12 +38,12 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
+
         Gate::authorize('allowAdmin');
 
-        Info::create($request->all());
 
-        $msg = "New Survey Created successful! ";
-        return redirect('surveys')->with('msg', $msg);
+        //
+
     }
 
     /**
@@ -81,9 +80,11 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         Gate::authorize('allowAdmin');
 
-        $survey = Info::find($id);
+
+        $survey = Info::find($id);       
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";
@@ -98,12 +99,6 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
-        
-        $survey = Info::find($id);
-        $survey->delete();
-
-        $msg = "Survey Deleted successful! ";
-        return redirect('surveys')->with('msg', $msg);
+        //
     }
 }

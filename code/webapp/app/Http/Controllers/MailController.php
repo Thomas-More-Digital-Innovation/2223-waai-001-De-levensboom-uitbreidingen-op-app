@@ -15,7 +15,7 @@ class MailController extends Controller
      */
     public function index()
     {
-        $mails = Info::all();
+        $mails = Info::where('section_id', 4)->get();
         return view('mails.index', compact('mails'));
     }
 
@@ -41,6 +41,7 @@ class MailController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        $request->request->add(['section_id' => 4]);
         Info::create($request->all());
 
         $msg = "Mail Created successful! ";

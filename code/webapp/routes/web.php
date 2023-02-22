@@ -31,7 +31,7 @@ Route::get('/', function () {
     $clientcount = User::where('user_type_id', 2)->count();
     $mentorcount = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->count();
     $departmentcount = Department::count();
-    $newscount = Info::count();
+    $newscount = Info::where('section_id', 3)->count();
 
     return view('index', [
         'clientcount' => $clientcount,
@@ -55,8 +55,6 @@ Route::middleware('auth', 'verified')->group( function () {
         'user' => ControllersUserController::class,
     ]);
 });
-
-
 
 require __DIR__.'/auth.php';
 
