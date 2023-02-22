@@ -26,7 +26,7 @@ class NewController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('news.create');
     }
@@ -39,7 +39,7 @@ class NewController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $request->request->add(['section_id' => 3]);
         Info::create($request->all());
@@ -95,7 +95,7 @@ class NewController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
         
         $new = Info::find($id);
         $new->delete();

@@ -17,6 +17,7 @@ class ClientController extends Controller
      */
     public function index()
     {
+            
         $clients = User::where('user_type_id', 2)->get();
 
         foreach ($clients as $client) {
@@ -39,7 +40,7 @@ class ClientController extends Controller
     public function create()
     {
 
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $departments = Department::all();
         $mentors = User::where('user_type_id', 1)->get();
@@ -54,7 +55,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
@@ -100,6 +101,7 @@ class ClientController extends Controller
         $departments = Department::all();
         $mentors = User::where('user_type_id', 1)->get();
         return view('clients.edit', compact('client', 'departments', 'mentors'));
+
     }
 
     /**
@@ -115,6 +117,7 @@ class ClientController extends Controller
 
         $client = User::find($id);
         $client->update($request->all());
+        
 
         $msg = "Client Updated successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -128,7 +131,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         DepartmentList::where('user_id', $id)->delete();
         $client = User::find($id);

@@ -27,7 +27,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('departments.create');
     }
@@ -40,7 +40,7 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         Department::create($request->all());
 
@@ -99,7 +99,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $department = Department::find($id);
         $department->delete();

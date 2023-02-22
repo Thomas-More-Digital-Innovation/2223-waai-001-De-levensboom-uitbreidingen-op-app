@@ -26,7 +26,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         return view('mails.create');
     }
@@ -39,7 +39,7 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $request->request->add(['section_id' => 4]);
         Info::create($request->all());
@@ -95,7 +95,7 @@ class MailController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $mail = Info::find($id);
         $mail->delete();
