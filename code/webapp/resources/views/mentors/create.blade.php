@@ -54,8 +54,8 @@
                 </div>
     
                 <x-contactgegevens />
-                <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Aanmaken</button>
-            </form>
+                 <x-form-button text="Aanmaken" />
+              </form>
         </div>
       </div>
     </div>

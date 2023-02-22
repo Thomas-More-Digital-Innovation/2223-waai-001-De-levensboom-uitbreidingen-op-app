@@ -26,7 +26,7 @@
                     <label for="title" class="font-bold">Titel*</label>
                     <input type="text" name="title" id="title" placeholder="Enter titel" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
         
-                    <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Toevoegen</button>
+                     <x-form-button text="Toevoegen" />
                 </form>
             </div>
           </div>
