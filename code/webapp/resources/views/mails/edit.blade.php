@@ -23,11 +23,11 @@
                 @method('PATCH')
     
                 <label for="subject" class="font-bold">Onderwerp*</label>
-                <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $mail->subject }}>
+                <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $mail->subject }}>
                 
                 <label for="text" class="font-bold">Inhoud*</label>
-                <input type="text" name="text" id="text" placeholder="Enter inhoud" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $mail->text }}>
-    
+                <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+
                 <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Wijzigen</button>
             </form>
         </div>
@@ -35,5 +35,15 @@
     </div>
   </main>
 </body>
+<script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('.ckeditor').ckeditor();
+  });
+  CKEDITOR.replace('wysiwyg-editor', {
+      filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+      filebrowserUploadMethod: 'form'
+  });
+</script>
 
 </html>
