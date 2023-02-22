@@ -36,7 +36,7 @@ class MentorController extends Controller
     public function create()
     {
 
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         // send departments to the view
         $departments = Department::all();
@@ -52,7 +52,7 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $request->request->add(['user_type_id' => 3]);
         $request->request->add(['password' => bcrypt('password')]);
@@ -98,6 +98,7 @@ class MentorController extends Controller
     public function update(Request $request, $id)
     {
         Gate::authorize('editUser', $id);
+        
         $mentor = User::find($id);
         $mentor->update($request->all());
 
@@ -113,7 +114,7 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
         
         $mentor = User::find($id);
         $mentor->delete();

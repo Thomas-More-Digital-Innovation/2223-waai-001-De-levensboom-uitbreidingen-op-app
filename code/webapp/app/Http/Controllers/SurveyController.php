@@ -26,6 +26,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
+
         //
     }
 
@@ -37,6 +38,9 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
+
+        Gate::authorize('allowAdmin');
+
 
         //
 
@@ -61,6 +65,8 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+        
         $survey = Info::find($id);
         return view('surveys.edit', compact('survey'));
     }
@@ -74,6 +80,10 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        Gate::authorize('allowAdmin');
+
+
         $survey = Info::find($id);       
         $survey->update($request->all());
 
