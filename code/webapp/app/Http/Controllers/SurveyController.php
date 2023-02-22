@@ -26,9 +26,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createDestroyTable');
-
-        return view('surveys.create');
+        //
     }
 
     /**
@@ -39,13 +37,9 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('createDestroyTable');
 
-        $request->request->add(['section_id' => 1]);
-        Info::create($request->all());
+        //
 
-        $msg = "New Survey Created successful! ";
-        return redirect('surveys')->with('msg', $msg);
     }
 
     /**
@@ -80,7 +74,7 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $survey = Info::find($id);
+        $survey = Info::find($id);       
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";
@@ -95,12 +89,6 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('createDestroyTable');
-        
-        $survey = Info::find($id);
-        $survey->delete();
-
-        $msg = "Survey Deleted successful! ";
-        return redirect('surveys')->with('msg', $msg);
+        //
     }
 }
