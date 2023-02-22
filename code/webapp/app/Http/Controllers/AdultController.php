@@ -69,7 +69,7 @@ class AdultController extends Controller
     public function edit($id)
     {
         $adult = Info::find($id);
-        $infoContents = InfoContent::all();
+        $infoContents = InfoContent::where('info_id', $id)->get();
         return view('adults.edit', compact('adult','infoContents'));
     }
 

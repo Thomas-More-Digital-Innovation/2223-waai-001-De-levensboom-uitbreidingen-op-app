@@ -58,7 +58,10 @@
         <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
           <div class="border-t-4 rounded border-[#3c8dbc]">
             <div class="m-3">
-              <x-list-title title="Info Segmenten voor volwassenen" name="adultInfoContents.create" />
+              <div class="flex items-center justify-between my-3">
+                <h1 class="text-2xl">Info segmenten voor volwassenen</h1>
+                    <a href="{{ route('adultInfoContents.create') }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
+            </div>
               <table class="border-collapse border border-[#f4f4f4] table-auto">
                 <thead>
                   <tr>
