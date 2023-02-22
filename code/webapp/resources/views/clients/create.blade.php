@@ -44,36 +44,37 @@
             </select>
 
             <hr>
-
-            <div class="flex items-center gap-3 mt-3 mb-3">
-              <label for="department" class="font-bold">Afdeling</label>
-              <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
-            </div>
-
-            <div class="flex items-center mb-5">
-              <select name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                <option value=""></option>
-                @foreach ($departments as $department)
-                  <option value="{{ $department->id }}">{{ $department->name }}</option>
-                @endforeach
-              </select>
-              <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
-            </div>
             
-            <hr>
-            
-            <div class="flex items-center gap-3 mt-3 mb-2">
-              <label for="mentors" class="font-bold">Begeleiders</label>
-              <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
+            <div class="flex flex-row gap-5">
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="department" class="font-bold">Afdeling</label>
+              </div>
+
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="mentors" class="font-bold">Begeleiders</label>
+              </div>
+              <button onclick="addDepartment()">
+                <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
+              </button>
             </div>
 
-            <div class="flex items-center mb-5">
-              <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                @foreach ($mentors as $mentor)
-                  <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                @endforeach
-              </select>
-              <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+            <div class="flex flex-row gap-5">    
+              <div class="flex items-center mb-5">
+                <select onchange="getDepartments({{ $departmentLists }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+  
+              <div class="flex items-center mb-5">
+                <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  @foreach ($mentors as $mentor)
+                    <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
+                  @endforeach
+                </select>
+                <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+              </div>
             </div>
 
             <hr>
@@ -101,4 +102,26 @@
   </main>
 </body>
 
-</html>
+<script>
+  console.log('test1');
+  var selectedDepartments = [];
+  
+  // document.getElementById('department').addEventListener('change', function() {
+  //   selectedDepartments = document.getElementById('department').value;
+  //   console.log(selectedDepartments);
+  // });
+  
+  function getDepartments(departmentLists) {
+    
+    selectedDepartments = document.getElementById('department').value;
+    var departments = departmentLists
+    console.log(departments);
+  }
+
+  function addDepartment() {
+    console.log('test3');
+    console.log('knop werkt');
+  }
+
+  </script>
+  </html>
