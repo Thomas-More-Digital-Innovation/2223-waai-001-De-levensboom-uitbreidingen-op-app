@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdultController;
+use App\Http\Controllers\NewsInfoContentController;
 use App\Http\Controllers\AdultInfoContentController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DepartmentController as ControllersDepartmentController;
@@ -55,6 +56,7 @@ Route::middleware('auth', 'verified')->group( function () {
         'surveys' => SurveyController::class,
         'user' => ControllersUserController::class,
         'adultInfoContents' => AdultInfoContentController::class,
+        'newsInfoContents' => NewsInfoContentController::class,
     ]);
 });
 
