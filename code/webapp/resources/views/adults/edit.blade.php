@@ -18,7 +18,7 @@
         <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
           <div class="border-t-4 rounded border-[#3c8dbc]">
             <div class="m-3">
-                <h1 class="text-2xl">Volwassen wijzigen</h1>
+                <h1 class="text-2xl">Info segment bewerken</h1>
                 <form action="{{ route('adults.update', $adult->id) }}" method="POST" class="flex flex-col mt-3">
                   @csrf
                   @method('PATCH')
@@ -30,12 +30,13 @@
             </div>
           </div>
         </div>
+        
         <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
           <div class="border-t-4 rounded border-[#3c8dbc]">
             <div class="m-3">
               <div class="flex items-center justify-between my-3">
-                <h1 class="text-2xl">Info segmenten voor volwassenen</h1>
-                    <a href="{{ route('adultInfoContents.create') }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
+                <h1 class="text-2xl">Infoblokken</h1>
+                <a href="{{ route('adultInfoContents.create') }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
             </div>
               <table class="border-collapse border border-[#f4f4f4] table-auto">
                 <thead>
