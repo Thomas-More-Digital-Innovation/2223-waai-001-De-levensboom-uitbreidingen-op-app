@@ -24,8 +24,8 @@
                 
                 <x-form-input name="title" text="Onderwerp" :value="$mail" />
 
-                <label for="text" class="font-bold">Inhoud*</label>
-                <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+                <label for="content" class="font-bold">Inhoud*</label>
+                <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
                 <x-form-button text="Wijzigen" />
             </form>
