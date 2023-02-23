@@ -60,7 +60,8 @@
 
             <div class="flex flex-row gap-5">    
               <div class="flex items-center mb-5">
-                <select onchange="getDepartments({{ $departmentLists }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <option value="">Kies de Afdeling</option>
                   @foreach ($departments as $department)
                     <option value="{{ $department->id }}">{{ $department->name }}</option>
                   @endforeach
@@ -69,10 +70,12 @@
   
               <div class="flex items-center mb-5">
                 <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <option value="">Kies een begeleider</option>
+                  {{-- <option value="">Kies de Afdeling</option>
                   @foreach ($mentors as $mentor)
                     <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                  @endforeach
-                </select>
+                  @endforeach --}}
+                </select> 
                 <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
               </div>
             </div>
@@ -103,7 +106,7 @@
 </body>
 
 <script>
-  console.log('test1');
+
   var selectedDepartments = [];
   
   // document.getElementById('department').addEventListener('change', function() {
@@ -111,16 +114,45 @@
   //   console.log(selectedDepartments);
   // });
   
-  function getDepartments(departmentLists) {
+  function getDepartments(departmentLists, allMentors) {
     
     selectedDepartments = document.getElementById('department').value;
-    var departments = departmentLists
-    console.log(departments);
+    var mentorDropdown = document.getElementById('mentors');
+    var departments = []
+    var mentors = []
+
+    // Loop through the departmentLists array
+    for (let i = 0; i < departmentLists.length; i++){
+      // search for the selected departmentLists with only Mentors and Department Heads
+      if (departmentLists[i].department_id == selectedDepartments && departmentLists[i].role_id != 2){
+        // Push the user_id to the mentors array
+        mentors.push(departmentLists[i].user_id)
+      }
+    }
+    // console.log(mentors);
+    //Delete all options in the mentorDropdown
+    while (mentorDropdown.firstChild) {
+      mentorDropdown.removeChild(mentorDropdown.firstChild);
+    }
+    var option = document.createElement('option');
+    option.value = '';
+    option.text = 'Kies een begeleider';
+    mentorDropdown.appendChild(option)
+    
+    // Loop through the allMentors array
+    for( let i = 0; i < allMentors.length; i++){
+      if( mentors.includes(allMentors[i].id) ){
+        console.log(allMentors[i].firstname)
+        var option = document.createElement('option');
+        option.value = allMentors[i].id;
+        option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
+        mentorDropdown.appendChild(option);
+      }
+    }
   }
 
   function addDepartment() {
-    console.log('test3');
-    console.log('knop werkt');
+    
   }
 
   </script>
