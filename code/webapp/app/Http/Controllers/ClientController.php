@@ -102,7 +102,7 @@ class ClientController extends Controller
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        return view('clients.edit', compact('client', 'departments', 'mentors'));
+        return view('clients.edit', compact('client', 'departments', 'departmentLists', 'mentors'));
 
     }
 

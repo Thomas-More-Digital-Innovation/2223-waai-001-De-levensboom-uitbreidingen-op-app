@@ -71,10 +71,9 @@
               <div class="flex items-center mb-5">
                 <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                   <option value="">Kies een begeleider</option>
-                  {{-- <option value="">Kies de Afdeling</option>
                   @foreach ($mentors as $mentor)
                     <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                  @endforeach --}}
+                  @endforeach
                 </select> 
                 <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
               </div>
@@ -109,11 +108,6 @@
 
   var selectedDepartments = [];
   
-  // document.getElementById('department').addEventListener('change', function() {
-  //   selectedDepartments = document.getElementById('department').value;
-  //   console.log(selectedDepartments);
-  // });
-  
   function getDepartments(departmentLists, allMentors) {
     
     selectedDepartments = document.getElementById('department').value;
@@ -129,11 +123,12 @@
         mentors.push(departmentLists[i].user_id)
       }
     }
-    // console.log(mentors);
+    
     //Delete all options in the mentorDropdown
     while (mentorDropdown.firstChild) {
       mentorDropdown.removeChild(mentorDropdown.firstChild);
     }
+    // Make new standard option
     var option = document.createElement('option');
     option.value = '';
     option.text = 'Kies een begeleider';
@@ -142,7 +137,7 @@
     // Loop through the allMentors array
     for( let i = 0; i < allMentors.length; i++){
       if( mentors.includes(allMentors[i].id) ){
-        console.log(allMentors[i].firstname)
+        // make new option
         var option = document.createElement('option');
         option.value = allMentors[i].id;
         option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
