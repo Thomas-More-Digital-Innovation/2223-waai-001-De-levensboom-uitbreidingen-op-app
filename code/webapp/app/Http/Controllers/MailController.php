@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,9 +27,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
-
-        return view('mails.create');
+        //
     }
 
     /**
@@ -39,13 +38,7 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
-
-        $request->request->add(['section_id' => 4]);
-        Info::create($request->all());
-
-        $msg = "Mail Created successful! ";
-        return redirect('mails')->with('msg', $msg);
+        //
     }
 
     /**
@@ -68,6 +61,7 @@ class MailController extends Controller
     public function edit($id)
     {
         $mail = Info::find($id);
+        $mail->content = InfoContent::where('info_id', $id)->first()->content;
         return view('mails.edit', compact('mail'));
     }
 
@@ -83,6 +77,12 @@ class MailController extends Controller
         $mail = Info::find($id);
         $mail->update($request->all());
 
+        InfoContent::updateOrCreate(
+            ['info_id' => $mail->id],
+            ['title' => $request->title
+            ,'content' => $request->content],
+        );
+
         $msg = "Mail Updated successful! ";
         return redirect('mails')->with('msg', $msg);
     }
@@ -95,12 +95,6 @@ class MailController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
-
-        $mail = Info::find($id);
-        $mail->delete();
-
-        $msg = "Mail Deleted successful! ";
-        return redirect('mails')->with('msg', $msg);
+        //
     }
 }
