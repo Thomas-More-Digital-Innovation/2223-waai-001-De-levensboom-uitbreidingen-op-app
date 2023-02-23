@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Jongeren</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -28,12 +29,12 @@
                   <label for="titleImage" class="font-bold">Blok Foto</label>
                   <p>Geef een url in van een foto die online staat, of upload een foto van je op pc.</p>
                   <input type="text" name="titleImage" id="titleImage" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
-                  <input type="text" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+                  <input type="file" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
   
                   <x-form-input name="url" text="Meer info link" />
   
                   <label for="text" class="font-bold">Inhoud*</label>
-                  <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+                  <textarea class="ckeditor form-control" name="content"></textarea>
   
                   <x-form-button text="Aanmaken" />
               </form>
@@ -43,5 +44,4 @@
       </div>
   </main>
 </body>
-
 </html>
