@@ -57,7 +57,7 @@
                         <a href="{{ route('adultInfoContents.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                         <span>|</span>
     
-                         <x-form-button text="Verwijder" />
+                        <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
                       </form>
                     </td>
                   </tr>

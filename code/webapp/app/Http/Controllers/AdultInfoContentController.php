@@ -35,7 +35,7 @@ class AdultInfoContentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add(['info_id' => 10]);
+        $request->request->add(['info_id' => 8]);
         InfoContent::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";
@@ -62,6 +62,7 @@ class AdultInfoContentController extends Controller
     public function edit($id)
     {
         $infoContent = InfoContent::find($id);
+        $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
         return view('adults.infoContents.edit', compact('infoContent'));
     
     }
@@ -75,8 +76,11 @@ class AdultInfoContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $adultInfoContent = InfoContent::find($id);
-        $adultInfoContent->update($request->all());
+        InfoContent::updateOrCreate(
+            ['info_id' => $id],
+            ['title' => $request->title
+            ,'content' => $request->content],
+        );
 
         $msg = "Adult Info Content Updated successful! ";
         return redirect('adults')->with('msg', $msg);
