@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 
 class TeenInfoContentController extends Controller
@@ -56,7 +57,8 @@ class TeenInfoContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $infoContent = InfoContent::find($id);
+        return view('teens.infoContents.edit', compact('infoContent'));
     }
 
     /**

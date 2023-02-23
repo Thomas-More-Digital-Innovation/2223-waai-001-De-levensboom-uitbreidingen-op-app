@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  <title>Waaiburg - Volwassenen</title>
+  <title>Waaiburg - Jongeren</title>
 </head>
 
 <body class="flex">
@@ -19,15 +19,24 @@
           <div class="border-t-4 rounded border-[#3c8dbc]">
             <div class="m-3">
                 <h1 class="text-2xl">Info blok toevoegen</h1>
-                <form action="{{ route('adults.store') }}" method="POST" class="flex flex-col mt-3">
-                    @csrf
-                    @method('POST')
-        
-                    <label for="title" class="font-bold">Titel*</label>
-                    <input type="text" name="title" id="title" placeholder="Enter titel" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-        
-                    <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Toevoegen</button>
-                </form>
+                <form action="{{ route('teenInfoContents.store') }}" method="POST" class="flex flex-col mt-3">
+                  @csrf
+                  @method('POST')
+      
+                  <x-form-input name="title" text="Titel" />
+  
+                  <label for="titleImage" class="font-bold">Blok Foto</label>
+                  <p>Geef een url in van een foto die online staat, of upload een foto van je op pc.</p>
+                  <input type="text" name="titleImage" id="titleImage" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+                  <input type="text" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+  
+                  <x-form-input name="url" text="Meer info link" />
+  
+                  <label for="text" class="font-bold">Inhoud*</label>
+                  <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+  
+                  <x-form-button text="Aanmaken" />
+              </form>
             </div>
           </div>
         </div>
