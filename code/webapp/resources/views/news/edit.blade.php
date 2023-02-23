@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Nieuwtjes</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -17,23 +18,28 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-            <h1 class="text-2xl">Nieuwtje wijzigen</h1>
-            <form action="{{ route('news.update', $news->id) }}" method="POST" class="flex flex-col mt-3">
-              @csrf
-              @method('PATCH')
-  
-              <x-form-input name="title" text="Titel" :value="$news" />
-              <x-form-input name="shorttext" text="Korte inhoud" :value="$news"  />
+          <h1 class="text-2xl">Nieuwtje wijzigen</h1>
+          <form action="{{ route('news.update', $news->id) }}" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('PATCH')
 
-              <label for="text" class="font-bold">Inhoud</label>
-              <input type="text" name="text" id="text" placeholder="Enter inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $news->text }}>
-  
-              <x-form-button text="Wijzigen" />
-            </form>
+            <x-form-input name="title" text="Titel" :value="$news" />
+            <x-form-input name="shortContent" text="Korte inhoud" :value="$news"  />
+            
+            <label for="content" class="font-bold">Inhoud*</label>
+            <textarea class="ckeditor form-control" name="content" id="content"></textarea>
+
+            <x-form-button text="Wijzigen" />
+          </form>
         </div>
       </div>
     </div>
   </main>
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ 
+    var data = {!! json_encode($news->content) !!};
+    CKEDITOR.instances.content.setData(data);
+  }, false);
+</script>
 </html>

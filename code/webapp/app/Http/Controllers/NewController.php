@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -44,6 +45,9 @@ class NewController extends Controller
         $request->request->add(['section_id' => 3]);
         Info::create($request->all());
 
+        $request->request->add(['info_id' => 10]);
+        InfoContent::create($request->all());
+
         $msg = "New New Info Content Created successful! ";
         return redirect('news')->with('msg', $msg);
     }
@@ -68,6 +72,8 @@ class NewController extends Controller
     public function edit($id)
     {
         $news = Info::find($id);
+        $news->shortContent = InfoContent::where('info_id', $id)->first()->shortContent;
+        $news->content = InfoContent::where('info_id', $id)->first()->content;
         return view('news.edit', compact('news'));
     }
 
@@ -82,6 +88,13 @@ class NewController extends Controller
     {
         $new = Info::find($id);
         $new->update($request->all());
+
+        InfoContent::updateOrCreate(
+            ['info_id' => $id],
+            ['title' => $request->title
+            ,'content' => $request->content
+            ,'shortContent' => $request->shortContent],
+        );
 
         $msg = "New Info Content Updated successful! ";
         return redirect('news')->with('msg', $msg);
