@@ -43,8 +43,9 @@ class ClientController extends Controller
         Gate::authorize('allowAdmin');
 
         $departments = Department::all();
-        $mentors = User::where('user_type_id', 1)->get();
-        return view('clients.create', compact('departments', 'mentors'));
+        $departmentLists = DepartmentList::all();
+        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
+        return view('clients.create', compact('departments', 'departmentLists', 'mentors'));
     }
 
     /**
@@ -99,8 +100,9 @@ class ClientController extends Controller
 
         $client = User::find($id);
         $departments = Department::all();
-        $mentors = User::where('user_type_id', 1)->get();
-        return view('clients.edit', compact('client', 'departments', 'mentors'));
+        $departmentLists = DepartmentList::all();
+        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
+        return view('clients.edit', compact('client', 'departments', 'departmentLists', 'mentors'));
 
     }
 
@@ -117,6 +119,16 @@ class ClientController extends Controller
 
         $client = User::find($id);
         $client->update($request->all());
+
+        if (!$request->department == "") {
+            DepartmentList::Where('user_id', $id)->delete();
+
+            DepartmentList::create([
+                'user_id' => User::latest()->first()->id,
+                'department_id' => $request->department,
+                'role_id' => 2,
+            ]);
+        }
         
 
         $msg = "Client Updated successful! ";

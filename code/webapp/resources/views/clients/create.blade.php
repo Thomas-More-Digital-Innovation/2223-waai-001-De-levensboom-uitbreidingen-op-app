@@ -35,37 +35,40 @@
             </select>
 
             <hr>
-
-            <div class="flex items-center gap-3 mt-3 mb-3">
-              <label for="department" class="font-bold">Afdeling</label>
-              <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
-            </div>
-
-            <div class="flex items-center mb-5">
-              <select name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                <option value=""></option>
-                @foreach ($departments as $department)
-                  <option value="{{ $department->id }}">{{ $department->name }}</option>
-                @endforeach
-              </select>
-              <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
-            </div>
             
-            <hr>
-            
-            <div class="flex items-center gap-3 mt-3 mb-2">
-              <label for="mentors" class="font-bold">Begeleiders</label>
-              <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
+            <div class="flex flex-row gap-5">
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="department" class="font-bold">Afdeling</label>
+              </div>
+
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="mentors" class="font-bold">Begeleiders</label>
+              </div>
+              <button onclick="addDepartment()">
+                <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" />
+              </button>
             </div>
 
-            <div class="flex items-center mb-5">
-              <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                <option value=""></option>
-                @foreach ($mentors as $mentor)
-                  <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                @endforeach
-              </select>
-              <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+
+            <div class="flex flex-row gap-5">    
+              <div class="flex items-center mb-5">
+                <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <option value="">Kies de Afdeling</option>
+                  @foreach ($departments as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+  
+              <div class="flex items-center mb-5">
+                <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <option value="">Kies een begeleider</option>
+                  @foreach ($mentors as $mentor)
+                    <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
+                  @endforeach
+                </select> 
+                <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+              </div>
             </div>
 
             <hr>
@@ -78,4 +81,51 @@
   </main>
 </body>
 
-</html>
+<script>
+
+  var selectedDepartments = [];
+  
+  function getDepartments(departmentLists, allMentors) {
+    
+    selectedDepartments = document.getElementById('department').value;
+    var mentorDropdown = document.getElementById('mentors');
+    var departments = []
+    var mentors = []
+
+    // Loop through the departmentLists array
+    for (let i = 0; i < departmentLists.length; i++){
+      // search for the selected departmentLists with only Mentors and Department Heads
+      if (departmentLists[i].department_id == selectedDepartments && departmentLists[i].role_id != 2){
+        // Push the user_id to the mentors array
+        mentors.push(departmentLists[i].user_id)
+      }
+    }
+    
+    //Delete all options in the mentorDropdown
+    while (mentorDropdown.firstChild) {
+      mentorDropdown.removeChild(mentorDropdown.firstChild);
+    }
+    // Make new standard option
+    var option = document.createElement('option');
+    option.value = '';
+    option.text = 'Kies een begeleider';
+    mentorDropdown.appendChild(option)
+    
+    // Loop through the allMentors array
+    for( let i = 0; i < allMentors.length; i++){
+      if( mentors.includes(allMentors[i].id) ){
+        // make new option
+        var option = document.createElement('option');
+        option.value = allMentors[i].id;
+        option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
+        mentorDropdown.appendChild(option);
+      }
+    }
+  }
+
+  function addDepartment() {
+    
+  }
+
+  </script>
+  </html>
