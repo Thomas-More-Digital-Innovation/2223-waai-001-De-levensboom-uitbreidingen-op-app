@@ -60,7 +60,6 @@ Route::middleware('auth', 'verified')->group( function () {
     ]);
 });
 
-Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
 
 require __DIR__.'/auth.php';
 

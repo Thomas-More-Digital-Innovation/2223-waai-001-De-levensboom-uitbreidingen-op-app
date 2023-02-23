@@ -23,11 +23,8 @@
                   @csrf
                   @method('PATCH')
       
-                  <label for="title" class="font-bold">Titel*</label>
-                  <input type="text" name="title" id="title" placeholder="Enter titel" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $news->title }}>
-                
-                  <label for="shorttext" class="font-bold">Korte inhoud</label>
-                  <input type="text" name="shorttext" id="shorttext" placeholder="Enter korte inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $news->shorttext }}>
+                  <x-form-input name="title" text="Titel" :value="$news" />
+                  <x-form-input name="shorttext" text="Korte inhoud" :value="$news"  />
                   
                   <label for="text" class="font-bold">Inhoud</label>
                   <input type="text" name="text" id="text" placeholder="Enter inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $news->text }}>
