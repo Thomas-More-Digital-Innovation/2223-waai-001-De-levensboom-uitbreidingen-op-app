@@ -24,7 +24,7 @@
             @method('PATCH')
 
             <x-form-input name="title" text="Titel" :value="$news" />
-            <x-form-input name="shorttext" text="Korte inhoud" :value="$news"  />
+            <x-form-input name="shortContent" text="Korte inhoud" :value="$news"  />
             
             <label for="content" class="font-bold">Inhoud*</label>
             <textarea class="ckeditor form-control" name="content" id="content"></textarea>

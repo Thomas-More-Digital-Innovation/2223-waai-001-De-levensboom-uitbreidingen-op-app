@@ -24,7 +24,7 @@
             @method('POST')
 
             <x-form-input name="title" text="Titel" />
-            <x-form-input name="shorttext" text="Korte inhoud" />
+            <x-form-input name="shortContent" text="Korte inhoud" />
 
             <label for="content" class="font-bold">Inhoud*</label>
             <textarea class="ckeditor form-control" name="content" id="content"></textarea>
