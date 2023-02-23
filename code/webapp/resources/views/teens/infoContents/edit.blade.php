@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-  <title>Waaiburg - Volwassenen</title>
+  <title>Waaiburg - Jongeren</title>
   <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
             <h1 class="text-2xl">InfoContent wijzigen</h1>
-            <form action="{{ route('adultInfoContents.update', $infoContent->id) }}" method="POST" class="flex flex-col mt-3">
+            <form action="{{ route('teenInfoContents.update', $infoContent->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
     
@@ -31,8 +31,8 @@
                 <input type="file" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
 
                 <x-form-input name="url" text="Meer info link" :value="$infoContent" />
-                
-                <label for="content" class="font-bold">Inhoud*</label>
+
+                <label for="text" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
                 <x-form-button text="Wijzigen" />

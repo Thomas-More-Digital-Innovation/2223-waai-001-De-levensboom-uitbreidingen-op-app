@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-class TeenController extends Controller
+class TeenInfoContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class TeenController extends Controller
      */
     public function index()
     {
-        $teens = Info::where('section_id', 2)->get();
-        return view('teens.index', compact('teens'));
+        //
     }
 
     /**
@@ -27,9 +24,7 @@ class TeenController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
-
-        return view('teens.create');
+        return view('teens.infoContents.create');
     }
 
     /**
@@ -40,10 +35,8 @@ class TeenController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
-
-        $request->request->add(['section_id' => 2]);
-        Info::create($request->all());
+        $request->request->add(['info_id' => 9]);
+        InfoContent::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";
         return redirect('teens')->with('msg', $msg);
@@ -68,11 +61,9 @@ class TeenController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('allowAdmin');
-
-        $teen = Info::find($id);
-        $infoContents = InfoContent::where('info_id', $id)->get();
-        return view('teens.edit', compact('teen','infoContents'));
+        $infoContent = InfoContent::find($id);
+        $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
+        return view('teens.infoContents.edit', compact('infoContent'));
     }
 
     /**
@@ -84,12 +75,13 @@ class TeenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('allowAdmin');
-        
-        $teen = Info::find($id);
-        $teen->update($request->all());
+        InfoContent::updateOrCreate(
+            ['info_id' => $id],
+            ['title' => $request->title
+            ,'content' => $request->content],
+        );
 
-        $msg = "Teen Info Content Updated successful! ";
+        $msg = "Adult Info Content Updated successful! ";
         return redirect('teens')->with('msg', $msg);
     }
 
@@ -101,12 +93,10 @@ class TeenController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
-        
-        $teen = Info::find($id);
-        $teen->delete();
+        $teenInfoContent = InfoContent::find($id);
+        $teenInfoContent->delete();
 
-        $msg = "Teen Info Content Deleted successful! ";
-        return redirect('teens')->with('msg', $msg);
+        $msg = "Adult Info Content Deleted successful! ";
+        return redirect('adults')->with('msg', $msg);
     }
 }

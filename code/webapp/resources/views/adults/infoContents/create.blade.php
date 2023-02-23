@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Volwassenen</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -17,7 +18,7 @@
     <div class="m-5 bg-white rounded border">
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
-            <h1 class="text-2xl">info blok toevoegen</h1>
+            <h1 class="text-2xl">Info blok toevoegen</h1>
             <form action="{{ route('adultInfoContents.store') }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('POST')
@@ -35,17 +36,11 @@
                 <label for="content" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-                 <x-form-button text="Aanmaken" />
+                <x-form-button text="Aanmaken" />
             </form>
         </div>
       </div>
     </div>
   </main>
 </body>
-<script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-      $('.ckeditor').ckeditor();
-  });
-</script>
 </html>
