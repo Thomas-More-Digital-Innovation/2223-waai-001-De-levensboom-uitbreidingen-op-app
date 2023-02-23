@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -68,7 +69,8 @@ class AdultController extends Controller
     public function edit($id)
     {
         $adult = Info::find($id);
-        return view('adults.edit', compact('adult'));
+        $infoContents = InfoContent::where('info_id', $id)->get();
+        return view('adults.edit', compact('adult','infoContents'));
     }
 
     /**

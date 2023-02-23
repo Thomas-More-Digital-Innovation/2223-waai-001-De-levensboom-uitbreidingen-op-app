@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-class NewController extends Controller
+class AdultInfoContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class NewController extends Controller
      */
     public function index()
     {
-        $news = Info::where('section_id', 3)->get();
-        return view('news.index', compact('news'));
+        //
     }
 
     /**
@@ -27,9 +24,7 @@ class NewController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
-
-        return view('news.create');
+        return view('adults.infoContents.create');
     }
 
     /**
@@ -40,16 +35,11 @@ class NewController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
-
-        $request->request->add(['section_id' => 3]);
-        Info::create($request->all());
-
-        $request->request->add(['info_id' => 10]);
+        $request->request->add(['info_id' => 8]);
         InfoContent::create($request->all());
 
-        $msg = "New New Info Content Created successful! ";
-        return redirect('news')->with('msg', $msg);
+        $msg = "New Adult Info Content Created successful! ";
+        return redirect('adults')->with('msg', $msg);
     }
 
     /**
@@ -71,10 +61,10 @@ class NewController extends Controller
      */
     public function edit($id)
     {
-        $news = Info::find($id);
-        $news->shortContent = InfoContent::where('info_id', $id)->first()->shortContent;
-        $news->content = InfoContent::where('info_id', $id)->first()->content;
-        return view('news.edit', compact('news'));
+        $infoContent = InfoContent::find($id);
+        $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
+        return view('adults.infoContents.edit', compact('infoContent'));
+    
     }
 
     /**
@@ -86,18 +76,14 @@ class NewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $new = Info::find($id);
-        $new->update($request->all());
-
         InfoContent::updateOrCreate(
             ['info_id' => $id],
             ['title' => $request->title
-            ,'content' => $request->content
-            ,'shortContent' => $request->shortContent],
+            ,'content' => $request->content],
         );
 
-        $msg = "New Info Content Updated successful! ";
-        return redirect('news')->with('msg', $msg);
+        $msg = "Adult Info Content Updated successful! ";
+        return redirect('adults')->with('msg', $msg);
     }
 
     /**
@@ -108,12 +94,10 @@ class NewController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
-        
-        $new = Info::find($id);
-        $new->delete();
+        $adultInfoContent = InfoContent::find($id);
+        $adultInfoContent->delete();
 
-        $msg = "New Info Content Deleted successful! ";
-        return redirect('news')->with('msg', $msg);
+        $msg = "Adult Info Content Deleted successful! ";
+        return redirect('adults')->with('msg', $msg);
     }
 }
