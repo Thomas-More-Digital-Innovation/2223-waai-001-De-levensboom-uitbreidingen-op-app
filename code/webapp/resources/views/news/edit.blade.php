@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Nieuwtjes</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -14,62 +15,31 @@
     <x-topbar />
     <x-welcome />
 
-    <div class="flex flex-row">
-      <div class="m-5 bg-white rounded border">
-        <div class="border-t-4 rounded border-[#3c8dbc]">
-          <div class="m-3">
-              <h1 class="text-2xl">Nieuwtje wijzigen</h1>
-              <form action="{{ route('news.update', $news->id) }}" method="POST" class="flex flex-col mt-3">
-                  @csrf
-                  @method('PATCH')
-      
-                  <x-form-input name="title" text="Titel" :value="$news" />
-                  <x-form-input name="shorttext" text="Korte inhoud" :value="$news"  />
-                  
-                  <label for="text" class="font-bold">Inhoud</label>
-                  <input type="text" name="text" id="text" placeholder="Enter inhoud" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $news->text }}>
-      
-                  <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Wijzigen</button>
-              </form>
-          </div>
-        </div>
-      </div>
-      
-      <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
-        <div class="border-t-4 rounded border-[#3c8dbc]">
-          <div class="m-3">
-            <x-list-title title="Info Segmenten voor volwassenen" name="adultInfoContents.create" />
-            <table class="border-collapse border border-[#f4f4f4] table-auto">
-              <thead>
-                <tr>
-                  <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
-                  <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($infoContents as $infoContent)
-                <tr class="font-normal">
-                  <td class="border border-[#f4f4f4] py-2 px-6">{{ $infoContent->title }}</td>
-                  <td class="border border-[#f4f4f4] py-2 px-6">
-                    <form action="{{ route('adults.destroy', $infoContent->id) }}" method="post">
-                      @csrf
-                      @method('delete')
+    <div class="m-5 bg-white rounded border">
+      <div class="border-t-4 rounded border-[#3c8dbc]">
+        <div class="m-3">
+          <h1 class="text-2xl">Nieuwtje wijzigen</h1>
+          <form action="{{ route('news.update', $news->id) }}" method="POST" class="flex flex-col mt-3">
+            @csrf
+            @method('PATCH')
 
-                      <a href="{{ route('adults.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
-                      <span>|</span>
+            <x-form-input name="title" text="Titel" :value="$news" />
+            <x-form-input name="shorttext" text="Korte inhoud" :value="$news"  />
+            
+            <label for="content" class="font-bold">Inhoud*</label>
+            <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-                      <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
-                    </form>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+            <x-form-button text="Wijzigen" />
+          </form>
         </div>
       </div>
     </div>
   </main>
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ 
+    var data = {!! json_encode($news->content) !!};
+    CKEDITOR.instances.content.setData(data);
+  }, false);
+</script>
 </html>
