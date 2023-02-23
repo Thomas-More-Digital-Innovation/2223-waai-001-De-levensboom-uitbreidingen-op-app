@@ -28,15 +28,15 @@
                 <label for="titleImage" class="font-bold">Blok Foto</label>
                 <p>Geef een url in van een foto die online staat, of upload een foto van je op pc.</p>
                 <input type="text" name="titleImage" id="titleImage" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $infoContent->titleImage }}>
-                <input type="text" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+                <input type="file" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
 
                 <label for="url" class="font-bold">Meer info link</label>
                 <input type="text" name="url" id="url" placeholder="Enter meer info link"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $infoContent->url }}>
                 
-                <label for="text" class="font-bold">Inhoud*</label>
-                <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+                <label for="content" class="font-bold">Inhoud*</label>
+                <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-                 <x-form-button text="Wijzigen" />
+                <x-form-button text="Wijzigen" />
             </form>
         </div>
       </div>
