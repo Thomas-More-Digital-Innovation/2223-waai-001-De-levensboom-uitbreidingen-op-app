@@ -61,6 +61,7 @@ class MailController extends Controller
     public function edit($id)
     {
         $mail = Info::find($id);
+        $mail->content = InfoContent::where('info_id', $id)->first()->content;
         return view('mails.edit', compact('mail'));
     }
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Volwassenen</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -43,10 +44,10 @@
     </div>
   </main>
 </body>
-<script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-      $('.ckeditor').ckeditor();
-  });
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ 
+    var data = {!! json_encode($infoContent->content) !!};
+    CKEDITOR.instances.content.setData(data);
+  }, false);
 </script>
 </html>
