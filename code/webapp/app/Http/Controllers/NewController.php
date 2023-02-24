@@ -16,6 +16,8 @@ class NewController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
+        
         $news = Info::where('section_id', 3)->get();
         return view('news.index', compact('news'));
     }
@@ -71,6 +73,8 @@ class NewController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+
         $news = Info::find($id);
         $news->shortContent = InfoContent::where('info_id', $id)->first()->shortContent;
         $news->content = InfoContent::where('info_id', $id)->first()->content;
@@ -86,6 +90,8 @@ class NewController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('allowAdmin');
+
         $new = Info::find($id);
         $new->update($request->all());
 

@@ -14,6 +14,8 @@ class AdultInfoContentController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
+        
         //
     }
 
@@ -24,6 +26,8 @@ class AdultInfoContentController extends Controller
      */
     public function create()
     {
+        Gate::authorize('allowAdmin');
+
         return view('adults.infoContents.create');
     }
 
@@ -35,6 +39,8 @@ class AdultInfoContentController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('allowAdmin');
+
         $request->request->add(['info_id' => 8]);
         InfoContent::create($request->all());
 
@@ -61,6 +67,8 @@ class AdultInfoContentController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+
         $infoContent = InfoContent::find($id);
         $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
         return view('adults.infoContents.edit', compact('infoContent'));
@@ -76,6 +84,8 @@ class AdultInfoContentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('allowAdmin');
+
         InfoContent::updateOrCreate(
             ['info_id' => $id],
             ['title' => $request->title
@@ -94,6 +104,8 @@ class AdultInfoContentController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('allowAdmin');
+        
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->delete();
 

@@ -19,6 +19,8 @@ class MentorController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
+
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
         foreach ($mentors as $mentor) {
@@ -36,8 +38,7 @@ class MentorController extends Controller
      */
     public function create()
     {
-
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
 
         $departments = Department::all();
         $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
@@ -52,7 +53,7 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 3]);
         $request->request->add(['password' => bcrypt('password')]);
@@ -89,7 +90,7 @@ class MentorController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('editUser', $id);
+        Gate::authorize('editAccount', $id);
         $mentor = User::find($id);
         $departments = Department::all();
         $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
@@ -105,7 +106,7 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('editUser', $id);
+        Gate::authorize('editAccount', $id);
         
         $mentor = User::find($id);
         $mentor->update($request->all());
@@ -132,7 +133,7 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
         
         $mentor = User::find($id);
         $mentor->delete();

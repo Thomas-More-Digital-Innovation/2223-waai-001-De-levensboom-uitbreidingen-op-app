@@ -15,6 +15,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
         $surveys = Info::where('section_id', 5)->get();
         return view('surveys.index', compact('surveys'));
     }
@@ -26,6 +27,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
+        Gate::authorize('allowAdmin');
 
         //
     }
@@ -38,9 +40,7 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-
         Gate::authorize('allowAdmin');
-
 
         //
 
@@ -80,9 +80,7 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         Gate::authorize('allowAdmin');
-
 
         $survey = Info::find($id);       
         $survey->update($request->all());
@@ -99,6 +97,7 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('allowAdmin');
         //
     }
 }
