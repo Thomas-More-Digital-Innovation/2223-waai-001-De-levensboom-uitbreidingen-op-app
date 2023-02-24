@@ -58,19 +58,21 @@ class ClientController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        $request->validate([
+            'email' => 'required|unique:users|max:255',
+        ]);
+
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
-        if (!$request->department == "") {
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
-        }
-
-
+        // if (!$request->department == "") {
+        //     DepartmentList::create([
+        //         'user_id' => User::latest()->first()->id,
+        //         'department_id' => $request->department,
+        //         'role_id' => 2,
+        //     ]);
+        // }
 
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);

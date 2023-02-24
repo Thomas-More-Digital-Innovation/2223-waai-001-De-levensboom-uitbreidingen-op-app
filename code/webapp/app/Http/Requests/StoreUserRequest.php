@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
             "firstname" => "string|required",
             "surname" => "string|required",
             "birthdate" => "date|nullable",
-            "email" => "string|required",
+            "email" => "string|required|unique:users",
             "password" => "string|required",
             "phoneNumber" => "string|nullable",
             "gender" => "string|nullable",

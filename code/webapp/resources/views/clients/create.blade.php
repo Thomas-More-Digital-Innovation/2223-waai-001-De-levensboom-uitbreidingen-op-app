@@ -23,6 +23,16 @@
             @csrf
             @method('POST')
 
+            @if ($errors->any())
+              <div class="bg-red-500">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
+
             <x-form-input name="firstname" text="Voornaam" />
             <x-form-input name="surname" text="Achternaam" />
             <x-form-input name="email" text="Email" type="email" />
