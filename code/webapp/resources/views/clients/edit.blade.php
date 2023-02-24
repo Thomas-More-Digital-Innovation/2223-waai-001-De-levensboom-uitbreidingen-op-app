@@ -147,6 +147,7 @@
   }
 
   function addDepartment() {
+    var nrOfDep == 0;
     
   }
 

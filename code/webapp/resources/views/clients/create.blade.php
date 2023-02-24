@@ -58,24 +58,26 @@
               </button>
             </div>
 
-            <div class="flex flex-row gap-5">    
-              <div class="flex items-center mb-5">
-                <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                  <option value="">Kies de Afdeling</option>
-                  @foreach ($departments as $department)
-                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                  @endforeach
-                </select>
-              </div>
-  
-              <div class="flex items-center mb-5">
-                <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                  <option value="">Kies een begeleider</option>
-                  @foreach ($mentors as $mentor)
-                    <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                  @endforeach
-                </select> 
-                <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+            <div id='dropdowns'>
+              <div class="flex flex-row gap-5">    
+                <div class="flex items-center mb-5">
+                  <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }})" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                    <option value="">Kies de Afdeling</option>
+                    @foreach ($departments as $department)
+                      <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+    
+                <div class="flex items-center mb-5">
+                  <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                    <option value="">Kies een begeleider</option>
+                    @foreach ($mentors as $mentor)
+                      <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
+                    @endforeach
+                  </select> 
+                  <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+                </div>
               </div>
             </div>
 
@@ -106,8 +108,6 @@
 
 <script>
 
-  var selectedDepartments = [];
-  
   function getDepartments(departmentLists, allMentors) {
     
     selectedDepartments = document.getElementById('department').value;
@@ -147,8 +147,14 @@
   }
 
   function addDepartment() {
-    
+    var nrOfDep = 0;
+    var departmentDrop = getElementById('department');
+    var mentorDrop = getElementById('mentors');
+    var dropdowns = document.getElementById('dropdowns');
+
+    dropdowns.appendChild(departmentDrop);
+    dropdowns.appendChild(mentorDrop);
   }
 
-  </script>
-  </html>
+</script>
+ </html>
