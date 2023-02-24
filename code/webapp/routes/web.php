@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdultController;
-use App\Http\Controllers\NewsInfoContentController;
 use App\Http\Controllers\AdultInfoContentController;
 use App\Http\Controllers\TeenInfoContentController;
 use App\Http\Controllers\ClientController;
@@ -12,7 +11,7 @@ use App\Models\User;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MentorController;
-use App\Http\Controllers\NewController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
 use App\Http\Controllers\UserController as ControllersUserController;
@@ -52,14 +51,12 @@ Route::middleware('auth', 'verified')->group( function () {
         'departments' => ControllersDepartmentController::class,
         'adults' => AdultController::class,
         'teens' => TeenController::class,
-        'news' => NewController::class,
+        'news' => NewsController::class,
         'mails' => MailController::class,
         'surveys' => SurveyController::class,
         'user' => ControllersUserController::class,
         'adultInfoContents' => AdultInfoContentController::class,
-        'newsInfoContents' => NewsInfoContentController::class,
         'teenInfoContents' => TeenInfoContentController::class,
-
     ]);
 });
 

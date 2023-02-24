@@ -7,7 +7,7 @@ use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class NewController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
