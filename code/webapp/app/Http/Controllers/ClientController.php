@@ -62,6 +62,7 @@ class ClientController extends Controller
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
+        dd($request->department);
         if (!$request->department == "") {
             DepartmentList::create([
                 'user_id' => User::latest()->first()->id,
