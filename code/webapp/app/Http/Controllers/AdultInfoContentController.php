@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
 
@@ -24,11 +25,12 @@ class AdultInfoContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         Gate::authorize('allowAdmin');
 
-        return view('adults.infoContents.create');
+        $info_id = $request->info_id;
+        return view('adults.infoContents.create', compact('info_id'));
     }
 
     /**
@@ -41,7 +43,8 @@ class AdultInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        $request->request->add(['info_id' => 8]);
+
+        $request->request->add(['info_id' => $request->info_id]);
         InfoContent::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";
@@ -70,7 +73,7 @@ class AdultInfoContentController extends Controller
         Gate::authorize('allowAdmin');
 
         $infoContent = InfoContent::find($id);
-        $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
+
         return view('adults.infoContents.edit', compact('infoContent'));
     
     }
@@ -86,14 +89,12 @@ class AdultInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        InfoContent::updateOrCreate(
-            ['info_id' => $id],
-            ['title' => $request->title
-            ,'content' => $request->content],
-        );
+        $adultInfoContent = InfoContent::find($id);
+        $adultInfoContent->update($request->all());
+        $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Updated successful! ";
-        return redirect('adults')->with('msg', $msg);
+        return redirect('adults/'.$info_id.'/edit')->with('msg', $msg);
     }
 
     /**
@@ -108,8 +109,9 @@ class AdultInfoContentController extends Controller
         
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->delete();
+        $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Deleted successful! ";
-        return redirect('adults')->with('msg', $msg);
+        return redirect('adults/'.$info_id.'/edit')->with('msg', $msg);
     }
 }

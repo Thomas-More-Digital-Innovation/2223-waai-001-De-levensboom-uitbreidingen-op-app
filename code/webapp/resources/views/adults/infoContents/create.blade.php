@@ -19,12 +19,11 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
             <h1 class="text-2xl">Info blok toevoegen</h1>
-            <form action="{{ route('adultInfoContents.store') }}" method="POST" class="flex flex-col mt-3">
+            <form action="{{ route('adultInfoContents.store', ['info_id' => $info_id]) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('POST')
     
                 <x-form-input name="title" text="Titel" />
-
                 <label for="titleImage" class="font-bold">Blok Foto</label>
                 <p>Geef een url in van een foto die online staat, of upload een foto van je op pc.</p>
                 <input type="text" name="titleImage" id="titleImage" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
