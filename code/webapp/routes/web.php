@@ -57,9 +57,8 @@ Route::middleware('auth', 'verified')->group( function () {
         'surveys' => SurveyController::class,
         'user' => ControllersUserController::class,
         'adultInfoContents' => AdultInfoContentController::class,
-        'newsInfoContents' => NewsInfoContentController::class,
-        'teenInfoContents' => TeenInfoContentController::class,
-
+        // 'newsInfoContents' => NewsInfoContentController::class,
+        // 'teenInfoContents' => TeenInfoContentController::class,
     ]);
 });
 
