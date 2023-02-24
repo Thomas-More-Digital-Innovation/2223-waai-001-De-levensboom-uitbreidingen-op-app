@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -70,7 +71,8 @@ class TeenController extends Controller
         Gate::authorize('allowAdmin');
 
         $teen = Info::find($id);
-        return view('teens.edit', compact('teen'));
+        $infoContents = InfoContent::where('info_id', $id)->get();
+        return view('teens.edit', compact('teen','infoContents'));
     }
 
     /**

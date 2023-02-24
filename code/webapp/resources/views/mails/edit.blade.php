@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <title>Waaiburg - Mails</title>
+  <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 </head>
 
 <body class="flex">
@@ -21,19 +22,24 @@
             <form action="{{ route('mails.update', $mail->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
-    
-                <label for="subject" class="font-bold">Onderwerp*</label>
-                <input type="text" name="subject" id="subject" placeholder="Enter onderwerp" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $mail->subject }}>
                 
-                <label for="text" class="font-bold">Inhoud*</label>
-                <input type="text" name="text" id="text" placeholder="Enter inhoud" required class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]" value={{ $mail->text }}>
-    
-                <button type="submit" class="bg-[#3c8dbc] rounded mr-auto px-4 py-1 mt-5 text-white">Wijzigen</button>
+                <x-form-input name="title" text="Onderwerp" :value="$mail" />
+
+                <label for="content" class="font-bold">Inhoud*</label>
+                <textarea class="ckeditor form-control" name="content" id="content"></textarea>
+
+                <x-form-button text="Wijzigen" />
             </form>
         </div>
       </div>
     </div>
   </main>
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){ 
+    var data = {!! json_encode($mail->content) !!};
+    CKEDITOR.instances.content.setData(data);
+  }, false);
+</script>
 
 </html>
