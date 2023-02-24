@@ -36,6 +36,17 @@
 
             <hr>
 
+            <div class="flex flex-row gap-5">
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="department" class="font-bold">Afdeling</label>
+              </div>
+
+              <div class="flex items-center gap-3 mt-3 mb-3">
+                <label for="mentors" class="font-bold">Begeleiders</label>
+              </div>
+              <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" onclick="addDepartment()"/>
+            </div>
+
             <div id='dropdowns'>
               <div id='0'>
                 <div class="flex flex-row gap-5">    
