@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -54,13 +56,9 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize('allowAdmin');
-
-        $request->validate([
-            'email' => 'required|unique:users|max:255',
-        ]);
 
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
@@ -97,7 +95,6 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-    
         Gate::authorize('editUser', $id);
 
         $client = User::find($id);
@@ -130,8 +127,7 @@ class ClientController extends Controller
                 'department_id' => $request->department,
                 'role_id' => 2,
             ]);
-        }
-        
+        }       
 
         $msg = "Client Updated successful! ";
         return redirect('clients')->with('msg', $msg);

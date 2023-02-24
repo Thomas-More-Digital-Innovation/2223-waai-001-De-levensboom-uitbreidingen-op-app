@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_type_id" => "integer|required",
+            "user_type_id" => "integer",
             "firstname" => "string|required",
             "surname" => "string|required",
             "birthdate" => "date|nullable",

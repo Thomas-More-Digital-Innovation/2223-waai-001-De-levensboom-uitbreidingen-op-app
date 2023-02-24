@@ -24,10 +24,10 @@
             @method('POST')
 
             @if ($errors->any())
-              <div class="bg-red-500">
+              <div class="">
                   <ul>
                       @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
+                          <li class="text-red-500 py3">{{ $error }}</li>
                       @endforeach
                   </ul>
               </div>
@@ -36,6 +36,7 @@
             <x-form-input name="firstname" text="Voornaam" />
             <x-form-input name="surname" text="Achternaam" />
             <x-form-input name="email" text="Email" type="email" />
+            <x-form-input name="password" text="Wachtwoord" type="password" />
             <x-form-input name="birthdate" text="Geboortedatum" type="date" />
 
             <label for="gender" class="font-bold">Geslacht</label>
