@@ -21,6 +21,8 @@
             <form action="{{ route('surveys.update', $survey->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
     
                 <x-form-input name="title" text="Google form link" :value="$survey" />
                 <x-form-button text="Wijzigen" />
