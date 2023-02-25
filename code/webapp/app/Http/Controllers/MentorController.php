@@ -39,9 +39,8 @@ class MentorController extends Controller
 
         Gate::authorize('allowAdmin');
 
-        // send departments to the view
         $departments = Department::all();
-        $roles = Role::all();
+        $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
         return view('mentors.create', compact('departments', 'roles'));
     }
 
@@ -93,7 +92,7 @@ class MentorController extends Controller
         Gate::authorize('editUser', $id);
         $mentor = User::find($id);
         $departments = Department::all();
-        $roles = Role::all();
+        $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
         return view('mentors.edit', compact('mentor', 'departments', 'roles'));
     }
 
