@@ -21,6 +21,8 @@
             <form action="{{ route('user.update', $user->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
     
                 <x-form-input name="firstname" text="Voornaam" :value="$user" />
                 <x-form-input name="surname" text="Achternaam" :value="$user" />
