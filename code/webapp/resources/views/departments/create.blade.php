@@ -22,6 +22,8 @@
             @csrf
             @method('POST')
 
+            <x-errormessage />
+
             <x-form-input name="name" text="Naam" />
 
             <x-contactgegevens />
