@@ -23,6 +23,8 @@
             @csrf
             @method('PATCH')
 
+            <x-errormessage />
+
             <x-form-input name="title" text="Titel" :value="$news" />
             <x-form-input name="shortContent" text="Korte inhoud" :value="$news"  />
             

@@ -23,6 +23,8 @@
             @csrf
             @method('POST')
 
+            <x-errormessage />
+
             <x-form-input name="title" text="Titel" />
             <x-form-input name="shortContent" text="Korte inhoud" />
 
