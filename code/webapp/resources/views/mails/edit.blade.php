@@ -22,6 +22,8 @@
             <form action="{{ route('mails.update', $mail->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
                 
                 <x-form-input name="title" text="Onderwerp" :value="$mail" />
 
