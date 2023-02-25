@@ -23,15 +23,7 @@
             @csrf
             @method('POST')
 
-            @if ($errors->any())
-              <div class="">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li class="text-red-500 py3">{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-            @endif
+            <x-errormessage />
 
             <x-form-input name="firstname" text="Voornaam" />
             <x-form-input name="surname" text="Achternaam" />
