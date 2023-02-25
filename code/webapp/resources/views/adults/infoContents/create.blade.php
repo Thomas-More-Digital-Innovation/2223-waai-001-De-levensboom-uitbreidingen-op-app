@@ -22,6 +22,8 @@
             <form action="{{ route('adultInfoContents.store', ['info_id' => $info_id]) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('POST')
+
+                <x-errormessage />
     
                 <x-form-input name="title" text="Titel" />
                 <label for="titleImage" class="font-bold">Blok Foto</label>

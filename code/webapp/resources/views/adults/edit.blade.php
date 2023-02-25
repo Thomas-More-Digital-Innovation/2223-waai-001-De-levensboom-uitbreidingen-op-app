@@ -22,6 +22,8 @@
                 <form action="{{ route('adults.update', $adult->id) }}" method="POST" class="flex flex-col mt-3">
                   @csrf
                   @method('PATCH')
+
+                  <x-errormessage />
         
                   <x-form-input name="title" text="Titel" :value="$adult" />
 
