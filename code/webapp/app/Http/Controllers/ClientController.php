@@ -62,7 +62,7 @@ class ClientController extends Controller
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
-        dd($request->department);
+        // dd($request->department);
         if (!$request->department == "") {
             DepartmentList::create([
                 'user_id' => User::latest()->first()->id,
@@ -70,6 +70,18 @@ class ClientController extends Controller
                 'role_id' => 2,
             ]);
         }
+
+        // Werkt ni maar lijkt er mss wel op
+        // Make departmentList for department[*] in the request
+        // foreach ($request as $department) {
+        //     if($request->$department === "department*"){
+        //         DepartmentList::create([
+        //             'user_id' => User::latest()->first()->id,
+        //             'department_id' => $department,
+        //             'role_id' => 2,
+        //         ]);
+        //     }
+        // }
 
 
 
