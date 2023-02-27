@@ -33,7 +33,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
         
         // Gate defines wether or not a user is allowed to do a specific action
 
@@ -43,68 +42,106 @@ class AuthServiceProvider extends ServiceProvider
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
-
             return $userType === 1; // Admin
         });
 
-        // This Gate is to check if a user is allowed to edit a user.
-        Gate::define('editUser', function (User $user, int $userId){
+        // This Gate is to check if a user is an Admin or Department Head.
+        Gate::define('adminOrDep', function (User $user) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
-            return $userType === 1 || $user->id === $userId; // Admin, user themselfs
+            if (DepartmentList::where('user_id', $user->id)->exists()) {
+                // Get the role of the user
+                $roles = DepartmentList::all()->where('user_id', $user->id);
+                // Check if there is a role where the user is a department head
+                for($i = 0; $i < count($roles); $i++) {
+                    $id = $roles[$i]->role_id;
+                    $roleId = Role::find($id)->id;
+                    if($roleId === 1) {
+                        $role = $roleId;
+                    }
+                }
+            }
+            return $userType === 1 || $role  === 1; // Admin or Department Head
         });
 
 	    // This Gate is to check if a user is allowed to edit departments.
         Gate::define('editDepartment', function (User $user, int $departmentId) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
-            // Check the usertype of the user
+            // Check the userType of the user
             $userType = UserType::find($userTypeId)->id;
 
             // check if there is a departmentList
-            if(DepartmentList::where('department_id', $departmentId)
-                ->where('user_id', $user->id)->exists()){
-                    // Find correct departmentList with departmentId and userId
-                    $departmentList = DepartmentList::where('department_id', $departmentId)
-                    ->where('user_id', $user->id)
-                    ->first();
-        
-                    // Get the role of the user
-                    $userRole = Role::find($departmentList->role_id)->id;
-                } else {
-                    $userRole = 0;
-                }
-
-            
-
+            if(DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->exists()) {
+                // Find correct departmentList with departmentId and userId
+                $departmentLists = DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->first();
+                // Get the role of the user
+                $userRole = Role::find($departmentList->role_id)->id;
+            } else {
+                $userRole = 0;
+            }
             return ($userType === 3 // Mentor
                     && $userRole === 1) // Department Head
                     || $userType === 1; // Admin
         });
 
-        // This Gate is to check if a user is allowed to assign another user to a department.
-        Gate::define('createDepartmentList', function(User $user, int $departmentId) {
+        // This Gate is to check if a user is a department Head or Admin.
+        Gate::define('editAccount', function (User $user, int $userId) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
-            // Is the user a Department Head?
-            if(DepartmentList::where('department_id', $departmentId)
-                ->where('user_id', $user->id)->exists()) {
-                    // Get the role of the user
-                    $roleId = DepartmentList::where('department_id', $departmentId)
-                    ->where('user_id', $user->id)->role_id;
-
-                    $role = Role::find($roleId)->id;
-                    return  $role === 1; // Department Head
+            if (DepartmentList::where('user_id', $user->id)->exists()) {
+                // Get the role of the user
+                $roles = DepartmentList::all()->where('user_id', $user->id);
+                // Check if there is a role where the user is a department head
+                for($i = 0; $i < count($roles); $i++) {
+                    $id = $roles[$i]->role_id;
+                    $roleId = Role::find($id)->id;
+                    if($roleId === 1) {
+                        $role = $roleId;
+                    }
                 }
-            else {
-                return $userType === 1; // Admin
             }
+            return $userType === 1 || $role  === 1 // Admin or Department Head
+                || ($userId === $user->id && $userType === 3); // Or the user is a mentor and it's their account
         });
+
+        // This Gate is to check if a user is not a client.
+        Gate::define('notClient', function (User $user) {
+            // Get the userTypeId of the user
+            $userTypeId = $user->user_type_id;
+            // Check the usertype of the user
+            $userType = UserType::find($userTypeId)->id;
+
+            return $userType !== 2; // Not a Client
+        });
+
+        // This Gate is to check if a user is allowed to assign another user to a department.
+        // Gate::define('createDepartmentList', function(User $user, int $departmentId) {
+        //     // Get the userTypeId of the user
+        //     $userTypeId = $user->user_type_id;
+        //     // Check the usertype of the user
+        //     $userType = UserType::find($userTypeId)->id;
+
+        //     // Is the user a Department Head?
+        //     if(DepartmentList::where('department_id', $departmentId)
+        //         ->where('user_id', $user->id)->exists()) {
+        //             // Get the role of the user
+        //             $roleId = DepartmentList::where('department_id', $departmentId)
+        //             ->where('user_id', $user->id)->role_id;
+
+        //             $role = Role::find($roleId)->id;
+        //             return  $role === 1; // Department Head
+        //         }
+        //     else {
+        //         return $userType === 1; // Admin
+        //     }
+        // });
+
     }
 }
