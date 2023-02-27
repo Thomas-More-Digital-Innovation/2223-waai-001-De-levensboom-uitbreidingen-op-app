@@ -45,16 +45,7 @@ class ClientController extends Controller
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-
-        $totalcount = request('count', 0);
-
-        if (request('method') === 'add'){
-            $totalcount++;
-        } elseif(request('method') === 'sub'){
-            $totalcount--; 
-        }
-
-        return view('clients.create', compact('departments', 'departmentLists', 'mentors', 'totalcount'));
+        return view('clients.create', compact('departments', 'departmentLists', 'mentors'));
     }
 
     /**
@@ -71,21 +62,29 @@ class ClientController extends Controller
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
-        for ($i = 0; $i < $request->totalcount; $i++) {
-            // get the value of the department input
-            $department = $request->input('department' . $i);
-            // get the value of the mentor input
-            $mentor = $request->input('mentor' . $i);
-            // print these 2
-            dump($department);
-            dump($mentor);
-
-            // DepartmentList::create([
-            //     'user_id' => User::latest()->first()->id,
-            //     'department_id' => $request->department,
-            //     'role_id' => 2,
-            // ]);
+        // dd($request->department);
+        if (!$request->department == "") {
+            DepartmentList::create([
+                'user_id' => User::latest()->first()->id,
+                'department_id' => $request->department,
+                'role_id' => 2,
+            ]);
         }
+
+        // Werkt ni maar lijkt er mss wel op
+        // Make departmentList for department[*] in the request
+        // foreach ($request as $department) {
+        //     if($request->$department === "department*"){
+        //         DepartmentList::create([
+        //             'user_id' => User::latest()->first()->id,
+        //             'department_id' => $department,
+        //             'role_id' => 2,
+        //         ]);
+        //     }
+        // }
+
+
+
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);
     }

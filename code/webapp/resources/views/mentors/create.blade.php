@@ -62,7 +62,7 @@
                   </div>
                 </div>
 
-                <input name="totalDep" id="totalDep" value="1"/>
+                <input name="totalDep" id="totalDep" value="1" class="hidden" />
 
                 <hr/>
                 <x-contactgegevens />
