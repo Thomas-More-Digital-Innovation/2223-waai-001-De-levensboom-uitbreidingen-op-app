@@ -16,6 +16,8 @@ class TeenController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
+
         $teens = Info::where('section_id', 2)->get();
         return view('teens.index', compact('teens'));
     }
