@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdultInfoContentController extends Controller
 {

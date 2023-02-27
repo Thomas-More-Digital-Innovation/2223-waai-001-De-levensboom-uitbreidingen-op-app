@@ -25,7 +25,10 @@
             <x-form-input name="name" text="Naam" />
 
             <x-contactgegevens />
-            <x-form-button text="Aanmaken" />
+            <div class="flex gap-5">
+              <x-form-button text="Aanmaken" />
+              <x-form-button text="Annuleren" link="departments.index" />
+            </div>
           </form>
         </div>
       </div>
