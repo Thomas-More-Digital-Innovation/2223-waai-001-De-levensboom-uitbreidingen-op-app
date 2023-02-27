@@ -16,6 +16,8 @@ class AdultController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
+        
         $adults = Info::where('section_id', 1)->get();
         return view('adults.index', compact('adults'));
     }
@@ -68,6 +70,8 @@ class AdultController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('allowAdmin');
+
         $adult = Info::find($id);
         $infoContents = InfoContent::where('info_id', $id)->get();
         return view('adults.edit', compact('adult','infoContents'));
@@ -82,6 +86,8 @@ class AdultController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('allowAdmin');
+        
         $adult = Info::find($id);
         $adult->update($request->all());
 
