@@ -38,12 +38,10 @@
             </select>
             <hr>
 
-            <div class="flex flex-col">    
-              <div class="flex flex-row gap-5">
-                <div>
-                  <div class="flex items-center gap-3 mt-3 mb-3">
-                    <label for="department" class="font-bold">Afdeling</label>
-                  </div>
+            <div class="flex flex-col my-5">    
+              <div class="flex flex-row gap-5 my-2">
+                <div class="flex flex-col gap-3">
+                  <label for="department" class="font-bold">Afdeling</label>
                   <select onchange="" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                     <option value="">Kies een Afdeling</option>
                     @foreach ($departments as $department)
@@ -52,12 +50,12 @@
                   </select>
                 </div>
     
-                <div>
-                  <div class="flex items-center gap-3 mt-3 mb-3">
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex gap-3">
                     <label for="mentors" class="font-bold">Begeleiders</label>
                     <a href="{{ route('clients.create', ['count' => $totalcount, 'method' => 'add']) }}"><iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-2xl cursor-pointer" /></a>
                   </div>
-                  <div class="flex items-center mb-3">
+                  <div class="flex items-center">
                     <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                       <option value="">Kies een Begeleider</option>
                       @foreach ($mentors as $mentor)
@@ -69,8 +67,8 @@
               </div>
 
               @for ($i = 0; $i < $totalcount; $i++)
-              <div class="flex flex-row gap-5">
-                <div class="flex items-center mb-5">
+              <div class="flex flex-row gap-5 my-2">
+                <div class="flex flex-col gap-3">
                   <select onchange="" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                     <option value="">Kies een Afdeling</option>
                     @foreach ($departments as $department)
@@ -79,7 +77,7 @@
                   </select>
                 </div>
     
-                <div class="flex items-center mb-5">
+                <div class="flex items-center">
                   <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                     <option value="">Kies een Begeleider</option>
                     @foreach ($departmentLists as $departmentList)
