@@ -38,38 +38,17 @@
             </select>
             <hr>
 
-            <div class="flex flex-col my-5">    
-              <div class="flex flex-row gap-5 my-2">
-                <div class="flex flex-col gap-3">
-                  <label for="department" class="font-bold">Afdeling</label>
-                  <select onchange="" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                    <option value="">Kies een Afdeling</option>
-                    @foreach ($departments as $department)
-                      <option value="{{ $department->id }}">{{ $department->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
-    
-                <div class="flex flex-col gap-1.5">
-                  <div class="flex gap-3">
-                    <label for="mentors" class="font-bold">Begeleiders</label>
-                    <a href="{{ route('clients.create', ['count' => $totalcount, 'method' => 'add']) }}"><iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-2xl cursor-pointer" /></a>
-                  </div>
-                  <div class="flex items-center">
-                    <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                      <option value="">Kies een Begeleider</option>
-                      @foreach ($mentors as $mentor)
-                        <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                      @endforeach
-                    </select>
-                  </div> 
-                </div>
-              </div>
+            <div class="flex flex-col my-5">  
+              <div class="flex flex-row gap-5">
+                <label for="department" class="font-bold">Afdeling</label>
+                <label for="mentors" class="font-bold">Begeleiders</label>
+                <a href="{{ route('clients.create', ['count' => $totalcount, 'method' => 'add']) }}"><iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-2xl cursor-pointer" /></a>
+              </div>  
 
               @for ($i = 0; $i < $totalcount; $i++)
               <div class="flex flex-row gap-5 my-2">
                 <div class="flex flex-col gap-3">
-                  <select onchange="" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <select onchange="" name="{{ "department". $i }}" id="{{ "department". $i }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                     <option value="">Kies een Afdeling</option>
                     @foreach ($departments as $department)
                       <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -78,10 +57,10 @@
                 </div>
     
                 <div class="flex items-center">
-                  <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                  <select name="{{ "mentor". $i }}" id="{{ "mentor". $i }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                     <option value="">Kies een Begeleider</option>
-                    @foreach ($departmentLists as $departmentList)
-                      
+                    @foreach ($mentors as $mentor)
+                      <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
                     @endforeach
                   </select>
                   <a href="{{ route('clients.create', ['count' => $totalcount, 'method' => 'sub']) }}" class="text-[#3c8dbc] ml-2">Verwijder</a>

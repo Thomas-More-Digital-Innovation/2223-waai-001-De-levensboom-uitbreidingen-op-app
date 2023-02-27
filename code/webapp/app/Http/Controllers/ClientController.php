@@ -45,9 +45,6 @@ class ClientController extends Controller
         $departmentLists = DepartmentList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
-        // get the selected department
-        
-
         $totalcount = request('count', 0);
 
         if (request('method') === 'add'){
@@ -74,15 +71,23 @@ class ClientController extends Controller
         User::create($request->all());
 
         for ($i = 0; $i < $request->totalcount; $i++) {
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
+            // get the value of the department input
+            $department = $request->input('department' . $i);
+            // get the value of the mentor input
+            $mentor = $request->input('mentor' . $i);
+            // print these 2
+            dump($department);
+            dump($mentor);
+
+            // DepartmentList::create([
+            //     'user_id' => User::latest()->first()->id,
+            //     'department_id' => $request->department,
+            //     'role_id' => 2,
+            // ]);
         }
 
-        $msg = "New Client Created successful! ";
-        return redirect('clients')->with('msg', $msg);
+        // $msg = "New Client Created successful! ";
+        // return redirect('clients')->with('msg', $msg);
     }
 
     /**
