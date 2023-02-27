@@ -68,6 +68,7 @@
               </div>
             </div>
 
+            <input name="totalDep" id="totalDep" value="1" class="hidden" />
             <hr>
             <x-contactgegevens :contactgegevens="$client" />
             <x-form-button text="Wijzigen" />
@@ -80,7 +81,7 @@
 </body>
 
 <script>
-  var nrOfDep = 0;
+  var nrOfDep = 1;
 
   function getDepartments(departmentLists, allMentors, departmentId, mentorsId) {
     selectedDepartments = document.getElementById(departmentId).value;
@@ -123,6 +124,7 @@
     nrOfDep++;
 
     var dropdowns = document.getElementById('dropdowns');
+    var totalDep = document.getElementById('totalDep');
 
     var newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
                           <div class="flex items-center mb-5">
@@ -143,6 +145,7 @@
                         </div>`;
 
     dropdowns.insertAdjacentHTML('beforeend', newDropdown);
+    totalDep.value = nrOfDep;
   }
 
   function deleteDepartment( departmentId ) {

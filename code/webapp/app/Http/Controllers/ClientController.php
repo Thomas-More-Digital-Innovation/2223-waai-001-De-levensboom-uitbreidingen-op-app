@@ -62,27 +62,18 @@ class ClientController extends Controller
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
-        // dd($request->department);
-        if (!$request->department == "") {
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $mentor = $request->input('mentor' . $i);
+            if($department != null && $mentor != null) {
+                DepartmentList::create([
+                    'user_id' => User::latest()->first()->id,
+                    'department_id' => $department,
+                    'role_id' => 2,
+                ]);
+            }
         }
-
-        // Werkt ni maar lijkt er mss wel op
-        // Make departmentList for department[*] in the request
-        // foreach ($request as $department) {
-        //     if($request->$department === "department*"){
-        //         DepartmentList::create([
-        //             'user_id' => User::latest()->first()->id,
-        //             'department_id' => $department,
-        //             'role_id' => 2,
-        //         ]);
-        //     }
-        // }
-
+        // Still need to create UserList, this to connect the client to the mentor
 
 
         $msg = "New Client Created successful! ";
@@ -132,14 +123,17 @@ class ClientController extends Controller
         $client = User::find($id);
         $client->update($request->all());
 
-        if (!$request->department == "") {
-            DepartmentList::Where('user_id', $id)->delete();
-
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
+        DepartmentList::Where('user_id', $id)->delete();
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $mentor = $request->input('mentor' . $i);
+            if($department != null && $mentor != null) {
+                DepartmentList::create([
+                    'user_id' => $id,
+                    'department_id' => $department,
+                    'role_id' => 2,
+                ]);
+            }
         }
 
         $msg = "Client Updated successful! ";
