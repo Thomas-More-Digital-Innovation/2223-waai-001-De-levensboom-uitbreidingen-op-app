@@ -19,7 +19,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-            
+        Gate::authorize('notClient');
+              
         $clients = User::where('user_type_id', 2)->get();
 
         foreach ($clients as $client) {
@@ -41,8 +42,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
 
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
@@ -58,19 +58,19 @@ class ClientController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
-
-        // if (!$request->department == "") {
-        //     DepartmentList::create([
-        //         'user_id' => User::latest()->first()->id,
-        //         'department_id' => $request->department,
-        //         'role_id' => 2,
-        //     ]);
-        // }
+        
+        if (!$request->department == "") {
+            DepartmentList::create([
+                'user_id' => User::latest()->first()->id,
+                'department_id' => $request->department,
+                'role_id' => 2,
+            ]);
+        }
 
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -95,7 +95,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('editUser', $id);
+        Gate::authorize('adminOrDep');
 
         $client = User::find($id);
         $departments = Department::all();
@@ -114,7 +114,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('editUser', $id);
+        Gate::authorize('adminOrDep');
 
         $client = User::find($id);
         $client->update($request->all());
@@ -127,7 +127,7 @@ class ClientController extends Controller
                 'department_id' => $request->department,
                 'role_id' => 2,
             ]);
-        }       
+        }
 
         $msg = "Client Updated successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -141,7 +141,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize('adminOrDep');
 
         DepartmentList::where('user_id', $id)->delete();
         $client = User::find($id);
