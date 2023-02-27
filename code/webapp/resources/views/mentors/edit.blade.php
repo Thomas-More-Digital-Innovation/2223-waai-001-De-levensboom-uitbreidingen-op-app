@@ -48,7 +48,11 @@
                 </div>
     
                 <x-contactgegevens :contactgegevens="$mentor" />
-                <x-form-button text="Wijzigen" />
+
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="mentors.index" />
+                </div>
             </form>
         </div>
       </div>

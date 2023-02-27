@@ -72,8 +72,11 @@
             
             <hr>
             <x-contactgegevens :contactgegevens="$client" />
-            <x-form-button text="Wijzigen" />
 
+            <div class="flex gap-5">
+              <x-form-button text="Wijzigen" />
+              <x-form-button text="Annuleren" link="clients.index" />
+            </div>
         </form>
         </div>
       </div>

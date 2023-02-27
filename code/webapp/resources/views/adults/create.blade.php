@@ -25,7 +25,10 @@
 
                   <x-form-input name="title" text="Titel" />
         
-                  <x-form-button text="Toevoegen" />
+                  <div class="flex gap-5">
+                    <x-form-button text="Toevoegen" />
+                    <x-form-button text="Annuleren" link="adults.index" />
+                  </div>
                 </form>
             </div>
           </div>
