@@ -7,14 +7,17 @@ use Illuminate\View\Component;
 class FormButton extends Component
 {
     public string $text;
+    public $link;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($text)
+    public function __construct($text, $link = null)
     {
         $this->text = $text;
+        $this->link = $link;
     }
 
     /**

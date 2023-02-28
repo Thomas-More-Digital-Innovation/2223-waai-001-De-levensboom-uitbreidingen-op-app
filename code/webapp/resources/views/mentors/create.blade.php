@@ -48,7 +48,10 @@
                 </div>
     
                 <x-contactgegevens />
-                 <x-form-button text="Aanmaken" />
+                <div class="flex gap-5">
+                  <x-form-button text="Aanmaken" />
+                  <x-form-button text="Annuleren" link="mentors.index" />
+                </div>
               </form>
         </div>
       </div>

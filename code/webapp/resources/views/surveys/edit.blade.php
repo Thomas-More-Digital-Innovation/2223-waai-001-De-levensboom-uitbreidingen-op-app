@@ -23,7 +23,11 @@
                 @method('PATCH')
     
                 <x-form-input name="title" text="Google form link" :value="$survey" />
-                <x-form-button text="Wijzigen" />
+
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="surveys.index" />
+                </div>
             </form>
         </div>
       </div>
