@@ -19,7 +19,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Clienten lijst" name="clients.create" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
@@ -28,7 +28,7 @@
                 <th class="border border-[#f4f4f4] py-2 px-6">Begeleider&lpar;s&rpar;</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Geboortedatum</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
+                <th class="border border-[#f4f4f4] py-2 px-">Acties</th>
               </tr>
             </thead>
             <tbody>
@@ -63,7 +63,7 @@
                   @endforeach --}}
                 </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->birthdate }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} </td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} <br> {{ $client->email }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <form action="{{ route('clients.destroy', $client->id) }}" method="post">
                     @csrf

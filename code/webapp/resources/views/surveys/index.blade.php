@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Tevredenheids Meting" name="" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6 text-left">Google form link</th>
@@ -28,8 +28,8 @@
             <tbody>
               @foreach ($surveys as $survey)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $survey->title }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">
+                <td class="border border-[#f4f4f4] py-2 px-6 w-full">{{ $survey->title }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-full">
                   <a href="{{ route('surveys.edit', $survey->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                 </td>
               </tr>

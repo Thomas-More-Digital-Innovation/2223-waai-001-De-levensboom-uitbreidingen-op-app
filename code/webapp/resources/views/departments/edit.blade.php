@@ -27,6 +27,7 @@
             <x-form-input name="name" text="Naam" :value="$department" />
 
             <x-contactgegevens :contactgegevens="$department" />
+            <x-form-input name="email" text="Email" :value="$department" />
             <div class="flex gap-5">
               <x-form-button text="Bewerk" />
               <x-form-button text="Annuleren" link="departments.index" />
