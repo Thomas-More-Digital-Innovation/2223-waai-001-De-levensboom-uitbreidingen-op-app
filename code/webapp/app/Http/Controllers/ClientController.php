@@ -7,6 +7,7 @@ use App\Models\DepartmentList;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
 
 class ClientController extends Controller
 {
@@ -60,7 +61,9 @@ class ClientController extends Controller
 
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
-        User::create($request->all());
+        $user = User::create($request->all());
+
+        event(new Registered($user));
 
         if (!$request->department == "") {
             DepartmentList::create([

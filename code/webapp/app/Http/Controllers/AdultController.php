@@ -18,7 +18,7 @@ class AdultController extends Controller
     {
         Gate::authorize('notClient');
         
-        $adults = Info::where('section_id', 1)->get();
+        $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
         $infoContents = InfoContent::all();
         return view('adults.index', compact('adults','infoContents'));
     }
@@ -44,6 +44,9 @@ class AdultController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('allowAdmin');
+
+        $highestOrderNumber = Info::where('section_id', 1)->max('orderNumber');
+        $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
 
         $request->request->add(['section_id' => 1]);
         Info::create($request->all());

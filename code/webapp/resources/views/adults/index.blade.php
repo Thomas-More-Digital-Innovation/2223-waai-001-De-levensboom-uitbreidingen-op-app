@@ -28,7 +28,7 @@
             </thead>
             <tbody>
               @foreach ($adults as $adult)
-              <tr class="font-normal">
+              <tr class="font-normal tableRow">
                 <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">{{ $adult->title }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal">
                     @foreach ($infoContents as $infoContent)
@@ -49,16 +49,52 @@
                     <span>|</span>
 
                     <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+
+                    <p class="up" class="hover:cursor-move">up</p>
+                    <p class="down" class="hover:cursor-move">down</p>
                   </form>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+          <p id="save">save</p>
         </div>
       </div>
     </div>
   </main>
 </body>
+<script>
+  const up = document.querySelectorAll('.up');
+  const down = document.querySelectorAll('.down');
+  const tableRow = document.querySelectorAll('.tableRow');
 
+  up.forEach((up, index) => {
+    up.addEventListener('click', () => {
+      const row = tableRow[index];
+      row.parentNode.insertBefore(row, row.previousElementSibling);
+      console.log(index);
+    });
+  });
+
+  down.forEach((down, index) => {
+    down.addEventListener('click', () => {
+      const row = tableRow[index];
+      row.parentNode.insertBefore(row.nextElementSibling, row);
+      console.log(index);
+    });
+    
+  });
+  //when save has been clicked, send the order to the controller
+  const save = document.getElementById('save');
+  save.addEventListener('click', () => {
+    const tableRow = document.querySelectorAll('.tableRow');
+    const order = [];
+    tableRow.forEach((row, index) => {
+      order.push(row.children[0].innerText);
+    });
+    console.log(order);
+  });
+
+</script>
 </html>

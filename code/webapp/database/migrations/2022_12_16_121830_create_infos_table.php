@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('section_id')->nonNull();
             $table->string('title')->nonNull();
+            $table->integer('orderNumber')->nullable();
             $table->timestamps();
 
             $table->foreign('section_id')->references('id')->on('sections');
