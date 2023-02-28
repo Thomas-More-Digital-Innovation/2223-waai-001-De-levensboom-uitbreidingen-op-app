@@ -98,9 +98,10 @@ class MentorController extends Controller
         $mentor = User::find($id);
         $departments = Department::all();
         $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
-        $departmentList = DepartmentList::all()->where('user_id', $id);
+        $departmentList = DepartmentList::where('user_id', $id)->get();
+        // $departmentList = DepartmentList::all()->where('user_id', $id);
 
-        return view('mentors.edit', compact('mentor', 'departments', 'roles', 'departmentList'));
+        return view('mentors.edit', compact('mentor', 'departments', 'roles'), ['departmentsList' => $departmentsList]);
     }
 
     /**
