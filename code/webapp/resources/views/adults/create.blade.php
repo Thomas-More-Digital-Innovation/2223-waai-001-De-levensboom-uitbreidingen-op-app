@@ -23,6 +23,8 @@
                   @csrf
                   @method('POST')
 
+                  <x-errormessage />
+
                   <x-form-input name="title" text="Titel" />
         
                   <div class="flex gap-5">

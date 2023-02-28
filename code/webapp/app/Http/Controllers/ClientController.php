@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -54,14 +56,14 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 2]);
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
-
+        
         if (!$request->department == "") {
             DepartmentList::create([
                 'user_id' => User::latest()->first()->id,

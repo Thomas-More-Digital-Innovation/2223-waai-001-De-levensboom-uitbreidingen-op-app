@@ -23,6 +23,8 @@
             @csrf
             @method('PATCH')
 
+            <x-errormessage />
+
             <x-form-input name="firstname" text="Voornaam" :value="$client" />
             <x-form-input name="surname" text="Achternaam" :value="$client" />
             <x-form-input name="email" text="Email" type="email" :value="$client" />

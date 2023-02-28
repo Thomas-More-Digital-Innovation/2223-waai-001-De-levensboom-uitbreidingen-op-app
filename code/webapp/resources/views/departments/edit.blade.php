@@ -22,6 +22,8 @@
             @csrf
             @method('PATCH')
 
+            <x-errormessage />
+
             <x-form-input name="name" text="Naam" :value="$department" />
 
             <x-contactgegevens :contactgegevens="$department" />
