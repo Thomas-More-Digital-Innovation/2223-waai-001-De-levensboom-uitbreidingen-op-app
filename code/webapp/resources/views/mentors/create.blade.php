@@ -74,15 +74,15 @@
 </body>
 
 <script>
-  var nrOfDep = 1;
+  let nrOfDep = 1;
 
   function addDepartment() {
     nrOfDep++;
 
-    var dropdowns = document.getElementById('dropdowns');
-    var totalDep = document.getElementById('totalDep');
+    let dropdowns = document.getElementById('dropdowns');
+    let totalDep = document.getElementById('totalDep');
 
-    var newDropdown =  `<div id="${nrOfDep}" class="flex flex-row gap-5">
+    let newDropdown =  `<div id="${nrOfDep}" class="flex flex-row gap-5">
                           <select name="role${nrOfDep}" id="role${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
                             <option value="">Kies een Functie</option>
                             @foreach ($roles as $role)
@@ -106,7 +106,7 @@
   }
 
   function deleteDepartment( departmentId ) {
-    var dropdowns = document.getElementById('dropdowns');
+    let dropdowns = document.getElementById('dropdowns');
 
     dropdowns.removeChild(document.getElementById(departmentId));
   }

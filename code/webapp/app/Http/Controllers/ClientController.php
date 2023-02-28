@@ -65,7 +65,7 @@ class ClientController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $mentor = $request->input('mentor' . $i);
-            if($department != null && $mentor != null) {
+            if($department != null) {
                 DepartmentList::create([
                     'user_id' => User::latest()->first()->id,
                     'department_id' => $department,
@@ -74,7 +74,6 @@ class ClientController extends Controller
             }
         }
         // Still need to create UserList, this to connect the client to the mentor
-
 
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -127,7 +126,7 @@ class ClientController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $mentor = $request->input('mentor' . $i);
-            if($department != null && $mentor != null) {
+            if($department != null) {
                 DepartmentList::create([
                     'user_id' => $id,
                     'department_id' => $department,

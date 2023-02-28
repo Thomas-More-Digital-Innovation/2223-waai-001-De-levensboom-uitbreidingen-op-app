@@ -40,9 +40,9 @@
                 <div class="flex flex-row gap-5">    
                   <div>
                     <div class="flex items-center gap-3 mt-3 mb-3">
-                      <label for="department" class="font-bold">Afdeling</label>
+                      <label for="department0" class="font-bold">Afdeling</label>
                     </div>
-                    <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department', 'mentors')" name="department" id="department" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                    <select name="department0" id="department0" onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department0', 'mentors0')" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                       <option value="">Kies een Afdeling</option>
                       @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -52,11 +52,11 @@
       
                   <div>
                     <div class="flex items-center gap-3 mt-3 mb-3">
-                      <label for="mentors" class="font-bold">Begeleiders</label>
+                      <label for="mentors0" class="font-bold">Begeleiders</label>
                       <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" onclick="addDepartment()"/>
                     </div>
                     <div class="flex items-center mb-3">
-                      <select name="mentors" id="mentors" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                      <select name="mentors0" id="mentors0" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                         <option value="">Kies een Begeleider</option>
                         @foreach ($mentors as $mentor)
                           <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
@@ -80,13 +80,13 @@
 </body>
 
 <script>
-  var nrOfDep = 1;
+  let nrOfDep = 1;
 
   function getDepartments(departmentLists, allMentors, departmentId, mentorsId) {
     selectedDepartments = document.getElementById(departmentId).value;
-    var mentorDropdown = document.getElementById(mentorsId);
-    var departments = []
-    var mentors = []
+    let mentorDropdown = document.getElementById(mentorsId);
+    let departments = []
+    let mentors = []
 
     // Loop through the departmentLists array
     for (let i = 0; i < departmentLists.length; i++){
@@ -102,7 +102,7 @@
       mentorDropdown.removeChild(mentorDropdown.firstChild);
     }
     // Make new standard option
-    var option = document.createElement('option');
+    let option = document.createElement('option');
     option.value = '';
     option.text = 'Kies een Begeleider';
     mentorDropdown.appendChild(option)
@@ -111,7 +111,7 @@
     for( let i = 0; i < allMentors.length; i++){
       if( mentors.includes(allMentors[i].id) ){
         // make new option
-        var option = document.createElement('option');
+        let option = document.createElement('option');
         option.value = allMentors[i].id;
         option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
         mentorDropdown.appendChild(option);
@@ -122,10 +122,10 @@
   function addDepartment() {
     nrOfDep++;
 
-    var dropdowns = document.getElementById('dropdowns');
-    var totalDep = document.getElementById('totalDep');
+    let dropdowns = document.getElementById('dropdowns');
+    let totalDep = document.getElementById('totalDep');
 
-    var newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
+    let newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
                           <div class="flex items-center mb-5">
                             <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentors${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                               <option value="">Kies een Afdeling</option>
@@ -148,8 +148,7 @@
   }
 
   function deleteDepartment( departmentId ) {
-    var dropdowns = document.getElementById('dropdowns');
-
+    let dropdowns = document.getElementById('dropdowns');
     dropdowns.removeChild(document.getElementById(departmentId));
   }
 
