@@ -29,9 +29,18 @@
             <tbody>
               @foreach ($teens as $teen)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $teen->title }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $teen->infoblokken }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">{{ $teen->title }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal">
+                  @foreach ($infoContents as $infoContent)
+                      @if ($teen->id == $infoContent->info_id)
+                        <li>{{ $infoContent->title }}</li>
+                      @endif
+                    @endforeach
+                    @if ($teen->infoContents->count() == 0)
+                      <p>Geen info blokken</p>
+                    @endif
+                </td>
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
                   <form action="{{ route('teens.destroy', $teen->id) }}" method="post">
                     @csrf
                     @method('delete')

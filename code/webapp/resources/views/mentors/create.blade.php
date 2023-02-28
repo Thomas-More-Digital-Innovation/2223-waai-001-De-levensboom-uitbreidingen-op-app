@@ -26,6 +26,8 @@
                 @csrf
                 @method('POST')
 
+                <x-errormessage />
+
                 <x-form-input name="firstname" text="Voornaam" />
                 <x-form-input name="surname" text="Achternaam" />
                 <x-form-input name="email" text="Email" />
@@ -65,7 +67,11 @@
                 <input name="totalDep" id="totalDep" value="1" class="hidden" />
                 <hr/>
                 <x-contactgegevens />
-                <x-form-button text="Aanmaken" />
+
+                <div class="flex gap-5">
+                  <x-form-button text="Aanmaken" />
+                  <x-form-button text="Annuleren" link="mentors.index" />
+                </div>
               </form>
         </div>
       </div>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class AdultInfoContentController extends Controller
 {
@@ -41,14 +44,21 @@ class AdultInfoContentController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
-
-
         $request->request->add(['info_id' => $request->info_id]);
+
+        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
+            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
+            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());  
+        }
+        else {
+            $request->request->add(['titleImage' => $request->titleImageUrl]);
+        }
+
         InfoContent::create($request->all());
+        
 
         $msg = "New Adult Info Content Created successful! ";
-        return redirect('adults')->with('msg', $msg);
+        return redirect('adults/'.$request->info_id.'/edit')->with('msg', $msg);
     }
 
     /**

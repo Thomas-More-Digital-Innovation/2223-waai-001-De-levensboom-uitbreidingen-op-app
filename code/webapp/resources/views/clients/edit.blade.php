@@ -23,6 +23,8 @@
             @csrf
             @method('PATCH')
 
+            <x-errormessage />
+
             <x-form-input name="firstname" text="Voornaam" :value="$client" />
             <x-form-input name="surname" text="Achternaam" :value="$client" />
             <x-form-input name="email" text="Email" type="email" :value="$client" />
@@ -71,8 +73,11 @@
             <input name="totalDep" id="totalDep" value="1" class="hidden" />
             <hr>
             <x-contactgegevens :contactgegevens="$client" />
-            <x-form-button text="Wijzigen" />
 
+            <div class="flex gap-5">
+              <x-form-button text="Wijzigen" />
+              <x-form-button text="Annuleren" link="clients.index" />
+            </div>
         </form>
         </div>
       </div>

@@ -22,20 +22,26 @@
             <form action="{{ route('adultInfoContents.update', $infoContent->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
     
                 <x-form-input name="title" text="Titel" :value="$infoContent" />
 
                 <label for="titleImage" class="font-bold">Blok Foto</label>
                 <p>Geef een url in van een foto die online staat, of upload een foto van je op pc.</p>
-                <input type="text" name="titleImage" id="titleImage" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $infoContent->titleImage }}>
-                <input type="file" name="titleImage" id="titleImage"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
+                <input type="text" name="titleImageUrl" id="titleImageUrl" placeholder="Enter blok foto url"  class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $infoContent->titleImage }}>
+                <input type="file" name="titleImage" id="titleImage" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3" value={{ $infoContent->titleImage }}>
 
-                <x-form-input name="url" text="Meer info link" :value="$infoContent" />
+                <label for="url" class="font-bold">Meer info link</label>
+                <input type="text" name="url" id="url" placeholder="Enter meer info link" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
                 
                 <label for="content" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-                <x-form-button text="Wijzigen" />
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="adults.index" />
+                </div>
             </form>
         </div>
       </div>

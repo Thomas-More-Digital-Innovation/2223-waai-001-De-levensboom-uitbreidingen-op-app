@@ -4,20 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class FormButton extends Component
+class Errormessage extends Component
 {
-    public string $text;
-    public $link;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($text, $link = null)
+    public function __construct()
     {
-        $this->text = $text;
-        $this->link = $link;
+        //
     }
 
     /**
@@ -27,6 +23,6 @@ class FormButton extends Component
      */
     public function render()
     {
-        return view('components.form-button');
+        return view('components.errormessage');
     }
 }
