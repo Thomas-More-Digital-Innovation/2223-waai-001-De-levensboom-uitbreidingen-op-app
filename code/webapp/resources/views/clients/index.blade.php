@@ -36,7 +36,7 @@
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->surname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal">
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
                   @foreach ($departmentLists as $departmentList)
                       @if ($departmentList->where('user_id', $client->id)->doesntExist())
                         <p>Geen afdeling</p>
@@ -57,7 +57,7 @@
                     @endif
                     @foreach ($mentors as $mentor)
                       @if ($userList->user_id == $mentor->id && $userList->client_id == $client->id)
-                        <li>{{ $mentor->firstname . ' ' . $mentor->surname }}</li>
+                        <p>-{{ $mentor->firstname . ' ' . $mentor->surname }}</p>
                       @endif
                     @endforeach
                   @endforeach --}}

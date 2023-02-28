@@ -27,8 +27,11 @@ class MentorController extends Controller
             $user_type = UserType::find($mentor->user_type_id);
             $mentor->user_type = $user_type->name;
         }
+
+        $departmentLists = DepartmentList::all();
+        $departments = Department::all();
         
-        return view('mentors.index', compact('mentors'));
+        return view('mentors.index', compact('mentors', 'departmentLists', 'departments'));
     }
 
     /**

@@ -33,7 +33,16 @@
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->surname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->user_type }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
+                  <p>{{ $mentor->user_type }}<p>
+                  @foreach ($departmentLists as $departmentList)
+                    @foreach ($departments as $department)
+                      @if ($departmentList->department_id == $department->id && $departmentList->user_id == $mentor->id)
+                        <p>- {{ $department->name }}</p>
+                      @endif
+                    @endforeach
+                  @endforeach
+                </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $mentor->street . ' ' .  $mentor->houseNumber }} <br> {{ $mentor->city . ' ' . $mentor->zipcode}}  <br> {{ $mentor->phoneNumber }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <form action="{{ route('mentors.destroy', $mentor->id) }}" method="post">
