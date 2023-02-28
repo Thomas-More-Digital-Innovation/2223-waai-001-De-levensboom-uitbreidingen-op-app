@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class TeenInfoContentController extends Controller
 {
@@ -23,11 +26,12 @@ class TeenInfoContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         Gate::authorize('allowAdmin');
 
-        return view('teens.infoContents.create');
+        $info_id = $request->info_id;
+        return view('teens.infoContents.create', compact('info_id'));
     }
 
     /**
@@ -40,11 +44,20 @@ class TeenInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        $request->request->add(['info_id' => 9]);
+        $request->request->add(['info_id' => $request->info_id]);
+
+        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
+            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
+            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());  
+        }
+        else {
+            $request->request->add(['titleImage' => $request->titleImageUrl]);
+        }
+
         InfoContent::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";
-        return redirect('teens')->with('msg', $msg);
+        return redirect('teens/'.$request->info_id.'/edit')->with('msg', $msg);
     }
 
     /**
@@ -69,7 +82,7 @@ class TeenInfoContentController extends Controller
         Gate::authorize('allowAdmin');
 
         $infoContent = InfoContent::find($id);
-        $infoContent->content = InfoContent::where('info_id', $id)->first()->content;
+        
         return view('teens.infoContents.edit', compact('infoContent'));
     }
 
@@ -84,14 +97,12 @@ class TeenInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        InfoContent::updateOrCreate(
-            ['info_id' => $id],
-            ['title' => $request->title
-            ,'content' => $request->content],
-        );
+        $teenInfoContent = InfoContent::find($id);
+        $teenInfoContent->update($request->all());
+        $info_id = $teenInfoContent->info_id;
 
-        $msg = "Adult Info Content Updated successful! ";
-        return redirect('teens')->with('msg', $msg);
+        $msg = "Teen Info Content Updated successful! ";
+        return redirect('teens/'.$info_id.'/edit')->with('msg', $msg);
     }
 
     /**
@@ -106,8 +117,9 @@ class TeenInfoContentController extends Controller
         
         $teenInfoContent = InfoContent::find($id);
         $teenInfoContent->delete();
+        $info_id = $teenInfoContent->info_id;
 
-        $msg = "Adult Info Content Deleted successful! ";
-        return redirect('adults')->with('msg', $msg);
+        $msg = "Teen Info Content Deleted successful! ";
+        return redirect('teens/'.$info_id.'/edit')->with('msg', $msg);
     }
 }

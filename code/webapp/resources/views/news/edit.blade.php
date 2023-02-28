@@ -23,13 +23,18 @@
             @csrf
             @method('PATCH')
 
+            <x-errormessage />
+
             <x-form-input name="title" text="Titel" :value="$news" />
             <x-form-input name="shortContent" text="Korte inhoud" :value="$news"  />
             
             <label for="content" class="font-bold">Inhoud*</label>
             <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-            <x-form-button text="Wijzigen" />
+            <div class="flex gap-5">
+              <x-form-button text="Wijzigen" />
+              <x-form-button text="Annuleren" link="news.index" />
+            </div>
           </form>
         </div>
       </div>

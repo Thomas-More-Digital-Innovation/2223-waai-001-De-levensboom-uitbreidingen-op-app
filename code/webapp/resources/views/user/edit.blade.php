@@ -21,13 +21,20 @@
             <form action="{{ route('user.update', $user->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
     
                 <x-form-input name="firstname" text="Voornaam" :value="$user" />
                 <x-form-input name="surname" text="Achternaam" :value="$user" />
                 <x-form-input name="email" text="E-mail" :value="$user" disabled="disabled" />
+                <x-form-input name="password" text="Wachtwoord" :value="$user" />
 
                 <x-contactgegevens :contactgegevens="$user" />
-                <x-form-button text="Wijzigen" />
+
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="user.index" />
+                </div>
             </form>
         </div>
       </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Info;
 use App\Models\InfoContent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class AdultInfoContentController extends Controller
 {
@@ -53,9 +55,10 @@ class AdultInfoContentController extends Controller
         }
 
         InfoContent::create($request->all());
+        
 
         $msg = "New Adult Info Content Created successful! ";
-        return redirect('adults')->with('msg', $msg);
+        return redirect('adults/'.$request->info_id.'/edit')->with('msg', $msg);
     }
 
     /**
