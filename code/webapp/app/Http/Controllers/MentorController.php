@@ -27,8 +27,11 @@ class MentorController extends Controller
             $user_type = UserType::find($mentor->user_type_id);
             $mentor->user_type = $user_type->name;
         }
+
+        $departmentLists = DepartmentList::all();
+        $departments = Department::all();
         
-        return view('mentors.index', compact('mentors'));
+        return view('mentors.index', compact('mentors', 'departmentLists', 'departments'));
     }
 
     /**
@@ -59,12 +62,16 @@ class MentorController extends Controller
         $request->request->add(['password' => bcrypt('password')]);
         User::create($request->all());
 
-        if (!$request->department == "") {
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => $request->role,
-            ]);
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $role = $request->input('role' . $i);
+            if($department != null && $role != null) {
+                DepartmentList::create([
+                    'user_id' => User::latest()->first()->id,
+                    'department_id' => $department,
+                    'role_id' => $role,
+                ]);
+            }
         }
 
         $msg = "New Mentor Created successful! ";
@@ -94,7 +101,9 @@ class MentorController extends Controller
         $mentor = User::find($id);
         $departments = Department::all();
         $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
-        return view('mentors.edit', compact('mentor', 'departments', 'roles'));
+        $departmentsList = DepartmentList::where('user_id', $id)->get();
+        // $departmentList = DepartmentList::all()->where('user_id', $id);
+        return view('mentors.edit', compact('mentor', 'departments', 'roles'), ['departmentsList' => $departmentsList]);
     }
 
     /**
@@ -111,14 +120,18 @@ class MentorController extends Controller
         $mentor = User::find($id);
         $mentor->update($request->all());
 
-        if (!$request->department == "") {
-            DepartmentList::Where('user_id', $id)->delete();
+        DepartmentList::Where('user_id', $id)->delete();
 
-            DepartmentList::create([
-                'user_id' => $id,
-                'department_id' => $request->department,
-                'role_id' => $request->role,
-            ]);
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $role = $request->input('role' . $i);
+            if($department != null && $role != null) {
+                DepartmentList::create([
+                    'user_id' => $id,
+                    'department_id' => $department,
+                    'role_id' => $role,
+                ]);
+            }
         }
 
         $msg = "Mentor Updated successful! ";
