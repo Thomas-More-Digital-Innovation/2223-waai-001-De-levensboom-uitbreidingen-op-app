@@ -71,7 +71,7 @@
                               </option>
                             @endforeach
                           </select>
-                          <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+                          <button onclick="deleteDepartment( '0' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
                         </div>
                       @endforeach
                     </div>
@@ -117,11 +117,12 @@
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
                               @endforeach
                             </select>
-                            <a href="#" class="text-[#3c8dbc] ml-2">Verwijder</a>
+                            <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
                           </div>
                         </div>`;
 
     dropdowns.insertAdjacentHTML('beforeend', newDropdown);
+    totalDep.value = nrOfDep;
   }
 
   function deleteDepartment( departmentId ) {

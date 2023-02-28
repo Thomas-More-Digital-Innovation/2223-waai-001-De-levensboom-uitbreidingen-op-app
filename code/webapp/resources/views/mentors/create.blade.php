@@ -113,7 +113,6 @@
 
   function deleteDepartment( departmentId ) {
     let dropdowns = document.getElementById('dropdowns');
-
     dropdowns.removeChild(document.getElementById(departmentId));
   }
 </script>

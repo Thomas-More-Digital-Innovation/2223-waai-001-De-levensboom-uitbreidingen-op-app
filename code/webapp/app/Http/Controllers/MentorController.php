@@ -100,7 +100,6 @@ class MentorController extends Controller
         $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
         $departmentsList = DepartmentList::where('user_id', $id)->get();
         // $departmentList = DepartmentList::all()->where('user_id', $id);
-
         return view('mentors.edit', compact('mentor', 'departments', 'roles'), ['departmentsList' => $departmentsList]);
     }
 
@@ -125,7 +124,7 @@ class MentorController extends Controller
             $role = $request->input('role' . $i);
             if($department != null && $role != null) {
                 DepartmentList::create([
-                    'user_id' => User::latest()->first()->id,
+                    'user_id' => $id,
                     'department_id' => $department,
                     'role_id' => $role,
                 ]);
