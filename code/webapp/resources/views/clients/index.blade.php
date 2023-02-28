@@ -44,7 +44,7 @@
                       @endif
                       @foreach ($departments as $department)
                         @if ($departmentList->department_id == $department->id && $departmentList->user_id == $client->id)
-                          <li>{{ $department->name }}</li>
+                          <p>{{ $department->name }}</p>
                         @endif
                       @endforeach
                   @endforeach
