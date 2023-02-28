@@ -22,17 +22,11 @@ class ClientController extends Controller
         Gate::authorize('notClient');
               
         $clients = User::where('user_type_id', 2)->get();
+        $departments = Department::all();
+        $departmentLists = DepartmentList::all();
+        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
-        foreach ($clients as $client) {
-            $departmentList = DepartmentList::where('user_id', $client->id)->first();
-            if ($departmentList) {
-                $department = Department::find($departmentList->department_id);
-                $client->departments = $department->name;
-            } else {
-                $client->departments = "";
-            }
-        }
-        return view('clients.index', compact('clients'));
+        return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors'));
     }
 
     /**
