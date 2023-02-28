@@ -19,7 +19,8 @@ class TeenController extends Controller
         Gate::authorize('notClient');
 
         $teens = Info::where('section_id', 2)->get();
-        return view('teens.index', compact('teens'));
+        $infoContents = InfoContent::all();
+        return view('teens.index', compact('teens','infoContents'));
     }
 
     /**
@@ -105,6 +106,7 @@ class TeenController extends Controller
     {
         Gate::authorize('allowAdmin');
         
+        InfoContent::where('info_id', $id)->delete();
         $teen = Info::find($id);
         $teen->delete();
 
