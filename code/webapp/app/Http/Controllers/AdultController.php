@@ -19,7 +19,8 @@ class AdultController extends Controller
         Gate::authorize('notClient');
         
         $adults = Info::where('section_id', 1)->get();
-        return view('adults.index', compact('adults'));
+        $infoContents = InfoContent::all();
+        return view('adults.index', compact('adults','infoContents'));
     }
 
     /**
@@ -105,8 +106,10 @@ class AdultController extends Controller
     {
         Gate::authorize('allowAdmin');
         
+        InfoContent::where('info_id', $id)->delete();
         $adult = Info::find($id);
         $adult->delete();
+        
 
         $msg = "Adult Info Content Deleted successful! ";
         return redirect('adults')->with('msg', $msg);
