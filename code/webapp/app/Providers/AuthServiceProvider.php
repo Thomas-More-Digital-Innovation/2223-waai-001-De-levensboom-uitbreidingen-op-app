@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
 
             if (DepartmentList::where('user_id', $user->id)->exists()) {
                 // Get the role of the user
-                $roles = DepartmentList::all()->where('user_id', $user->id);
+                $roles = DepartmentList::where('user_id', $user->id)->get();
                 // Check if there is a role where the user is a department head
                 for($i = 0; $i < count($roles); $i++) {
                     $id = $roles[$i]->role_id;
@@ -97,7 +97,7 @@ class AuthServiceProvider extends ServiceProvider
 
             if (DepartmentList::where('user_id', $user->id)->exists()) {
                 // Get the role of the user
-                $roles = DepartmentList::all()->where('user_id', $user->id);
+                $roles = DepartmentList::where('user_id', $user->id)->get();
                 // Check if there is a role where the user is a department head
                 for($i = 0; $i < count($roles); $i++) {
                     $id = $roles[$i]->role_id;
