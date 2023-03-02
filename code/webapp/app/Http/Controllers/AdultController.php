@@ -55,6 +55,23 @@ class AdultController extends Controller
         return redirect('adults')->with('msg', $msg);
     }
 
+    public function updateOrder(Request $request){
+        Gate::authorize('allowAdmin');
+
+        $info = Info::find($request->adult);
+        if ($request->order == 'up') {
+            $info->update(['orderNumber' => $info->orderNumber - 1]);
+        }
+        else{
+            $info->update(['orderNumber' => $info->orderNumber + 1]);
+        }
+
+        $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
+        $infoContents = InfoContent::all();
+        $msg = "Adult order updated successful! ";
+        return view('adults.index', compact('adults','infoContents'));
+    }
+
     /**
      * Display the specified resource.
      *
