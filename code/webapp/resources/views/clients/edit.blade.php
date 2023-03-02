@@ -38,51 +38,53 @@
             <hr>
 
             <div id='dropdowns'>
-              @foreach ($departmentsList as $departmentList)
-                @if ( $client->id == $departmentList->user_id )
-                  <div id='{{ $loop->index }}'>
-                    <div class="flex flex-row gap-5">    
-                      <div>
-                        @if ( $loop->index == 0)
-                        <div class="flex items-center gap-3 mt-3 mb-3">
-                          <label for="department{{ $loop->index }}" class="font-bold">Afdeling</label>
-                        </div>
-                        @endif
-                        <select onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department{{ $loop->index }}', 'mentors{{ $loop->index }}')" name="department{{ $loop->index }}" id="department{{ $loop->index }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                          <option value="">Kies een Afdeling</option>
-                          @foreach ($departments as $department)
-                            <option value="{{ $department->id }}" 
-                              @if ($department->id == $departmentList->department_id)
+              @for ($i = 0; $i < (count($userDepartments) ? count($userDepartments) : 1); $i++)
+                <div id='{{ $i }}'>
+                  <div class="flex flex-row gap-5">    
+                    <div>
+                      @if ( $i == 0)
+                      <div class="flex items-center gap-3 mt-3 mb-3">
+                        <label for="department{{ $i }}" class="font-bold">Afdeling</label>
+                      </div>
+                      @endif
+                      <select onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department{{ $i }}', 'mentors{{ $i }}')" name="department{{ $i }}" id="department{{ $i }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                        <option value="">Kies een Afdeling</option>
+                        @foreach ($departments as $department)
+                          <option value="{{ $department->id }}"
+                            {{-- @if( count($userDepartments) ) --}}
+                              @if ($department->id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0))
                                 selected
-                              @endif>{{ $department->name }}
-                            </option>
+                              @endif
+                            {{-- @endif --}}
+                            >
+                            {{ $department->name }}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+        
+                    <div>
+                      @if ( $i == 0)
+                        <div class="flex items-center gap-3 mt-3 mb-3">
+                          <label for="mentors{{ $i }}" class="font-bold">Begeleiders</label>
+                          <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" onclick="addDepartment()"/>
+                        </div>
+                      @endif
+                      <div class="flex items-center mb-3">
+                        <select name="mentors{{ $i }}" id="mentors{{ $i }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                          <option value="">Kies een Begeleider</option>
+                          @foreach ($mentors as $mentor)
+                            <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
                           @endforeach
                         </select>
-                      </div>
-          
-                      <div>
-                        @if ( $loop->index == 0)
-                          <div class="flex items-center gap-3 mt-3 mb-3">
-                            <label for="mentors{{ $loop->index }}" class="font-bold">Begeleiders</label>
-                            <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" onclick="addDepartment()"/>
-                          </div>
+                        @if ( $i != 0 )
+                          <button onclick="deleteDepartment( '{{ $i }}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
                         @endif
-                        <div class="flex items-center mb-3">
-                          <select name="mentors{{ $loop->index }}" id="mentors{{ $loop->index }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                            <option value="">Kies een Begeleider</option>
-                            @foreach ($mentors as $mentor)
-                              <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
-                            @endforeach
-                          </select>
-                          @if ( $loop->index != 0 )
-                            <button onclick="deleteDepartment( '{{ $loop->index }}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
-                          @endif
-                        </div> 
-                      </div>
+                      </div> 
                     </div>
                   </div>
-                @endif
-              @endforeach
+                </div>
+              @endfor
             </div>
 
             <input name="totalDep" id="totalDep" value="1" class="hidden" />
