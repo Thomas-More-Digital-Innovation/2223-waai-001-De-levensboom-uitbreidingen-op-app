@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
@@ -21,17 +23,11 @@ class ClientController extends Controller
         Gate::authorize('notClient');
               
         $clients = User::where('user_type_id', 2)->get();
+        $departments = Department::all();
+        $departmentLists = DepartmentList::all();
+        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
 
-        foreach ($clients as $client) {
-            $departmentList = DepartmentList::where('user_id', $client->id)->first();
-            if ($departmentList) {
-                $department = Department::find($departmentList->department_id);
-                $client->departments = $department->name;
-            } else {
-                $client->departments = "";
-            }
-        }
-        return view('clients.index', compact('clients'));
+        return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors'));
     }
 
     /**
@@ -55,7 +51,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
@@ -65,13 +61,18 @@ class ClientController extends Controller
 
         event(new Registered($user));
 
-        if (!$request->department == "") {
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $mentor = $request->input('mentor' . $i);
+            if($department != null) {
+                DepartmentList::create([
+                    'user_id' => User::latest()->first()->id,
+                    'department_id' => $department,
+                    'role_id' => 2,
+                ]);
+            }
         }
+        // Still need to create UserList, this to connect the client to the mentor
 
         $msg = "New Client Created successful! ";
         return redirect('clients')->with('msg', $msg);
@@ -100,9 +101,10 @@ class ClientController extends Controller
 
         $client = User::find($id);
         $departments = Department::all();
-        $departmentLists = DepartmentList::all();
+        $departmentsList = DepartmentList::all();
+        $userDepartments = DepartmentList::where('user_id', $id)->get();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        return view('clients.edit', compact('client', 'departments', 'departmentLists', 'mentors'));
+        return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments'));
 
     }
 
@@ -120,14 +122,17 @@ class ClientController extends Controller
         $client = User::find($id);
         $client->update($request->all());
 
-        if (!$request->department == "") {
-            DepartmentList::Where('user_id', $id)->delete();
-
-            DepartmentList::create([
-                'user_id' => User::latest()->first()->id,
-                'department_id' => $request->department,
-                'role_id' => 2,
-            ]);
+        DepartmentList::Where('user_id', $id)->delete();
+        for ($i = 0; $i <= $request->totalDep; $i++) {
+            $department = $request->input('department' . $i);
+            $mentor = $request->input('mentor' . $i);
+            if($department != null) {
+                DepartmentList::create([
+                    'user_id' => $id,
+                    'department_id' => $department,
+                    'role_id' => 2,
+                ]);
+            }
         }
 
         $msg = "Client Updated successful! ";

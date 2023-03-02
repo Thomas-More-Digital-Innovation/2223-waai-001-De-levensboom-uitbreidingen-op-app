@@ -22,10 +22,15 @@
               <form action="{{ route('teens.update', $teen->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
       
                 <x-form-input name="title" text="Titel" :value="$teen" />
 
-                <x-form-button text="Wijzigen" />
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="teens.index" />
+                </div>
               </form>
           </div>
         </div>
@@ -38,7 +43,7 @@
               <h1 class="text-2xl">Infoblokken</h1>
               <a href="{{ route('teenInfoContents.create',['info_id' => $teen->id]) }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
           </div>
-            <table class="border-collapse border border-[#f4f4f4] table-auto">
+            <table class="border-collapse border border-[#f4f4f4] w-full">
               <thead>
                 <tr>
                   <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>

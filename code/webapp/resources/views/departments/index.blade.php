@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Afdelingen lijst" name="departments.create" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Naam</th>
@@ -29,9 +29,9 @@
             <tbody>
               @foreach ($departments as $department)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->name }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $department->street . ' ' .  $department->houseNumber }} <br> {{ $department->city . ' ' . $department->zipcode}}  <br> {{ $department->phoneNumber }} </td>
-                <td class="border border-[#f4f4f4] py-2 px-6">
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/3">{{ $department->name }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/3">{{ $department->street . ' ' .  $department->houseNumber }} <br> {{ $department->city . ' ' . $department->zipcode}}  <br> {{ $department->phoneNumber }} <br> {{ $department->email }} </td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
                   <form action="{{ route('departments.destroy', $department->id) }}" method="post">
                     @csrf
                     @method('delete')

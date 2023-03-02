@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Info Segmenten voor jongeren" name="teens.create" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
@@ -29,8 +29,8 @@
             <tbody>
               @foreach ($teens as $teen)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">{{ $teen->title }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal">
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left w-1/3">{{ $teen->title }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal w-1/3">
                   @foreach ($infoContents as $infoContent)
                       @if ($teen->id == $infoContent->info_id)
                         <li>{{ $infoContent->title }}</li>
@@ -40,7 +40,7 @@
                       <p>Geen info blokken</p>
                     @endif
                 </td>
-                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left w-1/4">
                   <form action="{{ route('teens.destroy', $teen->id) }}" method="post">
                     @csrf
                     @method('delete')

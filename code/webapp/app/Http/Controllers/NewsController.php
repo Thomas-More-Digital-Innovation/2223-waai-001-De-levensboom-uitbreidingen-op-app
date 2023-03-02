@@ -47,7 +47,7 @@ class NewsController extends Controller
         $request->request->add(['section_id' => 3]);
         Info::create($request->all());
 
-        $request->request->add(['info_id' => 10]);
+        $request->request->add(['info_id' => Info::latest()->first()->id]);
         InfoContent::create($request->all());
 
         $msg = "New New Info Content Created successful! ";

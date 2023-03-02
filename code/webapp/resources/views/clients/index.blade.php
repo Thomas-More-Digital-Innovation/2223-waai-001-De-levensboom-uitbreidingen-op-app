@@ -19,7 +19,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Clienten lijst" name="clients.create" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
@@ -28,7 +28,7 @@
                 <th class="border border-[#f4f4f4] py-2 px-6">Begeleider&lpar;s&rpar;</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Geboortedatum</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
+                <th class="border border-[#f4f4f4] py-2 px-">Acties</th>
               </tr>
             </thead>
             <tbody>
@@ -36,10 +36,34 @@
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->surname }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->departments }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->begeleider }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
+                  @foreach ($departmentLists as $departmentList)
+                      @if ($departmentList->where('user_id', $client->id)->doesntExist())
+                        <p>Geen afdeling</p>
+                        @break
+                      @endif
+                      @foreach ($departments as $department)
+                        @if ($departmentList->department_id == $department->id && $departmentList->user_id == $client->id)
+                          <p>{{ $department->name }}</p>
+                        @endif
+                      @endforeach
+                  @endforeach
+                </td>
+                <td class="border border-[#f4f4f4] py-2 px-6">
+                  {{-- @foreach ($userLists as $userList)
+                    @if ($userList->where('client_id', $client->id)->doesntExist())
+                      <p>Geen begeleider</p>
+                      @break
+                    @endif
+                    @foreach ($mentors as $mentor)
+                      @if ($userList->user_id == $mentor->id && $userList->client_id == $client->id)
+                        <p>-{{ $mentor->firstname . ' ' . $mentor->surname }}</p>
+                      @endif
+                    @endforeach
+                  @endforeach --}}
+                </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->birthdate }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} </td>
+                <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} <br> {{ $client->email }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
                   <form action="{{ route('clients.destroy', $client->id) }}" method="post">
                     @csrf

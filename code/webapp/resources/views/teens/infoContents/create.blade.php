@@ -23,6 +23,8 @@
                 <form action="{{ route('teenInfoContents.store', ['info_id' => $info_id]) }}" method="POST" class="flex flex-col mt-3">
                   @csrf
                   @method('POST')
+
+                  <x-errormessage />
       
                   <x-form-input name="title" text="Titel" />
   

@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Nieuwtjes" name="news.create" />
-          <table class="border-collapse border border-[#f4f4f4] table-auto">
+          <table class="border-collapse border border-[#f4f4f4] w-full">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
@@ -29,9 +29,9 @@
             <tbody>
               @foreach ($news as $new)
               <tr class="font-normal">
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $new->title }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">{{ $new->gecreerdop }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6">
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $new->title }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $new->gecreerdop }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
                   <form action="{{ route('news.destroy', $new->id) }}" method="post">
                     @csrf
                     @method('delete')

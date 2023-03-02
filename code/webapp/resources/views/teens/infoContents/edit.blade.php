@@ -22,6 +22,8 @@
             <form action="{{ route('teenInfoContents.update', $infoContent->id) }}" method="POST" class="flex flex-col mt-3">
                 @csrf
                 @method('PATCH')
+
+                <x-errormessage />
     
                 <x-form-input name="title" text="Titel" :value="$infoContent" />
 
@@ -36,7 +38,10 @@
                 <label for="text" class="font-bold">Inhoud*</label>
                 <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
-                <x-form-button text="Wijzigen" />
+                <div class="flex gap-5">
+                  <x-form-button text="Wijzigen" />
+                  <x-form-button text="Annuleren" link="teens.index" />
+                </div>
             </form>
         </div>
       </div>
