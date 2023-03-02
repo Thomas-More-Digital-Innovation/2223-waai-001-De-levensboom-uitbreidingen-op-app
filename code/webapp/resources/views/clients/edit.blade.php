@@ -51,11 +51,9 @@
                         <option value="">Kies een Afdeling</option>
                         @foreach ($departments as $department)
                           <option value="{{ $department->id }}"
-                            {{-- @if( count($userDepartments) ) --}}
-                              @if ($department->id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0))
-                                selected
-                              @endif
-                            {{-- @endif --}}
+                            @if ($department->id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0))
+                              selected
+                            @endif
                             >
                             {{ $department->name }}
                           </option>
