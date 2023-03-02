@@ -48,7 +48,7 @@ class TeenInfoContentController extends Controller
 
         if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
             $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
-            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());  
+            $request->titleImage->storeAs('public/teens', $request->titleImage->getClientOriginalName());  
         }
         else {
             $request->request->add(['titleImage' => $request->titleImageUrl]);
