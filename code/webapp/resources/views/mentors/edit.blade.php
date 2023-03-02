@@ -74,7 +74,7 @@
                             @endforeach
                           </select>
                           @if ( $loop->index != 0 )
-                          <button onclick="deleteDepartment( '0' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
+                          <button onclick="deleteDepartment( '{{ $loop->index }}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
                           @endif
                         </div>
                       </div>
