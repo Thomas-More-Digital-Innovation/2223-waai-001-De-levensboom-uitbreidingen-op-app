@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('shortContent')->nullable();
             $table->string('content')->nullable();
+            $table->integer('orderNumber')->nullable();
             $table->timestamps();
 
             $table->foreign('info_id')->references('id')->on('infos');

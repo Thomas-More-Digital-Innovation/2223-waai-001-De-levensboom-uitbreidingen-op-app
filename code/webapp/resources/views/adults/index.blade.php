@@ -26,11 +26,13 @@
                 <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="drag-sort-enable">
               @foreach ($adults as $adult)
+
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left w-1/3">{{ $adult->title }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left list-decimal w-1/3">
+
                     @foreach ($infoContents as $infoContent)
                       @if ($adult->id == $infoContent->info_id)
                         <li>{{ $infoContent->title }}</li>
@@ -49,16 +51,19 @@
                     <span>|</span>
 
                     <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+
+                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'up']) }}" class="up" class="hover:cursor-move">up</a>
+                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'down']) }}" class="down" class="hover:cursor-move">down</a>
                   </form>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+          <p id="save">save</p>
         </div>
       </div>
     </div>
   </main>
 </body>
-
 </html>

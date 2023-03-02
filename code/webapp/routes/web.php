@@ -58,6 +58,7 @@ Route::middleware('auth', 'verified')->group( function () {
         'adultInfoContents' => AdultInfoContentController::class,
         'teenInfoContents' => TeenInfoContentController::class,
     ]);
+    Route::get('adults/{adult}/updateOrder', [AdultController::class, 'updateOrder'])->name('adults.updateOrder');
 });
 
 require __DIR__.'/auth.php';

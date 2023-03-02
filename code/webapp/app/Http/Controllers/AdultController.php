@@ -18,7 +18,7 @@ class AdultController extends Controller
     {
         Gate::authorize('notClient');
         
-        $adults = Info::where('section_id', 1)->get();
+        $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
         $infoContents = InfoContent::all();
         return view('adults.index', compact('adults','infoContents'));
     }
@@ -45,11 +45,31 @@ class AdultController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        $highestOrderNumber = Info::where('section_id', 1)->max('orderNumber');
+        $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
+
         $request->request->add(['section_id' => 1]);
         Info::create($request->all());
 
         $msg = "New Adult Info Content Created successful! ";
         return redirect('adults')->with('msg', $msg);
+    }
+
+    public function updateOrder(Request $request){
+        Gate::authorize('allowAdmin');
+
+        $info = Info::find($request->adult);
+        if ($request->order == 'up') {
+            $info->update(['orderNumber' => $info->orderNumber - 1]);
+        }
+        else{
+            $info->update(['orderNumber' => $info->orderNumber + 1]);
+        }
+
+        $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
+        $infoContents = InfoContent::all();
+        $msg = "Adult order updated successful! ";
+        return view('adults.index', compact('adults','infoContents'));
     }
 
     /**
