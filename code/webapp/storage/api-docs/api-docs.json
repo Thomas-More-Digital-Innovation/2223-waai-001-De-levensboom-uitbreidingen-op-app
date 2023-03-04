@@ -1,0 +1,29 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Waaiburg API",
+        "description": "Waaiburg API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/users": {
+            "get": {
+                "summary": "Get current user",
+                "description": "Returns information about the current user if the request is authenticated",
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "Provides user authentication token",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "403": {
+                        "description": "Access Denied"
+                    }
+                }
+            }
+        }
+    }
+}
