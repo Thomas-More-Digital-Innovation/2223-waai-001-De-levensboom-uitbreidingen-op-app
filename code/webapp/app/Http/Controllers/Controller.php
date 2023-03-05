@@ -13,7 +13,13 @@ use Illuminate\Routing\Controller as BaseController;
  *     version="1.0.0",
  *     title="Waaiburg API",
  * )
-*/
+ * 
+ *  @OA\Tag(
+ *     name="users",
+ *     description="API Endpoints of Projects"
+ * )
+ */
+
 
 class Controller extends BaseController
 {
