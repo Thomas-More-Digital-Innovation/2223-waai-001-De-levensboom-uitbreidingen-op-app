@@ -10,8 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\RegisteredUser;
 
 class ClientController extends Controller
 {
