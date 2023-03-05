@@ -52,8 +52,8 @@
 
                     <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
 
-                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'up']) }}" class="up" class="hover:cursor-move">up</a>
-                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'down']) }}" class="down" class="hover:cursor-move">down</a>
+                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'up']) }}" class="up"><iconify-icon icon="fa6-solid:angle-up" class=""></iconify-icon></a>
+                    <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'down']) }}" class="down"><iconify-icon icon="fa6-solid:angle-down" class=""></iconify-icon></a>
                   </form>
                 </td>
               </tr>
