@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\UserType;
 use App\Policies\QuestionPolicy;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -32,6 +34,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)
+                ->subject('Er is een account voor je aangemaakt.')
+                ->line('Er is een account voor je aangemaakt met een standaard passwoord: "veranderMij". Verander dit wachtwoord zodra je inlogd.')
+                ->line('Klik op de onderstaande link om je email te verifiëren.')
+                ->action('Verifieer Email Adres', $url);
+        });
+
         $this->registerPolicies();
         
         // Gate defines wether or not a user is allowed to do a specific action

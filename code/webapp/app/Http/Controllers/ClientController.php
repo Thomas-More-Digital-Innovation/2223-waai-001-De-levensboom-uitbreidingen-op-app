@@ -10,6 +10,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\RegisteredUser;
 
 class ClientController extends Controller
 {
@@ -51,12 +53,12 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request): RedirectResponse
+    public function store(Request $request) 
     {
         Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 2]);
-        $request->request->add(['password' => bcrypt('password')]);
+        $request->request->add(['password' => bcrypt('veranderMij')]);
         $user = User::create($request->all());
 
         event(new Registered($user));
