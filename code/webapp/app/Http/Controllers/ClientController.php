@@ -22,13 +22,14 @@ class ClientController extends Controller
      */
     public function index()
     {
+        
         Gate::authorize('notClient');
               
         $clients = User::where('user_type_id', 2)->get();
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-
+        
         return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors'));
     }
 

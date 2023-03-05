@@ -59,7 +59,6 @@ Route::middleware('auth', 'verified')->group( function () {
         'teenInfoContents' => TeenInfoContentController::class,
     ]);
     Route::get('adults/{adult}/updateOrder', [AdultController::class, 'updateOrder'])->name('adults.updateOrder');
-    Route::get('user/reset-password', [ControllersUserController::class, 'resetPassword'])->name('user.reset-password');
 });
 
 require __DIR__.'/auth.php';
