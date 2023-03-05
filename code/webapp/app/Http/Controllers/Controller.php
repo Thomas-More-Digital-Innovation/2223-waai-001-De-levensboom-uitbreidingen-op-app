@@ -18,6 +18,11 @@ use Illuminate\Routing\Controller as BaseController;
  *     name="users",
  *     description="API Endpoints of Projects"
  * )
+ * 
+ * @OA\Tag(
+ *    name="userTypes",
+ *   description="API Endpoints of userTypes"
+ * )
  */
 
 
