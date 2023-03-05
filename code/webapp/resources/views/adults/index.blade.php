@@ -60,7 +60,6 @@
               @endforeach
             </tbody>
           </table>
-          <p id="save">save</p>
         </div>
       </div>
     </div>
