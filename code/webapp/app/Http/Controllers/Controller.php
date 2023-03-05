@@ -28,6 +28,10 @@ use Illuminate\Routing\Controller as BaseController;
  *     name="sections",
  *     description="API Endpoints of sections"
  * )
+ * @OA\Tag(
+ *    name="roles",
+ *   description="API Endpoints of roles"
+ * )
  */
 
 
