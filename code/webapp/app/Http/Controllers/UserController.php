@@ -5,24 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-/**
- * @OA\Get(
- *     path="/api/users",
- *     summary="Get current user",
- *     description="Returns information about the current user if the request is authenticated",
- *     @OA\Parameter(
- *         name="Authentication",
- *         description="Provides user authentication token",
- *         in="header",
- *         required=true
- *     ),
- *     @OA\Response(
- *         response=403,
- *         description="Access Denied"
- *     )
- * )
- */
-
 class UserController extends Controller
 {
     /**
