@@ -91,7 +91,7 @@ use Illuminate\Http\Request;
     * tags={"users"},
     * summary="Get list of users",
     * description="Returns list of users",
-    * operationId="index",
+    * operationId="usersIndex",
     * @OA\Parameter(
     *   name="Authorization",
     *   description="Bearer {token}",
@@ -101,27 +101,27 @@ use Illuminate\Http\Request;
     * @OA\Response(
     *  response=200,
     *  description="successful operation",
-    *  @OA\JsonContent(
-        *   @OA\Property(
-        *    property="status",
-        *    type="boolean",
-        *    example=true
-        *   ),
-        *   @OA\Property(
-        *     property="users",
-        *     type="array",
-        *     @OA\Items(ref="#/components/schemas/User")
-        *   ),
-    *   ),
+        *  @OA\JsonContent(
+            *   @OA\Property(
+            *    property="status",
+            *    type="boolean",
+            *    example=true
+            *   ),
+            *   @OA\Property(
+            *     property="users",
+            *     type="array",
+            *     @OA\Items(ref="#/components/schemas/User")
+            *   ),
+        *  ),
     * ),
-* )
+ * )
  * 
  * @OA\Post(
     * path="/api/users",
     * tags={"users"},
     * summary="Create new user",
     * description="Create new user",
-    * operationId="store",
+    * operationId="usersStore",
     * @OA\RequestBody(
         * required=true,
         * description="Pass user data",
@@ -154,7 +154,7 @@ use Illuminate\Http\Request;
     * tags={"users"},
     * summary="Update existing user",
     * description="Update existing user",
-    * operationId="update",
+    * operationId="usersUpdate",
     * @OA\Parameter(
         * name="id",
         * in="path",
@@ -188,7 +188,7 @@ use Illuminate\Http\Request;
     * tags={"users"},
     * summary="Delete existing user",
     * description="Delete existing user",
-    * operationId="destroy",
+    * operationId="usersDestroy",
     * @OA\Parameter(
         * name="id",
         * in="path",
