@@ -20,8 +20,13 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  * 
  * @OA\Tag(
- *    name="userTypes",
- *   description="API Endpoints of userTypes"
+ *     name="userTypes",
+ *     description="API Endpoints of userTypes"
+ * )
+ * 
+ * @OA\Tag(
+ *     name="sections",
+ *     description="API Endpoints of sections"
  * )
  */
 
