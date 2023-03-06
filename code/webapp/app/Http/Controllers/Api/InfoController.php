@@ -138,6 +138,7 @@ use Illuminate\Http\Request;
     * ),
     * @OA\RequestBody(
         * required=true,
+        * request = "Info",
         * @OA\JsonContent(ref="#/components/schemas/Info"),
     * ),
     * @OA\Response(
@@ -205,7 +206,6 @@ use Illuminate\Http\Request;
         * description="Unauthorized"
     * )
  * )
- * 
  * 
 */
 

@@ -105,6 +105,55 @@
                 }
             }
         },
+        "/api/info/{id}": {
+            "delete": {
+                "tags": [
+                    "info"
+                ],
+                "summary": "Delete info",
+                "description": "Delete info",
+                "operationId": "infoDelete",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer {token}",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Info id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Info deleted succesfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
         "/api/questions": {
             "get": {
                 "tags": [
@@ -1225,6 +1274,60 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "example": "Info updated succesfully"
+                                },
+                                "info": {
+                                    "$ref": "#/components/schemas/Info"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Unauthorized"
+            }
+        },
+        "parameters": {
+            "Authorization": {
+                "name": "Authorization",
+                "in": "header",
+                "description": "Bearer {token}",
+                "required": true
+            },
+            "id": {
+                "name": "id",
+                "in": "path",
+                "description": "Info id",
+                "required": true
+            }
+        },
+        "requestBodies": {
+            "Info": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Info"
+                        }
+                    }
+                }
             }
         },
         "securitySchemes": {
