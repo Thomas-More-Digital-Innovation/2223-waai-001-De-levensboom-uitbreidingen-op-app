@@ -7,6 +7,39 @@ use App\Http\Requests\StoreDepartmentListRequest;
 use App\Models\DepartmentList;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ * @OA\Schema(
+    * schema="DepartmentList",
+    * @OA\Property(
+        * property="id",
+        * type="integer",
+        * format="int64",
+        * example=1
+    * ),
+    * @OA\Property(
+        * property="name",
+        * type="string",
+        * example="Department 1"
+    * ),
+    * @OA\Property(
+        * property="created_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+    * @OA\Property(
+        * property="updated_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+ * )
+ * 
+ * 
+ * 
+*/
+
 class DepartmentListController extends Controller
 {
     /**
