@@ -21,7 +21,10 @@ class UserSeeder extends Seeder
             'surname' => 'Admin',
             'birthdate' => '1990-01-01',
             'email' => 'admin@dewaaiburgapp.eu',
+            'email_verified_at' => now(),
             'password' => bcrypt('adminadmin'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
