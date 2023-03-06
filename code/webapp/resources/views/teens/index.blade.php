@@ -49,6 +49,9 @@
                     <span>|</span>
 
                     <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+
+                    <a href="{{ route('teens.updateOrder', ['teen' => $teen->id, 'order' => 'up']) }}" class="up"><iconify-icon icon="fa6-solid:angle-up" class=""></iconify-icon></a>
+                    <a href="{{ route('teens.updateOrder', ['teen' => $teen->id, 'order' => 'down']) }}" class="down"><iconify-icon icon="fa6-solid:angle-down" class=""></iconify-icon></a>
                   </form>
                 </td>
               </tr>
