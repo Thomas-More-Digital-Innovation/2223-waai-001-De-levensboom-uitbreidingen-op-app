@@ -35,6 +35,141 @@ use Illuminate\Support\Facades\Gate;
          * example="2021-05-01 12:00:00"
      * ),
  * )
+ * 
+ * @OA\Get(
+    * path="/api/departments",
+    * tags={"Departments"},
+    * summary="Get list of departments",
+    * description="Returns list of departments",
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="departments",
+                * type="array",
+                * @OA\Items(
+                    * ref="#/components/schemas/Department"
+                * )
+            * )
+        * )
+    * )
+ * )
+ *
+ * @OA\Post(
+    * path="/api/departments",
+    * tags={"Departments"},
+    * summary="Create a new department",
+    * description="Returns the department data",
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/Department")
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department created succesfully"
+            * ),
+            * @OA\Property(
+                * property="department",
+                * ref="#/components/schemas/Department"
+            * )
+        * )
+    * ),
+ * )
+ *
+ *@OA\Patch(
+    * path="/api/departments/{id}",
+    * tags={"Departments"},
+    * summary="Update an existing department",
+    * description="Returns the department data",
+    * @OA\Parameter(
+        * name="id",
+        * in="path",
+        * description="ID of department to return",
+        * required=true,
+        * @OA\Schema(
+            * type="integer",
+            * format="int64"
+        * )
+    * ),
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/Department")
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department updated succesfully"
+            * ),
+            * @OA\Property(
+                * property="department",
+                * ref="#/components/schemas/Department"
+            * )
+        * )
+    * ),
+ * )
+ *
+ * @OA\Delete(
+    * path="/api/departments/{id}",
+    * tags={"Departments"},
+    * summary="Delete an existing department",
+    * description="Returns the department data",
+    * @OA\Parameter(
+        * name="id",
+        * in="path",
+        * description="ID of department to return",
+        * required=true,
+        * @OA\Schema(
+            * type="integer",
+            * format="int64"
+        * )
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department deleted succesfully"
+            * ),
+            * @OA\Property(
+                * property="department",
+                * ref="#/components/schemas/Department"
+            * )
+        * )
+    * ),
+ * )
+ *
 */
 
 class DepartmentController extends Controller

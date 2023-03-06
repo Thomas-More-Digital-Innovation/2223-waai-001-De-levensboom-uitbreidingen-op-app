@@ -36,7 +36,135 @@ use Illuminate\Http\Request;
     * ),
  * )
  * 
+ * @OA\Get(
+    * path="/api/department-list",
+    * tags={"Department List"},
+    * summary="Get list of department list",
+    * description="Returns list of department list",
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="departmentList",
+                * type="array",
+                * @OA\Items(
+                    * ref="#/components/schemas/DepartmentList"
+                * )
+            * )
+        * )
+    * )
+ * )
  * 
+ * @OA\Post(
+    * path="/api/department-list",
+    * tags={"Department List"},
+    * summary="Create new department list",
+    * description="Create new department list",
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/DepartmentList")
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department List created succesfully"
+            * ),
+            * @OA\Property(
+                * property="departmentList",
+                * ref="#/components/schemas/DepartmentList"
+            * )
+        * )
+    * )
+ * )
+ * 
+ * @OA\Patch(
+    * path="/api/department-list/{id}",
+    * tags={"Department List"},
+    * summary="Update department list",
+    * description="Update department list",
+    * @OA\Parameter(
+        * name="id",
+        * in="path",
+        * description="Department List ID",
+        * required=true,
+        * @OA\Schema(
+            * type="integer",
+            * format="int64"
+        * )
+    * ),
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/DepartmentList")
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department List updated succesfully"
+            * ),
+            * @OA\Property(
+                * property="departmentList",
+                * ref="#/components/schemas/DepartmentList"
+            * )
+        * )
+    * )
+ * )
+ * 
+ * @OA\Delete(
+    * path="/api/department-list/{id}",
+    * tags={"Department List"},
+    * summary="Delete department list",
+    * description="Delete department list",
+    * @OA\Parameter(
+        * name="id",
+        * in="path",
+        * description="Department List ID",
+        * required=true,
+        * @OA\Schema(
+            * type="integer",
+            * format="int64"
+        * )
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Department List deleted succesfully"
+            * )
+        * )
+    * )
+ * )
  * 
 */
 
