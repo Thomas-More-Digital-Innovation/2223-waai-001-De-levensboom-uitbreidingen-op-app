@@ -11,6 +11,31 @@
 </head>
 
 <body class="flex">
+  @if (Hash::check('veranderMij', $currentUser->password))
+    <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 h-full w-full right-0 overflow-x-hidden overflow-y-auto flex items-center justify-center">
+      <div class="h-full w-full bg-black absolute opacity-60"></div>
+      <div class="relative w-full h-full max-w-2xl md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div class="flex items-start justify-between p-4 border-b rounded-t ">
+            <h3 class="text-xl font-semibold text-gray-900">
+                Verander je wachtwoord!
+            </h3>
+          </div>
+          <!-- Modal body -->
+          <div class="p-6 space-y-6">
+            <p class="text-base leading-relaxed text-gray-500">
+              Je wachtwoord is onveilig!
+            </p>
+            <p class="text-base leading-relaxed text-gray-500">
+              Je kan het veranderen in <a href="/user#Pass" class="text-blue-500 underline hover:text-blue-900">Manage Account</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar/>

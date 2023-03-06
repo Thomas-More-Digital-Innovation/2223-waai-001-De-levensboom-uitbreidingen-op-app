@@ -40,7 +40,8 @@ Route::get('/', function () {
         'mentorcount' => $mentorcount,
         'departmentcount' => $departmentcount,
         'newscount' => $newscount,
-        'user' => User::all()
+        'user' => User::all(),
+        'currentUser' => auth()->user(),
     ]);
 })->middleware(['auth', 'verified'])->name('home');
 
