@@ -17,10 +17,10 @@ class AdultController extends Controller
     public function index()
     {
         Gate::authorize('notClient');
-        
+
         $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
         $infoContents = InfoContent::all();
-        return view('adults.index', compact('adults','infoContents'));
+        return view('adults.index', compact('adults', 'infoContents'));
     }
 
     /**
@@ -55,22 +55,46 @@ class AdultController extends Controller
         return redirect('adults')->with('msg', $msg);
     }
 
-    public function updateOrder(Request $request){
+    public function updateOrder(Request $request)
+    {
         Gate::authorize('allowAdmin');
 
         $info = Info::find($request->adult);
+        $orderNumber = $info->orderNumber;
+
         if ($request->order == 'up') {
-            $info->update(['orderNumber' => $info->orderNumber - 1]);
-        }
-        else{
-            $info->update(['orderNumber' => $info->orderNumber + 1]);
+            $other = Info::where('section_id', 1)
+                ->where('orderNumber', '<', $orderNumber)
+                ->orderBy('orderNumber', 'desc')
+                ->first();
+
+            if ($other) {
+                $other->orderNumber += 1;
+                $other->save();
+                $info->orderNumber -= 1;
+                $info->save();
+            }
+        } else {
+            $other = Info::where('section_id', 1)
+                ->where('orderNumber', '>', $orderNumber)
+                ->orderBy('orderNumber', 'asc')
+                ->first();
+
+            if ($other) {
+                $other->orderNumber -= 1;
+                $other->save();
+                $info->orderNumber += 1;
+                $info->save();
+            }
         }
 
-        $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
+        $adults = Info::where('section_id', 1)->orderBy('orderNumber')->get();
         $infoContents = InfoContent::all();
-        $msg = "Adult order updated successful! ";
-        return view('adults.index', compact('adults','infoContents'));
+        $msg = "Adult order updated successfully!";
+
+        return view('adults.index', compact('adults', 'infoContents', 'msg'));
     }
+
 
     /**
      * Display the specified resource.
@@ -95,7 +119,7 @@ class AdultController extends Controller
 
         $adult = Info::find($id);
         $infoContents = InfoContent::where('info_id', $id)->get();
-        return view('adults.edit', compact('adult','infoContents'));
+        return view('adults.edit', compact('adult', 'infoContents'));
     }
 
     /**
@@ -108,7 +132,7 @@ class AdultController extends Controller
     public function update(Request $request, $id)
     {
         Gate::authorize('allowAdmin');
-        
+
         $adult = Info::find($id);
         $adult->update($request->all());
 
@@ -125,11 +149,11 @@ class AdultController extends Controller
     public function destroy($id)
     {
         Gate::authorize('allowAdmin');
-        
+
         InfoContent::where('info_id', $id)->delete();
         $adult = Info::find($id);
         $adult->delete();
-        
+
 
         $msg = "Adult Info Content Deleted successful! ";
         return redirect('adults')->with('msg', $msg);
