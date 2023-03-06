@@ -1288,6 +1288,66 @@
     },
     "components": {
         "schemas": {
+            "Auth": {
+                "properties": {
+                    "user_type_id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "John"
+                    },
+                    "surname": {
+                        "type": "string",
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-05-01 12:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-05-01 12:00:00"
+                    }
+                },
+                "type": "object"
+            },
+            "Department": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Department 1"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-05-01 12:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-05-01 12:00:00"
+                    }
+                },
+                "type": "object"
+            },
             "DepartmentList": {
                 "properties": {
                     "id": {
