@@ -11,6 +11,9 @@
 </head>
 
 <body class="flex">
+  @if ($currentUser->created_at == $currentUser->deleted_at)
+    <p>{{ $user }}</p>
+  @endif
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar/>
