@@ -40,6 +40,7 @@
                   <textarea class="ckeditor form-control" name="content"></textarea>
   
                   <x-form-button text="Aanmaken" />
+                  <x-form-button text="Annuleren" link="teens.index" />
               </form>
             </div>
           </div>
