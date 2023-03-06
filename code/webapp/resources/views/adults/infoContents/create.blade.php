@@ -40,7 +40,7 @@
 
                 <div class="flex gap-5">
                   <x-form-button text="Aanmaken" />
-                  <x-form-button text="Annuleren" link="adults" />
+                  <x-form-button text="Annuleren" link="adults.index" />
                 </div>
             </form>
         </div>
