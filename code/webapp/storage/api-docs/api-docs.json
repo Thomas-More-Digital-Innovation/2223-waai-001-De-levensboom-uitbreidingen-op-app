@@ -9,7 +9,7 @@
         "/api/info-content": {
             "get": {
                 "tags": [
-                    "info-content"
+                    "infocontents"
                 ],
                 "summary": "Get list of info content",
                 "description": "Returns list of info content",
@@ -52,7 +52,7 @@
             },
             "post": {
                 "tags": [
-                    "info-content"
+                    "infocontents"
                 ],
                 "summary": "Create info content",
                 "description": "Create info content",
@@ -108,7 +108,7 @@
         "/api/info-content/{id}": {
             "delete": {
                 "tags": [
-                    "info-content"
+                    "infocontents"
                 ],
                 "summary": "Delete info content",
                 "description": "Delete info content",
@@ -160,7 +160,7 @@
             },
             "patch": {
                 "tags": [
-                    "info-content"
+                    "infocontents"
                 ],
                 "summary": "Update info content",
                 "description": "Update info content",
@@ -227,7 +227,7 @@
         "/api/info": {
             "get": {
                 "tags": [
-                    "info"
+                    "infos"
                 ],
                 "summary": "Get list of info",
                 "description": "Returns list of info",
@@ -270,7 +270,7 @@
             },
             "post": {
                 "tags": [
-                    "info"
+                    "infos"
                 ],
                 "summary": "Create info",
                 "description": "Create info",
@@ -326,7 +326,7 @@
         "/api/info/{id}": {
             "delete": {
                 "tags": [
-                    "info"
+                    "infos"
                 ],
                 "summary": "Delete info",
                 "description": "Delete info",
