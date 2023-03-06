@@ -912,6 +912,34 @@
         {
             "name": "roles",
             "description": "API Endpoints of roles"
+        },
+        {
+            "name": "questions",
+            "description": "API Endpoints of questions"
+        },
+        {
+            "name": "infos",
+            "description": "API Endpoints of infos"
+        },
+        {
+            "name": "infocontents",
+            "description": "API Endpoints of infocontents"
+        },
+        {
+            "name": "departmentlists",
+            "description": "API Endpoints of departmentlists"
+        },
+        {
+            "name": "departments",
+            "description": "API Endpoints of departments"
+        },
+        {
+            "name": "auths",
+            "description": "API Endpoints of auths"
+        },
+        {
+            "name": "answers",
+            "description": "API Endpoints of answers"
         }
     ]
 }
