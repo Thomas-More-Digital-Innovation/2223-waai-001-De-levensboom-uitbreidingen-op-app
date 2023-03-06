@@ -36,47 +36,7 @@ use Illuminate\Http\Request;
     * ),
  * )
  * 
- * @OA/Get(
-    * path="/api/department-list",
-    * tags={"department-list"},
-    * summary="Get list of department list",
-    * description="Returns list of department list",
-    * operationId="departmentListIndex",
-    * @OA\Parameter(
-        * name="Authorization",
-        * description="Bearer {token}",
-        * in="header",
-        * required=true,
-        * @OA\Schema(
-            * type="string"
-        * )
-    * ),
-    * @OA\Response(
-        * response=200,
-        * description="Successful operation",
-        * @OA\JsonContent(
-            * type="object",
-            * @OA\Property(
-                * property="status",
-                * type="boolean",
-                * example=true
-            * ),
-            * @OA\Property(
-                * property="departmentList",
-                * type="array",
-                * @OA\Items(
-                    * ref="#/components/schemas/DepartmentList"
-                * )
-            * )
-        * )
-    * ),
-    * @OA\Response(
-        * response=401,
-        * description="Unauthenticated"
-    * ),
- * )
  * 
-
  * 
 */
 
