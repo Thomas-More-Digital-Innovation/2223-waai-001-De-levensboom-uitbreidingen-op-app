@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Registered;
 
 class MentorController extends Controller
 {
@@ -59,8 +60,10 @@ class MentorController extends Controller
         Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 3]);
-        $request->request->add(['password' => bcrypt('password')]);
-        User::create($request->all());
+        $request->request->add(['password' => bcrypt('veranderMij')]);
+        $user = User::create($request->all());
+
+        event(new Registered($user));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);

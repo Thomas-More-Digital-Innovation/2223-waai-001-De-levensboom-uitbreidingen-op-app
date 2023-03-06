@@ -32,7 +32,7 @@
                   </div>
             </form>
 
-            <h2 class="text-lg font-medium text-gray-900 mt-5">
+            <h2 id="Pass" class="text-lg font-medium text-gray-900 mt-5">
               {{ __('Update Password') }}
             </h2>
             <p class="mt-1 text-sm text-gray-600">
