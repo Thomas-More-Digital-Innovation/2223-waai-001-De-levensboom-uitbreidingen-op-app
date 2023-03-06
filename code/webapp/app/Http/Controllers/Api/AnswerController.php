@@ -43,7 +43,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Get(
     * path="/api/answers",
-    * tags={"Answers"},
+    * tags={"answers"},
     * summary="Get list of answers",
     * description="Returns list of answers",
     * @OA\Response(
@@ -68,7 +68,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Post(
     * path="/api/answers",
-    * tags={"Answers"},
+    * tags={"answers"},
     * summary="Create new answer",
     * description="Create new answer",
     * @OA\RequestBody(
@@ -99,7 +99,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Patch(
     * path="/api/answers/{id}",
-    * tags={"Answers"},
+    * tags={"answers"},
     * summary="Update answer",
     * description="Update answer",
     * @OA\Parameter(
@@ -140,7 +140,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Delete(
     * path="/api/answers/{id}",
-    * tags={"Answers"},
+    * tags={"answers"},
     * summary="Delete answer",
     * description="Delete answer",
     * @OA\Parameter(
