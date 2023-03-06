@@ -7,6 +7,208 @@ use App\Http\Requests\StoreInfoRequest;
 use App\Models\Info;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ * @OA\Schema(
+    * schema="Info",
+    * @OA\Property(
+        * property="id",
+        * type="integer",
+        * format="int64",
+        * example=1
+    * ),
+    * @OA\Property(
+        * property="name",
+        * type="string",
+        * example="Info 1" 
+    * ),
+    * @OA\Property(
+        * property="description",
+        * type="string",
+        * example="Description 1"
+    * ),
+    * @OA\Property(
+        * property="created_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+    * @OA\Property(
+        * property="updated_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+ * )
+ *
+ * 
+ * @OA\Get(
+    * path="/api/info",
+    * tags={"info"},
+    * summary="Get list of info",
+    * description="Returns list of info",
+    * operationId="infoIndex",
+    * @OA\Parameter(
+        * name="Authorization",
+        * description="Bearer {token}",
+        * in="header",
+        * required=true,
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="info's",
+                * type="array",
+                * @OA\Items(ref="#/components/schemas/Info")
+            * )
+        * )
+    * ),
+    * @OA\Response(
+        * response=401,
+        * description="Unauthorized",
+    * ),
+ * )
+ * 
+ * @OA\Post(
+    * path="/api/info",
+    * tags={"info"},
+    * summary="Create info",
+    * description="Create info",
+    * operationId="infoStore",
+    * @OA\Parameter(
+        * name="Authorization",
+        * description="Bearer {token}",
+        * in="header",
+        * required=true,
+    * ),
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/Info")
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Info created succesfully"
+            * ),
+            * @OA\Property(
+                * property="info",
+                * ref="#/components/schemas/Info"
+            * )
+        * )
+    * ),
+    * @OA\Response(
+        * response=401,
+        * description="Unauthorized",
+    * ),
+ * )
+ * 
+ * @OA/Patch(
+    * path="/api/info/{id}",
+    * tags={"info"},
+    * summary="Update info",
+    * description="Update info",
+    * operationId="infoUpdate",
+    * @OA\Parameter(
+        * name="Authorization",
+        * description="Bearer {token}",
+        * in="header",
+        * required=true,
+    * ),
+    * @OA\Parameter(
+        * name="id",
+        * description="Info id",
+        * in="path",
+        * required=true,
+    * ),
+    * @OA\RequestBody(
+        * required=true,
+        * @OA\JsonContent(ref="#/components/schemas/Info"),
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Info updated succesfully"
+            * ),
+            * @OA\Property(
+                * property="info",
+                * ref="#/components/schemas/Info"
+            * ),
+        * )
+    * ),
+    * @OA\Response(
+        * response=401,
+        * description="Unauthorized"
+    * ),
+ * )
+ * 
+ * @OA\Delete(
+    * path="/api/info/{id}",
+    * tags={"info"},
+    * summary="Delete info",
+    * description="Delete info",
+    * operationId="infoDelete",
+    * @OA\Parameter(
+        * name="Authorization",
+        * description="Bearer {token}",
+        * in="header",
+        * required=true,
+    * ),
+    * @OA\Parameter(
+        * name="id",
+        * description="Info id",
+        * in="path",
+        * required=true,
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="successful operation",
+        * @OA\JsonContent(
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="message",
+                * type="string",
+                * example="Info deleted succesfully"
+            * ),
+        * )
+    * ),
+    * @OA\Response(
+        * response=401,
+        * description="Unauthorized"
+    * )
+ * )
+ * 
+ * 
+*/
+
 class InfoController extends Controller
 {
     /**
