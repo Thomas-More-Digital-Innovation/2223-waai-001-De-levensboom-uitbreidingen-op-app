@@ -49,7 +49,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Get(
     * path="/api/info-content",
-    * tags={"info-content"},
+    * tags={"infocontents"},
     * summary="Get list of info content",
     * description="Returns list of info content",
     * operationId="infoContentIndex",
@@ -86,7 +86,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Post(
     * path="/api/info-content",
-    * tags={"info-content"},
+    * tags={"infocontents"},
     * summary="Create info content",
     * description="Create info content",
     * operationId="infoContentStore",
@@ -131,7 +131,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Patch(
     * path="/api/info-content/{id}",
-    * tags={"info-content"},
+    * tags={"infocontents"},
     * summary="Update info content",
     * description="Update info content",
     * operationId="infoContentUpdate",
@@ -187,7 +187,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Delete(
     * path="/api/info-content/{id}",
-    * tags={"info-content"},
+    * tags={"infocontents"},
     * summary="Delete info content",
     * description="Delete info content",
     * operationId="infoContentDelete",

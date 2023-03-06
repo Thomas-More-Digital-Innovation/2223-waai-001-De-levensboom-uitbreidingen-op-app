@@ -44,7 +44,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Get(
     * path="/api/info",
-    * tags={"info"},
+    * tags={"infos"},
     * summary="Get list of info",
     * description="Returns list of info",
     * operationId="infoIndex",
@@ -78,7 +78,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Post(
     * path="/api/info",
-    * tags={"info"},
+    * tags={"infos"},
     * summary="Create info",
     * description="Create info",
     * operationId="infoStore",
@@ -120,7 +120,7 @@ use Illuminate\Http\Request;
  * 
  * @OA/Patch(
     * path="/api/info/{id}",
-    * tags={"info"},
+    * tags={"infos"},
     * summary="Update info",
     * description="Update info",
     * operationId="infoUpdate",
@@ -169,7 +169,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Delete(
     * path="/api/info/{id}",
-    * tags={"info"},
+    * tags={"infos"},
     * summary="Delete info",
     * description="Delete info",
     * operationId="infoDelete",
