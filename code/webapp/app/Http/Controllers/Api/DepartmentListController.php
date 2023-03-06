@@ -7,6 +7,79 @@ use App\Http\Requests\StoreDepartmentListRequest;
 use App\Models\DepartmentList;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ * @OA\Schema(
+    * schema="DepartmentList",
+    * @OA\Property(
+        * property="id",
+        * type="integer",
+        * format="int64",
+        * example=1
+    * ),
+    * @OA\Property(
+        * property="name",
+        * type="string",
+        * example="Department 1"
+    * ),
+    * @OA\Property(
+        * property="created_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+    * @OA\Property(
+        * property="updated_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+ * )
+ * 
+ * @OA/Get(
+    * path="/api/department-list",
+    * tags={"department-list"},
+    * summary="Get list of department list",
+    * description="Returns list of department list",
+    * operationId="departmentListIndex",
+    * @OA\Parameter(
+        * name="Authorization",
+        * description="Bearer {token}",
+        * in="header",
+        * required=true,
+        * @OA\Schema(
+            * type="string"
+        * )
+    * ),
+    * @OA\Response(
+        * response=200,
+        * description="Successful operation",
+        * @OA\JsonContent(
+            * type="object",
+            * @OA\Property(
+                * property="status",
+                * type="boolean",
+                * example=true
+            * ),
+            * @OA\Property(
+                * property="departmentList",
+                * type="array",
+                * @OA\Items(
+                    * ref="#/components/schemas/DepartmentList"
+                * )
+            * )
+        * )
+    * ),
+    * @OA\Response(
+        * response=401,
+        * description="Unauthenticated"
+    * ),
+ * )
+ * 
+
+ * 
+*/
+
 class DepartmentListController extends Controller
 {
     /**
