@@ -18,3 +18,8 @@
 9. Use 'npm run dev' to compile the assets (use 2 terminals!)
 10. Open the link to 127.0.0.1:8000 in your browser
 11. Use 'php artisan migrate:fresh --seed' in your terminal to create the database
+
+## Documentation
+1. Make sure the library l5-swagger is installed locally using composer install
+2. Generate the documentation using php artisan l5-swagger:generate
+3. See the documentation by 127.0.0.1/api/documentation
