@@ -32,6 +32,34 @@ use Illuminate\Routing\Controller as BaseController;
  *    name="roles",
  *   description="API Endpoints of roles"
  * )
+ * @OA\Tag(
+ *     name="questions",
+ *     description="API Endpoints of questions"
+ * )
+ * @OA\Tag(
+ *     name="infos",
+ *     description="API Endpoints of infos"
+ * )
+ * @OA\Tag(
+ *     name="infocontents",
+ *     description="API Endpoints of infocontents"
+ * )
+ * @OA\Tag(
+ *     name="departmentlists",
+ *     description="API Endpoints of departmentlists"
+ * )
+ * @OA\Tag(
+ *     name="departments",
+ *     description="API Endpoints of departments"
+ * )
+ * @OA\Tag(
+ *     name="auths",
+ *     description="API Endpoints of auths"
+ * )
+ * @OA\Tag(
+ *     name="answers",
+ *     description="API Endpoints of answers"
+ * )
  */
 
 
