@@ -28,7 +28,8 @@
             <x-form-input name="firstname" text="Voornaam" />
             <x-form-input name="surname" text="Achternaam" />
             <x-form-input name="email" text="Email" type="email" />
-            <x-form-input name="birthdate" text="Geboortedatum" type="date" />
+            <x-form-input name="birthdate" text="Geboortedatum" type="date" required="false" />
+
 
             <label for="gender" class="font-bold">Geslacht</label>
             <select name="gender" id="gender" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-5">

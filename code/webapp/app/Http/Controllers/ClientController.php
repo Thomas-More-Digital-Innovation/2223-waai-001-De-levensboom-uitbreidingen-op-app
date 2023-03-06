@@ -20,13 +20,14 @@ class ClientController extends Controller
      */
     public function index()
     {
+        
         Gate::authorize('notClient');
               
         $clients = User::where('user_type_id', 2)->get();
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-
+        
         return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors'));
     }
 
@@ -51,12 +52,12 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request): RedirectResponse
+    public function store(Request $request) 
     {
         Gate::authorize('adminOrDep');
 
         $request->request->add(['user_type_id' => 2]);
-        $request->request->add(['password' => bcrypt('password')]);
+        $request->request->add(['password' => bcrypt('veranderMij')]);
         $user = User::create($request->all());
 
         event(new Registered($user));
