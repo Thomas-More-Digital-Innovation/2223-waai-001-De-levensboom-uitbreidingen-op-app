@@ -9,7 +9,7 @@
         "/api/answers": {
             "get": {
                 "tags": [
-                    "Answers"
+                    "answers"
                 ],
                 "summary": "Get list of answers",
                 "description": "Returns list of answers",
@@ -484,6 +484,7 @@
                         "required": true,
                         "schema": {
                             "type": "integer",
+                            "format": "int64"
                             "format": "int64"
                         }
                     }
