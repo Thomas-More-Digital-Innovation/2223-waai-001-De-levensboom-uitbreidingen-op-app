@@ -132,18 +132,18 @@ use Illuminate\Http\Request;
     * description="successful operation",
         * @OA\JsonContent(
             * @OA\Property(
-            *  property="status",
-            *  type="boolean",
-            *  example=true
+                *  property="status",
+                *  type="boolean",
+                *  example=true
             * ),
             * @OA\Property(
-            *  property="message",
-            *  type="string",
-            *  example="User created succesfully"
+                *  property="message",
+                *  type="string",
+                *  example="User created succesfully"
             * ),
             * @OA\Property(
-            *  property="user",
-            *  ref="#/components/schemas/User"
+                *  property="user",
+                *  ref="#/components/schemas/User"
             * ),
         * ),
     * ),
@@ -200,15 +200,15 @@ use Illuminate\Http\Request;
         * description="successful operation",
         * @OA\JsonContent(
             * @OA\Property(
-            * property="status",
-            * type="boolean",
-            * example=true
+                * property="status",
+                * type="boolean",
+                * example=true
             * ),
 
             * @OA\Property(
-            * property="message",
-            * type="string",
-            * example="User deleted succesfully"
+                * property="message",
+                * type="string",
+                * example="User deleted succesfully"
             * ),
         * ),
     * ),

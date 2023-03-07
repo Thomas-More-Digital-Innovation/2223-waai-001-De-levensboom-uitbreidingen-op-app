@@ -9,6 +9,50 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @OA\Schema(
+    * schema="Auth",
+    * @OA\Property(
+        * property="user_type_id",
+        * type="integer",
+        * format="int64",
+        * example=1
+    * ),
+    * @OA\Property(
+        * property="firstname",
+        * type="string",
+        * example="John"
+    * ),
+    * @OA\Property(
+        * property="surname",
+        * type="string",
+        * example="Doe"
+    * ),
+    * @OA\Property(
+        * property="email",
+        * type="string",
+        * example="email"
+    * ),
+    * @OA\Property(
+        * property="password",
+        * type="string",
+        * example="password"
+    * ),
+    * @OA\Property(
+        * property="created_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+    * @OA\Property(
+        * property="updated_at",
+        * type="string",
+        * format="date-time",
+        * example="2021-05-01 12:00:00"
+    * ),
+ * )
+*/
+
 class AuthController extends Controller
 {
     /**
