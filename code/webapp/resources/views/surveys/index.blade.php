@@ -39,6 +39,7 @@
         </div>
       </div>
     </div>
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=18" text="documentatie over tevredenheids meting" />
   </main>
 </body>
 
