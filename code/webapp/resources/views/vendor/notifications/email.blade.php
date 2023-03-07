@@ -1,26 +1,8 @@
 <x-mail::message>
-{{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
-<h1>
-    test
-</h1>
-@endforeach
-
-{{-- Action Button --}}
-@isset($actionText)
-<?php
-    $color = match ($level) {
-        'success', 'error' => $level,
-        default => 'primary',
-    };
-?>
-<x-mail::button :url="$actionUrl" :color="$color">
-{{ $actionText }}
+{!! $infoContent->content !!}
+<x-mail::button :url="$url">
+    {{$actionText}}
 </x-mail::button>
-@endisset
-
-
 @lang('Met vriendelijke groeten'),<br>
 {{ config('app.name') }}
 
@@ -33,6 +15,6 @@
     [
         'actionText' => $actionText,
     ]
-) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
+) <span class="break-all">{{ $url }}</span>
 </x-slot:subcopy>
 </x-mail::message>

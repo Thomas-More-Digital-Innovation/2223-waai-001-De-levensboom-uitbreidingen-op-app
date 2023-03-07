@@ -11,6 +11,7 @@ use App\Policies\QuestionPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Mail\VerifyMail as VerifyMailMailable;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -35,9 +36,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)
-                ->line()
-                ->action('Verifieer Email Adres', $url);
+            return (new VerifyMailMailable($url))
+            ->to($notifiable->email);
         });
 
         $this->registerPolicies();
