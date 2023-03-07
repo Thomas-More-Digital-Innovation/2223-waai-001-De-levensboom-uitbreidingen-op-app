@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
-                ->line('Er is een account voor je aangemaakt met een standaard passwoord: "veranderMij". Verander dit wachtwoord onder <h1>""Manage Account"</h1> zodra je inlogd.')
+                ->line()
                 ->action('Verifieer Email Adres', $url);
         });
 
