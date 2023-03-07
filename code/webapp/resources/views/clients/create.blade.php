@@ -125,38 +125,38 @@
     }
   }
 
-  function addDepartment() {
-    nrOfDep++;
+function addDepartment() {
+  nrOfDep++;
 
-    let dropdowns = document.getElementById('dropdowns');
-    let totalDep = document.getElementById('totalDep');
+  let dropdowns = document.getElementById('dropdowns');
+  let totalDep = document.getElementById('totalDep');
 
-    let newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
-                          <div class="flex items-center mb-5">
-                            <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentors${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                              <option value="">Kies een Afdeling</option>
-                              @foreach ($departments as $department)
-                                <option value="{{ $department->id }}">{{ $department->name }}</option>
-                              @endforeach
-                            </select>
-                          </div>
+  let newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
+                        <div class="flex items-center mb-5">
+                          <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentors${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                            <option value="">Kies een Afdeling</option>
+                            @foreach ($departments as $department)
+                              <option value="{{ $department->id }}">{{ $department->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
 
-                          <div class="flex items-center mb-5">
-                            <select name="mentors${nrOfDep}" id="mentors${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
-                              <option value="">Kies een Begeleider</option>
-                            </select> 
-                            <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
-                          </div>
-                        </div>`;
+                        <div class="flex items-center mb-5">
+                          <select name="mentors${nrOfDep}" id="mentors${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                            <option value="">Kies een Begeleider</option>
+                          </select> 
+                          <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
+                        </div>
+                      </div>`;
 
-    dropdowns.insertAdjacentHTML('beforeend', newDropdown);
-    totalDep.value = nrOfDep;
-  }
+  dropdowns.insertAdjacentHTML('beforeend', newDropdown);
+  totalDep.value = nrOfDep;
+}
 
-  function deleteDepartment( departmentId ) {
-    let dropdowns = document.getElementById('dropdowns');
-    dropdowns.removeChild(document.getElementById(departmentId));
-  }
+function deleteDepartment( departmentId ) {
+  let dropdowns = document.getElementById('dropdowns');
+  dropdowns.removeChild(document.getElementById(departmentId));
+}
 
 </script>
  </html>
