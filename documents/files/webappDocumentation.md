@@ -48,17 +48,16 @@ For the login we have used a laravel breeze package.
 ### Custom mails
 Met Laravel 9 kun je custom mails toevoegen aan je applicatie. Dit betekent dat je aangepaste e-mails kunt maken die je naar gebruikers kunt sturen, bijvoorbeeld om hen op de hoogte te brengen van een wijziging in hun account, een nieuw product of een ander belangrijk bericht.
 
--Notification genereren
+- Notification genereren
 Om custom mails te kunnen verzenden, begin je met het genereren van een notification. Dit is een notificatie die wordt verzonden wanneer er een specifiek event plaatsvindt, bijvoorbeeld wanneer een gebruiker zich registreert op je website. Notifications worden in Laravel 9 gegenereerd met behulp van de make:notification Artisan commando.
 
--Mailable genereren
+- Mailable genereren
 Om ervoor te zorgen dat die niet langs de standaard mail template gaat genereer je een mailable. In die mailable zet je een aantal variabellen die je naar je blade template stuurt. Je kunt een mailable genereren met behulp van de make:mail Artisan commando.
 
--Mail verzenden
+- Mail verzenden
 Nu je de notification en de mailable hebt gegenereerd en de variabelen hebt ingesteld, kun je de mail verzenden. Dit kun je doen door de notify methode aan te roepen op de notification klasse.
-
 "$user->notify(new UserRegistered());"
 
--Template styling
+- Template styling
 Als laatste stap kun je de styling van de e-mails aanpassen. De standaard styling van de e-mails is te vinden onder resources/vendor/mail. Als je de template van de notification wilt aanpassen, kun je deze vinden onder resources/vendor/notification.
 
