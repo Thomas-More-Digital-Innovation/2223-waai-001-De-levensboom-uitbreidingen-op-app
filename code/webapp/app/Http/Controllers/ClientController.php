@@ -52,7 +52,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) 
+    public function store(StoreUserRequest $request) : RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
