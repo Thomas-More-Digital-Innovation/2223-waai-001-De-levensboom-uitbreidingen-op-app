@@ -38,7 +38,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Get(
     * path="/api/department-list",
-    * tags={"Department List"},
+    * tags={"departmentlists"},
     * summary="Get list of department list",
     * description="Returns list of department list",
     * @OA\Response(
@@ -63,7 +63,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Post(
     * path="/api/department-list",
-    * tags={"Department List"},
+    * tags={"departmentlists"},
     * summary="Create new department list",
     * description="Create new department list",
     * @OA\RequestBody(
@@ -94,7 +94,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Patch(
     * path="/api/department-list/{id}",
-    * tags={"Department List"},
+    * tags={"departmentlists"},
     * summary="Update department list",
     * description="Update department list",
     * @OA\Parameter(
@@ -135,7 +135,7 @@ use Illuminate\Http\Request;
  * 
  * @OA\Delete(
     * path="/api/department-list/{id}",
-    * tags={"Department List"},
+    * tags={"departmentlists"},
     * summary="Delete department list",
     * description="Delete department list",
     * @OA\Parameter(

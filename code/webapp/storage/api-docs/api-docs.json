@@ -40,7 +40,7 @@
             },
             "post": {
                 "tags": [
-                    "Answers"
+                    "answers"
                 ],
                 "summary": "Create new answer",
                 "description": "Create new answer",
@@ -84,7 +84,7 @@
         "/api/answers/{id}": {
             "delete": {
                 "tags": [
-                    "Answers"
+                    "answers"
                 ],
                 "summary": "Delete answer",
                 "description": "Delete answer",
@@ -125,7 +125,7 @@
             },
             "patch": {
                 "tags": [
-                    "Answers"
+                    "answers"
                 ],
                 "summary": "Update answer",
                 "description": "Update answer",
@@ -181,7 +181,7 @@
         "/api/departments": {
             "get": {
                 "tags": [
-                    "Departments"
+                    "departments"
                 ],
                 "summary": "Get list of departments",
                 "description": "Returns list of departments",
@@ -212,7 +212,7 @@
             },
             "post": {
                 "tags": [
-                    "Departments"
+                    "departments"
                 ],
                 "summary": "Create a new department",
                 "description": "Returns the department data",
@@ -256,7 +256,7 @@
         "/api/departments/{id}": {
             "delete": {
                 "tags": [
-                    "Departments"
+                    "departments"
                 ],
                 "summary": "Delete an existing department",
                 "description": "Returns the department data",
@@ -300,7 +300,7 @@
             },
             "patch": {
                 "tags": [
-                    "Departments"
+                    "departments"
                 ],
                 "summary": "Update an existing department",
                 "description": "Returns the department data",
@@ -356,7 +356,7 @@
         "/api/department-list": {
             "get": {
                 "tags": [
-                    "Department List"
+                    "departmentlists"
                 ],
                 "summary": "Get list of department list",
                 "description": "Returns list of department list",
@@ -387,7 +387,7 @@
             },
             "post": {
                 "tags": [
-                    "Department List"
+                    "departmentlists"
                 ],
                 "summary": "Create new department list",
                 "description": "Create new department list",
@@ -431,7 +431,7 @@
         "/api/department-list/{id}": {
             "delete": {
                 "tags": [
-                    "Department List"
+                    "departmentlists"
                 ],
                 "summary": "Delete department list",
                 "description": "Delete department list",
@@ -472,7 +472,7 @@
             },
             "patch": {
                 "tags": [
-                    "Department List"
+                    "departmentlists"
                 ],
                 "summary": "Update department list",
                 "description": "Update department list",
@@ -484,7 +484,6 @@
                         "required": true,
                         "schema": {
                             "type": "integer",
-                            "format": "int64"
                             "format": "int64"
                         }
                     }

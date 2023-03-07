@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Gate;
  * 
  * @OA\Get(
     * path="/api/departments",
-    * tags={"Departments"},
+    * tags={"departments"},
     * summary="Get list of departments",
     * description="Returns list of departments",
     * @OA\Response(
@@ -63,7 +63,7 @@ use Illuminate\Support\Facades\Gate;
  *
  * @OA\Post(
     * path="/api/departments",
-    * tags={"Departments"},
+    * tags={"departments"},
     * summary="Create a new department",
     * description="Returns the department data",
     * @OA\RequestBody(
@@ -94,7 +94,7 @@ use Illuminate\Support\Facades\Gate;
  *
  *@OA\Patch(
     * path="/api/departments/{id}",
-    * tags={"Departments"},
+    * tags={"departments"},
     * summary="Update an existing department",
     * description="Returns the department data",
     * @OA\Parameter(
@@ -135,7 +135,7 @@ use Illuminate\Support\Facades\Gate;
  *
  * @OA\Delete(
     * path="/api/departments/{id}",
-    * tags={"Departments"},
+    * tags={"departments"},
     * summary="Delete an existing department",
     * description="Returns the department data",
     * @OA\Parameter(
