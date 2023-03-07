@@ -46,6 +46,9 @@ class AuthServiceProvider extends ServiceProvider
         
         // Gate defines wether or not a user is allowed to do a specific action
 
+        // General gates
+        //---------------------------------------------------------------//
+        
         // This Gate is to check if a user is an Admin.
         Gate::define('allowAdmin', function (User $user){
             // Get the userTypeID of the user
@@ -54,6 +57,9 @@ class AuthServiceProvider extends ServiceProvider
             $userType = UserType::find($userTypeId)->id;
             return $userType === 1; // Admin
         });
+
+        //---------------------------------------------------------------//
+        // These are the webApp gates //
 
         // This Gate is to check if a user is an Admin or Department Head.
         Gate::define('adminOrDep', function (User $user) {
@@ -152,6 +158,8 @@ class AuthServiceProvider extends ServiceProvider
         //         return $userType === 1; // Admin
         //     }
         // });
+
+        //---------------------------------------------------------------//
 
     }
 }
