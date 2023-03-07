@@ -8,11 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Notifications\Notifiable;
 use App\Models\InfoContent;
 
-
-class PasswordReset extends Mailable
+class VerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $url;
@@ -27,8 +25,8 @@ class PasswordReset extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 4)->get()->first();     //info_id: 4 = password_reset mail in database 
-        $this->actionText = "Reset wachtwoord"; //Text on button in mail
+        $this->infoContent = InfoContent::where('info_id', 2)->get()->first();     //info_id: 2 = VerifyMail mail in database 
+        $this->actionText = "Verifieer email"; //Text on button in mail
     }
 
     /**
@@ -39,7 +37,7 @@ class PasswordReset extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: $this->infoContent->title,
+            subject: 'Verify Mail',
         );
     }
 

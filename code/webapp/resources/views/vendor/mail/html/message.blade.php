@@ -7,7 +7,6 @@
 </x-slot:header>
 
 {{-- Body --}}
-<h1>hjdqhkjdqhdqk</h1>
 {{ $slot }}
 
 {{-- Subcopy --}}
