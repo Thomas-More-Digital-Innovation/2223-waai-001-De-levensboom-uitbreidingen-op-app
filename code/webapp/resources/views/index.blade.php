@@ -74,6 +74,7 @@
         </div>
       </a>
     </div>
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf" />
   </main>
 </body>
 

@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
   </main>
 </body>
 

@@ -38,9 +38,11 @@
   
                   <label for="text" class="font-bold">Inhoud*</label>
                   <textarea class="ckeditor form-control" name="content"></textarea>
-  
-                  <x-form-button text="Aanmaken" />
-                  <x-form-button text="Annuleren" link="teens.index" />
+                  
+                  <div class="flex gap-5">
+                    <x-form-button text="Aanmaken" />
+                    <x-form-button text="Annuleren" link="teens.index" />
+                  </div>
               </form>
             </div>
           </div>

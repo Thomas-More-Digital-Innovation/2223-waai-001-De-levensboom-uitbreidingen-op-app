@@ -15,7 +15,7 @@
     <x-welcome />
 
     <div class="flex flex-row">
-      <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
+      <div class="m-5 bg-white rounded border flex w-1/2 flex-col h-full">
         <div class="border-t-4 rounded border-[#3c8dbc]">
           <div class="m-3">
               <h1 class="text-2xl">Info segment bewerken</h1>
@@ -36,42 +36,45 @@
         </div>
       </div>
 
-      <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
-        <div class="border-t-4 rounded border-[#3c8dbc]">
-          <div class="m-3">
-            <div class="flex items-center justify-between my-3">
-              <h1 class="text-2xl">Infoblokken</h1>
-              <a href="{{ route('teenInfoContents.create',['info_id' => $teen->id]) }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
+      <div class="flex flex-col w-1/2">
+        <div class="m-5 bg-white rounded border flex flex-col h-full">
+          <div class="border-t-4 rounded border-[#3c8dbc]">
+            <div class="m-3">
+              <div class="flex items-center justify-between my-3">
+                <h1 class="text-2xl">Infoblokken</h1>
+                <a href="{{ route('teenInfoContents.create',['info_id' => $teen->id]) }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
+            </div>
+              <table class="border-collapse border border-[#f4f4f4] w-full">
+                <thead>
+                  <tr>
+                    <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
+                    <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($infoContents as $infoContent)
+                  <tr class="font-normal">
+                    <td class="border border-[#f4f4f4] py-2 px-6">{{ $infoContent->title }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6">
+                      <form action="{{ route('teenInfoContents.destroy', $infoContent->id) }}" method="post">
+                        @csrf
+                        @method('delete')
+    
+                        <a href="{{ route('teenInfoContents.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                        <span>|</span>
+    
+                        <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
-            <table class="border-collapse border border-[#f4f4f4] w-full">
-              <thead>
-                <tr>
-                  <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
-                  <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($infoContents as $infoContent)
-                <tr class="font-normal">
-                  <td class="border border-[#f4f4f4] py-2 px-6">{{ $infoContent->title }}</td>
-                  <td class="border border-[#f4f4f4] py-2 px-6">
-                    <form action="{{ route('teenInfoContents.destroy', $infoContent->id) }}" method="post">
-                      @csrf
-                      @method('delete')
-  
-                      <a href="{{ route('teenInfoContents.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
-                      <span>|</span>
-  
-                      <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
-                    </form>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+        </div> 
+        <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=11" text="documentatie over info blokken" />
+      </div>       
     </div>
   </main>
 </body>
