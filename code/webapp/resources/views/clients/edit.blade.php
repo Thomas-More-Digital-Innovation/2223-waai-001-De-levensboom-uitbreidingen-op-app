@@ -97,6 +97,16 @@
         </div>
       </div>
     </div>
+
+    <div class="m-5 bg-white rounded border">
+      <div class="border-t-4 rounded border-[#f39c12]">
+        <div class="m-3">
+          <h1 class="text-2xl">Tevredenheids meting</h1>
+          <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client</p>
+          <a href="{{ route("clients.index") }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting versturen</a>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
