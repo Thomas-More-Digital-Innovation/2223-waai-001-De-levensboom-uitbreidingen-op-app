@@ -29,7 +29,7 @@
               Je wachtwoord is onveilig!
             </p>
             <p class="text-base leading-relaxed text-gray-500">
-              Je kan het veranderen in <a href="/user#Pass" class="text-blue-500 underline hover:text-blue-900">Manage Account</a>
+              Je kan het veranderen in <a href="/user#Pass" class="text-blue-500 underline hover:text-blue-900">Beheer account</a>
             </p>
           </div>
         </div>
