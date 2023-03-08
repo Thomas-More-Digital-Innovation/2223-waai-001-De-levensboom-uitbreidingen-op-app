@@ -104,10 +104,10 @@
           <h1 class="text-2xl">Tevredenheids meting</h1>
           @if($client->survey == null)
             <p class="mt-5 mb-7">Er is nog geen tevredenheids meting verstuurd naar deze client</p>
-            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting versturen</a>
+            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white" onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?');">Tevredenheids meting versturen</a>
           @else
             <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client, laatst verstuurd op {{ $client->survey }}</p>
-            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting opnieuw versturen</a>
+            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white" onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?');">Tevredenheids meting opnieuw versturen</a>
           @endif
         </div>
       </div>
