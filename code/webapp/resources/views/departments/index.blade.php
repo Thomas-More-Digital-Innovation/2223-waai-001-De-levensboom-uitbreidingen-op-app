@@ -39,7 +39,7 @@
                     <a href="{{ route('departments.edit', $department->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                     <span>|</span>
 
-                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                    <button type="submit" class="text-[#3c8dbc]" onclick="return confirm('Ben je zeker dat je deze afdeling wilt verwijderen?');">Verwijder</button>
                   </form>
                 </td>
               </tr>
