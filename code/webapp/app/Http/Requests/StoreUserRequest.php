@@ -35,7 +35,8 @@ class StoreUserRequest extends FormRequest
             "street" => "string|nullable",
             "houseNumber" => "string|nullable",
             "city" => "string|nullable",
-            "zipcode" => "string|nullable"
+            "zipcode" => "string|nullable",
+            "survey" => "date|nullable",
         ];
     }
 }

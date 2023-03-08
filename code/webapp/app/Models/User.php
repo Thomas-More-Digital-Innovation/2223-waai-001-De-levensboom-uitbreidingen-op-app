@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\PasswordReset;
+use App\Notifications\Survey;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -31,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'houseNumber', 
         'city', 
         'zipcode',
+        'survey',
     ];
 
     /**
