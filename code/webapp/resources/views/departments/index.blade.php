@@ -9,11 +9,6 @@
 </head>
 
 <body class="flex">
-  @php($show = request()->get('show'))
-  @php($selectedDepartment = request()->get('selectedDepartment'))
-  @if($show)
-    <x-confirm-delete-modal department={{ $selectedDepartment }} />
-  @endif
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar />
@@ -37,10 +32,15 @@
                 <td class="border border-[#f4f4f4] py-2 px-6 w-1/3">{{ $department->name }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6 w-1/3">{{ $department->street . ' ' .  $department->houseNumber }} <br> {{ $department->city . ' ' . $department->zipcode}}  <br> {{ $department->phoneNumber }} <br> {{ $department->email }} </td>
                 <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
-                  <a href="{{ route('departments.edit', $department->id) }}" class="text-[#3c8dbc]">Bewerk</a>
-                  <span>|</span>
+                  <form action="{{ route('departments.destroy', $department->id) }}" method="post">
+                    @csrf
+                    @method('delete')
 
-                  <a href="{{ route('departments.index', ['show' => true, 'selectedDepartment' => $department->id]) }}" class="text-[#3c8dbc]">Verwijder</a>
+                    <a href="{{ route('departments.edit', $department->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                    <span>|</span>
+
+                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                  </form>
                 </td>
               </tr>
               @endforeach
