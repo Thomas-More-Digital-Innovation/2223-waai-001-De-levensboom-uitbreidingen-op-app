@@ -28,7 +28,7 @@
             <x-form-input name="firstname" text="Voornaam" :value="$client" />
             <x-form-input name="surname" text="Achternaam" :value="$client" />
             <x-form-input name="email" text="Email" type="email" :value="$client" />
-            <x-form-input name="birthdate" text="Geboortedatum" type="date" :value="$client" />
+            <x-form-input name="birthdate" text="Geboortedatum" type="date" :value="$client" required="false" />
   
             <label for="gender" class="font-bold">Geslacht</label>
             <select name="gender" id="gender" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-5">
@@ -104,10 +104,10 @@
           <h1 class="text-2xl">Tevredenheids meting</h1>
           @if($client->survey == null)
             <p class="mt-5 mb-7">Er is nog geen tevredenheids meting verstuurd naar deze client</p>
-            <a href="{{ route("clients.index") }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting versturen</a>
+            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting versturen</a>
           @else
             <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client, laatst verstuurd op {{ $client->survey }}</p>
-            <a href="{{ route("clients.index") }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting opnieuw versturen</a>
+            <a href="{{ route("clients.sendSurvey", ['id' => $client->id]) }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting opnieuw versturen</a>
           @endif
         </div>
       </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\InfoContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,7 +17,8 @@ class SurveyController extends Controller
     public function index()
     {
         Gate::authorize('notClient');
-        $surveys = Info::where('section_id', 5)->get();
+        $info = Info::where('section_id', 5)->get()->first();
+        $surveys = InfoContent::where('info_id', $info->id)->get();
         return view('surveys.index', compact('surveys'));
     }
 
@@ -67,7 +69,7 @@ class SurveyController extends Controller
     {
         Gate::authorize('allowAdmin');
         
-        $survey = Info::find($id);
+        $survey = InfoContent::where('info_id', $id)->get()->first();    
         return view('surveys.edit', compact('survey'));
     }
 
@@ -82,7 +84,7 @@ class SurveyController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        $survey = Info::find($id);       
+        $survey = InfoContent::where('info_id', $id)->get()->first();       
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";
