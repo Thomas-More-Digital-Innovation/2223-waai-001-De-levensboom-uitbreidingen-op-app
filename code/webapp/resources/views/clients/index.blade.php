@@ -72,7 +72,7 @@
                     <a href="{{ route('clients.edit', $client->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                     <span>|</span>
 
-                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                    <button type="submit" class="text-[#3c8dbc]" onclick="return confirm('Ben je zeker dat je deze client wilt verwijderen?');">Verwijder</button>
                   </form>
                 </td>
               </tr>
