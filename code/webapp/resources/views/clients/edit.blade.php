@@ -106,7 +106,7 @@
             <p class="mt-5 mb-7">Er is nog geen tevredenheids meting verstuurd naar deze client</p>
             <a href="{{ route("clients.index") }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting versturen</a>
           @else
-            <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client</p>
+            <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client, laatst verstuurd op {{ $client->survey }}</p>
             <a href="{{ route("clients.index") }}" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white">Tevredenheids meting opnieuw versturen</a>
           @endif
         </div>
