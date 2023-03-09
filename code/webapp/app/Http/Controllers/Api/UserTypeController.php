@@ -181,6 +181,7 @@ class UserTypeController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
         $userTypes = UserType::all();
 
         return response()->json([
@@ -207,6 +208,7 @@ class UserTypeController extends Controller
      */
     public function store(StoreUserTypeRequest $request)
     {
+        Gate::authorize('allowAdmin');
         $userType = UserType::create($request->all());
 
         return response()->json([
@@ -247,6 +249,7 @@ class UserTypeController extends Controller
      */
     public function update(StoreUserTypeRequest $request, UserType $userType)
     {
+        Gate::authorize('allowAdmin');
         $userType -> update($request->all());
 
         return response()->json([
@@ -264,6 +267,7 @@ class UserTypeController extends Controller
      */
     public function destroy(UserType $userType)
     {
+        Gate::authorize('allowAdmin');
         $userType -> delete();
 
         return response()->json([

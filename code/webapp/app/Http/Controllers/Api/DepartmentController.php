@@ -208,7 +208,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('allowAdmin');
 
         $department = Department::create($request->all());
 
@@ -271,7 +271,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('createDestroyTable');
+        Gate::authorize('adminOrDep');
         
         $department->delete();
 

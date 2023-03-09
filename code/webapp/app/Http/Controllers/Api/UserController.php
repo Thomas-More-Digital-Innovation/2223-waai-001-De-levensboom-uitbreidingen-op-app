@@ -224,6 +224,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
         $user = User::all();
 
         return response()->json([
@@ -251,6 +252,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        Gate::authorize('adminOrDep');
         $user = User::create($request->all());
 
         return response()->json([
@@ -291,6 +293,7 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, User $user)
     {
+        Gate::authorize('editAccount', $user);
         $user->update($request->all());
 
         return response()->json([
@@ -308,6 +311,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize('adminOrDep');
         $user->delete();
 
         return response()->json([

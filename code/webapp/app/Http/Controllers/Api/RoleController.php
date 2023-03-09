@@ -206,6 +206,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('notClient');
         $role = Role::all();
 
         return response()->json([
@@ -232,6 +233,7 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
+        Gate::authorize('allowAdmin');
         $role = Role::create($request->all());
 
         return response()->json([
@@ -272,6 +274,7 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, Role $role)
     {
+        Gate::authorize('allowAdmin');
         $role->update($request->all());
 
         return response()->json([
@@ -289,6 +292,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        Gate::authorize('allowAdmin');
         $role->delete();
 
         return response()->json([
