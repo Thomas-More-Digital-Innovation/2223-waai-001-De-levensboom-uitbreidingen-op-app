@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('titleImage')->nullable();
             $table->string('url')->nullable();
             $table->string('shortContent')->nullable();
-            $table->string('content')->nullable();
+            $table->text('content')->nullable();
             $table->integer('orderNumber')->nullable();
             $table->timestamps();
 

@@ -115,6 +115,7 @@ class ClientController extends Controller
     public function sendSurvey($id)
     {
         $url = InfoContent::where('info_id', 1)->first()->url;
+        $url = $url . $id;
         User::find($id)->notify(new Survey($url));;
         User::find($id)->update(['survey' => now()]);
 
