@@ -30,7 +30,7 @@
               @foreach ($news as $new)
               <tr class="font-normal">
                 <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $new->title }}</td>
-                <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $new->gecreerdop }}</td>
+                <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $new->created_at }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
                   <form action="{{ route('news.destroy', $new->id) }}" method="post">
                     @csrf
@@ -39,7 +39,7 @@
                     <a href="{{ route('news.edit', $new->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                     <span>|</span>
 
-                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                    <button type="submit" class="text-[#3c8dbc]" onclick="return confirm('Ben je zeker dat je dit nieuwtje wilt verwijderen?');">Verwijder</button>
                   </form>
                 </td>
               </tr>
@@ -49,6 +49,7 @@
         </div>
       </div>
     </div>
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=13" text="documentatie over nieuwtjes" />
   </main>
 </body>
 

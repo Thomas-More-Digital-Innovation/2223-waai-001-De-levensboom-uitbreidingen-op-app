@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Department;
 use App\Models\DepartmentList;
+use App\Models\Info;
+use App\Models\InfoContent;
 use App\Models\User;
+use App\Notifications\Survey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -52,7 +55,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) 
+    public function store(StoreUserRequest $request) : RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
@@ -107,6 +110,16 @@ class ClientController extends Controller
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
         return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments'));
 
+    }
+
+    public function sendSurvey($id)
+    {
+        $url = InfoContent::where('info_id', 1)->first()->url;
+        $url = $url . $id;
+        User::find($id)->notify(new Survey($url));;
+        User::find($id)->update(['survey' => now()]);
+
+        return redirect()->back();
     }
 
     /**

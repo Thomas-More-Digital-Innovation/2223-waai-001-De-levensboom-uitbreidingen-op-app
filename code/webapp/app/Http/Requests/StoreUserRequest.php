@@ -29,13 +29,14 @@ class StoreUserRequest extends FormRequest
             "surname" => "string|required",
             "birthdate" => "date|nullable",
             "email" => "string|required|unique:users",
-            "password" => "string|required",
+            "password" => "string",
             "phoneNumber" => "string|nullable",
             "gender" => "string|nullable",
             "street" => "string|nullable",
             "houseNumber" => "string|nullable",
             "city" => "string|nullable",
-            "zipcode" => "string|nullable"
+            "zipcode" => "string|nullable",
+            "survey" => "date|nullable",
         ];
     }
 }

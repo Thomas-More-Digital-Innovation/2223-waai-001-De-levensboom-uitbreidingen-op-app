@@ -48,7 +48,7 @@
                     <a href="{{ route('teens.edit', $teen->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                     <span>|</span>
 
-                    <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                    <button type="submit" class="text-[#3c8dbc]" onclick="return confirm('Ben je zeker dat je dit info segment wilt verwijderen?');">Verwijder</button>
 
                     <a href="{{ route('teens.updateOrder', ['teen' => $teen->id, 'order' => 'up']) }}" class="up"><iconify-icon icon="fa6-solid:angle-up" class=""></iconify-icon></a>
                     <a href="{{ route('teens.updateOrder', ['teen' => $teen->id, 'order' => 'down']) }}" class="down"><iconify-icon icon="fa6-solid:angle-down" class=""></iconify-icon></a>
@@ -61,6 +61,7 @@
         </div>
       </div>
     </div>
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=10" text="documentatie over info segmenten" />
   </main>
 </body>
 

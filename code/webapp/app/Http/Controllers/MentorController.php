@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\Role;
@@ -10,6 +11,7 @@ use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 
 class MentorController extends Controller
 {
@@ -55,7 +57,7 @@ class MentorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request) : RedirectResponse
     {
         Gate::authorize('adminOrDep');
 

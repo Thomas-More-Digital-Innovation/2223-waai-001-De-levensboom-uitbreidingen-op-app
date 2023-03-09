@@ -11,6 +11,7 @@ use App\Policies\QuestionPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Mail\VerifyMail as VerifyMailMailable;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -35,11 +36,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)
-                ->subject('Er is een account voor je aangemaakt.')
-                ->line('Er is een account voor je aangemaakt met een standaard passwoord: "veranderMij". Verander dit wachtwoord onder ""Manage Account" zodra je inlogd.')
-                ->line('Klik op de onderstaande link om je email te verifiëren.')
-                ->action('Verifieer Email Adres', $url);
+            return (new VerifyMailMailable($url))
+            ->to($notifiable->email);
         });
 
         $this->registerPolicies();

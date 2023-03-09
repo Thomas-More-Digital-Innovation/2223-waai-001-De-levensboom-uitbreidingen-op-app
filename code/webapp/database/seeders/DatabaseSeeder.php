@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             SurveySeeder::class,
             MailSeeder::class,
+            MailContentSeeder::class,
             UserSeeder::class,
         ]);
     }
