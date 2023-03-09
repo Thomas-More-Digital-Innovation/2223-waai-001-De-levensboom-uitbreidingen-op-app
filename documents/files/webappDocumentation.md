@@ -46,6 +46,14 @@ For the login we have used a laravel breeze package.
 - Department Head - All of above, add/edit/delete users, edit own department
 - Admin - All of above, everything else
 
+### Gates
+We implemented gates to ensure the security of all pages and API routes. These gates contain specific conditions that a user must meet to perform an action successfully. The following gates were created:
+- allowAdmin: This gate verifies if the user is an admin. If not, the user cannot proceed.
+- adminOrDep: This gate checks if the user is either an admin or a department head.
+- editDepartment: This gate checks if the user has the necessary permissions to edit the selected department.
+- editAccount: This gate checks if the user has the necessary permissions to edit the selected user account.
+- notClient: This gate checks if the user is a client. If so, the user is not authorized to proceed with the action.
+
 ### Custom Emails
 With Laravel 9, you can add custom emails to your application. This means you can create customized emails that you can send to users, for example, to notify them of a change in their account, a new product, or any other important message.
 
