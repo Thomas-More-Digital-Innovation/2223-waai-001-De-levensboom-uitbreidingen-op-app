@@ -8,6 +8,7 @@ use App\Models\DepartmentList;
 use App\Models\Info;
 use App\Models\InfoContent;
 use App\Models\User;
+use App\Models\UserList;
 use App\Notifications\Survey;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -74,6 +75,10 @@ class ClientController extends Controller
                     'department_id' => $department,
                     'role_id' => 2,
                 ]);
+                UserList::create([
+                    'client_id' => User::latest()->first()->id,
+                    'mentor_id' => $mentor,
+                ]);
             }
         }
         // Still need to create UserList, this to connect the client to the mentor
@@ -106,6 +111,7 @@ class ClientController extends Controller
         $client = User::find($id);
         $departments = Department::all();
         $departmentsList = DepartmentList::all();
+        $usersList = UserList::all();
         $userDepartments = DepartmentList::where('user_id', $id)->get();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
         return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments'));
