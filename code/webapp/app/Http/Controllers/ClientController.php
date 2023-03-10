@@ -30,9 +30,10 @@ class ClientController extends Controller
         $clients = User::where('user_type_id', 2)->get();
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
+        $userLists = UserList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
         
-        return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors'));
+        return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors', 'userLists'));
     }
 
     /**
@@ -111,10 +112,10 @@ class ClientController extends Controller
         $client = User::find($id);
         $departments = Department::all();
         $departmentsList = DepartmentList::all();
-        $usersList = UserList::all();
+        $usersList = UserList::where('client_id', $id)->get();
         $userDepartments = DepartmentList::where('user_id', $id)->get();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments'));
+        return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments', 'usersList'));
 
     }
 
@@ -142,7 +143,10 @@ class ClientController extends Controller
         $client = User::find($id);
         $client->update($request->all());
 
+        // dd($request);
+
         DepartmentList::Where('user_id', $id)->delete();
+        UserList::Where('client_id', $id)->delete();
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $mentor = $request->input('mentor' . $i);
@@ -151,6 +155,10 @@ class ClientController extends Controller
                     'user_id' => $id,
                     'department_id' => $department,
                     'role_id' => 2,
+                ]);
+                UserList::create([
+                    'client_id' => $id,
+                    'mentor_id' => $mentor,
                 ]);
             }
         }
@@ -170,6 +178,7 @@ class ClientController extends Controller
         Gate::authorize('adminOrDep');
 
         DepartmentList::where('user_id', $id)->delete();
+        UserList::where('client_id', $id)->delete();
         $client = User::find($id);
         $client->delete();
 
