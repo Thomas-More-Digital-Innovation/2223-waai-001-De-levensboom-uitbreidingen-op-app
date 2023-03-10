@@ -9,7 +9,7 @@
   <title>Waaiburg - Clienten</title>
 </head>
 
-<body class="flex relative">
+<body class="flex relative" onload="setDepartments('{{ count($departmentsList) ? count($departmentsList) : 1 }}')">
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar />
@@ -93,7 +93,7 @@
               @endfor
             </div>
 
-            <input name="totalDep" id="totalDep" value="{{ count($userDepartments) ? count($userDepartments) : 0 }}" class="hidden" />
+            <input name="totalDep" id="totalDep" value="{{ count($userDepartments) ? count($userDepartments) : 1 }}" class="hidden" />
             <hr>
             <x-contactgegevens :contactgegevens="$client" />
 
@@ -125,6 +125,10 @@
 
 <script>
   let nrOfDep = 1;
+
+  function setDepartments( nrOfDepartments ) {
+    nrOfDep = nrOfDepartments;
+  }
 
   function getDepartments(departmentsList, allMentors, departmentId, mentorId) {
     selectedDepartments = document.getElementById(departmentId).value;
