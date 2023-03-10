@@ -72,15 +72,19 @@
                         <select name="mentor{{ $i }}" id="mentor{{ $i }}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                           <option value="">Kies een Begeleider</option>
                           @foreach ($mentors as $mentor)
-                            <option value="{{ $mentor->id }}"
-                              @if (count($usersList))
-                                @if ($usersList[$i]->mentor_id == $mentor->id)
-                                  selected
-                                @endif
+                            @foreach ($departmentsList as $department)
+                              @if ($department->department_id == $userDepartments[$i]->department_id && $department->user_id == $mentor->id)
+                                <option value="{{ $mentor->id }}"
+                                  @if (count($usersList))
+                                    @if ($usersList[$i]->mentor_id == $mentor->id)
+                                      selected
+                                    @endif
+                                  @endif
+                                  >
+                                  {{ $mentor->firstname }} {{ $mentor->surname }}
+                                </option>
                               @endif
-                              >
-                              {{ $mentor->firstname }} {{ $mentor->surname }}
-                            </option>
+                            @endforeach
                           @endforeach
                         </select>
                         @if ( $i != 0 )

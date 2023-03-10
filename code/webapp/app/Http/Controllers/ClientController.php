@@ -143,8 +143,6 @@ class ClientController extends Controller
         $client = User::find($id);
         $client->update($request->all());
 
-        // dd($request);
-
         DepartmentList::Where('user_id', $id)->delete();
         UserList::Where('client_id', $id)->delete();
         for ($i = 0; $i <= $request->totalDep; $i++) {
