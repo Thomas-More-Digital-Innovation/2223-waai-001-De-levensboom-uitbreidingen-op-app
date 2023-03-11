@@ -153,6 +153,7 @@ class MentorController extends Controller
         Gate::authorize('adminOrDep');
         
         DepartmentList::where('user_id', $id)->delete();
+        UserList::where('mentor_id', $id)->delete();
         $mentor = User::find($id);
         $mentor->delete();
 

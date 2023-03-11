@@ -8,7 +8,7 @@
   <title>Waaiburg - Begeleiders</title>
 </head>
 
-<body class="flex">
+<body class="flex" onload="setDepartments('{{ count($departmentsList) ? count($departmentsList) : 1 }}')">
   <x-navbar />
   <main class="w-full bg-[#ecf0f5]">
     <x-topbar />
@@ -82,7 +82,7 @@
                   @endfor
                 </div>
 
-                <input name="totalDep" id="totalDep" value="1" class="hidden" />
+                <input name="totalDep" id="totalDep" value="{{ count($departmentsList) ? count($departmentsList) : 1 }}" class="hidden" />
                 <hr/>
                 <x-contactgegevens :contactgegevens="$mentor" />
 
@@ -99,6 +99,10 @@
 
 <script>
   let nrOfDep = 1;
+
+  function setDepartments( nrOfDepartments ) {
+    nrOfDep = nrOfDepartments;
+  }
 
   function addDepartment() {
     nrOfDep++;
