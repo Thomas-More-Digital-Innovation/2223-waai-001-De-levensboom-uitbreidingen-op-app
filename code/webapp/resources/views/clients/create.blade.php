@@ -45,7 +45,7 @@
                     <div class="flex items-center gap-3 mt-3 mb-3">
                       <label for="department0" class="font-bold">Afdeling</label>
                     </div>
-                    <select name="department0" id="department0" onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department0', 'mentors0')" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                    <select name="department0" id="department0" onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department0', 'mentor0')" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                       <option value="">Kies een Afdeling</option>
                       @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -55,11 +55,11 @@
       
                   <div>
                     <div class="flex items-center gap-3 mt-3 mb-3">
-                      <label for="mentors0" class="font-bold">Begeleiders</label>
+                      <label for="mentor0" class="font-bold">Begeleiders</label>
                       <iconify-icon icon="fa6-solid:plus" class="text-[#3c8dbc] text-xl cursor-pointer" onclick="addDepartment()"/>
                     </div>
                     <div class="flex items-center mb-3">
-                      <select name="mentors0" id="mentors0" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                      <select name="mentor0" id="mentor0" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                         <option value="">Kies een Begeleider</option>
                         @foreach ($mentors as $mentor)
                           <option value="{{ $mentor->id }}">{{ $mentor->firstname }} {{ $mentor->surname }}</option>
@@ -88,9 +88,9 @@
 <script>
   let nrOfDep = 1;
 
-  function getDepartments(departmentLists, allMentors, departmentId, mentorsId) {
+  function getDepartments(departmentLists, allMentors, departmentId, mentorId) {
     selectedDepartments = document.getElementById(departmentId).value;
-    let mentorDropdown = document.getElementById(mentorsId);
+    let mentorDropdown = document.getElementById(mentorId);
     let departments = []
     let mentors = []
 
@@ -133,7 +133,7 @@ function addDepartment() {
 
   let newDropdown =  `<div id='${nrOfDep}' class="flex flex-row gap-5">    
                         <div class="flex items-center mb-5">
-                          <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentors${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                          <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                             <option value="">Kies een Afdeling</option>
                             @foreach ($departments as $department)
                               <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -142,7 +142,7 @@ function addDepartment() {
                         </div>
 
                         <div class="flex items-center mb-5">
-                          <select name="mentors${nrOfDep}" id="mentors${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                          <select name="mentor${nrOfDep}" id="mentor${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                             <option value="">Kies een Begeleider</option>
                           </select> 
                           <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>

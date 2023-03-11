@@ -50,17 +50,17 @@
                   @endforeach
                 </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">
-                  {{-- @foreach ($userLists as $userList)
+                  @foreach ($userLists as $userList)
                     @if ($userList->where('client_id', $client->id)->doesntExist())
                       <p>Geen begeleider</p>
                       @break
                     @endif
                     @foreach ($mentors as $mentor)
-                      @if ($userList->user_id == $mentor->id && $userList->client_id == $client->id)
+                      @if ($userList->mentor_id == $mentor->id && $userList->client_id == $client->id)
                         <p>-{{ $mentor->firstname . ' ' . $mentor->surname }}</p>
                       @endif
                     @endforeach
-                  @endforeach --}}
+                  @endforeach
                 </td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->birthdate }}</td>
                 <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->street . ' ' .  $client->houseNumber }} <br> {{ $client->city . ' ' . $client->zipcode}}  <br> {{ $client->phoneNumber }} <br> {{ $client->email }} </td>
