@@ -19,7 +19,7 @@ class AdultController extends Controller
         Gate::authorize('notClient');
 
         $adults = Info::where('section_id', 1)->get()->sortBy('orderNumber');
-        $infoContents = InfoContent::all();
+        $infoContents = InfoContent::orderBy('orderNumber')->get();
         return view('adults.index', compact('adults', 'infoContents'));
     }
 
@@ -118,7 +118,7 @@ class AdultController extends Controller
         Gate::authorize('allowAdmin');
 
         $adult = Info::find($id);
-        $infoContents = InfoContent::where('info_id', $id)->get();
+        $infoContents = InfoContent::where('info_id', $id)->orderBy('orderNumber')->get();
         return view('adults.edit', compact('adult', 'infoContents'));
     }
 
