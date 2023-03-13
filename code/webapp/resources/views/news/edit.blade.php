@@ -26,9 +26,9 @@
             <x-errormessage />
 
             <x-form-input name="title" text="Titel" :value="$news" />
-            <x-form-input name="shortContent" text="Korte inhoud" :value="$news"  />
+            <x-form-input name="shortContent" text="Korte inhoud" :value="$news" required=false  />
             
-            <label for="content" class="font-bold">Inhoud*</label>
+            <label for="content" class="font-bold">Inhoud</label>
             <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
             <div class="flex gap-5">

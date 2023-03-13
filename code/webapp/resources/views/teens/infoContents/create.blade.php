@@ -36,7 +36,7 @@
                   <label for="url" class="font-bold">Meer info link</label>
                   <input type="text" name="url" id="url" placeholder="Enter meer info link" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-3">
   
-                  <label for="text" class="font-bold">Inhoud*</label>
+                  <label for="text" class="font-bold">Inhoud</label>
                   <textarea class="ckeditor form-control" name="content"></textarea>
                   
                   <div class="flex gap-5">

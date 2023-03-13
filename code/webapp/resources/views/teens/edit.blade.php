@@ -63,7 +63,10 @@
                         <a href="{{ route('teenInfoContents.edit', $infoContent->id) }}" class="text-[#3c8dbc]">Bewerk</a>
                         <span>|</span>
     
-                        <button type="submit" class="text-[#3c8dbc]">Verwijder</button>
+                        <button type="submit" class="text-[#3c8dbc]" onclick="return confirm('Ben je zeker dat je dit info segment wilt verwijderen?');">Verwijder</button>
+                      
+                        <a href="{{ route('teenInfoContents.updateOrder', ['teen' => $teen->id, 'info_id' => $infoContent->id, 'order' => 'up']) }}" class="up"><iconify-icon icon="fa6-solid:angle-up" class=""></iconify-icon></a>
+                        <a href="{{ route('teenInfoContents.updateOrder', ['teen' => $teen->id, 'info_id' => $infoContent->id, 'order' => 'down']) }}" class="down"><iconify-icon icon="fa6-solid:angle-down" class=""></iconify-icon></a>      
                       </form>
                     </td>
                   </tr>
