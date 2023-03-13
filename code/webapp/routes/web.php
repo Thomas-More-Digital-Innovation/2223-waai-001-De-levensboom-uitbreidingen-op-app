@@ -60,7 +60,9 @@ Route::middleware('auth', 'verified')->group( function () {
         'teenInfoContents' => TeenInfoContentController::class,
     ]);
     Route::get('adults/{adult}/updateOrder', [AdultController::class, 'updateOrder'])->name('adults.updateOrder');
+    Route::get('adults/{adult}/edit/updateOrder', [AdultInfoContentController::class, 'updateOrder'])->name('adultInfoContents.updateOrder');
     Route::get('teens/{teen}/updateOrder', [TeenController::class, 'updateOrder'])->name('teens.updateOrder');
+    Route::get('teens/{teen}/edit/updateOrder', [TeenInfoContentController::class, 'updateOrder'])->name('teenInfoContents.updateOrder');
     Route::get('clients/sendSurvey/{id}', [ClientController::class, 'sendSurvey'])->name('clients.sendSurvey');
 });
 

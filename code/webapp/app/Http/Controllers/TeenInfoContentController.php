@@ -54,10 +54,53 @@ class TeenInfoContentController extends Controller
             $request->request->add(['titleImage' => $request->titleImageUrl]);
         }
 
+        $highestOrderNumber = InfoContent::where('info_id', $request->info_id)->max('orderNumber');
+        $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
+
         InfoContent::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";
         return redirect('teens/'.$request->info_id.'/edit')->with('msg', $msg);
+    }
+
+    public function updateOrder(Request $request)
+    {
+        Gate::authorize('allowAdmin');
+
+        $infoContent = InfoContent::find($request->info_id);
+        $orderNumber = $infoContent->orderNumber;
+
+        if ($request->order == 'up') {
+            $other = InfoContent::where('info_id', $request->teen)
+                ->where('orderNumber', '<', $orderNumber)
+                ->orderBy('orderNumber', 'desc')
+                ->first();
+
+            if ($other) {
+                $other->orderNumber += 1;
+                $other->save();
+                $infoContent->orderNumber -= 1;
+                $infoContent->save();
+            }
+        } else {
+            $other = InfoContent::where('info_id', $request->teen)
+                ->where('orderNumber', '>', $orderNumber)
+                ->orderBy('orderNumber', 'asc')
+                ->first();
+
+            if ($other) {
+                $other->orderNumber -= 1;
+                $other->save();
+                $infoContent->orderNumber += 1;
+                $infoContent->save();
+            }
+        }
+
+        $teens = Info::where('section_id', 2)->orderBy('orderNumber')->get();
+        $infoContents = InfoContent::orderBy('orderNumber')->get();
+        $msg = "Adult order updated successfully!";
+
+        return redirect('teens/'.$request->teen.'/edit')->with(['msg' => $msg, 'teens' => $teens, 'infoContents' => $infoContents]);
     }
 
     /**
