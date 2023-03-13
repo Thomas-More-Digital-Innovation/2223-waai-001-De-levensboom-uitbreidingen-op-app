@@ -8,6 +8,7 @@ use App\Models\DepartmentList;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserType;
+use App\Models\UserList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
