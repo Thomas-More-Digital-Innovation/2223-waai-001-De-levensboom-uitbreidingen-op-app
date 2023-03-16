@@ -1,6 +1,0 @@
-ErrorDocument 404 /src/pages/error/404.html
-ErrorDocument 403 /src/pages/error/403.html
-Options -Indexes
-
-# Allow Authorization header to be passed to PHP
-CGIPassAuth on
