@@ -200,7 +200,6 @@ use Illuminate\Http\Request;
  * type="boolean",
  * example=true
  * ),
-
  * @OA\Property(
  * property="message",
  * type="string",
@@ -208,7 +207,7 @@ use Illuminate\Http\Request;
  * ),
  * ),
  * ),
- * )  
+ * )
  */
 
 class UserController extends Controller

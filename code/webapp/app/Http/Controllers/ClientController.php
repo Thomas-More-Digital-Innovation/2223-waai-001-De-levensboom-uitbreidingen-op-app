@@ -122,7 +122,7 @@ class ClientController extends Controller
     {
         $url = InfoContent::where('info_id', 1)->first()->url;
         $url = $url . $id;
-        User::find($id)->notify(new Survey($url));;
+        User::find($id)->notify(new Survey($url));
         User::find($id)->update(['survey' => now()]);
 
         return redirect()->back();

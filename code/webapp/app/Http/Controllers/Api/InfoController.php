@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
  * @OA\Property(
  * property="name",
  * type="string",
- * example="Info 1" 
+ * example="Info 1"
  * ),
  * @OA\Property(
  * property="description",

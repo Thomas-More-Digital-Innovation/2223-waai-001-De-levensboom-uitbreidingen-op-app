@@ -27,7 +27,7 @@ class PasswordReset extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 4)->get()->first();     //info_id: 4 = password_reset mail in database 
+        $this->infoContent = InfoContent::where('info_id', 4)->get()->first(); //info_id: 4 = password_reset mail in database 
         $this->actionText = "Reset wachtwoord"; //Text on button in mail
     }
 

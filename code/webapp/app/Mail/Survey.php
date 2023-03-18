@@ -25,7 +25,7 @@ class Survey extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 6)->get()->first();     //info_id: 6 = survey mail in database 
+        $this->infoContent = InfoContent::where('info_id', 6)->get()->first(); //info_id: 6 = survey mail in database 
         $this->actionText = "Open tevredenheids meting"; //Text on button in mail
     }
 
