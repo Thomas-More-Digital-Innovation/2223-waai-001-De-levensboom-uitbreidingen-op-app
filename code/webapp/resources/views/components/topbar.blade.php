@@ -1,5 +1,7 @@
 @vite('resources/css/app.css')
-<script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"
+    integrity="sha384-Wg6YZl1ug3L+m2P1dI9UyM3bbDxm861GXqDX7y1TetknKz8/0AoMTJT0Ktlm2Tgi" crossorigin="anonymous">
+</script>
 <div class="min-h-[56px] bg-[#3c8dbc] flex justify-end items-center text-white">
     <button onclick="document.getElementById('dropdown').classList.toggle('hidden');"
         class="text-white hover:bg-[#337ab7] block p-4"

@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"
+        integrity="sha384-Wg6YZl1ug3L+m2P1dI9UyM3bbDxm861GXqDX7y1TetknKz8/0AoMTJT0Ktlm2Tgi" crossorigin="anonymous">
+    </script>
     <title>Waaiburg - Clienten</title>
 </head>
 
@@ -194,7 +196,9 @@
 
         let newDropdown = `<div id='${nrOfDep}' class="flex flex-row gap-5">    
                           <div class="flex items-center mb-5">
-                            <select onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                            <select
+                              onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}"
+                              class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                               <option value="">Kies een Afdeling</option>
                               @foreach ($departments as $department)
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -203,7 +207,10 @@
                           </div>
 
                           <div class="flex items-center mb-5">
-                            <select name="mentor${nrOfDep}" id="mentor${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                            <select 
+                              name="mentor${nrOfDep}"
+                              id="mentor${nrOfDep}"
+                              class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                               <option value="">Kies een Begeleider</option>
                             </select> 
                             <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>

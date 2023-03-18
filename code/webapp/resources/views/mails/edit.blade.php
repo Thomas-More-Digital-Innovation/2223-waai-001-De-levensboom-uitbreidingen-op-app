@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
     <title>Waaiburg - Mails</title>
-    <script src="//cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"
+        integrity="sha384-YfSzYL1sDylXi5TVFdhLEG6HcUdHjsjPeJ+6yUTybeVgczFkdEDx71I0UsKfDsRa" crossorigin="anonymous">
+    </script>
 </head>
 
 <body class="flex">
