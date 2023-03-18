@@ -66,5 +66,5 @@ Route::middleware('auth', 'verified')->group( function () {
     Route::get('clients/sendSurvey/{id}', [ClientController::class, 'sendSurvey'])->name('clients.sendSurvey');
 });
 
-require __DIR__.'/auth.php';
+require_once __DIR__.'/auth.php';
 

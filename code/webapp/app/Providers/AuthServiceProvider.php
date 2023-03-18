@@ -91,7 +91,7 @@ class AuthServiceProvider extends ServiceProvider
             // check if there is a departmentList
             if(DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->exists()) {
                 // Find correct departmentList with departmentId and userId
-                $departmentLists = DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->first();
+                $departmentList = DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->first();
                 // Get the role of the user
                 $userRole = Role::find($departmentList->role_id)->id;
             } else {
