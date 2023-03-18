@@ -68,8 +68,8 @@ class SurveyController extends Controller
     public function edit($id)
     {
         Gate::authorize('allowAdmin');
-        
-        $survey = InfoContent::where('info_id', $id)->get()->first();    
+
+        $survey = InfoContent::where('info_id', $id)->get()->first();
         return view('surveys.edit', compact('survey'));
     }
 
@@ -84,7 +84,7 @@ class SurveyController extends Controller
     {
         Gate::authorize('allowAdmin');
 
-        $survey = InfoContent::where('info_id', $id)->get()->first();       
+        $survey = InfoContent::where('info_id', $id)->get()->first();
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";

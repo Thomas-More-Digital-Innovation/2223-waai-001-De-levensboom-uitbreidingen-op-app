@@ -24,15 +24,15 @@ class ClientController extends Controller
      */
     public function index()
     {
-        
+
         Gate::authorize('notClient');
-              
+
         $clients = User::where('user_type_id', 2)->get();
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $userLists = UserList::all();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        
+
         return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors', 'userLists'));
     }
 
@@ -57,7 +57,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request) : RedirectResponse
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
@@ -70,7 +70,7 @@ class ClientController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $mentor = $request->input('mentor' . $i);
-            if($department != null) {
+            if ($department != null) {
                 DepartmentList::create([
                     'user_id' => User::latest()->first()->id,
                     'department_id' => $department,
@@ -116,7 +116,6 @@ class ClientController extends Controller
         $userDepartments = DepartmentList::where('user_id', $id)->get();
         $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
         return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments', 'usersList'));
-
     }
 
     public function sendSurvey($id)
@@ -148,7 +147,7 @@ class ClientController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $mentor = $request->input('mentor' . $i);
-            if($department != null) {
+            if ($department != null) {
                 DepartmentList::create([
                     'user_id' => $id,
                     'department_id' => $department,

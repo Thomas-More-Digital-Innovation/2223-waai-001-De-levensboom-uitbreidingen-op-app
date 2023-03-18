@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         Gate::authorize('notClient');
-        
+
         $news = Info::where('section_id', 3)->get();
         return view('news.index', compact('news'));
     }
@@ -97,9 +97,9 @@ class NewsController extends Controller
 
         InfoContent::updateOrCreate(
             ['info_id' => $id],
-            ['title' => $request->title
-            ,'content' => $request->content
-            ,'shortContent' => $request->shortContent],
+            [
+                'title' => $request->title, 'content' => $request->content, 'shortContent' => $request->shortContent
+            ],
         );
 
         $msg = "New Info Content Updated successful! ";
@@ -115,7 +115,7 @@ class NewsController extends Controller
     public function destroy($id)
     {
         Gate::authorize('allowAdmin');
-        
+
         $new = Info::find($id);
         $new->delete();
 
