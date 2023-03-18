@@ -23,3 +23,5 @@
 1. Make sure the library l5-swagger is installed locally using composer install
 2. Generate the documentation using php artisan l5-swagger:generate
 3. See the documentation by 127.0.0.1/api/documentation
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Thomas-More-Digital-Innovation_2223-waai-001-waaiburg-web-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Thomas-More-Digital-Innovation_2223-waai-001-waaiburg-web-app)
