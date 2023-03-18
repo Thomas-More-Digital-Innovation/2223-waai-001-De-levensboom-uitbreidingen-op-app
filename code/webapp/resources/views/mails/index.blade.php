@@ -18,7 +18,7 @@
       <div class="border-t-4 rounded border-[#3c8dbc]">
         <div class="m-3">
           <x-list-title title="Mails" name="" />
-          <table class="border-collapse border border-[#f4f4f4] w-full">
+          <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="mails">
             <thead>
               <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6 text-left">Onderwerp</th>

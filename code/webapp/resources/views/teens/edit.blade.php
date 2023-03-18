@@ -44,7 +44,7 @@
                 <h1 class="text-2xl">Infoblokken</h1>
                 <a href="{{ route('teenInfoContents.create',['info_id' => $teen->id]) }}"><iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon></a>
             </div>
-              <table class="border-collapse border border-[#f4f4f4] w-full">
+              <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="teenInfoContent">
                 <thead>
                   <tr>
                     <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
