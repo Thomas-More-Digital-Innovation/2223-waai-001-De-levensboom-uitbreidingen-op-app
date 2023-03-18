@@ -62,9 +62,8 @@ class AuthController extends Controller
      */
     public function createUser(Request $request)
     {
-
         try {
-            // Define what fields can be used when creating a user 
+            // Define what fields can be used when creating a user
             // Also define which fields are required
             $validateUser = Validator::make(
                 $request->all(),
