@@ -51,6 +51,12 @@ Route::middleware('auth:sanctum')->group( function () {
     ]);
 });
 
+// No Authentication needed
+Route::get('department', [DepartmentController::class, 'index']);
+Route::get('info', [InfoController::class, 'index']);
+Route::get('infoContent', [InfoContentController::class, 'index']);
+Route::get('section', [SectionController::class, 'index']);
+
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
