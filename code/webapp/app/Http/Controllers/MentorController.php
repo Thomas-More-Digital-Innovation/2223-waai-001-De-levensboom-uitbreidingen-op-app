@@ -34,7 +34,7 @@ class MentorController extends Controller
 
         $departmentLists = DepartmentList::all();
         $departments = Department::all();
-        
+
         return view('mentors.index', compact('mentors', 'departmentLists', 'departments'));
     }
 
@@ -58,7 +58,7 @@ class MentorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request) : RedirectResponse
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize('adminOrDep');
 
@@ -71,7 +71,7 @@ class MentorController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $role = $request->input('role' . $i);
-            if($department != null && $role != null) {
+            if ($department != null && $role != null) {
                 DepartmentList::create([
                     'user_id' => User::latest()->first()->id,
                     'department_id' => $department,
@@ -121,7 +121,7 @@ class MentorController extends Controller
     public function update(Request $request, $id)
     {
         Gate::authorize('editAccount', $id);
-        
+
         $mentor = User::find($id);
         $mentor->update($request->all());
 
@@ -130,7 +130,7 @@ class MentorController extends Controller
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input('department' . $i);
             $role = $request->input('role' . $i);
-            if($department != null && $role != null) {
+            if ($department != null && $role != null) {
                 DepartmentList::create([
                     'user_id' => $id,
                     'department_id' => $department,
@@ -152,7 +152,7 @@ class MentorController extends Controller
     public function destroy($id)
     {
         Gate::authorize('adminOrDep');
-        
+
         DepartmentList::where('user_id', $id)->delete();
         UserList::where('mentor_id', $id)->delete();
         $mentor = User::find($id);

@@ -20,7 +20,7 @@ class TeenController extends Controller
 
         $teens = Info::where('section_id', 2)->get();
         $infoContents = InfoContent::orderBy('orderNumber')->get();
-        return view('teens.index', compact('teens','infoContents'));
+        return view('teens.index', compact('teens', 'infoContents'));
     }
 
     /**
@@ -118,7 +118,7 @@ class TeenController extends Controller
 
         $teen = Info::find($id);
         $infoContents = InfoContent::where('info_id', $id)->orderBy('orderNumber')->get();
-        return view('teens.edit', compact('teen','infoContents'));
+        return view('teens.edit', compact('teen', 'infoContents'));
     }
 
     /**
@@ -131,7 +131,7 @@ class TeenController extends Controller
     public function update(Request $request, $id)
     {
         Gate::authorize('allowAdmin');
-        
+
         $teen = Info::find($id);
         $teen->update($request->all());
 
@@ -148,7 +148,7 @@ class TeenController extends Controller
     public function destroy($id)
     {
         Gate::authorize('allowAdmin');
-        
+
         InfoContent::where('info_id', $id)->delete();
         $teen = Info::find($id);
         $teen->delete();

@@ -11,47 +11,47 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * @OA\Schema(
-    * schema="Auth",
-    * @OA\Property(
-        * property="user_type_id",
-        * type="integer",
-        * format="int64",
-        * example=1
-    * ),
-    * @OA\Property(
-        * property="firstname",
-        * type="string",
-        * example="John"
-    * ),
-    * @OA\Property(
-        * property="surname",
-        * type="string",
-        * example="Doe"
-    * ),
-    * @OA\Property(
-        * property="email",
-        * type="string",
-        * example="email"
-    * ),
-    * @OA\Property(
-        * property="password",
-        * type="string",
-        * example="password"
-    * ),
-    * @OA\Property(
-        * property="created_at",
-        * type="string",
-        * format="date-time",
-        * example="2021-05-01 12:00:00"
-    * ),
-    * @OA\Property(
-        * property="updated_at",
-        * type="string",
-        * format="date-time",
-        * example="2021-05-01 12:00:00"
-    * ),
+ * schema="Auth",
+ * @OA\Property(
+ * property="user_type_id",
+ * type="integer",
+ * format="int64",
+ * example=1
+ * ),
+ * @OA\Property(
+ * property="firstname",
+ * type="string",
+ * example="John"
+ * ),
+ * @OA\Property(
+ * property="surname",
+ * type="string",
+ * example="Doe"
+ * ),
+ * @OA\Property(
+ * property="email",
+ * type="string",
+ * example="email"
+ * ),
+ * @OA\Property(
+ * property="password",
+ * type="string",
+ * example="password"
+ * ),
+ * @OA\Property(
+ * property="created_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-05-01 12:00:00"
+ * ),
+ * @OA\Property(
+ * property="updated_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-05-01 12:00:00"
+ * ),
  * )
-*/
+ */
 
 class AuthController extends Controller
 {
@@ -60,22 +60,24 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function createUser(Request $request){
-
+    public function createUser(Request $request)
+    {
         try {
-            // Define what fields can be used when creating a user 
+            // Define what fields can be used when creating a user
             // Also define which fields are required
-            $validateUser = Validator::make($request->all(),
-            [
-            'user_type_id' => 'required',
-            'firstname' => 'required',
-            'surname' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-            ]);
+            $validateUser = Validator::make(
+                $request->all(),
+                [
+                    'user_type_id' => 'required',
+                    'firstname' => 'required',
+                    'surname' => 'required',
+                    'email' => 'required|email|unique:users,email',
+                    'password' => 'required',
+                ]
+            );
 
             // When field is incorrect or missing, throw an error
-            if($validateUser->fails()){
+            if ($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -98,12 +100,11 @@ class AuthController extends Controller
                 'message' => 'User Created Successfully',
                 'Token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
-
         } catch (\Throwable $th) {
             return response()->json([
-                    'status' => false,
-                    'message' => $th->getmessage(),
-                ], 500);
+                'status' => false,
+                'message' => $th->getmessage(),
+            ], 500);
         }
     }
 
@@ -112,16 +113,19 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function loginUser(Request $request){
+    public function loginUser(Request $request)
+    {
 
         try {
-            $validateUser = Validator::make($request->all(),
-            [
-            'email' => 'required|email',
-            'password' => 'required',
-            ]);
+            $validateUser = Validator::make(
+                $request->all(),
+                [
+                    'email' => 'required|email',
+                    'password' => 'required',
+                ]
+            );
 
-            if($validateUser->fails()){
+            if ($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -129,11 +133,11 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            if(!Auth::attempt($request->only(['email', 'password']))){
+            if (!Auth::attempt($request->only(['email', 'password']))) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password do not match.',
-                ], 401); 
+                ], 401);
             }
 
             $user = User::where('email', $request->email)->first();
@@ -143,12 +147,11 @@ class AuthController extends Controller
                 'message' => 'User Logged In Successfully',
                 'Token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
-
         } catch (\Throwable $th) {
             return response()->json([
-                    'status' => false,
-                    'message' => $th->getmessage(),
-                ], 500);
+                'status' => false,
+                'message' => $th->getmessage(),
+            ], 500);
         }
     }
 }

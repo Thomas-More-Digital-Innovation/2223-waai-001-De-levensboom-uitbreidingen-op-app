@@ -8,194 +8,187 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 
 /**
- * 
  * @OA\Schema(
-    * schema="Question",
-    * @OA\Property(
-    * property="id",
-    * type="integer",
-    * format="int64",
-    * example=1
-    * ),
-    * @OA\Property(
-    * property="question",
-    * type="string",
-    * example="Question 1"
-    * ),
-    * @OA\Property(
-    * property="answer",
-    * type="string",
-    * example="Answer 1"
-    * ),
-    * @OA\Property(
-    * property="created_at",
-    * type="string",
-    * format="date-time",
-    * example="2021-05-01 12:00:00"
-    * ),
-    * @OA\Property(
-    * property="updated_at",
-    * type="string",
-    * format="date-time",
-    * example="2021-05-01 12:00:00"
-    * ),
+ * schema="Question",
+ * @OA\Property(
+ * property="id",
+ * type="integer",
+ * format="int64",
+ * example=1
+ * ),
+ * @OA\Property(
+ * property="question",
+ * type="string",
+ * example="Question 1"
+ * ),
+ * @OA\Property(
+ * property="answer",
+ * type="string",
+ * example="Answer 1"
+ * ),
+ * @OA\Property(
+ * property="created_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-05-01 12:00:00"
+ * ),
+ * @OA\Property(
+ * property="updated_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-05-01 12:00:00"
+ * ),
  * )
- * 
  * @OA\Get(
-    * path="/api/questions",
-    * tags={"questions"},
-    * summary="Get list of questions",
-    * description="Returns list of questions",
-    * operationId="questionsIndex",
-    * @OA\Parameter(
-        * name="Authorization",
-        * description="Bearer {token}",
-        * in="header",
-        * required=true,
-    * ),
-    * @OA\Response(
-        * response=200,
-        * description="successful operation",
-        * @OA\JsonContent(
-            * @OA\Property(
-                * property="status",
-                * type="boolean",
-                * example=true
-            * ),
-            * @OA\Property(
-                * property="questions",
-                * type="array",
-                * @OA\Items(ref="#/components/schemas/Question")
-            * )
-        * )
-    * ),
-    * @OA\Response(
-        * response=401,
-        * description="Unauthorized",
-    * )
+ * path="/api/questions",
+ * tags={"questions"},
+ * summary="Get list of questions",
+ * description="Returns list of questions",
+ * operationId="questionsIndex",
+ * @OA\Parameter(
+ * name="Authorization",
+ * description="Bearer {token}",
+ * in="header",
+ * required=true,
+ * ),
+ * @OA\Response(
+ * response=200,
+ * description="successful operation",
+ * @OA\JsonContent(
+ * @OA\Property(
+ * property="status",
+ * type="boolean",
+ * example=true
+ * ),
+ * @OA\Property(
+ * property="questions",
+ * type="array",
+ * @OA\Items(ref="#/components/schemas/Question")
  * )
- * 
- * 
+ * )
+ * ),
+ * @OA\Response(
+ * response=401,
+ * description="Unauthorized",
+ * )
+ * )
  * @OA\Post(
-    * path="/api/questions",
-    * tags={"questions"},
-    * summary="Create new question",
-    * description="Create new question",
-    * operationId="questionsStore",
-    * @OA\Parameter(
-        * name="Authorization",
-        * description="Bearer {token}",
-        * in="header",
-        * required=true,
-    * ),
-    * @OA\RequestBody(
-        * required=true,
-        * @OA\JsonContent(ref="#/components/schemas/Question")
-    * ),
-    * @OA\Response(
-        * response=200,
-        * description="successful operation",
-        * @OA\JsonContent(
-            * @OA\Property(
-               * property="status",
-               * type="boolean",
-               * example=true
-            * ),
-            * @OA\Property(
-                * property="question",
-                * ref="#/components/schemas/Question"
-            * )
-        * )
-    * ),
-    * @OA\Response(
-        * response=401,
-        * description="Unauthorized"
-    * ),
+ * path="/api/questions",
+ * tags={"questions"},
+ * summary="Create new question",
+ * description="Create new question",
+ * operationId="questionsStore",
+ * @OA\Parameter(
+ * name="Authorization",
+ * description="Bearer {token}",
+ * in="header",
+ * required=true,
+ * ),
+ * @OA\RequestBody(
+ * required=true,
+ * @OA\JsonContent(ref="#/components/schemas/Question")
+ * ),
+ * @OA\Response(
+ * response=200,
+ * description="successful operation",
+ * @OA\JsonContent(
+ * @OA\Property(
+ * property="status",
+ * type="boolean",
+ * example=true
+ * ),
+ * @OA\Property(
+ * property="question",
+ * ref="#/components/schemas/Question"
  * )
- * 
+ * )
+ * ),
+ * @OA\Response(
+ * response=401,
+ * description="Unauthorized"
+ * ),
+ * )
  * @OA\Patch(
-    * path="/api/questions/{id}",
-    * tags={"questions"},
-    * summary="Update question",
-    * description="Update question",
-    * operationId="questionsUpdate",
-    * @OA\Parameter(
-        * name="Authorization",
-        * description="Bearer {token}",
-        * in="header",
-        * required=true,
-    * ),
-    * @OA\Parameter(
-        * name="id",
-        * description="Question id",
-        * in="path",
-        * required=true,
-    * ),
-    * @OA\RequestBody(
-        * required=true,
-        * @OA\JsonContent(ref="#/components/schemas/Question")
-    * ),
-    * @OA\Response(
-        * response=200,
-        * description="successful operation",
-        * @OA\JsonContent(
-            * @OA\Property(
-                * property="status",
-                * type="boolean",
-                * example=true
-            * ),
-            * @OA\Property(
-                * property="question",
-                * ref="#/components/schemas/Question"
-            * ),
-        * ),
-    * ),
-    * @OA\Response(
-        * response=401,
-        * description="Unauthorized"
-    * ),
+ * path="/api/questions/{id}",
+ * tags={"questions"},
+ * summary="Update question",
+ * description="Update question",
+ * operationId="questionsUpdate",
+ * @OA\Parameter(
+ * name="Authorization",
+ * description="Bearer {token}",
+ * in="header",
+ * required=true,
+ * ),
+ * @OA\Parameter(
+ * name="id",
+ * description="Question id",
+ * in="path",
+ * required=true,
+ * ),
+ * @OA\RequestBody(
+ * required=true,
+ * @OA\JsonContent(ref="#/components/schemas/Question")
+ * ),
+ * @OA\Response(
+ * response=200,
+ * description="successful operation",
+ * @OA\JsonContent(
+ * @OA\Property(
+ * property="status",
+ * type="boolean",
+ * example=true
+ * ),
+ * @OA\Property(
+ * property="question",
+ * ref="#/components/schemas/Question"
+ * ),
+ * ),
+ * ),
+ * @OA\Response(
+ * response=401,
+ * description="Unauthorized"
+ * ),
  * )
- * 
  * @OA\Delete(
-    * path="/api/questions/{id}",
-    * tags={"questions"},
-    * summary="Delete question",
-    * description="Delete question",
-    * operationId="questionsDestroy",
-    * @OA\Parameter(
-        * name="Authorization",
-        * description="Bearer {token}",
-        * in="header",
-        * required=true,
-    * ),
-    * @OA\Parameter(
-        * name="id",
-        * description="Question id",
-        * in="path",
-        * required=true,
-    * ),
-    * @OA\Response(
-        * response=200,
-        * description="successful operation",
-        * @OA\JsonContent(
-            * @OA\Property(
-                * property="status",
-                * type="boolean",
-                * example=true
-            * ),
-            * @OA\Property(
-                * property="question",
-                * ref="#/components/schemas/Question"
-            * ),
-        * ),
-    * ),
-    * @OA\Response(
-        * response=401,
-        * description="Unauthorized"
-    * ),
+ * path="/api/questions/{id}",
+ * tags={"questions"},
+ * summary="Delete question",
+ * description="Delete question",
+ * operationId="questionsDestroy",
+ * @OA\Parameter(
+ * name="Authorization",
+ * description="Bearer {token}",
+ * in="header",
+ * required=true,
+ * ),
+ * @OA\Parameter(
+ * name="id",
+ * description="Question id",
+ * in="path",
+ * required=true,
+ * ),
+ * @OA\Response(
+ * response=200,
+ * description="successful operation",
+ * @OA\JsonContent(
+ * @OA\Property(
+ * property="status",
+ * type="boolean",
+ * example=true
+ * ),
+ * @OA\Property(
+ * property="question",
+ * ref="#/components/schemas/Question"
+ * ),
+ * ),
+ * ),
+ * @OA\Response(
+ * response=401,
+ * description="Unauthorized"
+ * ),
  * )
- * 
-*/
+ */
 
 class QuestionController extends Controller
 {
@@ -238,7 +231,7 @@ class QuestionController extends Controller
             'status' => true,
             'message' => "Question created succesfully",
             'question' => $question
-        ], 200);  
+        ], 200);
     }
 
     /**
@@ -278,7 +271,7 @@ class QuestionController extends Controller
             'status' => true,
             'message' => "Question updated succesfully",
             'question' => $question
-        ], 200); 
+        ], 200);
     }
 
     /**
@@ -294,6 +287,6 @@ class QuestionController extends Controller
         return response()->json([
             'status' => true,
             'message' => "Question deleted succesfully",
-        ], 200); 
+        ], 200);
     }
 }

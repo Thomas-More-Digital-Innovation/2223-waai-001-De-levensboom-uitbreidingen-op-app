@@ -6,7 +6,8 @@ use Illuminate\View\Component;
 
 class ListTitle extends Component
 {
-    public $title, $name;
+    public $title;
+    public $name;
     /**
      * Create a new component instance.
      *

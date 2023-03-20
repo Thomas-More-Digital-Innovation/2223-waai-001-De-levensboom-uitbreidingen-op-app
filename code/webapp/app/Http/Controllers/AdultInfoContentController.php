@@ -18,7 +18,7 @@ class AdultInfoContentController extends Controller
     public function index()
     {
         Gate::authorize('notClient');
-        
+
         //
     }
 
@@ -47,9 +47,8 @@ class AdultInfoContentController extends Controller
 
         if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
             $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
-            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());  
-        }
-        else {
+            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());
+        } else {
             $request->request->add(['titleImage' => $request->titleImageUrl]);
         }
 
@@ -57,10 +56,10 @@ class AdultInfoContentController extends Controller
         $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
 
         InfoContent::create($request->all());
-        
+
 
         $msg = "New Adult Info Content Created successful! ";
-        return redirect('adults/'.$request->info_id.'/edit')->with('msg', $msg);
+        return redirect('adults/' . $request->info_id . '/edit')->with('msg', $msg);
     }
 
     public function updateOrder(Request $request)
@@ -100,7 +99,7 @@ class AdultInfoContentController extends Controller
         $infoContents = InfoContent::orderBy('orderNumber')->get();
         $msg = "Adult order updated successfully!";
 
-        return redirect('adults/'.$request->adult.'/edit')->with(['msg' => $msg, 'adults' => $adults, 'infoContents' => $infoContents]);
+        return redirect('adults/' . $request->adult . '/edit')->with(['msg' => $msg, 'adults' => $adults, 'infoContents' => $infoContents]);
     }
 
     /**
@@ -127,7 +126,6 @@ class AdultInfoContentController extends Controller
         $infoContent = InfoContent::find($id);
 
         return view('adults.infoContents.edit', compact('infoContent'));
-    
     }
 
     /**
@@ -146,7 +144,7 @@ class AdultInfoContentController extends Controller
         $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Updated successful! ";
-        return redirect('adults/'.$info_id.'/edit')->with('msg', $msg);
+        return redirect('adults/' . $info_id . '/edit')->with('msg', $msg);
     }
 
     /**
@@ -158,12 +156,12 @@ class AdultInfoContentController extends Controller
     public function destroy($id)
     {
         Gate::authorize('allowAdmin');
-        
+
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->delete();
         $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Deleted successful! ";
-        return redirect('adults/'.$info_id.'/edit')->with('msg', $msg);
+        return redirect('adults/' . $info_id . '/edit')->with('msg', $msg);
     }
 }

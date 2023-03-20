@@ -11,168 +11,163 @@ use Illuminate\Http\Request;
 class UserTypeController extends Controller
 /**
  * @OA\Schema(
-    * schema="UserType",
-    * @OA\Property(
-        * property="id",
-        * type="integer",
-        * format="int64",
-        * example=1
-    * ),
-    * @OA\Property(
-        * property="name",
-        * type="string",
-        * example="Admin"
-    * ),
-    * @OA\Property(
-        * property="description",
-        * type="string",
-        * example="Admin"
-    * ),
-    * @OA\Property(
-        * property="created_at",
-        * type="string",
-        * format="date-time",
-        * example="2021-01-01 00:00:00"
-    * ),
-    * @OA\Property(
-        * property="updated_at",
-        * type="string",
-        * format="date-time",
-        * example="2021-01-01 00:00:00"
-    * ),
+ * schema="UserType",
+ * @OA\Property(
+ * property="id",
+ * type="integer",
+ * format="int64",
+ * example=1
+ * ),
+ * @OA\Property(
+ * property="name",
+ * type="string",
+ * example="Admin"
+ * ),
+ * @OA\Property(
+ * property="description",
+ * type="string",
+ * example="Admin"
+ * ),
+ * @OA\Property(
+ * property="created_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-01-01 00:00:00"
+ * ),
+ * @OA\Property(
+ * property="updated_at",
+ * type="string",
+ * format="date-time",
+ * example="2021-01-01 00:00:00"
+ * ),
  * )
- *
  * @OA\Get(
-     * path="/api/userTypes",
-     * tags={"userTypes"},
-     * summary="Get list of userTypes",
-     * description="Returns list of userTypes",
-     * operationId="userTypesIndex",
-     * @OA\Parameter(
-        *   name="Authorization",
-        *   description="Bearer {token}",
-        *   in="header",
-        *   required=true,
-     * ),
-     * @OA\Response(
-        *  response=200,
-        *  description="successful operation",
-        * @OA\JsonContent(
-            *  @OA\Property(
-            *  property="status",
-            *  type="boolean",
-            *  example=true
-            * ),
-            * @OA\Property(
-            *  property="userTypes",
-            *  type="array",
-            *  @OA\Items(ref="#/components/schemas/UserType")
-            * ),
-        * ),
-     * ),
+ * path="/api/userTypes",
+ * tags={"userTypes"},
+ * summary="Get list of userTypes",
+ * description="Returns list of userTypes",
+ * operationId="userTypesIndex",
+ * @OA\Parameter(
+ *   name="Authorization",
+ *   description="Bearer {token}",
+ *   in="header",
+ *   required=true,
  * ),
- * 
+ * @OA\Response(
+ *  response=200,
+ *  description="successful operation",
+ * @OA\JsonContent(
+ *  @OA\Property(
+ *  property="status",
+ *  type="boolean",
+ *  example=true
+ * ),
+ * @OA\Property(
+ *  property="userTypes",
+ *  type="array",
+ *  @OA\Items(ref="#/components/schemas/UserType")
+ * ),
+ * ),
+ * ),
+ * ),
  * @OA\Post(
-     * path="/api/userTypes",
-     * tags={"userTypes"},
-     * summary="Create a new userType",
-     * description="Returns the created userType",
-     * operationId="userTypesStore",
-     * @OA\RequestBody(
-        *  required=true,
-        *  @OA\JsonContent(ref="#/components/schemas/UserType")
-     * ),
-     * @OA\Response(
-     *  response=200,
-     *  description="successful operation",
-        * @OA\JsonContent(
-            *  @OA\Property(
-            *  property="status",
-            *  type="boolean",
-            *  example=true
-            * ),
-            * @OA\Property(
-            *  property="message",
-            *  type="string",
-            *  example="User type created succesfully"
-            * ),
-            * @OA\Property(
-            *  property="userType",
-            *  ref="#/components/schemas/UserType"
-            * ),
-        * ),
-    * ),
+ * path="/api/userTypes",
+ * tags={"userTypes"},
+ * summary="Create a new userType",
+ * description="Returns the created userType",
+ * operationId="userTypesStore",
+ * @OA\RequestBody(
+ *  required=true,
+ *  @OA\JsonContent(ref="#/components/schemas/UserType")
  * ),
- *
+ * @OA\Response(
+ *  response=200,
+ *  description="successful operation",
+ * @OA\JsonContent(
+ *  @OA\Property(
+ *  property="status",
+ *  type="boolean",
+ *  example=true
+ * ),
+ * @OA\Property(
+ *  property="message",
+ *  type="string",
+ *  example="User type created succesfully"
+ * ),
+ * @OA\Property(
+ *  property="userType",
+ *  ref="#/components/schemas/UserType"
+ * ),
+ * ),
+ * ),
+ * ),
  * @OA\Patch(
-    * path="/api/userTypes/{id}",
-    * tags={"userTypes"},
-    * summary="Update an existing userType",
-    * description="Returns the updated userType",
-    * operationId="userTypesUpdate",
-    * @OA\Parameter(
-        *  name="id",
-        *  in="path",
-        *  description="ID of userType to return",
-        *  required=true,
-    * ),
-    * @OA\Response(
-        *  response=200,
-        *  description="successful operation",
-        * @OA\JsonContent(
-            *  @OA\Property(
-            *  property="status",
-            *  type="boolean",
-            *  example=true
-            * ),
-            * @OA\Property(
-            *  property="message",
-            *  type="string",
-            *  example="User type updated succesfully"
-            * ),
-            * @OA\Property(
-            *  property="userType",
-            *  ref="#/components/schemas/UserType"
-            * ),
-        * ),
-    * ),
+ * path="/api/userTypes/{id}",
+ * tags={"userTypes"},
+ * summary="Update an existing userType",
+ * description="Returns the updated userType",
+ * operationId="userTypesUpdate",
+ * @OA\Parameter(
+ *  name="id",
+ *  in="path",
+ *  description="ID of userType to return",
+ *  required=true,
  * ),
- *
+ * @OA\Response(
+ *  response=200,
+ *  description="successful operation",
+ * @OA\JsonContent(
+ *  @OA\Property(
+ *  property="status",
+ *  type="boolean",
+ *  example=true
+ * ),
+ * @OA\Property(
+ *  property="message",
+ *  type="string",
+ *  example="User type updated succesfully"
+ * ),
+ * @OA\Property(
+ *  property="userType",
+ *  ref="#/components/schemas/UserType"
+ * ),
+ * ),
+ * ),
+ * ),
  * @OA\Delete(
-     * path="/api/userTypes/{id}",
-     * tags={"userTypes"},
-     * summary="Delete an existing userType",
-     * description="Returns the deleted userType",
-     * operationId="userTypesDelete",
-     * @OA\Parameter(
-        *  name="id",
-        *  in="path",
-        *  description="ID of userType to return",
-        *  required=true,
-     * ),
-     * @OA\Response(
-        *  response=200,
-        *  description="successful operation",
-        * @OA\JsonContent(
-            *  @OA\Property(
-            *  property="status",
-            *  type="boolean",
-            *  example=true
-            * ),
-            * @OA\Property(
-            *  property="message",
-            *  type="string",
-            *  example="User type deleted succesfully"
-            * ),
-            * @OA\Property(
-            *  property="userType",
-            *  ref="#/components/schemas/UserType"
-            * ),
-        * ),
-    * ),
+ * path="/api/userTypes/{id}",
+ * tags={"userTypes"},
+ * summary="Delete an existing userType",
+ * description="Returns the deleted userType",
+ * operationId="userTypesDelete",
+ * @OA\Parameter(
+ *  name="id",
+ *  in="path",
+ *  description="ID of userType to return",
+ *  required=true,
  * ),
- *
-*/
+ * @OA\Response(
+ *  response=200,
+ *  description="successful operation",
+ * @OA\JsonContent(
+ *  @OA\Property(
+ *  property="status",
+ *  type="boolean",
+ *  example=true
+ * ),
+ * @OA\Property(
+ *  property="message",
+ *  type="string",
+ *  example="User type deleted succesfully"
+ * ),
+ * @OA\Property(
+ *  property="userType",
+ *  ref="#/components/schemas/UserType"
+ * ),
+ * ),
+ * ),
+ * ),
+ */
 {
     /**
      * Display a listing of the resource.
@@ -250,7 +245,7 @@ class UserTypeController extends Controller
     public function update(StoreUserTypeRequest $request, UserType $userType)
     {
         Gate::authorize('allowAdmin');
-        $userType -> update($request->all());
+        $userType->update($request->all());
 
         return response()->json([
             'status' => true,
@@ -268,7 +263,7 @@ class UserTypeController extends Controller
     public function destroy(UserType $userType)
     {
         Gate::authorize('allowAdmin');
-        $userType -> delete();
+        $userType->delete();
 
         return response()->json([
             'status' => true,

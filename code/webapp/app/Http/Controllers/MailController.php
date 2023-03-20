@@ -17,7 +17,7 @@ class MailController extends Controller
     public function index()
     {
         Gate::authorize('notClient');
-        
+
         $mails = Info::where('section_id', 4)->get();
         return view('mails.index', compact('mails'));
     }
@@ -88,8 +88,9 @@ class MailController extends Controller
 
         InfoContent::updateOrCreate(
             ['info_id' => $mail->id],
-            ['title' => $request->title
-            ,'content' => $request->content],
+            [
+                'title' => $request->title, 'content' => $request->content
+            ],
         );
 
         $msg = "Mail Updated successful! ";

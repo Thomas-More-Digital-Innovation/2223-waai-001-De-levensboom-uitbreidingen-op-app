@@ -25,7 +25,7 @@ class VerifyMail extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 2)->get()->first();     //info_id: 2 = VerifyMail mail in database 
+        $this->infoContent = InfoContent::where('info_id', 2)->get()->first(); //info_id: 2 = VerifyMail mail in database
         $this->actionText = "Verifieer email"; //Text on button in mail
     }
 

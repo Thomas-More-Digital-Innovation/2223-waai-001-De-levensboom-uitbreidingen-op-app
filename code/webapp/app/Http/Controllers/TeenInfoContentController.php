@@ -48,9 +48,8 @@ class TeenInfoContentController extends Controller
 
         if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
             $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
-            $request->titleImage->storeAs('public/teens', $request->titleImage->getClientOriginalName());  
-        }
-        else {
+            $request->titleImage->storeAs('public/teens', $request->titleImage->getClientOriginalName());
+        } else {
             $request->request->add(['titleImage' => $request->titleImageUrl]);
         }
 
@@ -60,7 +59,7 @@ class TeenInfoContentController extends Controller
         InfoContent::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";
-        return redirect('teens/'.$request->info_id.'/edit')->with('msg', $msg);
+        return redirect('teens/' . $request->info_id . '/edit')->with('msg', $msg);
     }
 
     public function updateOrder(Request $request)
@@ -100,7 +99,7 @@ class TeenInfoContentController extends Controller
         $infoContents = InfoContent::orderBy('orderNumber')->get();
         $msg = "Adult order updated successfully!";
 
-        return redirect('teens/'.$request->teen.'/edit')->with(['msg' => $msg, 'teens' => $teens, 'infoContents' => $infoContents]);
+        return redirect('teens/' . $request->teen . '/edit')->with(['msg' => $msg, 'teens' => $teens, 'infoContents' => $infoContents]);
     }
 
     /**
@@ -125,7 +124,7 @@ class TeenInfoContentController extends Controller
         Gate::authorize('allowAdmin');
 
         $infoContent = InfoContent::find($id);
-        
+
         return view('teens.infoContents.edit', compact('infoContent'));
     }
 
@@ -145,7 +144,7 @@ class TeenInfoContentController extends Controller
         $info_id = $teenInfoContent->info_id;
 
         $msg = "Teen Info Content Updated successful! ";
-        return redirect('teens/'.$info_id.'/edit')->with('msg', $msg);
+        return redirect('teens/' . $info_id . '/edit')->with('msg', $msg);
     }
 
     /**
@@ -157,12 +156,12 @@ class TeenInfoContentController extends Controller
     public function destroy($id)
     {
         Gate::authorize('allowAdmin');
-        
+
         $teenInfoContent = InfoContent::find($id);
         $teenInfoContent->delete();
         $info_id = $teenInfoContent->info_id;
 
         $msg = "Teen Info Content Deleted successful! ";
-        return redirect('teens/'.$info_id.'/edit')->with('msg', $msg);
+        return redirect('teens/' . $info_id . '/edit')->with('msg', $msg);
     }
 }
