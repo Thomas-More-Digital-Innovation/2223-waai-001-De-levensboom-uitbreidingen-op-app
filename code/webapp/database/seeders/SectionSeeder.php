@@ -15,10 +15,10 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sections')->insert(['name' => 'Adults']);
-        DB::table('sections')->insert(['name' => 'Teens']);
-        DB::table('sections')->insert(['name' => 'News']);
+        DB::table('sections')->insert(['name' => 'Volwassenen']);
+        DB::table('sections')->insert(['name' => 'Jongeren']);
+        DB::table('sections')->insert(['name' => 'Nieuwtjes']);
         DB::table('sections')->insert(['name' => 'Mails']);
-        DB::table('sections')->insert(['name' => 'Surveys']);
+        DB::table('sections')->insert(['name' => 'Tevredenheidsmeting']);
     }
 }
