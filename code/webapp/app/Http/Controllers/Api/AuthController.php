@@ -65,6 +65,7 @@ class AuthController extends Controller
         try {
             // Define what fields can be used when creating a user
             // Also define which fields are required
+            $request->request->add(['user_type_id' => 2]);
             $validateUser = Validator::make(
                 $request->all(),
                 [
