@@ -145,6 +145,7 @@ class AdultInfoContentController extends Controller
         } else {
             $request->request->add(['titleImage' => $request->titleImageUrl]);
         }
+        dd($request->all());
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->update($request->all());
         $info_id = $adultInfoContent->info_id;

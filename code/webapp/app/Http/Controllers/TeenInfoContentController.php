@@ -52,7 +52,6 @@ class TeenInfoContentController extends Controller
         } else {
             $request->request->add(['titleImage' => $request->titleImageUrl]);
         }
-
         $highestOrderNumber = InfoContent::where('info_id', $request->info_id)->max('orderNumber');
         $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
 
@@ -139,6 +138,12 @@ class TeenInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
+            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
+            $request->titleImage->storeAs('public/teens', $request->titleImage->getClientOriginalName());
+        } else {
+            $request->request->add(['titleImage' => $request->titleImageUrl]);
+        }
         $teenInfoContent = InfoContent::find($id);
         $teenInfoContent->update($request->all());
         $info_id = $teenInfoContent->info_id;
