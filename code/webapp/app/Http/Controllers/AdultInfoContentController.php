@@ -139,6 +139,12 @@ class AdultInfoContentController extends Controller
     {
         Gate::authorize('allowAdmin');
 
+        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
+            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
+            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());
+        } else {
+            $request->request->add(['titleImage' => $request->titleImageUrl]);
+        }
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->update($request->all());
         $info_id = $adultInfoContent->info_id;
