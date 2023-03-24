@@ -29,8 +29,8 @@
                         <x-errormessage />
 
                         <x-form-input name="title" text="Titel" />
-                        
-                        <x-blok-foto-link />
+
+                        <x-blok-foto-link url=""/>
 
                         <label for="url" class="font-bold">Meer info link</label>
                         <input type="text" name="url" id="url" placeholder="Enter meer info link"
