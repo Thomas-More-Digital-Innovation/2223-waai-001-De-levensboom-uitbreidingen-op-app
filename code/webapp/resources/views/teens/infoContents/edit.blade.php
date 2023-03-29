@@ -38,7 +38,7 @@
                         <textarea class="ckeditor form-control" name="content" id="content"></textarea>
 
                         <div class="flex gap-5">
-                            <x-form-button text="Wijzigen" />
+                        e    <x-form-button text="Wijzigen" />
                             <x-form-button text="Annuleren" link="teens.index" />
                         </div>
                     </form>
