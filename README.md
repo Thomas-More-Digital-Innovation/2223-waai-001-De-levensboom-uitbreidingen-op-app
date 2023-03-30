@@ -1,7 +1,7 @@
 # 2223-waai-001 webapp
 
 ## Requirements
-1. Make sure you have xammp installed on your computer.
+1. Make sure you have xampp installed on your computer.
 2. Make sure you have composer installed on your computer.
 3. Make sure you have apache running on your computer (xammp).
 4. Make sure you have MySQL running on your computer (xammp).
