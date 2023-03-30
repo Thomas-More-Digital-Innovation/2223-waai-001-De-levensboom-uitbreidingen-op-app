@@ -140,7 +140,7 @@
         let dropdowns = document.getElementById('dropdowns');
         let totalDep = document.getElementById('totalDep');
 
-        let newDropdown = `<div id='${nrOfDep}' class="flex flex-row gap-5">    
+        let newDropdown = `<div id='${nrOfDep}' class="flex flex-row gap-5">
                         <div class="flex items-center mb-5">
                           <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                             <option value="">Kies een Afdeling</option>
@@ -153,7 +153,7 @@
                         <div class="flex items-center mb-5">
                           <select name="mentor${nrOfDep}" id="mentor${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                             <option value="">Kies een Begeleider</option>
-                          </select> 
+                          </select>
                           <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
                         </div>
                       </div>`;
