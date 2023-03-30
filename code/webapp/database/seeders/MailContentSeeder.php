@@ -24,7 +24,7 @@ class MailContentSeeder extends Seeder
         DB::table("info_contents")->insert([
             "title" => "Account aangemaakt voor Waaiburg Web applicatie",
             "info_id" => "2",
-            "content" => 'Beste, <br><br>Er is een account aangemaakt voor de webapp van De Waaiburg. Via onderstaande link kan u uw account verifiëren. 
+            "content" => 'Beste, <br><br>Er is een account aangemaakt voor de webapp van De Waaiburg. Via onderstaande link kan u uw account verifiëren.
             <br><br>Is deze link verlopen, ga dan naar de inlog pagina, vul je email adres in, en klik op wachtwoord vergeten.',
         ]);
         DB::table("info_contents")->insert([
@@ -37,13 +37,13 @@ class MailContentSeeder extends Seeder
         DB::table("info_contents")->insert([
             "title" => "Wachtwoord vergeten voor WebApp",
             "info_id" => "4",
-            "content" => 'Beste, <br><br>Via onderstaande link kun je je wachtwoord opnieuw instellen. 
+            "content" => 'Beste, <br><br>Via onderstaande link kun je je wachtwoord opnieuw instellen.
             Is de link verlopen of ongeldig, ga dan naar de inlog-pagina, vul je e-mailadres in en klik op "Wachtwoord vergeten?".',
         ]);
         DB::table("info_contents")->insert([
             "title" => "Wachtwoord vergeten voor APP",
             "info_id" => "5",
-            "content" => 'Beste, <br><br>Via onderstaande link kun je je wachtwoord opnieuw instellen. 
+            "content" => 'Beste, <br><br>Via onderstaande link kun je je wachtwoord opnieuw instellen.
             Is de link verlopen of ongeldig, ga dan naar de inlog-pagina, vul je e-mailadres in en klik op "Wachtwoord vergeten?".',
         ]);
         DB::table("info_contents")->insert([
