@@ -65,47 +65,53 @@ class AuthController extends Controller
         try {
             // Define what fields can be used when creating a user
             // Also define which fields are required
-            $request->request->add(['user_type_id' => 2]);
-            $validateUser = Validator::make(
-                $request->all(),
-                [
-                    'user_type_id' => 'required',
-                    'firstname' => 'required',
-                    'surname' => 'required',
-                    'email' => 'required|email|unique:users,email',
-                    'password' => 'required',
-                ]
-            );
+            $request->request->add(["user_type_id" => 2]);
+            $validateUser = Validator::make($request->all(), [
+                "user_type_id" => "required",
+                "firstname" => "required",
+                "surname" => "required",
+                "email" => "required|email|unique:users,email",
+                "password" => "required",
+            ]);
 
             // When field is incorrect or missing, throw an error
             if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'error' => $validateUser->errors()
-                ], 401);
+                return response()->json(
+                    [
+                        "status" => false,
+                        "message" => "validation error",
+                        "error" => $validateUser->errors(),
+                    ],
+                    401
+                );
             }
 
             // Create user with the send information
             $user = User::create([
-                'user_type_id' => $request->user_type_id,
-                'firstname' => $request->firstname,
-                'surname' => $request->surname,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
+                "user_type_id" => $request->user_type_id,
+                "firstname" => $request->firstname,
+                "surname" => $request->surname,
+                "email" => $request->email,
+                "password" => Hash::make($request->password),
             ]);
 
             // When successfull send a message and create API Token
-            return response()->json([
-                'status' => true,
-                'message' => 'User Created Successfully',
-                'Token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            return response()->json(
+                [
+                    "status" => true,
+                    "message" => "User Created Successfully",
+                    "Token" => $user->createToken("API TOKEN")->plainTextToken,
+                ],
+                200
+            );
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getmessage(),
-            ], 500);
+            return response()->json(
+                [
+                    "status" => false,
+                    "message" => $th->getmessage(),
+                ],
+                500
+            );
         }
     }
 
@@ -116,43 +122,51 @@ class AuthController extends Controller
      */
     public function loginUser(Request $request)
     {
-
         try {
-            $validateUser = Validator::make(
-                $request->all(),
-                [
-                    'email' => 'required|email',
-                    'password' => 'required',
-                ]
-            );
+            $validateUser = Validator::make($request->all(), [
+                "email" => "required|email",
+                "password" => "required",
+            ]);
 
             if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'error' => $validateUser->errors()
-                ], 401);
+                return response()->json(
+                    [
+                        "status" => false,
+                        "message" => "validation error",
+                        "error" => $validateUser->errors(),
+                    ],
+                    401
+                );
             }
 
-            if (!Auth::attempt($request->only(['email', 'password']))) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password do not match.',
-                ], 401);
+            if (!Auth::attempt($request->only(["email", "password"]))) {
+                return response()->json(
+                    [
+                        "status" => false,
+                        "message" => "Email & Password do not match.",
+                    ],
+                    401
+                );
             }
 
-            $user = User::where('email', $request->email)->first();
+            $user = User::where("email", $request->email)->first();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'Token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
+            return response()->json(
+                [
+                    "status" => true,
+                    "message" => "User Logged In Successfully",
+                    "Token" => $user->createToken("API TOKEN")->plainTextToken,
+                ],
+                200
+            );
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getmessage(),
-            ], 500);
+            return response()->json(
+                [
+                    "status" => false,
+                    "message" => $th->getmessage(),
+                ],
+                500
+            );
         }
     }
 }

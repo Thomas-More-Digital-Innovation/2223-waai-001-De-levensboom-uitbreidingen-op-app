@@ -8,7 +8,6 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Mail\Survey as SurveyMailable;
 
-
 class Survey extends Notification
 {
     use Queueable;
@@ -32,7 +31,7 @@ class Survey extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ["mail"];
     }
 
     /**
@@ -43,8 +42,7 @@ class Survey extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new SurveyMailable($this->url))
-                ->to($notifiable->email);
+        return (new SurveyMailable($this->url))->to($notifiable->email);
     }
 
     /**
@@ -56,7 +54,7 @@ class Survey extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 }

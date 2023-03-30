@@ -16,10 +16,12 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
-        $info = Info::where('section_id', 5)->get()->first();
-        $surveys = InfoContent::where('info_id', $info->id)->get();
-        return view('surveys.index', compact('surveys'));
+        Gate::authorize("notClient");
+        $info = Info::where("section_id", 5)
+            ->get()
+            ->first();
+        $surveys = InfoContent::where("info_id", $info->id)->get();
+        return view("surveys.index", compact("surveys"));
     }
 
     /**
@@ -29,7 +31,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         //
     }
@@ -42,10 +44,9 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         //
-
     }
 
     /**
@@ -67,10 +68,12 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        $survey = InfoContent::where('info_id', $id)->get()->first();
-        return view('surveys.edit', compact('survey'));
+        $survey = InfoContent::where("info_id", $id)
+            ->get()
+            ->first();
+        return view("surveys.edit", compact("survey"));
     }
 
     /**
@@ -82,13 +85,15 @@ class SurveyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        $survey = InfoContent::where('info_id', $id)->get()->first();
+        $survey = InfoContent::where("info_id", $id)
+            ->get()
+            ->first();
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";
-        return redirect('surveys')->with('msg', $msg);
+        return redirect("surveys")->with("msg", $msg);
     }
 
     /**
@@ -99,7 +104,7 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         //
     }
 }

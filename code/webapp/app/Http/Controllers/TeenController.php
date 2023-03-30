@@ -16,11 +16,11 @@ class TeenController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
 
-        $teens = Info::where('section_id', 2)->get();
-        $infoContents = InfoContent::orderBy('orderNumber')->get();
-        return view('teens.index', compact('teens', 'infoContents'));
+        $teens = Info::where("section_id", 2)->get();
+        $infoContents = InfoContent::orderBy("orderNumber")->get();
+        return view("teens.index", compact("teens", "infoContents"));
     }
 
     /**
@@ -30,9 +30,9 @@ class TeenController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        return view('teens.create');
+        return view("teens.create");
     }
 
     /**
@@ -43,29 +43,29 @@ class TeenController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        $highestOrderNumber = Info::where('section_id', 2)->max('orderNumber');
-        $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
+        $highestOrderNumber = Info::where("section_id", 2)->max("orderNumber");
+        $request->request->add(["orderNumber" => $highestOrderNumber + 1]);
 
-        $request->request->add(['section_id' => 2]);
+        $request->request->add(["section_id" => 2]);
         Info::create($request->all());
 
         $msg = "New Teen Info Content Created successful! ";
-        return redirect('teens')->with('msg', $msg);
+        return redirect("teens")->with("msg", $msg);
     }
 
     public function updateOrder(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $info = Info::find($request->teen);
         $orderNumber = $info->orderNumber;
 
-        if ($request->order == 'up') {
-            $other = Info::where('section_id', 2)
-                ->where('orderNumber', '<', $orderNumber)
-                ->orderBy('orderNumber', 'desc')
+        if ($request->order == "up") {
+            $other = Info::where("section_id", 2)
+                ->where("orderNumber", "<", $orderNumber)
+                ->orderBy("orderNumber", "desc")
                 ->first();
 
             if ($other) {
@@ -75,9 +75,9 @@ class TeenController extends Controller
                 $info->save();
             }
         } else {
-            $other = Info::where('section_id', 2)
-                ->where('orderNumber', '>', $orderNumber)
-                ->orderBy('orderNumber', 'asc')
+            $other = Info::where("section_id", 2)
+                ->where("orderNumber", ">", $orderNumber)
+                ->orderBy("orderNumber", "asc")
                 ->first();
 
             if ($other) {
@@ -88,11 +88,13 @@ class TeenController extends Controller
             }
         }
 
-        $teens = Info::where('section_id', 2)->orderBy('orderNumber')->get();
+        $teens = Info::where("section_id", 2)
+            ->orderBy("orderNumber")
+            ->get();
         $infoContents = InfoContent::all();
         $msg = "Teens order updated successfully!";
 
-        return view('teens.index', compact('teens', 'infoContents', 'msg'));
+        return view("teens.index", compact("teens", "infoContents", "msg"));
     }
 
     /**
@@ -114,11 +116,13 @@ class TeenController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $teen = Info::find($id);
-        $infoContents = InfoContent::where('info_id', $id)->orderBy('orderNumber')->get();
-        return view('teens.edit', compact('teen', 'infoContents'));
+        $infoContents = InfoContent::where("info_id", $id)
+            ->orderBy("orderNumber")
+            ->get();
+        return view("teens.edit", compact("teen", "infoContents"));
     }
 
     /**
@@ -130,13 +134,13 @@ class TeenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $teen = Info::find($id);
         $teen->update($request->all());
 
         $msg = "Teen Info Content Updated successful! ";
-        return redirect('teens')->with('msg', $msg);
+        return redirect("teens")->with("msg", $msg);
     }
 
     /**
@@ -147,13 +151,13 @@ class TeenController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        InfoContent::where('info_id', $id)->delete();
+        InfoContent::where("info_id", $id)->delete();
         $teen = Info::find($id);
         $teen->delete();
 
         $msg = "Teen Info Content Deleted successful! ";
-        return redirect('teens')->with('msg', $msg);
+        return redirect("teens")->with("msg", $msg);
     }
 }

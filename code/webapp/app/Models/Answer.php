@@ -10,7 +10,7 @@ class Answer extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['user_id', 'question_id', 'answer'];
+    protected $fillable = ["user_id", "question_id", "answer"];
 
     public function users()
     {

@@ -12,7 +12,7 @@ class Contactgegevens extends Component
      *
      * @return void
      */
-    public function __construct($contactgegevens=null)
+    public function __construct($contactgegevens = null)
     {
         $this->contactgegevens = $contactgegevens;
     }
@@ -24,6 +24,6 @@ class Contactgegevens extends Component
      */
     public function render()
     {
-        return view('components.contactgegevens');
+        return view("components.contactgegevens");
     }
 }

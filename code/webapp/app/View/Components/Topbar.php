@@ -25,8 +25,8 @@ class Topbar extends Component
      */
     public function render()
     {
-        return view('components.topbar', [
-            'user' => auth()->user()
+        return view("components.topbar", [
+            "user" => auth()->user(),
         ]);
     }
 }

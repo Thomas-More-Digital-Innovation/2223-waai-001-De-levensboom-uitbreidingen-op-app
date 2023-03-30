@@ -23,6 +23,6 @@ class Welcome extends Component
      */
     public function render()
     {
-        return view('components.welcome');
+        return view("components.welcome");
     }
 }

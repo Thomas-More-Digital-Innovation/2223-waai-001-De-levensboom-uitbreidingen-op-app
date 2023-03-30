@@ -28,43 +28,60 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', function () {
-    $clientcount = User::where('user_type_id', 2)->count();
-    $mentorcount = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->count();
+Route::get("/", function () {
+    $clientcount = User::where("user_type_id", 2)->count();
+    $mentorcount = User::where("user_type_id", 1)
+        ->orWhere("user_type_id", 3)
+        ->count();
     $departmentcount = Department::count();
-    $newscount = Info::where('section_id', 3)->count();
+    $newscount = Info::where("section_id", 3)->count();
 
-    return view('index', [
-        'clientcount' => $clientcount,
-        'mentorcount' => $mentorcount,
-        'departmentcount' => $departmentcount,
-        'newscount' => $newscount,
-        'user' => User::all(),
-        'currentUser' => auth()->user(),
+    return view("index", [
+        "clientcount" => $clientcount,
+        "mentorcount" => $mentorcount,
+        "departmentcount" => $departmentcount,
+        "newscount" => $newscount,
+        "user" => User::all(),
+        "currentUser" => auth()->user(),
     ]);
-})->middleware(['auth', 'verified'])->name('home');
+})
+    ->middleware(["auth", "verified"])
+    ->name("home");
 
-Route::middleware('auth', 'verified')->group( function () {
+Route::middleware("auth", "verified")->group(function () {
     Route::Resources([
-        'clients' => ClientController::class,
-        'mentors' => MentorController::class,
-        'departments' => ControllersDepartmentController::class,
-        'adults' => AdultController::class,
-        'teens' => TeenController::class,
-        'news' => NewsController::class,
-        'mails' => MailController::class,
-        'surveys' => SurveyController::class,
-        'user' => ControllersUserController::class,
-        'adultInfoContents' => AdultInfoContentController::class,
-        'teenInfoContents' => TeenInfoContentController::class,
+        "clients" => ClientController::class,
+        "mentors" => MentorController::class,
+        "departments" => ControllersDepartmentController::class,
+        "adults" => AdultController::class,
+        "teens" => TeenController::class,
+        "news" => NewsController::class,
+        "mails" => MailController::class,
+        "surveys" => SurveyController::class,
+        "user" => ControllersUserController::class,
+        "adultInfoContents" => AdultInfoContentController::class,
+        "teenInfoContents" => TeenInfoContentController::class,
     ]);
-    Route::get('adults/{adult}/updateOrder', [AdultController::class, 'updateOrder'])->name('adults.updateOrder');
-    Route::get('adults/{adult}/edit/updateOrder', [AdultInfoContentController::class, 'updateOrder'])->name('adultInfoContents.updateOrder');
-    Route::get('teens/{teen}/updateOrder', [TeenController::class, 'updateOrder'])->name('teens.updateOrder');
-    Route::get('teens/{teen}/edit/updateOrder', [TeenInfoContentController::class, 'updateOrder'])->name('teenInfoContents.updateOrder');
-    Route::get('clients/sendSurvey/{id}', [ClientController::class, 'sendSurvey'])->name('clients.sendSurvey');
+    Route::get("adults/{adult}/updateOrder", [
+        AdultController::class,
+        "updateOrder",
+    ])->name("adults.updateOrder");
+    Route::get("adults/{adult}/edit/updateOrder", [
+        AdultInfoContentController::class,
+        "updateOrder",
+    ])->name("adultInfoContents.updateOrder");
+    Route::get("teens/{teen}/updateOrder", [
+        TeenController::class,
+        "updateOrder",
+    ])->name("teens.updateOrder");
+    Route::get("teens/{teen}/edit/updateOrder", [
+        TeenInfoContentController::class,
+        "updateOrder",
+    ])->name("teenInfoContents.updateOrder");
+    Route::get("clients/sendSurvey/{id}", [
+        ClientController::class,
+        "sendSurvey",
+    ])->name("clients.sendSurvey");
 });
 
-require_once __DIR__.'/auth.php';
-
+require_once __DIR__ . "/auth.php";

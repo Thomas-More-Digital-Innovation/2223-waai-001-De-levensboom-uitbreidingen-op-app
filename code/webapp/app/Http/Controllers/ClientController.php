@@ -24,16 +24,26 @@ class ClientController extends Controller
      */
     public function index()
     {
+        Gate::authorize("notClient");
 
-        Gate::authorize('notClient');
-
-        $clients = User::where('user_type_id', 2)->get();
+        $clients = User::where("user_type_id", 2)->get();
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
         $userLists = UserList::all();
-        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
+        $mentors = User::where("user_type_id", 1)
+            ->orWhere("user_type_id", 3)
+            ->get();
 
-        return view('clients.index', compact('clients', 'departments', 'departmentLists', 'mentors', 'userLists'));
+        return view(
+            "clients.index",
+            compact(
+                "clients",
+                "departments",
+                "departmentLists",
+                "mentors",
+                "userLists"
+            )
+        );
     }
 
     /**
@@ -43,12 +53,17 @@ class ClientController extends Controller
      */
     public function create()
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
         $departments = Department::all();
         $departmentLists = DepartmentList::all();
-        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        return view('clients.create', compact('departments', 'departmentLists', 'mentors'));
+        $mentors = User::where("user_type_id", 1)
+            ->orWhere("user_type_id", 3)
+            ->get();
+        return view(
+            "clients.create",
+            compact("departments", "departmentLists", "mentors")
+        );
     }
 
     /**
@@ -59,33 +74,33 @@ class ClientController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
-        $request->request->add(['user_type_id' => 2]);
-        $request->request->add(['password' => bcrypt('veranderMij')]);
+        $request->request->add(["user_type_id" => 2]);
+        $request->request->add(["password" => bcrypt("veranderMij")]);
         $user = User::create($request->all());
 
         event(new Registered($user));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
-            $department = $request->input('department' . $i);
-            $mentor = $request->input('mentor' . $i);
+            $department = $request->input("department" . $i);
+            $mentor = $request->input("mentor" . $i);
             if ($department != null) {
                 DepartmentList::create([
-                    'user_id' => User::latest()->first()->id,
-                    'department_id' => $department,
-                    'role_id' => 2,
+                    "user_id" => User::latest()->first()->id,
+                    "department_id" => $department,
+                    "role_id" => 2,
                 ]);
                 UserList::create([
-                    'client_id' => User::latest()->first()->id,
-                    'mentor_id' => $mentor,
+                    "client_id" => User::latest()->first()->id,
+                    "mentor_id" => $mentor,
                 ]);
             }
         }
         // Still need to create UserList, this to connect the client to the mentor
 
         $msg = "New Client Created successful! ";
-        return redirect('clients')->with('msg', $msg);
+        return redirect("clients")->with("msg", $msg);
     }
 
     /**
@@ -107,23 +122,35 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
         $client = User::find($id);
         $departments = Department::all();
         $departmentsList = DepartmentList::all();
-        $usersList = UserList::where('client_id', $id)->get();
-        $userDepartments = DepartmentList::where('user_id', $id)->get();
-        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
-        return view('clients.edit', compact('client', 'departments', 'departmentsList', 'mentors', 'userDepartments', 'usersList'));
+        $usersList = UserList::where("client_id", $id)->get();
+        $userDepartments = DepartmentList::where("user_id", $id)->get();
+        $mentors = User::where("user_type_id", 1)
+            ->orWhere("user_type_id", 3)
+            ->get();
+        return view(
+            "clients.edit",
+            compact(
+                "client",
+                "departments",
+                "departmentsList",
+                "mentors",
+                "userDepartments",
+                "usersList"
+            )
+        );
     }
 
     public function sendSurvey($id)
     {
-        $url = InfoContent::where('info_id', 1)->first()->url;
+        $url = InfoContent::where("info_id", 1)->first()->url;
         $url = $url . $id;
         User::find($id)->notify(new Survey($url));
-        User::find($id)->update(['survey' => now()]);
+        User::find($id)->update(["survey" => now()]);
 
         return redirect()->back();
     }
@@ -137,31 +164,31 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
         $client = User::find($id);
         $client->update($request->all());
 
-        DepartmentList::Where('user_id', $id)->delete();
-        UserList::Where('client_id', $id)->delete();
+        DepartmentList::Where("user_id", $id)->delete();
+        UserList::Where("client_id", $id)->delete();
         for ($i = 0; $i <= $request->totalDep; $i++) {
-            $department = $request->input('department' . $i);
-            $mentor = $request->input('mentor' . $i);
+            $department = $request->input("department" . $i);
+            $mentor = $request->input("mentor" . $i);
             if ($department != null) {
                 DepartmentList::create([
-                    'user_id' => $id,
-                    'department_id' => $department,
-                    'role_id' => 2,
+                    "user_id" => $id,
+                    "department_id" => $department,
+                    "role_id" => 2,
                 ]);
                 UserList::create([
-                    'client_id' => $id,
-                    'mentor_id' => $mentor,
+                    "client_id" => $id,
+                    "mentor_id" => $mentor,
                 ]);
             }
         }
 
         $msg = "Client Updated successful! ";
-        return redirect('clients')->with('msg', $msg);
+        return redirect("clients")->with("msg", $msg);
     }
 
     /**
@@ -172,14 +199,14 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
-        DepartmentList::where('user_id', $id)->delete();
-        UserList::where('client_id', $id)->delete();
+        DepartmentList::where("user_id", $id)->delete();
+        UserList::where("client_id", $id)->delete();
         $client = User::find($id);
         $client->delete();
 
         $msg = "Client Deleted successful! ";
-        return redirect('clients')->with('msg', $msg);
+        return redirect("clients")->with("msg", $msg);
     }
 }

@@ -179,8 +179,8 @@ class AnswerController extends Controller
         $answer = Answer::all();
 
         return response()->json([
-            'status' => true,
-            'answers' => [$answer]
+            "status" => true,
+            "answers" => [$answer],
         ]);
     }
 
@@ -204,11 +204,14 @@ class AnswerController extends Controller
     {
         $answer = Answer::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Answer created succesfully",
-            'answer' => $answer
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Answer created succesfully",
+                "answer" => $answer,
+            ],
+            200
+        );
     }
 
     /**
@@ -244,11 +247,14 @@ class AnswerController extends Controller
     {
         $answer->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Answer updated succesfully",
-            'answer' => $answer
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Answer updated succesfully",
+                "answer" => $answer,
+            ],
+            200
+        );
     }
 
     /**
@@ -261,9 +267,12 @@ class AnswerController extends Controller
     {
         $answer->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Answer deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Answer deleted succesfully",
+            ],
+            200
+        );
     }
 }

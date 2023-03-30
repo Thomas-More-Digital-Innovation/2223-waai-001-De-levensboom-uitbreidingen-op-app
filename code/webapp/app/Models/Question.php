@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['content'];
+    protected $fillable = ["content"];
 
     public function answers()
     {

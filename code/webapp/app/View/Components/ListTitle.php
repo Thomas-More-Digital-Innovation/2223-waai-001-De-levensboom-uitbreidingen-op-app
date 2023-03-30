@@ -26,6 +26,6 @@ class ListTitle extends Component
      */
     public function render()
     {
-        return view('components.list-title');
+        return view("components.list-title");
     }
 }

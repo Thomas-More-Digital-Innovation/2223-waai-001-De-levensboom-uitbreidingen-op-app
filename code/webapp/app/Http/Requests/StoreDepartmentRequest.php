@@ -30,7 +30,7 @@ class StoreDepartmentRequest extends FormRequest
             "city" => "string|nullable",
             "zipCode" => "string|nullable",
             "email" => "string|nullable",
-            "phoneNumber" => "string|nullable"
+            "phoneNumber" => "string|nullable",
         ];
     }
 }
