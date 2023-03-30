@@ -83,7 +83,7 @@
                                                     <option value="">Kies een Begeleider</option>
                                                     @foreach ($mentors as $mentor)
                                                         @foreach ($departmentsList as $department)
-                                                            @if ($department->department_id == $userDepartments[$i]->department_id && $department->user_id == $mentor->id)
+                                                            @if ($department->department_id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0) && $department->user_id == $mentor->id)
                                                                 <option value="{{ $mentor->id }}"
                                                                     @if (count($usersList)) @if ($usersList[$i]->mentor_id == $mentor->id)
                                       selected @endif
