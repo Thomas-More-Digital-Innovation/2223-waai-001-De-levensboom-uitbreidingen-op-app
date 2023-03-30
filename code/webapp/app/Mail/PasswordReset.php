@@ -11,7 +11,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Notifications\Notifiable;
 use App\Models\InfoContent;
 
-
 class PasswordReset extends Mailable
 {
     use Queueable, SerializesModels;
@@ -27,7 +26,9 @@ class PasswordReset extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 4)->get()->first(); //info_id: 4 = password_reset mail in database
+        $this->infoContent = InfoContent::where("info_id", 4)
+            ->get()
+            ->first(); //info_id: 4 = password_reset mail in database
         $this->actionText = "Reset wachtwoord"; //Text on button in mail
     }
 
@@ -38,9 +39,7 @@ class PasswordReset extends Mailable
      */
     public function envelope()
     {
-        return new Envelope(
-            subject: $this->infoContent->title,
-        );
+        return new Envelope(subject: $this->infoContent->title);
     }
 
     /**
@@ -50,9 +49,7 @@ class PasswordReset extends Mailable
      */
     public function content()
     {
-        return new Content(
-            markdown: 'vendor.notifications.email',
-        );
+        return new Content(markdown: "vendor.notifications.email");
     }
 
     /**

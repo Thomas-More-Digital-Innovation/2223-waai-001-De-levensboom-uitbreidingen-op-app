@@ -25,7 +25,7 @@ class StoreInforequest extends FormRequest
     {
         return [
             "section_id" => "integer|required",
-            "title" => "string|required"
+            "title" => "string|required",
         ];
     }
 }

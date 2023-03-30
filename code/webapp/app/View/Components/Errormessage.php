@@ -23,6 +23,6 @@ class Errormessage extends Component
      */
     public function render()
     {
-        return view('components.errormessage');
+        return view("components.errormessage");
     }
 }

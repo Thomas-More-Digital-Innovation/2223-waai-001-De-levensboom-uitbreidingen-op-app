@@ -30,7 +30,7 @@ class PasswordReset extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ["mail"];
     }
 
     /**
@@ -41,9 +41,9 @@ class PasswordReset extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = 'reset-password/'.$this->token.'?email='.$notifiable['email'];
-        return (new PasswordResetMailable(url($url)))
-                ->to($notifiable->email);
+        $url =
+            "reset-password/" . $this->token . "?email=" . $notifiable["email"];
+        return (new PasswordResetMailable(url($url)))->to($notifiable->email);
     }
 
     /**
@@ -55,7 +55,7 @@ class PasswordReset extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 }

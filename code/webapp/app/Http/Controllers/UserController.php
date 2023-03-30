@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('user.edit', compact('user'));
+        return view("user.edit", compact("user"));
     }
 
     /**
@@ -73,7 +73,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         $msg = "User Updated successful! ";
-        return redirect('/')->with('msg', $msg);
+        return redirect("/")->with("msg", $msg);
     }
 
     /**

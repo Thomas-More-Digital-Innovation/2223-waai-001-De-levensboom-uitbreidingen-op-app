@@ -36,8 +36,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new VerifyMailMailable($url))
-                ->to($notifiable->email);
+            return (new VerifyMailMailable($url))->to($notifiable->email);
         });
 
         $this->registerPolicies();
@@ -48,7 +47,7 @@ class AuthServiceProvider extends ServiceProvider
         //---------------------------------------------------------------//
 
         // This Gate is to check if a user is an Admin.
-        Gate::define('allowAdmin', function (User $user) {
+        Gate::define("allowAdmin", function (User $user) {
             // Get the userTypeID of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
@@ -60,15 +59,15 @@ class AuthServiceProvider extends ServiceProvider
         // These are the webApp gates //
 
         // This Gate is to check if a user is an Admin or Department Head.
-        Gate::define('adminOrDep', function (User $user) {
+        Gate::define("adminOrDep", function (User $user) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
-            if (DepartmentList::where('user_id', $user->id)->exists()) {
+            if (DepartmentList::where("user_id", $user->id)->exists()) {
                 // Get the role of the user
-                $roles = DepartmentList::where('user_id', $user->id)->get();
+                $roles = DepartmentList::where("user_id", $user->id)->get();
                 // Check if there is a role where the user is a department head
                 for ($i = 0; $i < count($roles); $i++) {
                     $id = $roles[$i]->role_id;
@@ -78,40 +77,52 @@ class AuthServiceProvider extends ServiceProvider
                     }
                 }
             }
-            return $userType === 1 || $role  === 1; // Admin or Department Head
+            return $userType === 1 || $role === 1; // Admin or Department Head
         });
 
         // This Gate is to check if a user is allowed to edit departments.
-        Gate::define('editDepartment', function (User $user, int $departmentId) {
+        Gate::define("editDepartment", function (
+            User $user,
+            int $departmentId
+        ) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the userType of the user
             $userType = UserType::find($userTypeId)->id;
 
             // check if there is a departmentList
-            if (DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->exists()) {
+            if (
+                DepartmentList::where("department_id", $departmentId)
+                    ->where("user_id", $user->id)
+                    ->exists()
+            ) {
                 // Find correct departmentList with departmentId and userId
-                $departmentList = DepartmentList::where('department_id', $departmentId)->where('user_id', $user->id)->first();
+                $departmentList = DepartmentList::where(
+                    "department_id",
+                    $departmentId
+                )
+                    ->where("user_id", $user->id)
+                    ->first();
                 // Get the role of the user
                 $userRole = Role::find($departmentList->role_id)->id;
             } else {
                 $userRole = 0;
             }
-            return ($userType === 3 // Mentor
-                && $userRole === 1) // Department Head
-                || $userType === 1; // Admin
+            return ($userType === 3 && // Mentor
+                $userRole === 1) || // Department Head
+                $userType === 1; // Admin
         });
 
         // This Gate is to check if a user is a department Head or Admin.
-        Gate::define('editAccount', function (User $user, int $userId) {
+        Gate::define("editAccount", function (User $user, int $userId) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
             $userType = UserType::find($userTypeId)->id;
 
-            if (DepartmentList::where('user_id', $user->id)->exists()) {
+            if (DepartmentList::where("user_id", $user->id)->exists()) {
                 // Get the role of the user
-                $roles = DepartmentList::where('user_id', $user->id)->get();
+                $roles = DepartmentList::where("user_id", $user->id)->get();
                 // Check if there is a role where the user is a department head
                 for ($i = 0; $i < count($roles); $i++) {
                     $id = $roles[$i]->role_id;
@@ -121,12 +132,13 @@ class AuthServiceProvider extends ServiceProvider
                     }
                 }
             }
-            return $userType === 1 || $role  === 1 // Admin or Department Head
-                || ($userId === $user->id && $userType === 3); // Or the user is a mentor and it's their account
+            return $userType === 1 ||
+                $role === 1 || // Admin or Department Head
+                ($userId === $user->id && $userType === 3); // Or the user is a mentor and it's their account
         });
 
         // This Gate is to check if a user is not a client.
-        Gate::define('notClient', function (User $user) {
+        Gate::define("notClient", function (User $user) {
             // Get the userTypeId of the user
             $userTypeId = $user->user_type_id;
             // Check the usertype of the user
@@ -158,6 +170,5 @@ class AuthServiceProvider extends ServiceProvider
         // });
 
         //---------------------------------------------------------------//
-
     }
 }

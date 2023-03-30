@@ -17,6 +17,6 @@ class SurveySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('infos')->insert(['title' => 'link', 'section_id' => '5']);
+        DB::table("infos")->insert(["title" => "link", "section_id" => "5"]);
     }
 }

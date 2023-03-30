@@ -239,8 +239,8 @@ class InfoContentController extends Controller
         $infoContent = InfoContent::all();
 
         return response()->json([
-            'status' => true,
-            'infoContents' => [$infoContent]
+            "status" => true,
+            "infoContents" => [$infoContent],
         ]);
     }
 
@@ -264,11 +264,14 @@ class InfoContentController extends Controller
     {
         $infoContent = InfoContent::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info content created succesfully",
-            'infoContent' => $infoContent
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info content created succesfully",
+                "infoContent" => $infoContent,
+            ],
+            200
+        );
     }
 
     /**
@@ -300,15 +303,20 @@ class InfoContentController extends Controller
      * @param  \App\Models\InfoContent  $infoContent
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreInfoContentRequest $request, InfoContent $infoContent)
-    {
+    public function update(
+        StoreInfoContentRequest $request,
+        InfoContent $infoContent
+    ) {
         $infoContent->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info content updated succesfully",
-            'infoContent' => $infoContent
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info content updated succesfully",
+                "infoContent" => $infoContent,
+            ],
+            200
+        );
     }
 
     /**
@@ -321,9 +329,12 @@ class InfoContentController extends Controller
     {
         $infoContent->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info content deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info content deleted succesfully",
+            ],
+            200
+        );
     }
 }

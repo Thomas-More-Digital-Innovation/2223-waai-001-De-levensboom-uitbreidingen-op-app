@@ -17,8 +17,8 @@ class UserTypesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_types')->insert(['name' => 'Admin']);
-        DB::table('user_types')->insert(['name' => 'Client']);
-        DB::table('user_types')->insert(['name' => 'Mentor']);
+        DB::table("user_types")->insert(["name" => "Admin"]);
+        DB::table("user_types")->insert(["name" => "Client"]);
+        DB::table("user_types")->insert(["name" => "Mentor"]);
     }
 }

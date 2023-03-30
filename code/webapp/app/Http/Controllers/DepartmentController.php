@@ -15,10 +15,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
 
         $departments = Department::all();
-        return view('departments.index', compact('departments'));
+        return view("departments.index", compact("departments"));
     }
 
     /**
@@ -28,9 +28,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        return view('departments.create');
+        return view("departments.create");
     }
 
     /**
@@ -41,12 +41,12 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         Department::create($request->all());
 
         $msg = "New Department Created successful! ";
-        return redirect('departments')->with('msg', $msg);
+        return redirect("departments")->with("msg", $msg);
     }
 
     /**
@@ -68,10 +68,10 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('editDepartment', $id);
+        Gate::authorize("editDepartment", $id);
 
         $department = Department::find($id);
-        return view('departments.edit', compact('department'));
+        return view("departments.edit", compact("department"));
     }
 
     /**
@@ -83,13 +83,13 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('editDepartment', $id);
+        Gate::authorize("editDepartment", $id);
 
         $department = Department::find($id);
         $department->update($request->all());
 
         $msg = "Department Updated successful! ";
-        return redirect('departments')->with('msg', $msg);
+        return redirect("departments")->with("msg", $msg);
     }
 
     /**
@@ -100,12 +100,12 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $department = Department::find($id);
         $department->delete();
 
         $msg = "Department Deleted successful! ";
-        return redirect('departments')->with('msg', $msg);
+        return redirect("departments")->with("msg", $msg);
     }
 }

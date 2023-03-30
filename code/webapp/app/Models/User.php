@@ -20,19 +20,19 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_type_id',
-        'firstname',
-        'surname',
-        'birthdate',
-        'email',
-        'password',
-        'phoneNumber',
-        'gender',
-        'street',
-        'houseNumber',
-        'city',
-        'zipcode',
-        'survey',
+        "user_type_id",
+        "firstname",
+        "surname",
+        "birthdate",
+        "email",
+        "password",
+        "phoneNumber",
+        "gender",
+        "street",
+        "houseNumber",
+        "city",
+        "zipcode",
+        "survey",
     ];
 
     /**
@@ -40,10 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ["password", "remember_token"];
 
     /**
      * The attributes that should be cast.
@@ -51,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        "email_verified_at" => "datetime",
     ];
 
     public function userTypes()

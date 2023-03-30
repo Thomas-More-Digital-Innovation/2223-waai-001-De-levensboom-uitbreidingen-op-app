@@ -25,7 +25,9 @@ class VerifyMail extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where('info_id', 2)->get()->first(); //info_id: 2 = VerifyMail mail in database
+        $this->infoContent = InfoContent::where("info_id", 2)
+            ->get()
+            ->first(); //info_id: 2 = VerifyMail mail in database
         $this->actionText = "Verifieer email"; //Text on button in mail
     }
 
@@ -36,9 +38,7 @@ class VerifyMail extends Mailable
      */
     public function envelope()
     {
-        return new Envelope(
-            subject: 'Verify Mail',
-        );
+        return new Envelope(subject: "Verify Mail");
     }
 
     /**
@@ -48,9 +48,7 @@ class VerifyMail extends Mailable
      */
     public function content()
     {
-        return new Content(
-            markdown: 'vendor.notifications.email',
-        );
+        return new Content(markdown: "vendor.notifications.email");
     }
 
     /**

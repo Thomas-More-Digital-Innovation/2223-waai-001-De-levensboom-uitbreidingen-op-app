@@ -214,8 +214,8 @@ class InfoController extends Controller
         $info = Info::all();
 
         return response()->json([
-            'status' => true,
-            'info\'s' => [$info]
+            "status" => true,
+            'info\'s' => [$info],
         ]);
     }
 
@@ -239,11 +239,14 @@ class InfoController extends Controller
     {
         $info = Info::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info created succesfully",
-            'info' => $info
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info created succesfully",
+                "info" => $info,
+            ],
+            200
+        );
     }
 
     /**
@@ -279,11 +282,14 @@ class InfoController extends Controller
     {
         $info->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info updated succesfully",
-            'info' => $info
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info updated succesfully",
+                "info" => $info,
+            ],
+            200
+        );
     }
 
     /**
@@ -296,9 +302,12 @@ class InfoController extends Controller
     {
         $info->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Info deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Info deleted succesfully",
+            ],
+            200
+        );
     }
 }

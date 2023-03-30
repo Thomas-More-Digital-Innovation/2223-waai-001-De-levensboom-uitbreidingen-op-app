@@ -27,6 +27,6 @@ class FormButton extends Component
      */
     public function render()
     {
-        return view('components.form-button');
+        return view("components.form-button");
     }
 }

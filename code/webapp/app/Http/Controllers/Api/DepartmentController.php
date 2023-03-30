@@ -182,8 +182,8 @@ class DepartmentController extends Controller
         $department = Department::all();
 
         return response()->json([
-            'status' => true,
-            'department' => [$department]
+            "status" => true,
+            "department" => [$department],
         ]);
     }
 
@@ -206,15 +206,18 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $department = Department::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Department created succesfully",
-            'department' => $department
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Department created succesfully",
+                "department" => $department,
+            ],
+            200
+        );
     }
 
     /**
@@ -246,18 +249,23 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreDepartmentRequest $request, Department $department)
-    {
+    public function update(
+        StoreDepartmentRequest $request,
+        Department $department
+    ) {
         // Use this Gate function to authorize the action
-        Gate::authorize('editDepartment', $department->id);
+        Gate::authorize("editDepartment", $department->id);
 
         $department->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Department updated succesfully",
-            'department' => $department
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Department updated succesfully",
+                "department" => $department,
+            ],
+            200
+        );
     }
 
     /**
@@ -269,13 +277,16 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         // Use this Gate function to authorize the action
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
         $department->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Department List deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Department List deleted succesfully",
+            ],
+            200
+        );
     }
 }

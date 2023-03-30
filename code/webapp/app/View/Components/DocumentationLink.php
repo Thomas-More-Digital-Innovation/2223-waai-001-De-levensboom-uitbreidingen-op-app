@@ -14,7 +14,7 @@ class DocumentationLink extends Component
      *
      * @return void
      */
-    public function __construct($link, $text="")
+    public function __construct($link, $text = "")
     {
         $this->link = $link;
         $this->text = $text;
@@ -27,6 +27,6 @@ class DocumentationLink extends Component
      */
     public function render()
     {
-        return view('components.documentation-link');
+        return view("components.documentation-link");
     }
 }

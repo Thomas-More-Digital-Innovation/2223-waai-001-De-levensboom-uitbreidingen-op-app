@@ -183,8 +183,8 @@ class SectionController extends Controller
         $section = Section::all();
 
         return response()->json([
-            'status' => true,
-            'sections' => [$section]
+            "status" => true,
+            "sections" => [$section],
         ]);
     }
 
@@ -208,11 +208,14 @@ class SectionController extends Controller
     {
         $section = Section::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Section created succesfully",
-            'section' => $section
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Section created succesfully",
+                "section" => $section,
+            ],
+            200
+        );
     }
 
     /**
@@ -248,11 +251,14 @@ class SectionController extends Controller
     {
         $section->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Section updated succesfully",
-            'section' => $section
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Section updated succesfully",
+                "section" => $section,
+            ],
+            200
+        );
     }
 
     /**
@@ -265,9 +271,12 @@ class SectionController extends Controller
     {
         $section->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Section deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Section deleted succesfully",
+            ],
+            200
+        );
     }
 }

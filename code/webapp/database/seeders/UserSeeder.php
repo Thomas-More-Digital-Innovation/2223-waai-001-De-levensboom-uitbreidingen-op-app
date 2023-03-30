@@ -15,16 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'user_type_id' => 1,
-            'firstname' => 'Admin',
-            'surname' => 'Admin',
-            'birthdate' => '1990-01-01',
-            'email' => 'admin@dewaaiburgapp.eu',
-            'email_verified_at' => now(),
-            'password' => bcrypt('adminadmin'),
-            'created_at' => now(),
-            'updated_at' => now(),
+        DB::table("users")->insert([
+            "user_type_id" => 1,
+            "firstname" => "Admin",
+            "surname" => "Admin",
+            "birthdate" => "1990-01-01",
+            "email" => "admin@dewaaiburgapp.eu",
+            "email_verified_at" => now(),
+            "password" => bcrypt("adminadmin"),
+            "created_at" => now(),
+            "updated_at" => now(),
         ]);
     }
 }

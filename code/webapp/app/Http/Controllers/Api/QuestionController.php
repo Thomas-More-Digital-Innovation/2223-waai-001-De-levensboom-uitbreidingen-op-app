@@ -202,8 +202,8 @@ class QuestionController extends Controller
         $question = Question::all();
 
         return response()->json([
-            'status' => true,
-            'questions' => [$question]
+            "status" => true,
+            "questions" => [$question],
         ]);
     }
 
@@ -227,11 +227,14 @@ class QuestionController extends Controller
     {
         $question = Question::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Question created succesfully",
-            'question' => $question
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Question created succesfully",
+                "question" => $question,
+            ],
+            200
+        );
     }
 
     /**
@@ -267,11 +270,14 @@ class QuestionController extends Controller
     {
         $question->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Question updated succesfully",
-            'question' => $question
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Question updated succesfully",
+                "question" => $question,
+            ],
+            200
+        );
     }
 
     /**
@@ -284,9 +290,12 @@ class QuestionController extends Controller
     {
         $question->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Question deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Question deleted succesfully",
+            ],
+            200
+        );
     }
 }
