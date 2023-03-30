@@ -3,11 +3,11 @@
 ## Requirements
 1. Make sure you have xampp installed on your computer.
 2. Make sure you have composer installed on your computer.
-3. Make sure you have apache running on your computer (xammp).
-4. Make sure you have MySQL running on your computer (xammp).
+3. Make sure you have apache running on your computer (xampp).
+4. Make sure you have MySQL running on your computer (xampp).
 
 ## Installation
-1. Make sure to install this repository in your xammp/htdocs folder.
+1. Make sure to install this repository in your xampp/htdocs folder.
 2. Then run the following commands in your terminal:
 3. Do all these commands in the webapp folder! (2223-waai-001-waaiburg-web-app/code/webapp)
 4. 'composer install'
