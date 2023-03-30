@@ -8,9 +8,7 @@
     "paths": {
         "/api/answers": {
             "get": {
-                "tags": [
-                    "answers"
-                ],
+                "tags": ["answers"],
                 "summary": "Get list of answers",
                 "description": "Returns list of answers",
                 "responses": {
@@ -39,9 +37,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "answers"
-                ],
+                "tags": ["answers"],
                 "summary": "Create new answer",
                 "description": "Create new answer",
                 "requestBody": {
@@ -83,9 +79,7 @@
         },
         "/api/answers/{id}": {
             "delete": {
-                "tags": [
-                    "answers"
-                ],
+                "tags": ["answers"],
                 "summary": "Delete answer",
                 "description": "Delete answer",
                 "parameters": [
@@ -124,9 +118,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "answers"
-                ],
+                "tags": ["answers"],
                 "summary": "Update answer",
                 "description": "Update answer",
                 "parameters": [
@@ -180,9 +172,7 @@
         },
         "/api/departments": {
             "get": {
-                "tags": [
-                    "departments"
-                ],
+                "tags": ["departments"],
                 "summary": "Get list of departments",
                 "description": "Returns list of departments",
                 "responses": {
@@ -211,9 +201,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "departments"
-                ],
+                "tags": ["departments"],
                 "summary": "Create a new department",
                 "description": "Returns the department data",
                 "requestBody": {
@@ -255,9 +243,7 @@
         },
         "/api/departments/{id}": {
             "delete": {
-                "tags": [
-                    "departments"
-                ],
+                "tags": ["departments"],
                 "summary": "Delete an existing department",
                 "description": "Returns the department data",
                 "parameters": [
@@ -299,9 +285,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "departments"
-                ],
+                "tags": ["departments"],
                 "summary": "Update an existing department",
                 "description": "Returns the department data",
                 "parameters": [
@@ -355,9 +339,7 @@
         },
         "/api/department-list": {
             "get": {
-                "tags": [
-                    "departmentlists"
-                ],
+                "tags": ["departmentlists"],
                 "summary": "Get list of department list",
                 "description": "Returns list of department list",
                 "responses": {
@@ -386,9 +368,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "departmentlists"
-                ],
+                "tags": ["departmentlists"],
                 "summary": "Create new department list",
                 "description": "Create new department list",
                 "requestBody": {
@@ -430,9 +410,7 @@
         },
         "/api/department-list/{id}": {
             "delete": {
-                "tags": [
-                    "departmentlists"
-                ],
+                "tags": ["departmentlists"],
                 "summary": "Delete department list",
                 "description": "Delete department list",
                 "parameters": [
@@ -471,9 +449,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "departmentlists"
-                ],
+                "tags": ["departmentlists"],
                 "summary": "Update department list",
                 "description": "Update department list",
                 "parameters": [
@@ -527,9 +503,7 @@
         },
         "/api/info-content": {
             "get": {
-                "tags": [
-                    "infocontents"
-                ],
+                "tags": ["infocontents"],
                 "summary": "Get list of info content",
                 "description": "Returns list of info content",
                 "operationId": "infoContentIndex",
@@ -570,9 +544,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "infocontents"
-                ],
+                "tags": ["infocontents"],
                 "summary": "Create info content",
                 "description": "Create info content",
                 "operationId": "infoContentStore",
@@ -626,9 +598,7 @@
         },
         "/api/info-content/{id}": {
             "delete": {
-                "tags": [
-                    "infocontents"
-                ],
+                "tags": ["infocontents"],
                 "summary": "Delete info content",
                 "description": "Delete info content",
                 "operationId": "infoContentDelete",
@@ -678,9 +648,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "infocontents"
-                ],
+                "tags": ["infocontents"],
                 "summary": "Update info content",
                 "description": "Update info content",
                 "operationId": "infoContentUpdate",
@@ -745,9 +713,7 @@
         },
         "/api/info": {
             "get": {
-                "tags": [
-                    "infos"
-                ],
+                "tags": ["infos"],
                 "summary": "Get list of info",
                 "description": "Returns list of info",
                 "operationId": "infoIndex",
@@ -788,9 +754,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "infos"
-                ],
+                "tags": ["infos"],
                 "summary": "Create info",
                 "description": "Create info",
                 "operationId": "infoStore",
@@ -844,9 +808,7 @@
         },
         "/api/info/{id}": {
             "delete": {
-                "tags": [
-                    "infos"
-                ],
+                "tags": ["infos"],
                 "summary": "Delete info",
                 "description": "Delete info",
                 "operationId": "infoDelete",
@@ -893,9 +855,7 @@
         },
         "/api/questions": {
             "get": {
-                "tags": [
-                    "questions"
-                ],
+                "tags": ["questions"],
                 "summary": "Get list of questions",
                 "description": "Returns list of questions",
                 "operationId": "questionsIndex",
@@ -936,9 +896,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "questions"
-                ],
+                "tags": ["questions"],
                 "summary": "Create new question",
                 "description": "Create new question",
                 "operationId": "questionsStore",
@@ -988,9 +946,7 @@
         },
         "/api/questions/{id}": {
             "delete": {
-                "tags": [
-                    "questions"
-                ],
+                "tags": ["questions"],
                 "summary": "Delete question",
                 "description": "Delete question",
                 "operationId": "questionsDestroy",
@@ -1034,9 +990,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "questions"
-                ],
+                "tags": ["questions"],
                 "summary": "Update question",
                 "description": "Update question",
                 "operationId": "questionsUpdate",
@@ -1092,9 +1046,7 @@
         },
         "/api/roles": {
             "get": {
-                "tags": [
-                    "roles"
-                ],
+                "tags": ["roles"],
                 "summary": "Get list of roles",
                 "description": "Returns list of roles",
                 "operationId": "rolesIndex",
@@ -1132,9 +1084,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "roles"
-                ],
+                "tags": ["roles"],
                 "summary": "Create a new role",
                 "description": "Returns the created role",
                 "operationId": "rolesStore",
@@ -1185,9 +1135,7 @@
         },
         "/api/roles/{id}": {
             "delete": {
-                "tags": [
-                    "roles"
-                ],
+                "tags": ["roles"],
                 "summary": "Delete a role",
                 "description": "Returns the deleted role",
                 "operationId": "rolesDelete",
@@ -1232,9 +1180,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "roles"
-                ],
+                "tags": ["roles"],
                 "summary": "Update a role",
                 "description": "Returns the updated role",
                 "operationId": "rolesUpdate",
@@ -1291,9 +1237,7 @@
         },
         "/api/sections": {
             "get": {
-                "tags": [
-                    "sections"
-                ],
+                "tags": ["sections"],
                 "summary": "Get list of sections",
                 "description": "Returns list of sections",
                 "operationId": "sectionsIndex",
@@ -1331,9 +1275,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "sections"
-                ],
+                "tags": ["sections"],
                 "summary": "Create a new section",
                 "description": "Returns the created section",
                 "operationId": "sectionsStore",
@@ -1376,9 +1318,7 @@
         },
         "/api/sections/{id}": {
             "delete": {
-                "tags": [
-                    "sections"
-                ],
+                "tags": ["sections"],
                 "summary": "Delete a section",
                 "description": "Returns the deleted section",
                 "operationId": "sectionsDestroy",
@@ -1417,9 +1357,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "sections"
-                ],
+                "tags": ["sections"],
                 "summary": "Update a section",
                 "description": "Returns the updated section",
                 "operationId": "sectionsUpdate",
@@ -1470,9 +1408,7 @@
         },
         "/api/users": {
             "get": {
-                "tags": [
-                    "users"
-                ],
+                "tags": ["users"],
                 "summary": "Get list of users",
                 "description": "Returns list of users",
                 "operationId": "usersIndex",
@@ -1510,9 +1446,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "users"
-                ],
+                "tags": ["users"],
                 "summary": "Create new user",
                 "description": "Create new user",
                 "operationId": "usersStore",
@@ -1556,9 +1490,7 @@
         },
         "/api/users/{id}": {
             "delete": {
-                "tags": [
-                    "users"
-                ],
+                "tags": ["users"],
                 "summary": "Delete existing user",
                 "description": "Delete existing user",
                 "operationId": "usersDestroy",
@@ -1594,9 +1526,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "users"
-                ],
+                "tags": ["users"],
                 "summary": "Update existing user",
                 "description": "Update existing user",
                 "operationId": "usersUpdate",
@@ -1637,9 +1567,7 @@
         },
         "/api/userTypes": {
             "get": {
-                "tags": [
-                    "userTypes"
-                ],
+                "tags": ["userTypes"],
                 "summary": "Get list of userTypes",
                 "description": "Returns list of userTypes",
                 "operationId": "userTypesIndex",
@@ -1677,9 +1605,7 @@
                 }
             },
             "post": {
-                "tags": [
-                    "userTypes"
-                ],
+                "tags": ["userTypes"],
                 "summary": "Create a new userType",
                 "description": "Returns the created userType",
                 "operationId": "userTypesStore",
@@ -1722,9 +1648,7 @@
         },
         "/api/userTypes/{id}": {
             "delete": {
-                "tags": [
-                    "userTypes"
-                ],
+                "tags": ["userTypes"],
                 "summary": "Delete an existing userType",
                 "description": "Returns the deleted userType",
                 "operationId": "userTypesDelete",
@@ -1763,9 +1687,7 @@
                 }
             },
             "patch": {
-                "tags": [
-                    "userTypes"
-                ],
+                "tags": ["userTypes"],
                 "summary": "Update an existing userType",
                 "description": "Returns the updated userType",
                 "operationId": "userTypesUpdate",

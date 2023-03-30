@@ -198,12 +198,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
         $role = Role::all();
 
         return response()->json([
-            'status' => true,
-            'roles' => [$role]
+            "status" => true,
+            "roles" => [$role],
         ]);
     }
 
@@ -225,14 +225,17 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         $role = Role::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Role created succesfully",
-            'role' => $role
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Role created succesfully",
+                "role" => $role,
+            ],
+            200
+        );
     }
 
     /**
@@ -266,14 +269,17 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, Role $role)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         $role->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "Role updated succesfully",
-            'role' => $role
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Role updated succesfully",
+                "role" => $role,
+            ],
+            200
+        );
     }
 
     /**
@@ -284,12 +290,15 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         $role->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "Role deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "Role deleted succesfully",
+            ],
+            200
+        );
     }
 }

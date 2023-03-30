@@ -17,7 +17,7 @@ class AdultInfoContentController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
 
         //
     }
@@ -29,10 +29,10 @@ class AdultInfoContentController extends Controller
      */
     public function create(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $info_id = $request->info_id;
-        return view('adults.infoContents.create', compact('info_id'));
+        return view("adults.infoContents.create", compact("info_id"));
     }
 
     /**
@@ -43,36 +43,49 @@ class AdultInfoContentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add(['info_id' => $request->info_id]);
+        $request->request->add(["info_id" => $request->info_id]);
 
-        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
-            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
-            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());
+        if (
+            $request->hasFile("titleImage") &&
+            $request->file("titleImage")->isValid()
+        ) {
+            $request->merge([
+                "titleImage" => $request->titleImage->getClientOriginalName(),
+            ]);
+            $request->titleImage->storeAs(
+                "public/adults",
+                $request->titleImage->getClientOriginalName()
+            );
         } else {
-            $request->request->add(['titleImage' => $request->titleImageUrl]);
+            $request->request->add(["titleImage" => $request->titleImageUrl]);
         }
 
-        $highestOrderNumber = InfoContent::where('info_id', $request->info_id)->max('orderNumber');
-        $request->request->add(['orderNumber' => $highestOrderNumber + 1]);
+        $highestOrderNumber = InfoContent::where(
+            "info_id",
+            $request->info_id
+        )->max("orderNumber");
+        $request->request->add(["orderNumber" => $highestOrderNumber + 1]);
 
         InfoContent::create($request->all());
 
-
         $msg = "New Adult Info Content Created successful! ";
-        return redirect('adults/' . $request->info_id . '/edit')->with('msg', $msg);
+        return redirect("adults/" . $request->info_id . "/edit")->with(
+            "msg",
+            $msg
+        );
     }
 
     public function updateOrder(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $infoContent = InfoContent::find($request->info_id);
         $orderNumber = $infoContent->orderNumber;
 
-        if ($request->order == 'up') {
-            $other = InfoContent::where('info_id', $request->adult)
-                ->where('orderNumber', '<', $orderNumber)
-                ->orderBy('orderNumber', 'desc')
+        if ($request->order == "up") {
+            $other = InfoContent::where("info_id", $request->adult)
+                ->where("orderNumber", "<", $orderNumber)
+                ->orderBy("orderNumber", "desc")
                 ->first();
 
             if ($other) {
@@ -82,9 +95,9 @@ class AdultInfoContentController extends Controller
                 $infoContent->save();
             }
         } else {
-            $other = InfoContent::where('info_id', $request->adult)
-                ->where('orderNumber', '>', $orderNumber)
-                ->orderBy('orderNumber', 'asc')
+            $other = InfoContent::where("info_id", $request->adult)
+                ->where("orderNumber", ">", $orderNumber)
+                ->orderBy("orderNumber", "asc")
                 ->first();
 
             if ($other) {
@@ -95,11 +108,17 @@ class AdultInfoContentController extends Controller
             }
         }
 
-        $adults = Info::where('section_id', 1)->orderBy('orderNumber')->get();
-        $infoContents = InfoContent::orderBy('orderNumber')->get();
+        $adults = Info::where("section_id", 1)
+            ->orderBy("orderNumber")
+            ->get();
+        $infoContents = InfoContent::orderBy("orderNumber")->get();
         $msg = "Adult order updated successfully!";
 
-        return redirect('adults/' . $request->adult . '/edit')->with(['msg' => $msg, 'adults' => $adults, 'infoContents' => $infoContents]);
+        return redirect("adults/" . $request->adult . "/edit")->with([
+            "msg" => $msg,
+            "adults" => $adults,
+            "infoContents" => $infoContents,
+        ]);
     }
 
     /**
@@ -121,11 +140,11 @@ class AdultInfoContentController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $infoContent = InfoContent::find($id);
 
-        return view('adults.infoContents.edit', compact('infoContent'));
+        return view("adults.infoContents.edit", compact("infoContent"));
     }
 
     /**
@@ -137,20 +156,28 @@ class AdultInfoContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
-        if ($request->hasFile('titleImage') && $request->file('titleImage')->isValid()) {
-            $request->merge(['titleImage' => $request->titleImage->getClientOriginalName()]);
-            $request->titleImage->storeAs('public/adults', $request->titleImage->getClientOriginalName());
+        if (
+            $request->hasFile("titleImage") &&
+            $request->file("titleImage")->isValid()
+        ) {
+            $request->merge([
+                "titleImage" => $request->titleImage->getClientOriginalName(),
+            ]);
+            $request->titleImage->storeAs(
+                "public/adults",
+                $request->titleImage->getClientOriginalName()
+            );
         } else {
-            $request->request->add(['titleImage' => $request->titleImageUrl]);
+            $request->request->add(["titleImage" => $request->titleImageUrl]);
         }
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->update($request->all());
         $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Updated successful! ";
-        return redirect('adults/' . $info_id . '/edit')->with('msg', $msg);
+        return redirect("adults/" . $info_id . "/edit")->with("msg", $msg);
     }
 
     /**
@@ -161,13 +188,13 @@ class AdultInfoContentController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $adultInfoContent = InfoContent::find($id);
         $adultInfoContent->delete();
         $info_id = $adultInfoContent->info_id;
 
         $msg = "Adult Info Content Deleted successful! ";
-        return redirect('adults/' . $info_id . '/edit')->with('msg', $msg);
+        return redirect("adults/" . $info_id . "/edit")->with("msg", $msg);
     }
 }

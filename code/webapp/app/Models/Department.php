@@ -10,7 +10,15 @@ class Department extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['name', 'street', 'houseNumber', 'city', 'zipcode', 'email', 'phoneNumber'];
+    protected $fillable = [
+        "name",
+        "street",
+        "houseNumber",
+        "city",
+        "zipcode",
+        "email",
+        "phoneNumber",
+    ];
 
     public function department_lists()
     {

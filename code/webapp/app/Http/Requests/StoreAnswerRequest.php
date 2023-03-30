@@ -26,7 +26,7 @@ class StoreAnswerRequest extends FormRequest
         return [
             "user_id" => "integer|required",
             "question_id" => "integer|required",
-            "answer" => "string|required"
+            "answer" => "string|required",
         ];
     }
 }

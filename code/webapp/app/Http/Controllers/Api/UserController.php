@@ -219,13 +219,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
         $user = User::all();
 
         return response()->json([
-            'status' => true,
-            'users' => [$user]
-
+            "status" => true,
+            "users" => [$user],
         ]);
     }
 
@@ -247,14 +246,17 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
         $user = User::create($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "User created succesfully",
-            'user' => $user
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "User created succesfully",
+                "user" => $user,
+            ],
+            200
+        );
     }
 
     /**
@@ -288,14 +290,17 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, User $user)
     {
-        Gate::authorize('editAccount', $user);
+        Gate::authorize("editAccount", $user);
         $user->update($request->all());
 
-        return response()->json([
-            'status' => true,
-            'message' => "User updated succesfully",
-            'user' => $user
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "User updated succesfully",
+                "user" => $user,
+            ],
+            200
+        );
     }
 
     /**
@@ -306,12 +311,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
         $user->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => "User deleted succesfully",
-        ], 200);
+        return response()->json(
+            [
+                "status" => true,
+                "message" => "User deleted succesfully",
+            ],
+            200
+        );
     }
 }

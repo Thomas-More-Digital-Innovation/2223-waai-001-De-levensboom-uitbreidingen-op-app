@@ -29,7 +29,7 @@ class StoreInfoContentRequest extends FormRequest
             "titleImage" => "string|nullable",
             "url" => "string|nullable",
             "shortContent" => "string|nullable",
-            "content" => "string|nullable"
+            "content" => "string|nullable",
         ];
     }
 }

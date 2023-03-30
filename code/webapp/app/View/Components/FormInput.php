@@ -18,8 +18,14 @@ class FormInput extends Component
      *
      * @return void
      */
-    public function __construct($text, $name, $type = 'text', $value = null, $disabled = "", $required = "true")
-    {
+    public function __construct(
+        $text,
+        $name,
+        $type = "text",
+        $value = null,
+        $disabled = "",
+        $required = "true"
+    ) {
         $this->text = $text;
         $this->name = $name;
         $this->type = $type;
@@ -35,6 +41,6 @@ class FormInput extends Component
      */
     public function render()
     {
-        return view('components.form-input');
+        return view("components.form-input");
     }
 }

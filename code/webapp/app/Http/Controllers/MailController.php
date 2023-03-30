@@ -16,10 +16,10 @@ class MailController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
 
-        $mails = Info::where('section_id', 4)->get();
-        return view('mails.index', compact('mails'));
+        $mails = Info::where("section_id", 4)->get();
+        return view("mails.index", compact("mails"));
     }
 
     /**
@@ -29,7 +29,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         //
     }
 
@@ -41,7 +41,7 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         //
     }
 
@@ -53,7 +53,7 @@ class MailController extends Controller
      */
     public function show($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         //
     }
 
@@ -65,11 +65,11 @@ class MailController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $mail = Info::find($id);
-        $mail->content = InfoContent::where('info_id', $id)->first()->content;
-        return view('mails.edit', compact('mail'));
+        $mail->content = InfoContent::where("info_id", $id)->first()->content;
+        return view("mails.edit", compact("mail"));
     }
 
     /**
@@ -81,20 +81,21 @@ class MailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
 
         $mail = Info::find($id);
         $mail->update($request->all());
 
         InfoContent::updateOrCreate(
-            ['info_id' => $mail->id],
+            ["info_id" => $mail->id],
             [
-                'title' => $request->title, 'content' => $request->content
-            ],
+                "title" => $request->title,
+                "content" => $request->content,
+            ]
         );
 
         $msg = "Mail Updated successful! ";
-        return redirect('mails')->with('msg', $msg);
+        return redirect("mails")->with("msg", $msg);
     }
 
     /**
@@ -105,7 +106,7 @@ class MailController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('allowAdmin');
+        Gate::authorize("allowAdmin");
         //
     }
 }

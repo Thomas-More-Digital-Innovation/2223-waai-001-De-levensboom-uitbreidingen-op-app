@@ -10,7 +10,7 @@ class Info extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['section_id', 'title', 'orderNumber'];
+    protected $fillable = ["section_id", "title", "orderNumber"];
 
     public function sections()
     {

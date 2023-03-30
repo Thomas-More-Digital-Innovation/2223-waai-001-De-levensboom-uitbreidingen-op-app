@@ -23,9 +23,11 @@ class MentorController extends Controller
      */
     public function index()
     {
-        Gate::authorize('notClient');
+        Gate::authorize("notClient");
 
-        $mentors = User::where('user_type_id', 1)->orWhere('user_type_id', 3)->get();
+        $mentors = User::where("user_type_id", 1)
+            ->orWhere("user_type_id", 3)
+            ->get();
 
         foreach ($mentors as $mentor) {
             $user_type = UserType::find($mentor->user_type_id);
@@ -35,7 +37,10 @@ class MentorController extends Controller
         $departmentLists = DepartmentList::all();
         $departments = Department::all();
 
-        return view('mentors.index', compact('mentors', 'departmentLists', 'departments'));
+        return view(
+            "mentors.index",
+            compact("mentors", "departmentLists", "departments")
+        );
     }
 
     /**
@@ -45,11 +50,13 @@ class MentorController extends Controller
      */
     public function create()
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
         $departments = Department::all();
-        $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
-        return view('mentors.create', compact('departments', 'roles'));
+        $roles = Role::where("name", "Department Head")
+            ->orWhere("name", "Mentor")
+            ->get();
+        return view("mentors.create", compact("departments", "roles"));
     }
 
     /**
@@ -60,28 +67,28 @@ class MentorController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
-        $request->request->add(['user_type_id' => 3]);
-        $request->request->add(['password' => bcrypt('veranderMij')]);
+        $request->request->add(["user_type_id" => 3]);
+        $request->request->add(["password" => bcrypt("veranderMij")]);
         $user = User::create($request->all());
 
         event(new Registered($user));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
-            $department = $request->input('department' . $i);
-            $role = $request->input('role' . $i);
+            $department = $request->input("department" . $i);
+            $role = $request->input("role" . $i);
             if ($department != null && $role != null) {
                 DepartmentList::create([
-                    'user_id' => User::latest()->first()->id,
-                    'department_id' => $department,
-                    'role_id' => $role,
+                    "user_id" => User::latest()->first()->id,
+                    "department_id" => $department,
+                    "role_id" => $role,
                 ]);
             }
         }
 
         $msg = "New Mentor Created successful! ";
-        return redirect('mentors')->with('msg', $msg);
+        return redirect("mentors")->with("msg", $msg);
     }
 
     /**
@@ -103,12 +110,16 @@ class MentorController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('editAccount', $id);
+        Gate::authorize("editAccount", $id);
         $mentor = User::find($id);
         $departments = Department::all();
-        $roles = Role::where('name', 'Department Head')->orWhere('name', 'Mentor')->get();
-        $departmentsList = DepartmentList::where('user_id', $id)->get();
-        return view('mentors.edit', compact('mentor', 'departments', 'roles'), ['departmentsList' => $departmentsList]);
+        $roles = Role::where("name", "Department Head")
+            ->orWhere("name", "Mentor")
+            ->get();
+        $departmentsList = DepartmentList::where("user_id", $id)->get();
+        return view("mentors.edit", compact("mentor", "departments", "roles"), [
+            "departmentsList" => $departmentsList,
+        ]);
     }
 
     /**
@@ -120,27 +131,27 @@ class MentorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('editAccount', $id);
+        Gate::authorize("editAccount", $id);
 
         $mentor = User::find($id);
         $mentor->update($request->all());
 
-        DepartmentList::Where('user_id', $id)->delete();
+        DepartmentList::Where("user_id", $id)->delete();
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
-            $department = $request->input('department' . $i);
-            $role = $request->input('role' . $i);
+            $department = $request->input("department" . $i);
+            $role = $request->input("role" . $i);
             if ($department != null && $role != null) {
                 DepartmentList::create([
-                    'user_id' => $id,
-                    'department_id' => $department,
-                    'role_id' => $role,
+                    "user_id" => $id,
+                    "department_id" => $department,
+                    "role_id" => $role,
                 ]);
             }
         }
 
         $msg = "Mentor Updated successful! ";
-        return redirect('mentors')->with('msg', $msg);
+        return redirect("mentors")->with("msg", $msg);
     }
 
     /**
@@ -151,14 +162,14 @@ class MentorController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('adminOrDep');
+        Gate::authorize("adminOrDep");
 
-        DepartmentList::where('user_id', $id)->delete();
-        UserList::where('mentor_id', $id)->delete();
+        DepartmentList::where("user_id", $id)->delete();
+        UserList::where("mentor_id", $id)->delete();
         $mentor = User::find($id);
         $mentor->delete();
 
         $msg = "Mentor Deleted successful! ";
-        return redirect('mentors')->with('msg', $msg);
+        return redirect("mentors")->with("msg", $msg);
     }
 }

@@ -10,7 +10,15 @@ class InfoContent extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ['info_id', 'title', 'titleImage', 'url', 'shortContent',  'content', 'orderNumber'];
+    protected $fillable = [
+        "info_id",
+        "title",
+        "titleImage",
+        "url",
+        "shortContent",
+        "content",
+        "orderNumber",
+    ];
 
     public function info()
     {
