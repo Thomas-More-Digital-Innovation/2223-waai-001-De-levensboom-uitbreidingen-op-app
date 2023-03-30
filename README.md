@@ -17,7 +17,8 @@
 8. Use 'php artisan serve' in your terminal to run the application
 9. Use 'npm run dev' to compile the assets (use 2 terminals!)
 10. Open the link to 127.0.0.1:8000 in your browser
-11. Use 'php artisan migrate:fresh --seed' in your terminal to create the database
+11. Use 'php artisan migrate --seed' in your terminal to create the database
+11. Use 'php artisan migrate:fresh --seed' in your terminal to update the existing database
 
 ## Documentation
 1. Make sure the library l5-swagger is installed locally using composer install
