@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        @yield('documentation')
     </main>
 </body>
 
