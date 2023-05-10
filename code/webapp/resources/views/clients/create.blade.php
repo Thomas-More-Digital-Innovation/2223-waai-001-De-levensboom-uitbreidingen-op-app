@@ -68,54 +68,54 @@
         </div>
     </form>
 @endsection
+@section('scripts')
+    <script>
+        let nrOfDep = 1;
 
-<script>
-    let nrOfDep = 1;
+        function getDepartments(departmentLists, allMentors, departmentId, mentorId) {
+            selectedDepartments = document.getElementById(departmentId).value;
+            let mentorDropdown = document.getElementById(mentorId);
+            let departments = []
+            let mentors = []
 
-    function getDepartments(departmentLists, allMentors, departmentId, mentorId) {
-        selectedDepartments = document.getElementById(departmentId).value;
-        let mentorDropdown = document.getElementById(mentorId);
-        let departments = []
-        let mentors = []
+            // Loop through the departmentLists array
+            for (let i = 0; i < departmentLists.length; i++) {
+                // search for the selected departmentLists with only Mentors and Department Heads
+                if (departmentLists[i].department_id == selectedDepartments && departmentLists[i].role_id != 2) {
+                    // Push the user_id to the mentors array
+                    mentors.push(departmentLists[i].user_id)
+                }
+            }
 
-        // Loop through the departmentLists array
-        for (let i = 0; i < departmentLists.length; i++) {
-            // search for the selected departmentLists with only Mentors and Department Heads
-            if (departmentLists[i].department_id == selectedDepartments && departmentLists[i].role_id != 2) {
-                // Push the user_id to the mentors array
-                mentors.push(departmentLists[i].user_id)
+            //Delete all options in the mentorDropdown
+            while (mentorDropdown.firstChild) {
+                mentorDropdown.removeChild(mentorDropdown.firstChild);
+            }
+            // Make new standard option
+            let option = document.createElement('option');
+            option.value = '';
+            option.text = 'Kies een Begeleider';
+            mentorDropdown.appendChild(option)
+
+            // Loop through the allMentors array
+            for (let i = 0; i < allMentors.length; i++) {
+                if (mentors.includes(allMentors[i].id)) {
+                    // make new option
+                    let option = document.createElement('option');
+                    option.value = allMentors[i].id;
+                    option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
+                    mentorDropdown.appendChild(option);
+                }
             }
         }
 
-        //Delete all options in the mentorDropdown
-        while (mentorDropdown.firstChild) {
-            mentorDropdown.removeChild(mentorDropdown.firstChild);
-        }
-        // Make new standard option
-        let option = document.createElement('option');
-        option.value = '';
-        option.text = 'Kies een Begeleider';
-        mentorDropdown.appendChild(option)
+        function addDepartment() {
+            nrOfDep++;
 
-        // Loop through the allMentors array
-        for (let i = 0; i < allMentors.length; i++) {
-            if (mentors.includes(allMentors[i].id)) {
-                // make new option
-                let option = document.createElement('option');
-                option.value = allMentors[i].id;
-                option.text = allMentors[i].firstname + ' ' + allMentors[i].surname;
-                mentorDropdown.appendChild(option);
-            }
-        }
-    }
+            let dropdowns = document.getElementById('dropdowns');
+            let totalDep = document.getElementById('totalDep');
 
-    function addDepartment() {
-        nrOfDep++;
-
-        let dropdowns = document.getElementById('dropdowns');
-        let totalDep = document.getElementById('totalDep');
-
-        let newDropdown = `<div id='${nrOfDep}' class="flex flex-row gap-5">
+            let newDropdown = `<div id='${nrOfDep}' class="flex flex-row gap-5">
                         <div class="flex items-center mb-5">
                           <select onchange="getDepartments({{ $departmentLists }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}" class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
                             <option value="">Kies een Afdeling</option>
@@ -133,12 +133,13 @@
                         </div>
                       </div>`;
 
-        dropdowns.insertAdjacentHTML('beforeend', newDropdown);
-        totalDep.value = nrOfDep;
-    }
+            dropdowns.insertAdjacentHTML('beforeend', newDropdown);
+            totalDep.value = nrOfDep;
+        }
 
-    function deleteDepartment(departmentId) {
-        let dropdowns = document.getElementById('dropdowns');
-        dropdowns.removeChild(document.getElementById(departmentId));
-    }
-</script>
+        function deleteDepartment(departmentId) {
+            let dropdowns = document.getElementById('dropdowns');
+            dropdowns.removeChild(document.getElementById(departmentId));
+        }
+    </script>
+@endsection
