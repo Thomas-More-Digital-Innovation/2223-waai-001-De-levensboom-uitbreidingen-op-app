@@ -21,5 +21,5 @@
         @yield('documentation')
     </main>
 </body>
-
+@yield('scripts')
 </html>

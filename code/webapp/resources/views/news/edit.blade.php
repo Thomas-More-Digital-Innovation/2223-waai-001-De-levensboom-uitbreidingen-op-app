@@ -21,9 +21,11 @@
         </div>
     </form>
 @endsection
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var data = {!! json_encode($news->content) !!};
-        CKEDITOR.instances.content.setData(data);
-    }, false);
-</script>
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var data = {!! json_encode($news->content) !!};
+            CKEDITOR.instances.content.setData(data);
+        }, false);
+    </script>
+@endsection
