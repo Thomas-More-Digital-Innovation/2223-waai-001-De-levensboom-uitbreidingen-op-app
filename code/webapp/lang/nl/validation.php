@@ -144,7 +144,6 @@ return [
         "numeric" => "Het :attribute moet :size zijn.",
         "string" => "Het :attribute moet :size tekens bevatten.",
     ],
-
     "starts_with" =>
     "Het :attribute moet beginnen met een van de volgende: :values.",
     "string" => "Het :attribute moet een string zijn.",
