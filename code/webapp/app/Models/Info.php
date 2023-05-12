@@ -14,7 +14,7 @@ class Info extends Model
 
     public function sections()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Section::class)->withDefault();
     }
 
     public function infoContents()

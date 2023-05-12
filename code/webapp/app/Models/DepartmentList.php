@@ -14,16 +14,16 @@ class DepartmentList extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class)->withDefault();
     }
 
     public function departments()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class)->withDefault();
     }
 }

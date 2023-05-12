@@ -53,7 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userTypes()
     {
-        return $this->belongsTo(UserType::class);
+        return $this->belongsTo(UserType::class)->withDefault();
     }
 
     public function department_lists()

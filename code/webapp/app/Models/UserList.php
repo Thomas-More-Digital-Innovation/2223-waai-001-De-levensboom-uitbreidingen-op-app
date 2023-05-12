@@ -13,11 +13,11 @@ class UserList extends Model
 
     public function client()
     {
-        return $this->belongsTo(User::class, "client_id");
+        return $this->belongsTo(User::class, "client_id")->withDefault();
     }
 
     public function mentor()
     {
-        return $this->belongsTo(User::class, "mentor_id");
+        return $this->belongsTo(User::class, "mentor_id")->withDefault();
     }
 }

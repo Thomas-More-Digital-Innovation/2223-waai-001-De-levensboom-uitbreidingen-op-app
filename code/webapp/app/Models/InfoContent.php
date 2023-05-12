@@ -22,6 +22,6 @@ class InfoContent extends Model
 
     public function info()
     {
-        return $this->belongsTo(Info::class);
+        return $this->belongsTo(Info::class)->withDefault();
     }
 }

@@ -14,11 +14,11 @@ class Answer extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     public function questions()
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(Question::class)->withDefault();
     }
 }
