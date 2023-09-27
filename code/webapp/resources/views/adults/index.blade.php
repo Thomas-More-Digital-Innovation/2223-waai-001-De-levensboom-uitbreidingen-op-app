@@ -10,12 +10,12 @@
 
 <body class="flex">
     <x-navbar />
-    <main class="w-full bg-[#ecf0f5]">
+    <main class="w-full bg-white">
         <x-topbar />
         <x-welcome />
 
         <div class="m-5 bg-white rounded border">
-            <div class="border-t-4 rounded border-[#3c8dbc]">
+            <div class="border-t-4 rounded border-wb-blue">
                 <div class="m-3">
                     <x-list-title title="Info Segmenten voor volwassenen" name="adults.create" />
                     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="adultCreate">
@@ -50,10 +50,10 @@
                                             @method('delete')
 
                                             <a href="{{ route('adults.edit', $adult->id) }}"
-                                                class="text-[#3c8dbc]">Bewerk</a>
+                                                class="text-wb-blue">Bewerk</a>
                                             <span>|</span>
 
-                                            <button type="submit" class="text-[#3c8dbc]"
+                                            <button type="submit" class="text-wb-blue"
                                                 onclick="return confirm('Ben je zeker dat je dit info segment wilt verwijderen?');">Verwijder</button>
 
                                             <a href="{{ route('adults.updateOrder', ['adult' => $adult->id, 'order' => 'up']) }}"

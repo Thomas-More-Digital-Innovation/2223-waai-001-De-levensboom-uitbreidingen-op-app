@@ -10,13 +10,13 @@
 
 <body class="flex">
     <x-navbar />
-    <main class="w-full bg-[#ecf0f5]">
+    <main class="w-full bg-white">
         <x-topbar />
         <x-welcome />
 
         <div class="flex flex-row">
             <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
-                <div class="border-t-4 rounded border-[#3c8dbc]">
+                <div class="border-t-4 rounded border-wb-blue">
                     <div class="m-3">
                         <h1 class="text-2xl">Info segment toevoegen</h1>
                         <form action="{{ route('teens.store') }}" method="POST" class="flex flex-col mt-3">
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
-                <div class="border-t-4 rounded border-[#3c8dbc]">
+                <div class="border-t-4 rounded border-wb-blue">
                     <div class="m-3">
                         <h1 class="text-2xl">Infoblokken</h1>
                         <p class="mt-3 text-gray-800">Voeg de info blokken toe op de update pagina</p>

@@ -23,10 +23,10 @@
                             @csrf
                             @method('delete')
 
-                            <a href="{{ route('departments.edit', $department->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                            <a href="{{ route('departments.edit', $department->id) }}" class="text-wb-blue">Bewerk</a>
                             <span>|</span>
 
-                            <button type="submit" class="text-[#3c8dbc]"
+                            <button type="submit" class="text-wb-blue"
                                 onclick="return confirm('Ben je zeker dat je deze afdeling wilt verwijderen?');">Verwijder</button>
                         </form>
                     </td>

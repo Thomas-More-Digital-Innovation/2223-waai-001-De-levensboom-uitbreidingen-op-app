@@ -13,12 +13,12 @@
 
 <body class="flex">
     <x-navbar />
-    <main class="w-full bg-[#ecf0f5]">
+    <main class="w-full bg-white">
         <x-topbar />
         <x-welcome />
 
         <div class="m-5 bg-white rounded border">
-            <div class="border-t-4 rounded border-[#3c8dbc]">
+            <div class="border-t-4 rounded border-wb-blue">
                 <div class="m-3">
                     <h1 class="text-2xl">InfoContent wijzigen</h1>
                     <form action="{{ route('teenInfoContents.update', $infoContent->id) }}" method="POST"

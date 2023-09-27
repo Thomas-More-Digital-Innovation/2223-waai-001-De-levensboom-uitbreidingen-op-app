@@ -21,10 +21,10 @@
                             @csrf
                             @method('delete')
 
-                            <a href="{{ route('news.edit', $new->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                            <a href="{{ route('news.edit', $new->id) }}" class="text-wb-blue">Bewerk</a>
                             <span>|</span>
 
-                            <button type="submit" class="text-[#3c8dbc]"
+                            <button type="submit" class="text-wb-blue"
                                 onclick="return confirm('Ben je zeker dat je dit nieuwtje wilt verwijderen?');">Verwijder</button>
                         </form>
                     </td>

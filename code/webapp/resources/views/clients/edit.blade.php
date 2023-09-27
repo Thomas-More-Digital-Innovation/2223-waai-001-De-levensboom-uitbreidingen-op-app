@@ -13,12 +13,12 @@
 
 <body class="flex relative" onload="setDepartments('{{ count($departmentsList) ? count($departmentsList) : 1 }}')">
     <x-navbar />
-    <main class="w-full bg-[#ecf0f5]">
+    <main class="w-full bg-white">
         <x-topbar />
         <x-welcome />
 
         <div class="m-5 bg-white rounded border">
-            <div class="border-t-4 rounded border-[#3c8dbc]">
+            <div class="border-t-4 rounded border-wb-blue">
                 <div class="m-3">
                     <h1 class="text-2xl">Client wijzigen</h1>
                     <form action="{{ route('clients.update', $client->id) }}" method="POST" class="flex flex-col mt-3">
@@ -35,7 +35,7 @@
 
                         <label for="gender" class="font-bold">Geslacht</label>
                         <select name="gender" id="gender"
-                            class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc] mb-5">
+                            class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-5">
                             <option value="man">Man</option>
                             <option value="woman">Vrouw</option>
                         </select>
@@ -55,7 +55,7 @@
                                             <select
                                                 onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department{{ $i }}', 'mentor{{ $i }}')"
                                                 name="department{{ $i }}" id="department{{ $i }}"
-                                                class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                                                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
                                                 <option value="">Kies een Afdeling</option>
                                                 @foreach ($departments as $department)
                                                     <option value="{{ $department->id }}"
@@ -72,18 +72,20 @@
                                                     <label for="mentor{{ $i }}"
                                                         class="font-bold">Begeleiders</label>
                                                     <iconify-icon icon="fa6-solid:plus"
-                                                        class="text-[#3c8dbc] text-xl cursor-pointer"
+                                                        class="text-wb-blue text-xl cursor-pointer"
                                                         onclick="addDepartment()" />
                                                 </div>
                                             @endif
                                             <div class="flex items-center mb-3">
                                                 <select name="mentor{{ $i }}"
                                                     id="mentor{{ $i }}"
-                                                    class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                                                    class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
                                                     <option value="">Kies een Begeleider</option>
                                                     @foreach ($mentors as $mentor)
                                                         @foreach ($departmentsList as $department)
-                                                            @if ($department->department_id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0) && $department->user_id == $mentor->id)
+                                                            @if (
+                                                                $department->department_id == (count($userDepartments) ? $userDepartments[$i]->department_id : 0) &&
+                                                                    $department->user_id == $mentor->id)
                                                                 <option value="{{ $mentor->id }}"
                                                                     @if (count($usersList)) @if ($usersList[$i]->mentor_id == $mentor->id)
                                       selected @endif
@@ -97,7 +99,7 @@
                                                 </select>
                                                 @if ($i != 0)
                                                     <button onclick="deleteDepartment( '{{ $i }}' )"
-                                                        class="text-[#3c8dbc] ml-2">Verwijder</button>
+                                                        class="text-wb-blue ml-2">Verwijder</button>
                                                 @endif
                                             </div>
                                         </div>
@@ -198,7 +200,7 @@
                           <div class="flex items-center mb-5">
                             <select
                               onchange="getDepartments({{ $departmentsList }}, {{ $mentors }}, 'department${nrOfDep}', 'mentor${nrOfDep}')" name="department${nrOfDep}" id="department${nrOfDep}"
-                              class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                              class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
                               <option value="">Kies een Afdeling</option>
                               @foreach ($departments as $department)
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -210,10 +212,10 @@
                             <select
                               name="mentor${nrOfDep}"
                               id="mentor${nrOfDep}"
-                              class="border border-[#d2d6de] px-4 py-2 outline-[#3c8dbc]">
+                              class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
                               <option value="">Kies een Begeleider</option>
                             </select>
-                            <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-[#3c8dbc] ml-2">Verwijder</button>
+                            <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-wb-blue ml-2">Verwijder</button>
                           </div>
                         </div>`;
 

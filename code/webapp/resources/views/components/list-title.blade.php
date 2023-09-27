@@ -2,7 +2,7 @@
     <h1 class="text-2xl">{{ $title }}</h1>
     @if ($name != '')
         <a href="{{ route($name) }}">
-            <iconify-icon icon="fa6-solid:plus" class="text-3xl text-[#3c8dbc] cursor-pointer"></iconify-icon>
+            <iconify-icon icon="fa6-solid:plus" class="text-3xl text-wb-blue cursor-pointer"></iconify-icon>
         </a>
     @endif
 </div>

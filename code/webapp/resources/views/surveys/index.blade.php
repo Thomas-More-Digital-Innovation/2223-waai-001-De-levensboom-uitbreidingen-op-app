@@ -14,7 +14,7 @@
                 <tr class="font-normal">
                     <td class="border border-[#f4f4f4] py-2 px-6 w-full">{{ $survey->url }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 w-full">
-                        <a href="{{ route('surveys.edit', $survey->id) }}" class="text-[#3c8dbc]">Bewerk</a>
+                        <a href="{{ route('surveys.edit', $survey->id) }}" class="text-wb-blue">Bewerk</a>
                     </td>
                 </tr>
             @endforeach
