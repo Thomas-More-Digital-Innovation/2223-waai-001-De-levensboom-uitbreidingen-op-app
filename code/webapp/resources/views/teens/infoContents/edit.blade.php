@@ -32,7 +32,7 @@
 
                         <x-blok-foto-link url="{{ $infoContent->titleImage }}" />
 
-                        <x-form-input name="url" text="Meer info link" :value="$infoContent" />
+                        <x-form-input name="url" text="Meer info link" :value="$infoContent" required="false" />
 
                         <label for="text" class="font-bold">Inhoud</label>
                         <textarea class="ckeditor form-control" name="content" id="content"></textarea>
