@@ -36,7 +36,7 @@
                                     <div>
                                         @if ($i == 0)
                                             <div class="flex items-center gap-3 mt-3 mb-3">
-                                                <label for="role{{ $i }}" class="font-bold">Functie*</label>
+                                                <label for="role{{ $i }}" class="font-bold">Functie</label>
                                             </div>
                                         @endif
                                         <div class="flex items-center">

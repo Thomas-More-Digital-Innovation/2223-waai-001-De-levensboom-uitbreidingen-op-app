@@ -18,7 +18,7 @@
             <div id="0" class="flex flex-row gap-5">
                 <div>
                     <div class="flex items-center gap-3 mt-3 mb-3">
-                        <label for="role0" class="font-bold">Functie*</label>
+                        <label for="role0" class="font-bold">Functie</label>
                     </div>
                     <select name="role0" id="role0" class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-3">
                         <option value="">Kies een Functie</option>

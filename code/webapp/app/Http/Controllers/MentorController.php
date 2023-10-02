@@ -135,6 +135,8 @@ class MentorController extends Controller
         Gate::authorize("editAccount", $id);
 
         $mentor = User::find($id);
+        $user_type = $request->has('user_type_id') ? 1 : 3;
+        $request->request->add(["user_type_id" => $user_type]);
         $mentor->update($request->all());
 
         DepartmentList::Where("user_id", $id)->delete();
