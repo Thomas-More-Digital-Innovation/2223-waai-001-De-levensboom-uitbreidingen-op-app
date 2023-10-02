@@ -68,8 +68,9 @@ class MentorController extends Controller
     public function store(StoreUserRequest $request): RedirectResponse
     {
         Gate::authorize("adminOrDep");
-
-        $request->request->add(["user_type_id" => 3]);
+        
+        $user_type = $request->has('user_type_id') ? 1 : 3;
+        $request->request->add(["user_type_id" => $user_type]);
         $request->request->add(["password" => bcrypt("veranderMij")]);
         $user = User::create($request->all());
 

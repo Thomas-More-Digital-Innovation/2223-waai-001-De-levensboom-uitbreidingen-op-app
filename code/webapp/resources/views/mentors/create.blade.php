@@ -11,6 +11,7 @@
         <x-form-input name="firstname" text="Voornaam" />
         <x-form-input name="surname" text="Achternaam" />
         <x-form-input name="email" text="Email" />
+        <x-form-input name="user_type_id" text="Admin" type="checkbox" required="false" />
         <hr />
 
         <div id="dropdowns">
