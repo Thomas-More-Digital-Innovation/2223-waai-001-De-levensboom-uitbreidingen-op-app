@@ -10,10 +10,15 @@ class Question extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ["content"];
+    protected $fillable = ["tree_part_id", "content"];
 
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function tree_parts()
+    {
+        return $this->belongsTo(TreePart::class)->withDefault();
     }
 }
