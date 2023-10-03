@@ -27,7 +27,7 @@
                         <x-form-input name="firstname" text="Voornaam" :value="$mentor" />
                         <x-form-input name="surname" text="Achternaam" :value="$mentor" />
                         <x-form-input name="email" text="Email" :value="$mentor" />
-                        <x-form-input name="user_type_id" text="Admin" type="checkbox" required="false" :value="$mentor" />
+                        <x-form-input name="type" text="Admin" type="checkbox" required="false" :value="$mentor" />
                         <hr />
 
                         <div id="dropdowns">

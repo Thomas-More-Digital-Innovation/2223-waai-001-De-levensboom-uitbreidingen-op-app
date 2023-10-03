@@ -12,7 +12,7 @@
             <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
                 {{ $required === 'true' ? 'required' : null }} {{ $disabled }}
                 placeholder="Enter {{ strtolower($text) }}"
-                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue @error("{{ $name }}") is-invalid @enderror">
+                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue @error("{{ $name }}") is-invalid @enderror" @checked(old($name)) value=>
         @endif
     </div>
 @else

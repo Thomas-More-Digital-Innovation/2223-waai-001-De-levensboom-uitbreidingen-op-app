@@ -69,7 +69,8 @@ class MentorController extends Controller
     {
         Gate::authorize("adminOrDep");
         
-        $user_type = $request->has('user_type_id') ? 1 : 3;
+        $user_type = $request->has('type') ? 1 : 3 ?? 3;
+
         $request->request->add(["user_type_id" => $user_type]);
         $request->request->add(["password" => bcrypt("veranderMij")]);
         $user = User::create($request->all());
