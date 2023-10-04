@@ -27,7 +27,7 @@
                             <span>|</span>
 
                             <button type="{{ $departmentLists->contains('department_id', $department->id) ? "button" : "type"}}" class="text-wb-blue"
-                                    onclick="return {{ $departmentLists->contains('department_id', $department->id) ? "alert('Deze afdeling bevat nog Clienten of Begeleiders. Ben je zeker dat je deze afdeling wilt verwijderen?')" : "confirm('Ben je zeker dat je deze afdeling wilt verwijderen?')" }};">
+                                    onclick="return {{ $departmentLists->contains('department_id', $department->id) ? "alert('Deze afdeling bevat nog Clienten of Begeleiders! Zorg dat zij niet meer op deze afdeling zitten voor je de afdeling verwijdert.')" : "confirm('Ben je zeker dat je deze afdeling wilt verwijderen?')" }};">
                                 Verwijder
                             </button>  
 
