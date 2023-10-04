@@ -26,8 +26,11 @@
                             <a href="{{ route('departments.edit', $department->id) }}" class="text-wb-blue">Bewerk</a>
                             <span>|</span>
 
-                            <button type="submit" class="text-wb-blue"
-                                onclick="return confirm('Ben je zeker dat je deze afdeling wilt verwijderen?');">Verwijder</button>
+                            <button type="{{ $departmentLists->contains('department_id', $department->id) ? "button" : "type"}}" class="text-wb-blue"
+                                    onclick="return {{ $departmentLists->contains('department_id', $department->id) ? "alert('Deze afdeling bevat nog Clienten of Begeleiders. Ben je zeker dat je deze afdeling wilt verwijderen?')" : "confirm('Ben je zeker dat je deze afdeling wilt verwijderen?')" }};">
+                                Verwijder
+                            </button>  
+
                         </form>
                     </td>
                 </tr>
