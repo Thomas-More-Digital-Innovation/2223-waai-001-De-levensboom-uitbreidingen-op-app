@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\DepartmentList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,7 +19,8 @@ class DepartmentController extends Controller
         Gate::authorize("notClient");
 
         $departments = Department::all();
-        return view("departments.index", compact("departments"));
+        $departmentLists = DepartmentList::all();
+        return view("departments.index", compact("departments", "departmentLists"));
     }
 
     /**
