@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 use App\Models\TreePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -29,9 +30,7 @@ class TreePartController extends Controller
      */
     public function create()
     {
-        Gate::authorize("allowAdmin");
-
-        return view("treeParts.create");
+        //
     }
 
     /**
@@ -42,16 +41,7 @@ class TreePartController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize("allowAdmin");
-
-        // $request->request->add(["section_id" => 3]);
-        // Info::create($request->all());
-
-        // $request->request->add(["info_id" => Info::latest()->first()->id]);
-        // InfoContent::create($request->all());
-
-        // $msg = "New New Info Content Created successful! ";
-        // return redirect("questions")->with("msg", $msg);
+        //     
     }
 
     /**
@@ -75,13 +65,10 @@ class TreePartController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        // $news = Info::find($id);
-        // $news->shortContent = InfoContent::where(
-        //     "info_id",
-        //     $id
-        // )->first()->shortContent;
-        // $news->content = InfoContent::where("info_id", $id)->first()->content;
-        // return view("questions.edit", compact("news"));
+        $treePart = TreePart::find($id);
+        $questions = Question::all();
+        
+        return view("treeParts.edit", compact("treePart", "questions"));
     }
 
     /**
@@ -119,12 +106,6 @@ class TreePartController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize("allowAdmin");
-
-        // $new = Info::find($id);
-        // $new->delete();
-
-        // $msg = "New Info Content Deleted successful! ";
-        // return redirect("news")->with("msg", $msg);
+        //
     }
 }

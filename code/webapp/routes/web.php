@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
 use App\Http\Controllers\TreePartController;
@@ -63,6 +64,7 @@ Route::middleware("auth", "verified")->group(function () {
         "adultInfoContents" => AdultInfoContentController::class,
         "teenInfoContents" => TeenInfoContentController::class,
         "treeParts" => TreePartController::class,
+        "questions" => QuestionController::class,
     ]);
     Route::get("adults/{adult}/updateOrder", [
         AdultController::class,

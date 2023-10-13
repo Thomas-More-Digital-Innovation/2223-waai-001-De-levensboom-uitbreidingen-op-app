@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -17,7 +18,7 @@ class QuestionController extends Controller
     {
         Gate::authorize("notClient");
 
-        $questions = Questions::all();
+        $questions = Question::all();
         return view("questions.index", compact("questions"));
     }
 
