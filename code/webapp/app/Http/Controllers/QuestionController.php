@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\TreePart;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -16,10 +17,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        Gate::authorize("notClient");
+        // Gate::authorize("notClient");
 
-        $questions = Question::all();
-        return view("questions.index", compact("questions"));
+        // $questions = Question::all();
+        // return view("questions.index", compact("questions"));
     }
 
     /**
@@ -27,11 +28,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
 
-        return view("questions.create");
+        $tree_part_id = $request->id;
+        return view("treeParts.questions.create", compact("tree_part_id"));
     }
 
     /**
@@ -43,6 +45,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         Gate::authorize("allowAdmin");
+        $request->request->add(["tree_part_id" => $request->tree_part_id]);
+        dd($request);
+
+        return view("treeParts.index", compact("tree_part_id"));  
+        // Question::create($request->all());
+
 
         // $request->request->add(["section_id" => 3]);
         // Info::create($request->all());

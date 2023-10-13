@@ -66,7 +66,7 @@ class TreePartController extends Controller
         Gate::authorize("allowAdmin");
 
         $treePart = TreePart::find($id);
-        $questions = Question::all();
+        $questions = Question::where("tree_part_id", $id)->get();
         
         return view("treeParts.edit", compact("treePart", "questions"));
     }

@@ -42,7 +42,7 @@
                         <div class="m-3">
                             <div class="flex items-center justify-between my-3">
                                 <h1 class="text-2xl">Vragen</h1>
-                                <a href="{{ route('questions.create', ['treePart' => $treePart->id]) }}">
+                                <a href="{{ route('questions.create', ['tree_part_id' => $treePart->id]) }}">
                                     <iconify-icon icon="fa6-solid:plus" class="text-3xl text-wb-blue cursor-pointer">
                                     </iconify-icon>
                                 </a>
@@ -58,14 +58,14 @@
                                 <tbody>
                                     @foreach ($questions as $question)
                                         <tr class="font-normal">
-                                            <td class="border border-[#f4f4f4] py-2 px-6">{{ $question->name }}</td>
+                                            <td class="border border-[#f4f4f4] py-2 px-6">{{ $question->content }}</td>
                                             <td class="border border-[#f4f4f4] py-2 px-6">
-                                                <form action="{{ route('question.destroy', $question->id) }}"
+                                                <form action="{{ route('questions.destroy', $question->id) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')
 
-                                                    <a href="{{ route('question.edit', $question->id) }}"
+                                                    <a href="{{ route('questions.edit', $question->id) }}"
                                                         class="text-wb-blue">Bewerk</a>
                                                     <span>|</span>
 
