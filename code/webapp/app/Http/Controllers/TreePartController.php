@@ -82,20 +82,11 @@ class TreePartController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        // $new = Info::find($id);
-        // $new->update($request->all());
-
-        // InfoContent::updateOrCreate(
-        //     ["info_id" => $id],
-        //     [
-        //         "title" => $request->title,
-        //         "content" => $request->content,
-        //         "shortContent" => $request->shortContent,
-        //     ]
-        // );
-
-        // $msg = "New Info Content Updated successful! ";
-        // return redirect("news")->with("msg", $msg);
+        $tree_part = TreePart::find($id);
+        $updatedTreePart = $tree_part->update($request->all());
+        
+        $msg = "TreePart Updated successful! ";
+        return redirect("treeParts/");
     }
 
     /**
