@@ -76,13 +76,8 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        // $news = Info::find($id);
-        // $news->shortContent = InfoContent::where(
-        //     "info_id",
-        //     $id
-        // )->first()->shortContent;
-        // $news->content = InfoContent::where("info_id", $id)->first()->content;
-        // return view("questions.edit", compact("news"));
+        $question = Question::find($id);
+        return view("treeParts.questions.edit", compact("question"));
     }
 
     /**
@@ -96,20 +91,12 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        // $new = Info::find($id);
-        // $new->update($request->all());
+        $question = Question::find($id);
+        $updatedQuestion = $question->update($request->all());
 
-        // InfoContent::updateOrCreate(
-        //     ["info_id" => $id],
-        //     [
-        //         "title" => $request->title,
-        //         "content" => $request->content,
-        //         "shortContent" => $request->shortContent,
-        //     ]
-        // );
-
-        // $msg = "New Info Content Updated successful! ";
-        // return redirect("news")->with("msg", $msg);
+        $tree_part_id = $question->tree_part_id;
+        $msg = "Question Updated successful! ";
+        return redirect("treeParts/" . $tree_part_id . "/edit")->with("msg", $msg);
     }
 
     /**
