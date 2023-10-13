@@ -31,8 +31,7 @@ class QuestionController extends Controller
     public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
-
-        $tree_part_id = $request->id;
+        $tree_part_id = $request->tree_part_id;
         return view("treeParts.questions.create", compact("tree_part_id"));
     }
 
@@ -46,20 +45,14 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
         $request->request->add(["tree_part_id" => $request->tree_part_id]);
-        dd($request);
+        Question::create($request->all());
 
-        return view("treeParts.index", compact("tree_part_id"));  
-        // Question::create($request->all());
-
-
-        // $request->request->add(["section_id" => 3]);
-        // Info::create($request->all());
-
-        // $request->request->add(["info_id" => Info::latest()->first()->id]);
-        // InfoContent::create($request->all());
-
-        // $msg = "New New Info Content Created successful! ";
-        // return redirect("questions")->with("msg", $msg);
+        
+        $msg = "New Teen Info Content Created successful! ";
+        return redirect("treeParts/" . $request->tree_part_id . "/edit")->with(
+            "msg",
+            $msg
+        ); 
     }
 
     /**
@@ -129,10 +122,11 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        // $new = Info::find($id);
-        // $new->delete();
+        $question = Question::find($id);
+        $question->delete();
+        $tree_part_id = $question->tree_part_id;
 
-        // $msg = "New Info Content Deleted successful! ";
-        // return redirect("news")->with("msg", $msg);
+        $msg = "Question Deleted successful! ";
+        return redirect("treeParts/" . $tree_part_id . "/edit")->with("msg", $msg);
     }
 }
