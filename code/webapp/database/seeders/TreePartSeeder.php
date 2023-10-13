@@ -16,22 +16,22 @@ class TreePartSeeder extends Seeder
     public function run()
     {
         DB::table("tree_parts")->insert([
-            "tree_part" => "Grond",
+            "name" => "Grond",
         ]);
         DB::table("tree_parts")->insert([
-            "tree_part" => "Wortels",
+            "name" => "Wortels",
         ]);
         DB::table("tree_parts")->insert([
-            "tree_part" => "Stam",
+            "name" => "Stam",
         ]);
         DB::table("tree_parts")->insert([
-            "tree_part" => "Bladeren",
+            "name" => "Bladeren",
         ]);
         DB::table("tree_parts")->insert([
-            "tree_part" => "Vogels",
+            "name" => "Vogels",
         ]);
         DB::table("tree_parts")->insert([
-            "tree_part" => "Appels",
+            "name" => "Appels",
         ]);
     }
 }

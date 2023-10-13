@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ["tree_part_id", "content"];
+    protected $fillable = ["name_id", "content"];
 
     public function answers()
     {

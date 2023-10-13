@@ -10,7 +10,7 @@ class TreePart extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ["tree_part"];
+    protected $fillable = ["name"];
 
     public function questions()
     {
