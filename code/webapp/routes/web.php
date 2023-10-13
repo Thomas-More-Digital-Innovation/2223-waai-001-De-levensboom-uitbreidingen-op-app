@@ -62,7 +62,7 @@ Route::middleware("auth", "verified")->group(function () {
         "user" => ControllersUserController::class,
         "adultInfoContents" => AdultInfoContentController::class,
         "teenInfoContents" => TeenInfoContentController::class,
-        "treePart" => TreePartController::class,
+        "treeParts" => TreePartController::class,
     ]);
     Route::get("adults/{adult}/updateOrder", [
         AdultController::class,

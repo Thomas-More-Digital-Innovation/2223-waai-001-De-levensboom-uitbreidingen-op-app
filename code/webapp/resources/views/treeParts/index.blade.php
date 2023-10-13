@@ -2,31 +2,20 @@
 <title>Waaiburg - Levensboom</title>
 
 @section('content')
-    <x-list-title title="Levensboom" name="treeParts.create" />
+<h1 class="text-2xl">De Levensboom</h1>
     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="treePartsCreate">
         <thead>
             <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Gecreerd op</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($treeParts as $treePart)
                 <tr class="font-normal">
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $treePart->title }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $treePart->created_at }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $treePart->tree_part }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
-                        <form action="{{ route('treeParts.destroy', $treePart->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-
-                            <a href="{{ route('treeParts.edit', $treePart->id) }}" class="text-wb-blue">Bewerk</a>
-                            <span>|</span>
-
-                            <button type="submit" class="text-wb-blue"
-                                onclick="return confirm('Ben je zeker dat je Dit deel van de boom wilt verwijderen?');">Verwijder</button>
-                        </form>
+                    <a href="{{ route('treeParts.edit', $treePart->id) }}" class="text-wb-blue">Bewerk</a>
                     </td>
                 </tr>
             @endforeach
