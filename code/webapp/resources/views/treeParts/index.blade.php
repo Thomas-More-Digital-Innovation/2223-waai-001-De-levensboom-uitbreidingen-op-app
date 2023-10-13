@@ -1,9 +1,9 @@
 @extends('layout')
-<title>Waaiburg - Vragen</title>
+<title>Waaiburg - Levensboom</title>
 
 @section('content')
-    <x-list-title title="Vragen" name="questions.create" />
-    <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="questionsCreate">
+    <x-list-title title="Levensboom" name="treeParts.create" />
+    <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="treePartsCreate">
         <thead>
             <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
@@ -12,20 +12,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($questions as $question)
+            @foreach ($treeParts as $treePart)
                 <tr class="font-normal">
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $question->title }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $question->created_at }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $treePart->title }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $treePart->created_at }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
-                        <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                        <form action="{{ route('treeParts.destroy', $treePart->id) }}" method="post">
                             @csrf
                             @method('delete')
 
-                            <a href="{{ route('questions.edit', $question->id) }}" class="text-wb-blue">Bewerk</a>
+                            <a href="{{ route('treeParts.edit', $treePart->id) }}" class="text-wb-blue">Bewerk</a>
                             <span>|</span>
 
                             <button type="submit" class="text-wb-blue"
-                                onclick="return confirm('Ben je zeker dat je deze vraag wilt verwijderen?');">Verwijder</button>
+                                onclick="return confirm('Ben je zeker dat je Dit deel van de boom wilt verwijderen?');">Verwijder</button>
                         </form>
                     </td>
                 </tr>

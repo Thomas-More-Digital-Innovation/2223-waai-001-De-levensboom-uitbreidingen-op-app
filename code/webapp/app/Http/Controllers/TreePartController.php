@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\TreePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class QuestionController extends Controller
+class TreePartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,8 @@ class QuestionController extends Controller
     {
         Gate::authorize("notClient");
 
-        $questions = Questions::all();
-        return view("questions.index", compact("questions"));
+        $treeParts = TreePart::all();
+        return view("treeParts.index", compact("treeParts"));
     }
 
     /**
@@ -30,7 +31,7 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        return view("questions.create");
+        return view("treeParts.create");
     }
 
     /**

@@ -14,6 +14,7 @@ use App\Http\Controllers\MentorController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
+use App\Http\Controllers\TreePartController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +62,7 @@ Route::middleware("auth", "verified")->group(function () {
         "user" => ControllersUserController::class,
         "adultInfoContents" => AdultInfoContentController::class,
         "teenInfoContents" => TeenInfoContentController::class,
-        "questions" => TeenInfoContentController::class,
+        "treePart" => TreePartController::class,
     ]);
     Route::get("adults/{adult}/updateOrder", [
         AdultController::class,
