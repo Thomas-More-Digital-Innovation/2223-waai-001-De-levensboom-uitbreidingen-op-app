@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,22 +13,21 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("questions", function (Blueprint $table) {
+        Schema::create('question_user_lists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("tree_part_id")->nonNull();
             $table->unsignedBigInteger("question_list_id")->nonNull();
-            $table->string("content")->nonNull();
+            $table->unsignedBigInteger("user_id")->nonNull();
             $table->timestamps();
-
-            $table
-            ->foreign("tree_part_id")
-            ->references("id")
-            ->on("tree_parts");
 
             $table
             ->foreign("question_list_id")
             ->references("id")
             ->on("question_lists");
+
+            $table
+            ->foreign("user_id")
+            ->references("id")
+            ->on("users");
         });
     }
 
@@ -38,6 +38,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("questions");
+        Schema::dropIfExists('question_user_lists');
     }
 };
