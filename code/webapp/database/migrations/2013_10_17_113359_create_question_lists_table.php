@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('question_lists', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nonNull();
+            $table->string("title")->nonNull();
             $table->timestamps();
         });
     }

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\QuestionList;
 use App\Models\TreePart;
 use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class QuestionController extends Controller
+class QuestionListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,24 +19,21 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // Gate::authorize("notClient");
+        Gate::authorize("notClient");
 
-        // $questions = Question::all();
-        // return view("questions.index", compact("questions"));
+        $questionLists = QuestionList::all();
+        return view("questionLists.index", compact("questionLists"));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
-
-        $tree_part_id = $request->tree_part_id;
-        $question_list_id = $request->question_list_id;
-        return view("questionLists.treeParts.questions.create", compact("tree_part_id", "question_list_id"));
+        return view("QuestionLists.create");
     }
 
     /**
@@ -46,14 +45,10 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         Gate::authorize("allowAdmin");
+        QuestionList::create($request->all());
 
-        $request->request->add(["tree_part_id" => $request->tree_part_id]);
-        $request->request->add(["question_list_id" => $request->question_list_id]);
-        Question::create($request->all());
-
-        
-        $msg = "New Question Created successful! ";
-        return redirect("treeParts/" . $request->tree_part_id . "/edit?question_list_id=" . $request->question_list_id)->with(
+        $msg = "New Question List Created successful! ";
+        return redirect("questionLists/")->with(
             "msg",
             $msg
         ); 
@@ -80,8 +75,9 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        $question = Question::find($id);
-        return view("QuestionLists.treeParts.questions.edit", compact("question"));
+        $questionList = QuestionList::find($id);
+        $treeParts = TreePart::all();
+        return view("questionLists.edit", compact("questionList", "treeParts"));
     }
 
     /**
@@ -95,13 +91,11 @@ class QuestionController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        $question = Question::find($id);
+        $question = QuestionList::find($id);
         $updatedQuestion = $question->update($request->all());
 
-        $tree_part_id = $question->tree_part_id;
-        $question_list_id = $question->question_list_id;
-        $msg = "Question Updated successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
+        $msg = "Question list Updated successful! ";
+        return redirect("questionLists/")->with("msg", $msg);
     }
 
     /**
@@ -113,12 +107,19 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         Gate::authorize("allowAdmin");
-        $question = Question::find($id);
-        $tree_part_id = $question->tree_part_id;
-        $question_list_id = $question->question_list_id;
-        $question->delete();
+
+        $questionList = QuestionList::find($id);
+        $questions = Question::where('question_list_id', $questionList->id)->get();
+        foreach ($questions as $question) {
+            $answers = Answer::where('question_id', $question->id)->get();
+            foreach($answers as $answer){
+                $answer->delete();
+            }
+            $question->delete();
+        }
+        $questionList->delete();
 
         $msg = "Question Deleted successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
+        return redirect("questionLists/")->with("msg", $msg);
     }
 }
