@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("question_list_id")->nonNull();
             $table->unsignedBigInteger("user_id")->nonNull();
+            $table->boolean("active")->nonNull();
             $table->timestamps();
 
             $table
