@@ -25,14 +25,16 @@ class QuestionController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
+
         $tree_part_id = $request->tree_part_id;
-        return view("treeParts.questions.create", compact("tree_part_id"));
+        $question_list_id = $request->question_list_id;
+        return view("questionLists.treeParts.questions.create", compact("tree_part_id", "question_list_id"));
     }
 
     /**
@@ -44,12 +46,14 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         Gate::authorize("allowAdmin");
+
         $request->request->add(["tree_part_id" => $request->tree_part_id]);
+        $request->request->add(["question_list_id" => $request->question_list_id]);
         Question::create($request->all());
 
         
-        $msg = "New Teen Info Content Created successful! ";
-        return redirect("treeParts/" . $request->tree_part_id . "/edit")->with(
+        $msg = "New Question Created successful! ";
+        return redirect("treeParts/" . $request->tree_part_id . "/edit?question_list_id=" . $request->question_list_id)->with(
             "msg",
             $msg
         ); 
@@ -77,7 +81,7 @@ class QuestionController extends Controller
         Gate::authorize("allowAdmin");
 
         $question = Question::find($id);
-        return view("treeParts.questions.edit", compact("question"));
+        return view("QuestionLists.treeParts.questions.edit", compact("question"));
     }
 
     /**
@@ -95,8 +99,9 @@ class QuestionController extends Controller
         $updatedQuestion = $question->update($request->all());
 
         $tree_part_id = $question->tree_part_id;
+        $question_list_id = $question->question_list_id;
         $msg = "Question Updated successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit")->with("msg", $msg);
+        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
     }
 
     /**
@@ -108,12 +113,12 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         Gate::authorize("allowAdmin");
-
         $question = Question::find($id);
-        $question->delete();
         $tree_part_id = $question->tree_part_id;
+        $question_list_id = $question->question_list_id;
+        $question->delete();
 
         $msg = "Question Deleted successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit")->with("msg", $msg);
+        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
     }
 }

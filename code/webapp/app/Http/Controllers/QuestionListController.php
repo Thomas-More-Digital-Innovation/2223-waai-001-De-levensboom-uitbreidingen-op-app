@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\QuestionList;
+use App\Models\TreePart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -73,7 +74,8 @@ class QuestionListController extends Controller
         Gate::authorize("allowAdmin");
 
         $questionList = QuestionList::find($id);
-        return view("questionLists.edit", compact("questionList"));
+        $treeParts = TreePart::all();
+        return view("questionLists.edit", compact("questionList", "treeParts"));
     }
 
     /**

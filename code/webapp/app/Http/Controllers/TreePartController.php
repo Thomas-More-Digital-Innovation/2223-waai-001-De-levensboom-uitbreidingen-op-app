@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\QuestionList;
 use App\Models\Question;
 use App\Models\TreePart;
 use Illuminate\Http\Request;
@@ -17,10 +18,7 @@ class TreePartController extends Controller
      */
     public function index()
     {
-        Gate::authorize("notClient");
-
-        $treeParts = TreePart::all();
-        return view("treeParts.index", compact("treeParts"));
+        //
     }
 
     /**
@@ -59,16 +57,21 @@ class TreePartController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         Gate::authorize("allowAdmin");
 
-        $treePart = TreePart::find($id);
-        $questions = Question::where("tree_part_id", $id)->get();
+        $tree_part_id = $id;
+        $question_list_id = $request->question_list_id;
+        $treePart = TreePart::find($tree_part_id);
+        $questions = Question::where("tree_part_id", $tree_part_id)
+        ->where("question_list_id", $question_list_id)->get();
+        $questionList = QuestionList::where("id", $question_list_id)->first();
         
-        return view("treeParts.edit", compact("treePart", "questions"));
+        return view("questionLists.treeParts.edit", compact("treePart", "questions", "questionList"));
     }
 
     /**
@@ -86,7 +89,7 @@ class TreePartController extends Controller
         $updatedTreePart = $tree_part->update($request->all());
         
         $msg = "TreePart Updated successful! ";
-        return redirect("treeParts/");
+        return redirect("/questionLists");
     }
 
     /**

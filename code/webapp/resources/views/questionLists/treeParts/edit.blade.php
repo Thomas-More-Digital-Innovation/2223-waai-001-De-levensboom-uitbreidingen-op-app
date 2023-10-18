@@ -29,7 +29,7 @@
 
                             <div class="flex gap-5">
                                 <x-form-button text="Wijzigen" />
-                                <x-form-button text="Annuleren" link="treeParts.index" />
+                                <x-form-button text="Annuleren" link="questionLists.index" />
                             </div>
                         </form>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="m-3">
                             <div class="flex items-center justify-between my-3">
                                 <h1 class="text-2xl">Vragen</h1>
-                                <a href="{{ route('questions.create', ['tree_part_id' => $treePart->id]) }}">
+                                <a href="{{ route('questions.create', ['question_list_id' => $questionList->id, 'tree_part_id' => $treePart->id]) }}">
                                     <iconify-icon icon="fa6-solid:plus" class="text-3xl text-wb-blue cursor-pointer">
                                     </iconify-icon>
                                 </a>
