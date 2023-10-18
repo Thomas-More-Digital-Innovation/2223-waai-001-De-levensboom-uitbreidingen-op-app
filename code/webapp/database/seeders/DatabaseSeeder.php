@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             MailSeeder::class,
             MailContentSeeder::class,
             UserSeeder::class,
+            TreePartSeeder::class,
         ]);
     }
 }

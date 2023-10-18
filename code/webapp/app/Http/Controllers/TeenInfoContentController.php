@@ -29,7 +29,6 @@ class TeenInfoContentController extends Controller
     public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
-
         $info_id = $request->info_id;
         return view("teens.infoContents.create", compact("info_id"));
     }

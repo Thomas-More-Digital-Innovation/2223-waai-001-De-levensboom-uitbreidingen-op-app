@@ -24,8 +24,7 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            "tree_part_id" => "integer|required",
-            "content" => "string|required",
+            "name" => "string|required",
         ];
     }
 }
