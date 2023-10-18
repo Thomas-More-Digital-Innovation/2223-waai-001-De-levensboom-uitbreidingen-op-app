@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tree_parts', function (Blueprint $table) {
             $table->id();
-            $table->string('tree_part')->nonNull();
+            $table->string('name')->nonNull();
             $table->timestamps();
         });
     }

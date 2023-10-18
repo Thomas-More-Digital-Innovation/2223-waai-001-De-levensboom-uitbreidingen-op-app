@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class TreePart extends Model
 {
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ["tree_part"];
+    protected $fillable = ["name"];
 
     public function questions()
     {
