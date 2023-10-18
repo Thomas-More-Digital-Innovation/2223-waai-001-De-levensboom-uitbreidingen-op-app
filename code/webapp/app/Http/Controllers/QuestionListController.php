@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\QuestionList;
 use App\Models\TreePart;
+use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -107,6 +109,14 @@ class QuestionListController extends Controller
         Gate::authorize("allowAdmin");
 
         $questionList = QuestionList::find($id);
+        $questions = Question::where('question_list_id', $questionList->id)->get();
+        foreach ($questions as $question) {
+            $answers = Answer::where('question_id', $question->id)->get();
+            foreach($answers as $answer){
+                $answer->delete();
+            }
+            $question->delete();
+        }
         $questionList->delete();
 
         $msg = "Question Deleted successful! ";

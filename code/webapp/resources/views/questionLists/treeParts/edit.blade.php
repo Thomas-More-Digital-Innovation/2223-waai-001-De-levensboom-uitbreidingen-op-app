@@ -19,7 +19,7 @@
                 <div class="border-t-4 rounded border-wb-blue">
                     <div class="m-3">
                         <h1 class="text-2xl">Tree part bewerken</h1>
-                        <form action="{{ route('treeParts.update', $treePart->id) }}" method="POST" class="flex flex-col mt-3">
+                        <form action="{{ route('treeParts.update', [$treePart->id, 'question_list_id' =>$questionList->id]) }}" method="POST" class="flex flex-col mt-3">
                             @csrf
                             @method('PATCH')
 

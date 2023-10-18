@@ -25,7 +25,7 @@
                             <span>|</span>
 
                             <button type="submit" class="text-wb-blue"
-                                onclick="return confirm('Ben je zeker dat je deze vragenlijst wilt verwijderen?');">Verwijder</button>
+                                onclick="return confirm('Ben je zeker dat je deze vragenlijst wilt verwijderen? Alle vragen en antwoorden onder deze vragenlijst zullen ook verwijdert worden');">Verwijder</button>
                         </form>
                     </td>
                 </tr>

@@ -89,7 +89,7 @@ class TreePartController extends Controller
         $updatedTreePart = $tree_part->update($request->all());
         
         $msg = "TreePart Updated successful! ";
-        return redirect("/questionLists");
+        return redirect("questionLists/" . $request->question_list_id . "/edit");
     }
 
     /**
