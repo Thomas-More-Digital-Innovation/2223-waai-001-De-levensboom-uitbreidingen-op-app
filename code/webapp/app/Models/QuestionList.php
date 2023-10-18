@@ -10,7 +10,7 @@ class QuestionList extends Model
     use HasFactory;
 
     // allow mass assignment
-    protected $fillable = ["name"];
+    protected $fillable = ["title"];
 
     public function questions()
     {
