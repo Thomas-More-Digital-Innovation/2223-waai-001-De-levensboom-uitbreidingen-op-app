@@ -53,6 +53,10 @@
         @endforeach
     </div>
 
+    <div class="mt-10">
+        <a href="{{ route('clientLinks.edit', $client->id)}}"  class="rounded bg-wb-blue px-5 py-2 text-white font-bold">Vorige pagina</a>
+    </div>
+
     <script>
         function toggleTestDiv(treePartId) {
             const testDiv = document.getElementById(`test-${treePartId}`);

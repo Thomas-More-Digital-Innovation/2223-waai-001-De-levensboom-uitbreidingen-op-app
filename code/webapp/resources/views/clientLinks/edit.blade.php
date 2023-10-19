@@ -28,22 +28,22 @@
         <thead>
             <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Vragenlijst</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($question_lists as $question_list)
                 @unless ($question_user_lists->pluck('question_list_id')->contains($question_list->id))
                     <tr class="font-normal">
-                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $question_list->title }}</td>
-                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">
-                            <a href="{{ route('clientLinks.edit', $client_id) }}" class="text-wb-blue">Bekijk antwoorden</a>
-                        </td>
+                        <td class="border border-[#f4f4f4] py-2 px-6">{{ $question_list->title }}</td>
                     </tr>
                 @endunless
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-10">
+        <a href="/clientLinks"  class="rounded bg-wb-blue px-5 py-2 text-white font-bold">Vorige pagina</a>
+    </div>
 @endsection
 
 @section('documentation')

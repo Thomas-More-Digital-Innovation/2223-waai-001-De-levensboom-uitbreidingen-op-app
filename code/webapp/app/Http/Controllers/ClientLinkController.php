@@ -31,23 +31,6 @@ class ClientLinkController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showList($id)
-    {
-        // Gate::authorize("notClient");
-
-        // $client_id = $id;
-        // $question_lists = QuestionList::all();
-        // $question_user_list = QuestionUserList::where('user_id', $client_id);
-
-        // return view('clientLinks.edit', compact('question_lists', 'question_user_list', 'client_id'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
