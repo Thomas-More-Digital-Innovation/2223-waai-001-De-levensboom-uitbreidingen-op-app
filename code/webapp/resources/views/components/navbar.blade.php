@@ -42,7 +42,13 @@
         <div class="flex flex-col text-[#b8c7ce]">
             <a href="/questionLists" class="flex items-center px-6 py-3 hover:text-white hover:bg-[#202c2c]">
                 <iconify-icon icon="fa6-solid:question" class="w-7"></iconify-icon>
-                <p>Vragen</p>
+                <p>Vragenlijsten</p>
+            </a>
+        </div>
+        <div class="flex flex-col text-[#b8c7ce]">
+            <a href="/clientLinks" class="flex items-center px-6 py-3 hover:text-white hover:bg-[#202c2c]">
+                <iconify-icon icon="fa6-solid:question" class="w-7"></iconify-icon>
+                <p>Antwoorden</p>
             </a>
         </div>
     </div>
