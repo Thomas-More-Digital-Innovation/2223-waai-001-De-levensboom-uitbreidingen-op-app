@@ -24,7 +24,16 @@
                                 }
                             @endphp
                             <span class="{{ $matched_list->active ? 'hidden' : ''}}"> |
-                                <a class="rounded bg-wb-blue px-3 py-1 text-white" href="{{ route('clientLinks.update', [$client_id, 'question_user_list_id' => $question_list->id, 'active' => 1]) }}" onclick="return confirm('Weet je zeker dat je deze vragenlijst op actief wil zetten? De andere vragenlijst zal inactief worden gezet.')">Actief Zetten</a>
+                                <form action="{{ route('clientLinks.update', ['question_list_id' => $question_list->id, 'active' => 1, $client_id]) }}" method="POST">
+                                    @method('PATCH')
+                                    @csrf
+                                    <button class="rounded bg-wb-blue px-3 py-1 text-white"
+                                        type="submit" 
+                                        onclick="return confirm('Weet je zeker dat je deze vragenlijst op actief wil zetten? De andere vragenlijst zal inactief worden gezet.')">
+                                        Actief Zetten
+                                    </button>
+                                </form>
+                                
                             </span>
                         </td>
                     </tr>
@@ -46,7 +55,17 @@
                 @unless ($question_user_lists->pluck('question_list_id')->contains($question_list->id))
                     <tr class="font-normal">
                         <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $question_list->title }}</td>
-                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2"><button class="rounded bg-wb-blue px-3 py-1 text-white">Actief Zetten</button></td>
+                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">
+                            <form action="{{ route('clientLinks.update', ['question_list_id' => $question_list->id, 'active' => 1, $client_id]) }}" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                <button class="rounded bg-wb-blue px-3 py-1 text-white"
+                                    type="submit" 
+                                    onclick="return confirm('Weet je zeker dat je deze vragenlijst op actief wil zetten? De andere vragenlijst zal inactief worden gezet.')">
+                                    Actief Zetten
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endunless
             @endforeach
@@ -60,13 +79,4 @@
 
 @section('documentation')
     <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
-@endsection
-
-@section('script')
-<script>
-    function void setActive(question_list_id) {
-
-    }
-
-</script>
 @endsection
