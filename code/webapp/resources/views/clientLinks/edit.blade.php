@@ -16,6 +16,16 @@
                         <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $question_list->title }}</td>
                         <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">
                             <a href="{{ route('clientAnswers.index', ['question_list_id' => $question_list->id, 'client_id' => $client_id]) }}" class="text-wb-blue">Bekijk antwoorden</a>
+                            @php
+                                foreach($question_user_lists as $question_user_list) {
+                                    if($question_user_list->question_list_id == $question_list->id){
+                                        $matched_list = $question_user_list;
+                                    }
+                                }
+                            @endphp
+                            <span class="{{ $matched_list->active ? 'hidden' : ''}}"> |
+                                <a class="rounded bg-wb-blue px-3 py-1 text-white" href="{{ route('clientLinks.update', [$client_id, 'question_user_list_id' => $question_list->id, 'active' => 1]) }}" onclick="return confirm('Weet je zeker dat je deze vragenlijst op actief wil zetten? De andere vragenlijst zal inactief worden gezet.')">Actief Zetten</a>
+                            </span>
                         </td>
                     </tr>
                 @endif
@@ -27,14 +37,16 @@
     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="clientList">
         <thead>
             <tr>
-                <th class="border border-[#f4f4f4] py-2 px-6">Vragenlijst</th>
+                <th class="border border-[#f4f4f4] py-2 px-6 w-1/2">Vragenlijst</th>
+                <th class="border border-[#f4f4f4] py-2 px-6 w-1/2">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($question_lists as $question_list)
                 @unless ($question_user_lists->pluck('question_list_id')->contains($question_list->id))
                     <tr class="font-normal">
-                        <td class="border border-[#f4f4f4] py-2 px-6">{{ $question_list->title }}</td>
+                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $question_list->title }}</td>
+                        <td class="border border-[#f4f4f4] py-2 px-6 w-1/2"><button class="rounded bg-wb-blue px-3 py-1 text-white">Actief Zetten</button></td>
                     </tr>
                 @endunless
             @endforeach
@@ -52,6 +64,9 @@
 
 @section('script')
 <script>
+    function void setActive(question_list_id) {
+
+    }
 
 </script>
 @endsection
