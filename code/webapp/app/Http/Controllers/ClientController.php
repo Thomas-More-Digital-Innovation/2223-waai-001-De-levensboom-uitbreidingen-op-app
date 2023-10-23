@@ -97,7 +97,6 @@ class ClientController extends Controller
                 ]);
             }
         }
-        // Still need to create UserList, this to connect the client to the mentor
 
         $msg = "New Client Created successful! ";
         return redirect("clients")->with("msg", $msg);

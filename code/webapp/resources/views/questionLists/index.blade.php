@@ -8,14 +8,16 @@
             <tr>
                 <th class="border border-[#f4f4f4] py-2 px-6">Titel</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Gecreerd op</th>
+                <th class="border border-[#f4f4f4] py-2 px-6">Laatste gewijzigd op</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($questionLists as $questionList)
                 <tr class="font-normal">
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/2">{{ $questionList->title }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $questionList->title }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $questionList->created_at }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">{{ $questionList->updated_at }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 w-1/4">
                         <form action="{{ route('questionLists.destroy', $questionList->id) }}" method="post">
                             @csrf
