@@ -126,23 +126,31 @@
             <div class="border-t-4 rounded border-[#f39c12]">
                 <div class="m-3">
                     <h1 class="text-2xl">Tevredenheids meting</h1>
-                    @if ($client->survey == null)
-                        <p class="mt-5 mb-7">Er is nog geen tevredenheids meting verstuurd naar deze client</p>
-                        <a href="{{ route('clients.sendSurvey', ['id' => $client->id]) }}"
-                            class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white"
-                            onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?');">Tevredenheids
-                            meting versturen</a>
-                    @else
-                        <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client, laatst
-                            verstuurd op {{ $client->survey }}</p>
-                        <a href="{{ route('clients.sendSurvey', ['id' => $client->id]) }}"
-                            class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white"
-                            onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?');">Tevredenheids
-                            meting opnieuw versturen</a>
-                    @endif
+                    <form action="{{ route('clients.sendSurvey', ['id' => $client->id]) }}?survey_id=">
+                        @csrf
+                        <select name="survey_id" id="surveySelect"
+                            class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mt-5">
+                            @foreach ($surveys as $survey)
+                                <option value="{{ $survey->id }}">{{ $survey->title }}</option>
+                            @endforeach
+                        </select>
+                        @if ($client->survey == null)
+                            <p class="mt-5 mb-7">Er is nog geen tevredenheids meting verstuurd naar deze client</p>
+                            <button type="submit" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white"
+                                onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?);">Tevredenheids
+                                meting versturen</button>
+                        @else
+                            <p class="mt-5 mb-7">Een tevredenheids meting is reeds verstuurd naar deze client, laatst
+                                verstuurd op {{ $client->survey }}</p>
+                            <button type="submit" class="bg-[#f39c12] rounded px-4 py-2 mt-5 text-white"
+                                onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt sturen?);">Tevredenheids
+                                meting opnieuw versturen</button>
+                        @endif
+                    </form>
                 </div>
             </div>
         </div>
+
     </main>
 </body>
 
