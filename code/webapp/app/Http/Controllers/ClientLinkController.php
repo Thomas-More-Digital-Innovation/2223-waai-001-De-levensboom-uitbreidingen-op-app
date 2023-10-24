@@ -90,13 +90,25 @@ class ClientLinkController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        $question = Question::find($id);
-        $updatedQuestion = $question->update($request->all());
+        $client_id = $id;
+        $question_user_list_id = $request->question_user_list_id;
+        $question_list_id = $request->question_list_id;
+        QuestionUserList::where('user_id', $client_id)->update(['active' => false]);
+        if(!QuestionUserList::where('question_list_id', $question_list_id)->where('user_id', $client_id)->exists()) {
+            $new_list = new QuestionUserList();
+            $new_list->question_list_id = $question_list_id;
+            $new_list->user_id = $client_id;
+            $new_list->active = true;
+            $new_list->save();
 
-        $tree_part_id = $question->tree_part_id;
-        $question_list_id = $question->question_list_id;
-        $msg = "Question Updated successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
+        } else {
+            $list_to_change = QuestionUserList::where('question_list_id', $question_list_id)->where('user_id', $client_id)->first();
+            $list_to_change->update(['active' => true]);
+        }
+
+        $msg = " Question List set to Active! ";
+
+        return redirect('clientLinks/' . $client_id . '/edit')->with("msg", $msg);
     }
 
     /**
@@ -107,13 +119,6 @@ class ClientLinkController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize("allowAdmin");
-        $question = Question::find($id);
-        $tree_part_id = $question->tree_part_id;
-        $question_list_id = $question->question_list_id;
-        $question->delete();
-
-        $msg = "Question Deleted successful! ";
-        return redirect("treeParts/" . $tree_part_id . "/edit?question_list_id=" . $question_list_id)->with("msg", $msg);
+        //
     }
 }
