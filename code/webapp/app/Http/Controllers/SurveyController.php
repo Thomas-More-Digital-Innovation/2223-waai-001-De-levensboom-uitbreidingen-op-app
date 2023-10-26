@@ -33,7 +33,7 @@ class SurveyController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        //
+        return view("surveys.create");
     }
 
     /**
@@ -46,7 +46,14 @@ class SurveyController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        //
+        // $request->request->add(["section_id" => 5]);
+        // Info::create($request->all());
+
+        $request->request->add(["info_id" => 1]);
+        InfoContent::create($request->all());
+
+        $msg = "New survey Created successful! ";
+        return redirect("surveys")->with("msg", $msg);
     }
 
     /**
@@ -70,9 +77,8 @@ class SurveyController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        $survey = InfoContent::where("info_id", $id)
-            ->get()
-            ->first();
+        $survey = InfoContent::find($id);
+
         return view("surveys.edit", compact("survey"));
     }
 
@@ -87,9 +93,7 @@ class SurveyController extends Controller
     {
         Gate::authorize("allowAdmin");
 
-        $survey = InfoContent::where("info_id", $id)
-            ->get()
-            ->first();
+        $survey = InfoContent::find($id);
         $survey->update($request->all());
 
         $msg = "Survey Updated successful! ";

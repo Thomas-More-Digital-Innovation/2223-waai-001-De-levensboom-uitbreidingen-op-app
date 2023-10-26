@@ -8,6 +8,7 @@
 
         <x-errormessage />
 
+        <x-form-input name="title" text="Titel" :value="$survey" />
         <x-form-input name="url" text="Google form link" :value="$survey" />
 
         <div class="flex gap-5">
