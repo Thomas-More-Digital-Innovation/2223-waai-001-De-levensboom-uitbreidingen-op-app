@@ -128,6 +128,7 @@ class ClientController extends Controller
         $departmentsList = DepartmentList::all();
         $usersList = UserList::where("client_id", $id)->get();
         $userDepartments = DepartmentList::where("user_id", $id)->get();
+        $surveys = InfoContent::where("info_id", 1)->get();
         $mentors = User::where("user_type_id", 1)
             ->orWhere("user_type_id", 3)
             ->get();
@@ -139,16 +140,18 @@ class ClientController extends Controller
                 "departmentsList",
                 "mentors",
                 "userDepartments",
-                "usersList"
+                "usersList",
+                "surveys"
             )
         );
     }
 
-    public function sendSurvey($id)
+    public function sendSurvey(Request $request, $id)
     {
-        $url = InfoContent::where("info_id", 1)->first()->url;
-        $user = User::find($id);
-        $url = $url . $user->surname . ' ' . $user->firstname;
+        $survey = $request->input('survey_id');
+        $url = InfoContent::find($survey);
+        $url = $url . $id;
+        
         User::find($id)->notify(new Survey($url));
         User::find($id)->update(["survey" => now()]);
 
