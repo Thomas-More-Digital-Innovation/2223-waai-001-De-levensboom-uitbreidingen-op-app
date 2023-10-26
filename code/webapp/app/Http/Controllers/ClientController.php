@@ -149,7 +149,8 @@ class ClientController extends Controller
     public function sendSurvey(Request $request, $id)
     {
         $survey = $request->input('survey_id');
-        $url = InfoContent::find($survey);
+        $url = InfoContent::find($survey)->first()->url;
+        $user = User::find($id);
         $url = $url . $user->surname . ' ' . $user->firstname;
         
         User::find($id)->notify(new Survey($url));
