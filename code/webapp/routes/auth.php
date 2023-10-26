@@ -46,11 +46,13 @@ Route::middleware("auth")->group(function () {
         "verification.notice"
     );
 
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-        $request->fulfill();
-
-        return redirect('/');
-    })->middleware(['auth', 'signed'])->name('verification.verify');
+    
+ 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
     Route::post("email/verification-notification", [
         EmailVerificationNotificationController::class,
