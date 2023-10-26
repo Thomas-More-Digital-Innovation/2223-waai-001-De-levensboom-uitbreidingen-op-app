@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\InfoContentController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\QuestionListController;
 use App\Http\Controllers\Api\AnswerController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\DepartmentListController;
@@ -45,6 +46,7 @@ Route::middleware("auth:sanctum")->group(function () {
         "section" => SectionController::class,
         "role" => RoleController::class,
         "question" => QuestionController::class,
+        "questionList" => QuestionListController::class,
         "treeParts" => TreePartController::class,
         "answer" => AnswerController::class,
         "users" => UserController::class,
@@ -57,6 +59,8 @@ Route::get("info", [InfoController::class, "index"]);
 Route::get("infoContent", [InfoContentController::class, "index"]);
 Route::get("section", [SectionController::class, "index"]);
 Route::get("treeParts", [TreePartController::class, "index"]);
+Route::get("question", [QuestionController::class, "index"]);
+Route::get("questionList", [QuestionListController::class, "index"]);
 
 Route::post("/auth/register", [AuthController::class, "createUser"]);
 Route::post("/auth/login", [AuthController::class, "loginUser"]);

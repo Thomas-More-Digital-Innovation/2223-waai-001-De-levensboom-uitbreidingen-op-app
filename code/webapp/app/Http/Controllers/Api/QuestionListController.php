@@ -199,12 +199,23 @@ class QuestionListController extends Controller
      */
     public function index()
     {
-        $question = Question::all();
+        $questionLists = QuestionList::all();
 
         return response()->json([
             "status" => true,
-            "questions" => [$question],
+            "questionLists" => [$questionLists],
         ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\QuestionList  $questionList
+     * @return \Illuminate\Http\Response
+     */
+    public function show(QuestionList $questionList)
+    {
+        //
     }
 
     /**
@@ -225,36 +236,16 @@ class QuestionListController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        $question = Question::create($request->all());
-
-        return response()->json(
-            [
-                "status" => true,
-                "message" => "Question created succesfully",
-                "question" => $question,
-            ],
-            200
-        );
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\QuestionList  $questionList
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(QuestionList $questionList)
     {
         //
     }
@@ -263,39 +254,22 @@ class QuestionListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\QuestionList  $questionList
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreQuestionRequest $request, Question $question)
+    public function update(StoreQuestionListRequest $request, QuestionList $questionList)
     {
-        $question->update($request->all());
-
-        return response()->json(
-            [
-                "status" => true,
-                "message" => "Question updated succesfully",
-                "question" => $question,
-            ],
-            200
-        );
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param  \App\Models\QuestionList  $questionList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(QuestionList $questionList)
     {
-        $question->delete();
-
-        return response()->json(
-            [
-                "status" => true,
-                "message" => "Question deleted succesfully",
-            ],
-            200
-        );
+        //
     }
 }
