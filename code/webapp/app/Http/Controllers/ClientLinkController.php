@@ -88,7 +88,7 @@ class ClientLinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize("allowAdmin");
+        Gate::authorize("notClient");
 
         $client_id = $id;
         $question_user_list_id = $request->question_user_list_id;
