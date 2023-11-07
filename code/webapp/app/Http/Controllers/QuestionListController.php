@@ -33,7 +33,7 @@ class QuestionListController extends Controller
     public function create(Request $request)
     {
         Gate::authorize("allowAdmin");
-        return view("QuestionLists.create");
+        return view("questionLists.create");
     }
 
     /**
