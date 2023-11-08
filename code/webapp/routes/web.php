@@ -17,8 +17,8 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\TeenController;
 use App\Http\Controllers\TreePartController;
 use App\Http\Controllers\QuestionListController;
-use App\Http\Controllers\clientLinkController;
-use App\Http\Controllers\clientAnswerController;
+use App\Http\Controllers\ClientLinkController;
+use App\Http\Controllers\ClientAnswerController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
 
