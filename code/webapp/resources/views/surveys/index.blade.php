@@ -13,10 +13,19 @@
         <tbody>
             @foreach ($surveys as $survey)
                 <tr class="font-normal">
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-full">{{ $survey->title }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-full">{{ $survey->url }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6 w-full">
-                        <a href="{{ route('surveys.edit', $survey->id) }}" class="text-wb-blue">Bewerk</a>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/6">{{ $survey->title }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-2/3 break-all">{{ $survey->url }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-6 w-1/6">
+                        <form action="{{ route('surveys.destroy', $survey->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+
+                            <a href="{{ route('surveys.edit', $survey->id) }}" class="text-wb-blue">Bewerk</a>
+                            <span>|</span>
+
+                            <button type="submit" class="text-wb-blue"
+                                onclick="return confirm('Ben je zeker dat je deze tevredenheidsmeting wilt verwijderen?');">Verwijder</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
