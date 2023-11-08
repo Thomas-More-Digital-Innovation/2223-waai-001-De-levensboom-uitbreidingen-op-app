@@ -109,6 +109,10 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         Gate::authorize("allowAdmin");
-        //
+        $survey = InfoContent::find($id);
+        $survey->delete();
+
+        $msg = "Survey Deleted successful! ";
+        return redirect("surveys/")->with("msg", $msg);
     }
 }
