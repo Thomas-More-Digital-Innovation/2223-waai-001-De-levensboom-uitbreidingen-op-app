@@ -150,8 +150,7 @@ class ClientController extends Controller
     {
         $survey = $request->input('survey_id');
         $url = InfoContent::find($survey)->first()->url;
-        $user = User::find($id);
-        $url = $url . urlencode($user->surname . ' ' . $user->firstname);
+        $url = $url . urlencode($id);
         
         User::find($id)->notify(new Survey($url));
         User::find($id)->update(["survey" => now()]);
