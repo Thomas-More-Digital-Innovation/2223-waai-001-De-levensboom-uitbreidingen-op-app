@@ -1,14 +1,14 @@
 @extends('layout')
 <title>Waaiburg - Antwoorden</title>
-@section('content')
-
+@section('style')
     <style>
         .rotate-transition {
             transform: rotate(180deg);
             transition: transform 0.3s ease;
         }
     </style>
-
+@endsection
+@section('content')
     <h1 class="text-2xl">Antwoorden van {{ $client->firstname }} {{ $client->surname }}</h1>
     <div>
         @foreach($tree_parts as $tree_part)
@@ -20,7 +20,6 @@
                 </svg>
             </button>
         </h2>
-
         <div class="hidden" id="test-{{ $tree_part->id }}">
             <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="answerList">
                 <thead>
@@ -52,11 +51,14 @@
         </div>
         @endforeach
     </div>
-
     <div class="mt-10">
         <a href="{{ route('clientLinks.edit', $client->id)}}"  class="rounded bg-wb-blue px-5 py-2 text-white font-bold">Vorige pagina</a>
     </div>
-
+@endsection
+@section('documentation')
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
+@endsection
+@section('scripts')
     <script>
         function toggleTestDiv(treePartId) {
             const testDiv = document.getElementById(`test-${treePartId}`);
@@ -68,8 +70,4 @@
             }
         }
     </script>
-@endsection
-
-@section('documentation')
-    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
 @endsection

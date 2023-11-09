@@ -1,104 +1,85 @@
-<!doctype html>
-<html lang="nl">
+@extends('layout')
+<title>Waaiburg - Begeleiders</title>
+@section('content')
+<h1 class="text-2xl">Begeleider wijzigen</h1>
+    <form action="{{ route('mentors.update', $mentor->id) }}" method="POST" class="flex flex-col mt-3">
+        @csrf
+        @method('PATCH')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <title>Waaiburg - Begeleiders</title>
-</head>
+        <x-errormessage />
 
-<body class="flex" onload="setDepartments('{{ count($departmentsList) ? count($departmentsList) : 1 }}')">
-    <x-navbar />
-    <main class="w-full bg-white">
-        <x-topbar />
-        <x-welcome />
+        <x-form-input name="firstname" text="Voornaam" :value="$mentor" />
+        <x-form-input name="surname" text="Achternaam" :value="$mentor" />
+        <x-form-input name="email" text="Email" :value="$mentor" />
+        <x-form-input name="type" text="Admin" type="checkbox" required="false" :value="$mentor" />
+        <hr />
 
-        <div class="m-5 bg-white rounded border">
-            <div class="border-t-4 rounded border-wb-blue">
-                <div class="m-3">
-                    <h1 class="text-2xl">Begeleider wijzigen</h1>
-                    <form action="{{ route('mentors.update', $mentor->id) }}" method="POST" class="flex flex-col mt-3">
-                        @csrf
-                        @method('PATCH')
-
-                        <x-errormessage />
-
-                        <x-form-input name="firstname" text="Voornaam" :value="$mentor" />
-                        <x-form-input name="surname" text="Achternaam" :value="$mentor" />
-                        <x-form-input name="email" text="Email" :value="$mentor" />
-                        <x-form-input name="type" text="Admin" type="checkbox" required="false" :value="$mentor" />
-                        <hr />
-
-                        <div id="dropdowns">
-                            @for ($i = 0; $i < (count($departmentsList) ? count($departmentsList) : 1); $i++)
-                                <div id="{{ $i }}" class="flex flex-row gap-5">
-                                    <div>
-                                        @if ($i == 0)
-                                            <div class="flex items-center gap-3 mt-3 mb-3">
-                                                <label for="role{{ $i }}" class="font-bold">Functie</label>
-                                            </div>
-                                        @endif
-                                        <div class="flex items-center">
-                                            <select name="role{{ $i }}" id="role{{ $i }}"
-                                                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-3">
-                                                <option value="">Kies een Functie</option>
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->id }}"
-                                                        @if ($role->id == (count($departmentsList) ? $departmentsList[$i]->role_id : 0)) selected @endif>
-                                                        {{ $role->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        @if ($i == 0)
-                                            <div class="flex items-center gap-3 mt-3 mb-3">
-                                                <label for="department0" class="font-bold">Afdeling</label>
-                                                <iconify-icon icon="fa6-solid:plus"
-                                                    class="text-wb-blue text-xl cursor-pointer"
-                                                    onclick="addDepartment()" />
-                                            </div>
-                                        @endif
-                                        <div class="flex items-center mb-3">
-                                            <select name="department{{ $i }}"
-                                                id="department{{ $i }}"
-                                                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
-                                                <option value="">Kies een Afdeling</option>
-                                                @foreach ($departments as $department)
-                                                    <option value="{{ $department->id }}"
-                                                        @if ($department->id == (count($departmentsList) ? $departmentsList[$i]->department_id : 0)) selected @endif>
-                                                        {{ $department->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($i != 0)
-                                                <button onclick="deleteDepartment( '{{ $i }}' )"
-                                                    class="text-wb-blue ml-2">Verwijder</button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            @endfor
+        <div id="dropdowns">
+            @for ($i = 0; $i < (count($departmentsList) ? count($departmentsList) : 1); $i++)
+                <div id="{{ $i }}" class="flex flex-row gap-5">
+                    <div>
+                        @if ($i == 0)
+                            <div class="flex items-center gap-3 mt-3 mb-3">
+                                <label for="role{{ $i }}" class="font-bold">Functie</label>
+                            </div>
+                        @endif
+                        <div class="flex items-center">
+                            <select name="role{{ $i }}" id="role{{ $i }}"
+                                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-3">
+                                <option value="">Kies een Functie</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        @if ($role->id == (count($departmentsList) ? $departmentsList[$i]->role_id : 0)) selected @endif>
+                                        {{ $role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <input name="totalDep" id="totalDep"
-                            value="{{ count($departmentsList) ? count($departmentsList) : 1 }}" class="hidden" />
-                        <hr />
-                        <x-contactgegevens :contactgegevens="$mentor" />
-
-                        <div class="flex gap-5">
-                            <x-form-button text="Wijzigen" />
-                            <x-form-button text="Annuleren" link="mentors.index" />
+                    </div>
+                    <div>
+                        @if ($i == 0)
+                            <div class="flex items-center gap-3 mt-3 mb-3">
+                                <label for="department0" class="font-bold">Afdeling</label>
+                                <iconify-icon icon="fa6-solid:plus"
+                                    class="text-wb-blue text-xl cursor-pointer"
+                                    onclick="addDepartment()" />
+                            </div>
+                        @endif
+                        <div class="flex items-center mb-3">
+                            <select name="department{{ $i }}"
+                                id="department{{ $i }}"
+                                class="border border-[#d2d6de] px-4 py-2 outline-wb-blue">
+                                <option value="">Kies een Afdeling</option>
+                                @foreach ($departments as $department)
+                                    <option value="{{ $department->id }}"
+                                        @if ($department->id == (count($departmentsList) ? $departmentsList[$i]->department_id : 0)) selected @endif>
+                                        {{ $department->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if ($i != 0)
+                                <button onclick="deleteDepartment( '{{ $i }}' )"
+                                    class="text-wb-blue ml-2">Verwijder</button>
+                            @endif
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            @endfor
         </div>
-    </main>
-</body>
 
+        <input name="totalDep" id="totalDep"
+            value="{{ count($departmentsList) ? count($departmentsList) : 1 }}" class="hidden" />
+        <hr />
+        <x-contactgegevens :contactgegevens="$mentor" />
+
+        <div class="flex gap-5">
+            <x-form-button text="Wijzigen" />
+            <x-form-button text="Annuleren" link="mentors.index" />
+        </div>
+    </form>
+@endsection
+
+@section('scripts')
 <script>
     let nrOfDep = 1;
 
@@ -140,5 +121,4 @@
         dropdowns.removeChild(document.getElementById(departmentId));
     }
 </script>
-
-</html>
+@endsection

@@ -12,7 +12,6 @@
     <x-navbar />
     <main class="w-full bg-white">
         <x-topbar />
-        <x-welcome />
 
         <div class="flex flex-row">
             <div class="m-5 bg-white rounded border flex w-full flex-col h-full">
