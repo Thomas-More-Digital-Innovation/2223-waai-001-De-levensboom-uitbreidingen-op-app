@@ -19,19 +19,22 @@ class TreePartSeeder extends Seeder
             "name" => "Grond",
         ]);
         DB::table("tree_parts")->insert([
-            "name" => "Wortels",
+            "name" => "Zaadje",
         ]);
         DB::table("tree_parts")->insert([
             "name" => "Stam",
         ]);
         DB::table("tree_parts")->insert([
+            "name" => "Takken",
+        ]);
+        DB::table("tree_parts")->insert([
             "name" => "Bladeren",
         ]);
         DB::table("tree_parts")->insert([
-            "name" => "Vogels",
+            "name" => "Appels",
         ]);
         DB::table("tree_parts")->insert([
-            "name" => "Appels",
+            "name" => "Vogels",
         ]);
     }
 }
