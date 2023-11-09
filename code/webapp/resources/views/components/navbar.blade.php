@@ -59,7 +59,7 @@
                 <iconify-icon icon="fa6-solid:at" class="w-7"></iconify-icon>
                 <p>Mails</p>
             </a>
-            <a href="/surveys" class="flex items-center px-6 py-3 hover:text-white hover:bg-[#202c2c]">
+            <a href="/surveys" class="flex items-center px-6 py-3 hover:text-white bg-[#222d32] hover:bg-[#202c2c]">
                 <iconify-icon icon="fa6-solid:newspaper" class="w-7"></iconify-icon>
                 <p>Tevredenheids meting</p>
             </a>
