@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionListRequest;
 use App\Models\QuestionList;
 use Illuminate\Http\Request;
+use App\Models\QuestionUserList;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @OA\Schema(
@@ -216,6 +220,27 @@ class QuestionListController extends Controller
     public function show(QuestionList $questionList)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function activeList(Request $request)
+    {
+        $id = $request->id;
+        dd($id);
+        $active_lists = QuestionUserList::where('user_id', $id)->where('active', 1)->get()->pluck('question_list_id');
+        $question_lists = QuestionList::whereIn('id', $active_lists)->pluck('id');
+        $questions = Questions::whereIn('question_lists_id', $active_lists);
+
+        return response()->json([
+            "status" => true,
+            "question_list_ids" => [$question_lists],
+            "questions" => [$questions],
+        ]);
     }
 
     /**

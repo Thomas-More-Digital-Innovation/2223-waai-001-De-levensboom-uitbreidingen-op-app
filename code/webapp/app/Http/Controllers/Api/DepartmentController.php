@@ -179,11 +179,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $department = Department::all();
+        $departments = Department::all();
 
         return response()->json([
             "status" => true,
-            "department" => [$department],
+            "department" => [$departments],
         ]);
     }
 
