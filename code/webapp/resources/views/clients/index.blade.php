@@ -5,6 +5,7 @@
     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="clientCreate">
         <thead>
             <tr>
+                <th class="border border-[#f4f4f4] py-2 px-6">ID</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Achternaam</th>
                 <th class="border border-[#f4f4f4] py-2 px-6">Afdeling&lpar;en&rpar;</th>
@@ -17,6 +18,7 @@
         <tbody>
             @foreach ($clients as $client)
                 <tr class="font-normal">
+                    <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->id }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->surname }}</td>
                     <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
