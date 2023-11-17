@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionListRequest;
 use App\Models\QuestionList;
-use Illuminate\Http\Request;
 use App\Models\QuestionUserList;
+use App\Models\Question;
+use App\Models\Answer;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -231,15 +233,16 @@ class QuestionListController extends Controller
     public function activeList(Request $request)
     {
         $id = $request->id;
-        dd($id);
+        // $id = 7;
         $active_lists = QuestionUserList::where('user_id', $id)->where('active', 1)->get()->pluck('question_list_id');
-        $question_lists = QuestionList::whereIn('id', $active_lists)->pluck('id');
-        $questions = Questions::whereIn('question_lists_id', $active_lists);
+        $questions = Question::whereIn('question_list_id', $active_lists)->get();
+        $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get();
 
         return response()->json([
             "status" => true,
-            "question_list_ids" => [$question_lists],
+            "question_list_ids" => [$active_lists],
             "questions" => [$questions],
+            "answers" => [$answers],
         ]);
     }
 
