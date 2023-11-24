@@ -47,10 +47,12 @@ Route::middleware("auth:sanctum")->group(function () {
         "role" => RoleController::class,
         "question" => QuestionController::class,
         "questionList" => QuestionListController::class,
-        "activeList" => QuestionController::class,
         "answer" => AnswerController::class,
         "users" => UserController::class,
-    
+    ]);
+    Route::get("activeList", [
+        QuestionListController::class,
+        "activeList",
     ]);
 });
 
@@ -59,9 +61,6 @@ Route::get("department", [DepartmentController::class, "index"]);
 Route::get("info", [InfoController::class, "index"]);
 Route::get("infoContent", [InfoContentController::class, "index"]);
 Route::get("section", [SectionController::class, "index"]);
-Route::get("question", [QuestionController::class, "index"]);
-Route::get("questionList", [QuestionListController::class, "index"]);
-Route::get("activeList", [QuestionListController::class, "activeList"]);
 
 Route::post("/auth/register", [AuthController::class, "createUser"]);
 Route::post("/auth/login", [AuthController::class, "loginUser"]);

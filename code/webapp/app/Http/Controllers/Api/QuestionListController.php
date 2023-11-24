@@ -227,13 +227,12 @@ class QuestionListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function activeList(Request $request)
+    public function activeList()
     {
-        $id = $request->id;
-        // $id = 7;
+        $user = auth()->user();
+        $id = $user->id;
         $active_lists = QuestionUserList::where('user_id', $id)->where('active', 1)->get()->pluck('question_list_id');
         $questions = Question::whereIn('question_list_id', $active_lists)->get();
         $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get();
@@ -245,6 +244,8 @@ class QuestionListController extends Controller
             "answers" => [$answers],
         ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
