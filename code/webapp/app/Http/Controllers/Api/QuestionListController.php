@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreQuestionListRequest;
 use App\Models\QuestionList;
-use Illuminate\Http\Request;
+use App\Models\QuestionUserList;
+use App\Models\Question;
+use App\Models\Answer;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @OA\Schema(
@@ -217,6 +223,29 @@ class QuestionListController extends Controller
     {
         //
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function activeList()
+    {
+        $user = auth()->user();
+        $id = $user->id;
+        $active_lists = QuestionUserList::where('user_id', $id)->where('active', 1)->get()->pluck('question_list_id');
+        $questions = Question::whereIn('question_list_id', $active_lists)->get();
+        $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get();
+
+        return response()->json([
+            "status" => true,
+            "question_list_ids" => [$active_lists],
+            "questions" => [$questions],
+            "answers" => [$answers],
+        ]);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
