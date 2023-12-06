@@ -202,11 +202,6 @@ class AnswerController extends Controller
      */
     public function store(StoreAnswerRequest $request)
     {
-        if($request->user_id == null){
-            $user = auth()->user();
-            $id = $user->id;
-            $request->merge(["user_id", $id]);
-        }
         $answer = Answer::create($request->all());
 
         return response()->json(
