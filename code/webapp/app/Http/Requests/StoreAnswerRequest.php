@@ -24,7 +24,7 @@ class StoreAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id" => "integer",
+            "user_id" => "integer|required",
             "question_id" => "integer|required",
             "answer" => "string|required",
         ];
