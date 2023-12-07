@@ -81,7 +81,7 @@ class QuestionController extends Controller
         Gate::authorize("allowAdmin");
 
         $question = Question::find($id);
-        return view("QuestionLists.treeParts.questions.edit", compact("question"));
+        return view("questionLists.treeParts.questions.edit", compact("question"));
     }
 
     /**
