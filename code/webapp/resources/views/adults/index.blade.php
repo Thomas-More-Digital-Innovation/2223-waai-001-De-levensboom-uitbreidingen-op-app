@@ -56,5 +56,5 @@
     </table>
 @endsection
 @section('documentation')
-    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=10" text="documentatie over info segmenten" />
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=11" text="documentatie over info segmenten" />
 @endsection

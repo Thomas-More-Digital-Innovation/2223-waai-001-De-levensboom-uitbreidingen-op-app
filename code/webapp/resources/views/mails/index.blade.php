@@ -22,5 +22,5 @@
     </table>
 @endsection
 @section('documentation')
-    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=15" text="documentatie over mails" />
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=16" text="documentatie over mails" />
 @endsection
