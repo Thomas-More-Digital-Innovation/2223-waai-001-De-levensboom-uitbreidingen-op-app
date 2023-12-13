@@ -2,7 +2,56 @@
 <title>Waaiburg - Account</title>
 @section('content')
     <h1 class="text-2xl">Account wijzigen</h1>
-    <form action="{{ route('user.update', $user->id) }}" method="POST" class="flex flex-col mt-3">
+
+    <p class="text-xl mt-10">Tweefactorauthenticatie</p>
+    {{-- Enable two factor --}}
+    @if (session('status') == 'two-factor-authentication-enabled')
+        <div class="mb-4 font-medium text-sm">
+            Voltooi de tweefactorauthenticatie configuratie hieronder.
+        </div>
+    @endif
+
+    @if (session('status') == 'two-factor-authentication-confirmed')
+        <div class="mb-4 font-medium text-sm">
+            Tweefactorauthenticatie succesvol bevestigd en ingeschakeld.
+        </div>
+    @endif
+    @if (!auth()->user()->two_factor_secret)
+        <form method="POST" action="{{ url('user/two-factor-authentication') }}">
+            @csrf
+            @method('post')
+
+            <button type="submit" class="bg-wb-blue rounded px-4 py-1 mt-5 text-white">
+                Aanzetten
+            </button>
+        </form>
+    @else
+        <div class="mt-5">
+            <form method="POST" action="user/two-factor-authentication">
+                @csrf
+                @method('delete')
+
+                <button type="submit" class="bg-wb-blue rounded px-4 py-1 mt-5 text-white">
+                    Uitzetten
+                </button>
+            </form>
+        </div>
+    @endif
+
+    @if (auth()->user()->two_factor_secret)
+        <p class="mb-3">QR Code voor uw authenticatie app:</p>
+        {!! auth()->user()->twoFactorQrCodeSvg() !!}
+
+        {{-- Recovery --}}
+        <p class="text-xl mt-10">Herstel codes: </p>
+        @foreach (Auth::user()->recoveryCodes() as $code)
+            {{ $code }} <br>
+        @endforeach
+    @endif
+
+
+
+    <form action="{{ route('user.update', $user->id) }}" method="POST" class="flex flex-col mt-10">
         @csrf
         @method('PATCH')
 
