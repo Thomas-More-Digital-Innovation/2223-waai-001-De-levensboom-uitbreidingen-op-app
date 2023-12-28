@@ -5,13 +5,13 @@
         @if ($value != null)
             <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
                 {{ $required === 'true' ? 'required' : null }} {{ $disabled }}
-                placeholder="Enter {{ strtolower($text) }}"
+                placeholder="Geef je {{ strtolower($text) }} in"
                 class="border border-[#d2d6de] px-4 py-2 outline-wb-blue @error("{{ $name }}") is-invalid @enderror"
                 {{ $value->user_type_id==1 ? 'checked': '' }}>
         @else
             <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
                 {{ $required === 'true' ? 'required' : null }} {{ $disabled }}
-                placeholder="Enter {{ strtolower($text) }}"
+                placeholder="Geef je {{ strtolower($text) }} in"
                 class="border border-[#d2d6de] px-4 py-2 outline-wb-blue @error("{{ $name }}") is-invalid @enderror" @checked(old($name)) value=>
         @endif
     </div>
@@ -21,13 +21,13 @@
     @if ($value != null)
         <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
             {{ $required === 'true' ? 'required' : null }} {{ $disabled }}
-            placeholder="Enter {{ strtolower($text) }}"
+            placeholder="Geef je {{ strtolower($text) }} in"
             class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-3 @error("{{ $name }}") is-invalid @enderror"
             value="{{ $value->$name }}">
     @else
         <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
             {{ $required === 'true' ? 'required' : null }} {{ $disabled }}
-            placeholder="Enter {{ strtolower($text) }}"
+            placeholder="Geef je {{ strtolower($text) }} in"
             class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-3 @error("{{ $name }}") is-invalid @enderror"
             value="{{ old($name) }}">
     @endif

@@ -78,5 +78,5 @@
 @endsection
 
 @section('documentation')
-    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over beantwoorde en onbantwoorde vragenlijsten" />
 @endsection

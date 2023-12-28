@@ -40,7 +40,7 @@
                                     @if ($answer)
                                         {{ $answer->answer }}
                                     @else
-                                        Deze vraag is nog niet ingevuld
+                                        Deze vraag is nog niet beantwoord
                                     @endif
                                 </td>
                             </tr>
@@ -56,7 +56,7 @@
     </div>
 @endsection
 @section('documentation')
-    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over begeleiders" />
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=6" text="documentatie over Antwoorden" />
 @endsection
 @section('scripts')
     <script>

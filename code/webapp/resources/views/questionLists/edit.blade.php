@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=13"
-                    text="documentatie over info blokken" />
+                    text="documentatie over De Levensboom" />
             </div>
         </div>
     </main>
