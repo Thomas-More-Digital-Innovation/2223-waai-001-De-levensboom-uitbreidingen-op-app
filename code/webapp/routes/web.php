@@ -21,6 +21,7 @@ use App\Http\Controllers\ClientLinkController;
 use App\Http\Controllers\ClientAnswerController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Fortify;
 
 /*
 |--------------------------------------------------------------------------
