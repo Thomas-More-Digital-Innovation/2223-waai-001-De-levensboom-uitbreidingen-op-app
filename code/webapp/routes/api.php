@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\UserTypeController;
 use App\Http\Controllers\Api\InfoController;
@@ -64,3 +65,4 @@ Route::get("section", [SectionController::class, "index"]);
 
 Route::post("/auth/register", [AuthController::class, "createUser"]);
 Route::post("/auth/login", [AuthController::class, "loginUser"]);
+

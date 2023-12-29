@@ -23,7 +23,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): View
+    public function store(LoginRequest $request): View | RedirectResponse
     {
         $request->authenticate();
 
@@ -35,7 +35,32 @@ class AuthenticatedSessionController extends Controller
         if ($request->user()->two_factor_secret) {
             return view('auth.two-factor-challenge');
         }
-        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Handle 2fa requests
+     */
+    public function twoFactorCheck(TwoFactorLoginRequest $request){
+        function hasValidCode()
+        {
+            return $this->code && app(TwoFactorAuthenticationProvider::class)->verify(
+                decrypt($this->challengedUser()->two_factor_secret), $this->code
+            );
+        }
+
+        $user = $request->challengedUser();
+        dd($user);
+
+        if ($code = $request->validRecoveryCode()) {
+            $user->replaceRecoveryCode($code);
+        } elseif (! $request->hasValidCode()) {  // This always return false
+            return app(FailedTwoFactorLoginResponse::class);
+        }
+
+        $this->guard->login($user, $request->remember());
+
+        return app(TwoFactorLoginResponse::class);
     }
 
     /**

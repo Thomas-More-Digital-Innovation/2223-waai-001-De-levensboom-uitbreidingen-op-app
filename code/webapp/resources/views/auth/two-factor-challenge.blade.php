@@ -1,4 +1,5 @@
 <x-guest-layout>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -8,7 +9,7 @@
                     <div class="card-body">
                         {{ __('Please enter your authentication code to login.') }}
 
-                        <form method="POST" action="{{ route('two-factor.login') }}">
+                        <form method="POST" action="{{ route('two-factor') }}">
                             @csrf
 
                             <div class="row mb-3">
