@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("/two-factor", [AuthenticatedSessionController::class, "twoFactorCheck"])->name("two-factor");;
+Route::post("/two-factor", [AuthenticatedSessionController::class, "twoFactorCheck"])->name("two-factor.twoFactorCheck");;
 
 Route::get("/", function () {
     $clientcount = User::where("user_type_id", 2)->count();
