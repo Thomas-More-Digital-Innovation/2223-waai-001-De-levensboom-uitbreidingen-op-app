@@ -24,14 +24,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.two-factor-challenge');
-        });
-
-        // Misschien hier de andere routes ook nog toevoegen
     }
 }

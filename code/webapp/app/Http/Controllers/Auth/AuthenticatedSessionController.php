@@ -23,13 +23,19 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): View
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // dd($request->user());
+
+        // send user to auth.two-factor-challenge if correctly filled in then send to home
+        if ($request->user()->two_factor_secret) {
+            return view('auth.two-factor-challenge');
+        }
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
