@@ -51,17 +51,26 @@ class AuthenticatedSessionController extends Controller
             if ($valid) {
                 return true;
             }
+            return false;
         });
     }
 
-    public function validRecoveryCode(String $recovery_code)
+    private function validRecoveryCode(String $recovery_code)
     {
         if (!$recovery_code) {
             return;
         }
-        // dd(auth()->user()->two_factor_recovery_codes);
-        return tap(collect(auth()->user()->two_factor_recovery_codes)->first(function ($code) use ($recovery_code) {
-            dd(hash_equals($code, $recovery_code));
+        // dd(decrypt(auth()->user()->two_factor_recovery_codes))->first();
+        return tap(collect(decrypt(auth()->user()->two_factor_recovery_codes))->first(function ($code) use ($recovery_code) {
+
+            $code = json_decode($code, true);
+            if (in_array($recovery_code, $code)) {
+                // Code found in the array
+                return true;
+            } else {
+                // Code not found in the array
+                return false;
+            }
             return hash_equals($code, $recovery_code) ? $code : null;
         }), function ($code) {
             if ($code) {
@@ -79,8 +88,8 @@ class AuthenticatedSessionController extends Controller
         $code = $request->code;
 
 
-        if (!$this->validRecoveryCode($code)) {
-            dd("False recovery code");
+        if ($this->validRecoveryCode($code)) {
+            dd("This is recovery code!");
         }
         elseif (!$this->hasValidCode($code)) {  // This always return false
             // return app(FailedTwoFactorLoginResponse::class);
