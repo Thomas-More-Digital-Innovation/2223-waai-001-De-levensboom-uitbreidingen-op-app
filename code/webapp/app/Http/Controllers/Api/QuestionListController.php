@@ -161,7 +161,7 @@ use Illuminate\Support\Facades\Auth;
  * tags={"questionLists"},
  * summary="Delete question",
  * description="Delete question",
- * operationId="questionsDestroy",
+ * operationId="questionsListDestroy",
  * @OA\Parameter(
  * name="Authorization",
  * description="Bearer {token}",
