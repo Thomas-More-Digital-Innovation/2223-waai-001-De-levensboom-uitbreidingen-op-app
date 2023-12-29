@@ -34,14 +34,13 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
-
-        // dd($request->user());
-
         // send user to auth.two-factor-challenge if correctly filled in then send to home
         if ($request->user()->two_factor_secret) {
             return view('auth.two-factor-challenge');
         }
+
+        $request->session()->regenerate();
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -60,18 +59,15 @@ class AuthenticatedSessionController extends Controller
         if (!$recovery_code) {
             return;
         }
-
-        return auth()->user()->recoveryCodes->first(function ($code) {
-            return hash_equals($code, $recovery_code) ? true : false;
+        // dd(auth()->user()->two_factor_recovery_codes);
+        return tap(collect(auth()->user()->two_factor_recovery_codes)->first(function ($code) use ($recovery_code) {
+            dd(hash_equals($code, $recovery_code));
+            return hash_equals($code, $recovery_code) ? $code : null;
+        }), function ($code) {
+            if ($code) {
+                return true;
+            }
         });
-
-        // return tap(collect($this->challengedUser()->recoveryCodes())->first(function ($code) {
-        //     return hash_equals($code, $recovery_code) ? $code : null;
-        // }), function ($code) {
-        //     if ($code) {
-        //         $this->session()->forget('login.id');
-        //     }
-        // });
     }
 
     /**
@@ -82,21 +78,25 @@ class AuthenticatedSessionController extends Controller
         $user = auth()->user();
         $code = $request->code;
 
-        if (!$this->hasValidCode($code)) {  // This always return false
+
+        if (!$this->validRecoveryCode($code)) {
+            dd("False recovery code");
+        }
+        elseif (!$this->hasValidCode($code)) {  // This always return false
             // return app(FailedTwoFactorLoginResponse::class);
             dd("False Code");
         }
 
-        // if (!$this->validRecoveryCode($code)) {
-        //     // $user->replaceRecoveryCode($code);
-        //     // generate a new recovery code
-        //     dd("False recovery code");
-        // } 
+
+        // $user->replaceRecoveryCode($code);
+        // generate a new recovery code
 
         // $this->guard->login($user, $request->remember());
 
         // return app(TwoFactorLoginResponse::class);
-        return redirect("/");
+        $request->session()->regenerate();
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
