@@ -15,6 +15,7 @@ use Laravel\Fortify\Contracts\TwoFactorChallengeViewResponse;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse;
 use Laravel\Fortify\Events\RecoveryCodeReplaced;
 use Laravel\Fortify\Http\Requests\TwoFactorLoginRequest;
+use Laravel\Fortify\TwoFactorAuthenticationProvider;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -46,17 +47,23 @@ class AuthenticatedSessionController extends Controller
 
     private function hasValidCode(String $code)
     {
-        return $code && decrypt(auth()->user()->two_factor_secret) == $code;
+
+        return $code && tap(app(TwoFactorAuthenticationProvider::class)->verify(decrypt(auth()->user()->two_factor_secret), $code), function ($valid) {
+            if ($valid) {
+                return true;
+            }
+        });
     }
+
     public function validRecoveryCode(String $recovery_code)
     {
-        if (! $recovery_code) {
+        if (!$recovery_code) {
             return;
         }
 
-        return auth()->user()->recoveryCodes()->first(function ($code) {
-                return hash_equals($code, $recovery_code) ? true : false;
-            });
+        return auth()->user()->recoveryCodes->first(function ($code) {
+            return hash_equals($code, $recovery_code) ? true : false;
+        });
 
         // return tap(collect($this->challengedUser()->recoveryCodes())->first(function ($code) {
         //     return hash_equals($code, $recovery_code) ? $code : null;
@@ -70,24 +77,26 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle 2fa requests
      */
-    public function twoFactorCheck(TwoFactorLoginRequest $request){
+    public function twoFactorCheck(TwoFactorLoginRequest $request)
+    {
         $user = auth()->user();
         $code = $request->code;
 
-        if ($this->validRecoveryCode($code)) {
-            // $user->replaceRecoveryCode($code);
-            // generate a new recovery code
-            dd("CORRECT CODE");
-            
-        } elseif (! $this->hasValidCode($code)) {  // This always return false
+        if (!$this->hasValidCode($code)) {  // This always return false
             // return app(FailedTwoFactorLoginResponse::class);
             dd("False Code");
         }
 
+        // if (!$this->validRecoveryCode($code)) {
+        //     // $user->replaceRecoveryCode($code);
+        //     // generate a new recovery code
+        //     dd("False recovery code");
+        // } 
+
         // $this->guard->login($user, $request->remember());
 
         // return app(TwoFactorLoginResponse::class);
-        return view("/");
+        return redirect("/");
     }
 
     /**
