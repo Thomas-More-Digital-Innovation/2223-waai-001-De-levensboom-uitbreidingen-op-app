@@ -10,6 +10,7 @@ use App\Models\InfoContent;
 use App\Models\User;
 use App\Models\UserList;
 use App\Notifications\Survey;
+use App\Notifications\CreateAccountApp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -81,6 +82,7 @@ class ClientController extends Controller
         $user = User::create($request->all());
 
         event(new Registered($user));
+        $user->notify(new CreateAccountApp(env('APP_URL')."/user#Pass"));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input("department" . $i);

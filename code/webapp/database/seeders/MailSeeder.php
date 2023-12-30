@@ -18,7 +18,11 @@ class MailSeeder extends Seeder
     public function run()
     {
         DB::table("infos")->insert([
-            "title" => "Account aangemaakt voor Waaiburg Web applicatie",
+            "title" => "Account verifiëren voor Waaiburg Web applicatie",
+            "section_id" => "4",
+        ]);
+        DB::table("infos")->insert([
+            "title" => "Account aangemaakt voor WebApp",
             "section_id" => "4",
         ]);
         DB::table("infos")->insert([
@@ -26,11 +30,7 @@ class MailSeeder extends Seeder
             "section_id" => "4",
         ]);
         DB::table("infos")->insert([
-            "title" => "Wachtwoord vergeten voor WebApp",
-            "section_id" => "4",
-        ]);
-        DB::table("infos")->insert([
-            "title" => "Wachtwoord vergeten voor APP",
+            "title" => "Wachtwoord vergeten",
             "section_id" => "4",
         ]);
         DB::table("infos")->insert([
