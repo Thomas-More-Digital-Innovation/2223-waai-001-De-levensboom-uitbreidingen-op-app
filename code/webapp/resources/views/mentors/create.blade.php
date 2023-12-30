@@ -41,7 +41,6 @@
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
                             @endforeach
                         </select>
-                        {{-- <button onclick="deleteDepartment( '${nrOfDep}' )" class="text-wb-blue ml-2">Verwijder</button> --}}
                     </div>
                 </div>
             </div>
