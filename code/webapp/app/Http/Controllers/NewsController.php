@@ -122,6 +122,8 @@ class NewsController extends Controller
         Gate::authorize("allowAdmin");
 
         $new = Info::find($id);
+        $news_content = InfoContent::where('info_id', $id);
+        $news_content->delete();
         $new->delete();
 
         $msg = "New Info Content Deleted successful! ";
