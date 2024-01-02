@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserType;
 use App\Models\UserList;
+use App\Notifications\CreateAccountWebApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Registered;
@@ -53,8 +54,8 @@ class MentorController extends Controller
         Gate::authorize("adminOrDep");
 
         $departments = Department::all();
-        $roles = Role::where("name", "Department Head")
-            ->orWhere("name", "Mentor")
+        $roles = Role::where("name", "Afdelingshoofd")
+            ->orWhere("name", "Begeleider")
             ->get();
         return view("mentors.create", compact("departments", "roles"));
     }
@@ -76,6 +77,7 @@ class MentorController extends Controller
         $user = User::create($request->all());
 
         event(new Registered($user));
+        $user->notify(new CreateAccountWebApp(env('APP_URL')));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input("department" . $i);
@@ -115,8 +117,8 @@ class MentorController extends Controller
         Gate::authorize("editAccount", $id);
         $mentor = User::find($id);
         $departments = Department::all();
-        $roles = Role::where("name", "Department Head")
-            ->orWhere("name", "Mentor")
+        $roles = Role::where("name", "Afdelingshoofd")
+            ->orWhere("name", "Begeleider")
             ->get();
         $departmentsList = DepartmentList::where("user_id", $id)->get();
         return view("mentors.edit", compact("mentor", "departments", "roles"), [

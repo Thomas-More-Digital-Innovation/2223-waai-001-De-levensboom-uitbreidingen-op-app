@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Notifications\Notifiable;
 use App\Models\InfoContent;
 
-class PasswordReset extends Mailable
+class CreateAccountWebApp extends Mailable
 {
     use Queueable, SerializesModels;
     public $url;
@@ -26,10 +26,10 @@ class PasswordReset extends Mailable
     public function __construct($url)
     {
         $this->url = $url;
-        $this->infoContent = InfoContent::where("info_id", 5)
+        $this->infoContent = InfoContent::where("info_id", 3)
             ->get()
-            ->first(); //info_id: 5 = password_reset mail in database
-        $this->actionText = "Reset wachtwoord"; //Text on button in mail
+            ->first(); //info_id: 3 = account create webapp mail in database
+        $this->actionText = "Inloggen"; //Text on button in mail
     }
 
     /**

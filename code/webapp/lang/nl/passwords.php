@@ -12,9 +12,10 @@ return [
     |
     */
 
-    "reset" => "Je wachtwoord is opnieuw ingesteld!",
-    "sent" => "We hebben je wachtwoordresetlink gemaild!",
+    "reset" => "Je wachtwoord is succesvol opnieuw ingesteld!",
+    "sent" => "We hebben je een e-mail met de wachtwoordreset-link gestuurd!",
     "throttled" => "Wacht even voordat je het opnieuw probeert.",
     "token" => "Deze wachtwoordreset-token is ongeldig.",
     "user" => "We kunnen geen gebruiker vinden met dat e-mailadres.",
+
 ];
