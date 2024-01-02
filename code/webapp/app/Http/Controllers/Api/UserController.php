@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Models\UserList;
 use Illuminate\Http\Request;
 
 /**
@@ -108,6 +109,40 @@ use Illuminate\Http\Request;
  *   ),
  *   @OA\Property(
  *     property="users",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/User")
+ *   ),
+ *  ),
+ * ),
+ * )
+ * @OA\Get(
+ * path="/api/user",
+ * tags={"users"},
+ * summary="Get logged in user",
+ * description="Get logged in user",
+ * operationId="userIndex",
+ * @OA\Parameter(
+ *   name="Authorization",
+ *   description="Bearer {token}",
+ *   in="header",
+ *   required=true,
+ * ),
+ * @OA\Response(
+ *  response=200,
+ *  description="successful operation",
+ *  @OA\JsonContent(
+ *   @OA\Property(
+ *    property="status",
+ *    type="boolean",
+ *    example=true
+ *   ),
+ *   @OA\Property(
+ *     property="user",
+ *     type="array",
+ *     @OA\Items(ref="#/components/schemas/User")
+ *   ),
+ *   @OA\Property(
+ *     property="mentor",
  *     type="array",
  *     @OA\Items(ref="#/components/schemas/User")
  *   ),
@@ -321,5 +356,18 @@ class UserController extends Controller
             ],
             200
         );
+    }
+
+    public function getMentorForUser($userId)
+    {
+        // Assuming $userId is the ID of the user you want to get the mentor for
+        $userList = UserList::where('client_id', $userId)->first();
+
+        if (!$userList) {
+            return response()->json(['message' => 'User not found in the user list'], 404);
+        }
+        $mentor = User::where("id", $userList->mentor_id)->first();
+
+        return response()->json(['mentor' => $mentor]);
     }
 }
