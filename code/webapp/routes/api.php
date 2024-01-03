@@ -41,7 +41,7 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     $mentorData = json_decode($mentorDataResponse->getContent(), true);
 
     // Check if 'mentor' key is present in the response, if not, return an empty list
-    $mentorList = isset($mentorData['mentor']) ? [$mentorData['mentor']] : [];
+    $mentorList = isset($mentorData['mentor']) ? $mentorData['mentor'] : [];
 
 
     return response()->json([
