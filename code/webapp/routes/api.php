@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\QuestionListController;
 use App\Http\Controllers\Api\AnswerController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserListController;
 use App\Http\Controllers\Api\DepartmentListController;
 
 use Illuminate\Http\Request;
@@ -33,8 +34,24 @@ use Illuminate\Support\Facades\Route;
 // Deze controller heeft ook authorisatie en rules(validation)
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+    $mentorDataResponse = app(UserController::class)->getMentorForUser($user->id);
+
+    // Check if the response contains an error message
+    $mentorData = json_decode($mentorDataResponse->getContent(), true);
+
+    // Check if 'mentor' key is present in the response, if not, return an empty list
+    $mentorList = isset($mentorData['mentor']) ? $mentorData['mentor'] : [];
+
+
+    return response()->json([
+        "status" => true,
+        "user" => $user,
+        "mentor" => $mentorList,
+    ]);
 });
+
+
 
 Route::middleware("auth:sanctum")->group(function () {
     Route::apiResources([
@@ -48,6 +65,7 @@ Route::middleware("auth:sanctum")->group(function () {
         "question" => QuestionController::class,
         "questionList" => QuestionListController::class,
         "answer" => AnswerController::class,
+        "userList" => UserListController::class,
         "users" => UserController::class,
     ]);
     Route::get("activeList", [
