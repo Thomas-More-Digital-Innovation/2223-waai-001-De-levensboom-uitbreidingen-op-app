@@ -33,15 +33,13 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): View | RedirectResponse
     {
         $request->authenticate();
-
-        // send user to auth.two-factor-challenge if correctly filled in then send to home
-        if ($request->user()->two_factor_secret) {
-            return view('auth.two-factor-challenge');
+        // Handle request without 2FA
+        if (!$request->user()->two_factor_secret) {
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // 2FA enabled
+        return view('auth.two-factor-challenge');        
     }
 
     private function hasValidCode(String $code)
@@ -89,20 +87,19 @@ class AuthenticatedSessionController extends Controller
 
 
         if ($this->validRecoveryCode($code)) {
-            dd("This is recovery code!");
+
+            $user->replaceRecoveryCode($code);
+            // generate a new recovery code
+
+            // $this->guard->login($user, $request->remember());
+
+            // return app(TwoFactorLoginResponse::class);
         }
         elseif (!$this->hasValidCode($code)) {  // This always return false
-            // return app(FailedTwoFactorLoginResponse::class);
-            dd("False Code");
+            error_log('THIS CODE IS INVALID!');
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
 
-
-        // $user->replaceRecoveryCode($code);
-        // generate a new recovery code
-
-        // $this->guard->login($user, $request->remember());
-
-        // return app(TwoFactorLoginResponse::class);
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
