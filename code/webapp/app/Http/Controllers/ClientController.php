@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Answer;
+use App\Models\QuestionUserList;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\Info;
@@ -208,6 +210,8 @@ class ClientController extends Controller
 
         DepartmentList::where("user_id", $id)->delete();
         UserList::where("client_id", $id)->delete();
+        Answer::where("user_id", $id)->delete();
+        QuestionUserList::where("user_id", $id)->delete();
         $client = User::find($id);
         $client->delete();
 
