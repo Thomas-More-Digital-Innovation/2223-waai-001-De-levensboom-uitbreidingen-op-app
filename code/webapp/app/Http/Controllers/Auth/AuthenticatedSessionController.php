@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse;
 use Laravel\Fortify\Contracts\TwoFactorChallengeViewResponse;
@@ -32,20 +34,43 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): View | RedirectResponse
     {
-        $request->authenticate();
-        // Handle request without 2FA
-        if (!$request->user()->two_factor_secret) {
+        $email = $request->email;
+        $password = $request->password;
+        if(!Auth::attempt(['email'=>$email, 'password'=>$password],false,false)) {
+            throw ValidationException::withMessages([
+                    "email" => trans("auth.failed"),
+                    ]);
+        }
+        
+        $user = User::where('email', $email)->first();
+        // 2FA Enabled
+        if ($user->two_factor_secret) {
+            if($request->code) {
+                if($this->twoFactorCheck($user, $request->code)){
+                    $request->authenticate();
+                    $request->session()->regenerate();
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                } else{
+                    // Redirect to login page
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                }
+            } else{
+                return view('auth.two-factor-challenge', compact('email', 'password'));
+            } 
+        } else {
+            $request->authenticate();
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         }
-        // 2FA enabled
-        return view('auth.two-factor-challenge');        
+
+        // 2FA Disabled
+             
     }
 
-    private function hasValidCode(String $code)
+    private function hasValidCode(String $code, User $user)
     {
 
-        return $code && tap(app(TwoFactorAuthenticationProvider::class)->verify(decrypt(auth()->user()->two_factor_secret), $code), function ($valid) {
+        return $code && tap(app(TwoFactorAuthenticationProvider::class)->verify(decrypt($user->two_factor_secret), $code), function ($valid) {
             if ($valid) {
                 return true;
             }
@@ -53,13 +78,13 @@ class AuthenticatedSessionController extends Controller
         });
     }
 
-    private function validRecoveryCode(String $recovery_code)
+    private function validRecoveryCode(String $recovery_code, User $user)
     {
         if (!$recovery_code) {
             return;
         }
         // dd(decrypt(auth()->user()->two_factor_recovery_codes))->first();
-        return tap(collect(decrypt(auth()->user()->two_factor_recovery_codes))->first(function ($code) use ($recovery_code) {
+        return tap(collect(decrypt($user->two_factor_recovery_codes))->first(function ($code) use ($recovery_code) {
 
             $code = json_decode($code, true);
             if (in_array($recovery_code, $code)) {
@@ -80,13 +105,10 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle 2fa requests
      */
-    public function twoFactorCheck(TwoFactorLoginRequest $request)
+    public function twoFactorCheck(User $user, String $code)
     {
-        $user = auth()->user();
-        $code = $request->code;
 
-
-        if ($this->validRecoveryCode($code)) {
+        if ($this->validRecoveryCode($code, $user)) {
 
             $user->replaceRecoveryCode($code);
             // generate a new recovery code
@@ -95,14 +117,12 @@ class AuthenticatedSessionController extends Controller
 
             // return app(TwoFactorLoginResponse::class);
         }
-        elseif (!$this->hasValidCode($code)) {  // This always return false
+        elseif (!$this->hasValidCode($code, $user)) {  // This always return false
             error_log('THIS CODE IS INVALID!');
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return false;
         }
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return true;
     }
 
     /**

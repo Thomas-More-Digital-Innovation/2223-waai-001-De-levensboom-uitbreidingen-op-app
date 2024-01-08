@@ -9,9 +9,12 @@
                     <div class="card-body">
                         {{ __('Please enter your authentication code to login.') }}
 
-                        <form method="POST" action="{{ route('two-factor.twoFactorCheck') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
                             @method("POST")
+
+                            <input name="email" type="hidden" value="{{ $email }}">
+                            <input name="password" type="hidden" value="{{ $password }}">
 
                             <div class="row mb-3">
                                 <label id="code-label" for="code"
