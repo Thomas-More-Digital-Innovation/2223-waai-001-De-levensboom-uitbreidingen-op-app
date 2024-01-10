@@ -5,18 +5,17 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <x-input-error :messages="$errors->get('email')" class="my-2" />
+        <x-input-error :messages="$errors->get('password')" class="my-2" />
+
         <!-- Email Address -->
         <div class="flex flex-col">
             <x-form-input name="email" text="Email" type="email" />
-
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="flex flex-col">
             <x-form-input name="password" text="Wachtwoord" type="password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
@@ -29,7 +28,8 @@
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    href="{{ route('password.request') }}">
                     Wachtwoord vergeten?
                 </a>
             @endif

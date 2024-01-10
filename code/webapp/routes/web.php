@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AdultController;
 use App\Http\Controllers\AdultInfoContentController;
 use App\Http\Controllers\TeenInfoContentController;
@@ -32,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post("/two-factor", [AuthenticatedSessionController::class, "twoFactorCheck"])->name("two-factor.twoFactorCheck");;
 
 Route::get("/", function () {
     $clientcount = User::where("user_type_id", 2)->count();
