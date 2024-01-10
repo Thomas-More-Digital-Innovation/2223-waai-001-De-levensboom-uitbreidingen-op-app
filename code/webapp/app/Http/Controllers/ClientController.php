@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Answer;
+use App\Models\QuestionUserList;
 use App\Models\Department;
 use App\Models\DepartmentList;
 use App\Models\Info;
@@ -10,6 +12,7 @@ use App\Models\InfoContent;
 use App\Models\User;
 use App\Models\UserList;
 use App\Notifications\Survey;
+use App\Notifications\CreateAccountApp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -81,6 +84,7 @@ class ClientController extends Controller
         $user = User::create($request->all());
 
         event(new Registered($user));
+        $user->notify(new CreateAccountApp(env('APP_URL')."/user#Pass"));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input("department" . $i);
@@ -206,6 +210,8 @@ class ClientController extends Controller
 
         DepartmentList::where("user_id", $id)->delete();
         UserList::where("client_id", $id)->delete();
+        Answer::where("user_id", $id)->delete();
+        QuestionUserList::where("user_id", $id)->delete();
         $client = User::find($id);
         $client->delete();
 
