@@ -1,0 +1,19 @@
+### Waarom Laravel?
+We hebben Laravel gekozen als ons framework voor de ontwikkeling van de webapplicatie, primair vanwege de beperkingen van de hostingomgeving van de klant, die enkel PHP ondersteunde. Laravel is een uitstekende keuze binnen de PHP-ecosfeer vanwege zijn moderne aanpak en uitgebreide functionaliteiten. In vergelijking met andere populaire PHP-frameworks, zoals Symfony en CodeIgniter, onderscheidt Laravel zich door zijn elegante syntaxis, geïntegreerde functies zoals Eloquent ORM, de Blade-templating engine en de Artisan CLI-tool.
+
+Laravel biedt ontwikkelaars een hoger niveau van abstractie, waardoor efficiëntie en codeleesbaarheid worden bevorderd. De krachtige ingebouwde tools, zoals Eloquent voor database-interacties en Artisan voor takenautomatisering, maken ontwikkeling sneller en gemakkelijker. Laravel's actieve gemeenschap en uitgebreide documentatie dragen ook bij aan de aantrekkelijkheid van het framework. Al met al, gezien de beperkingen van de klanthosting en de behoefte aan een robuust PHP-framework, bleek Laravel de beste keuze te zijn voor onze ontwikkelingsbehoeften, zowel vanwege zijn compatibiliteit met de hostingomgeving als vanwege zijn uitgebreide set functies en ontwikkelaarsvriendelijke aanpak.
+
+**Vergelijking met andere populaire PHP-frameworks:**
+| Kenmerk/Factor                  | Laravel                                  | Symfony                                    | CodeIgniter                               | Plain PHP                                  |
+|----------------------------------|------------------------------------------|--------------------------------------------|-------------------------------------------|--------------------------------------------|
+| **Syntaxis en Leesbaarheid**     | Elegant, leesbaar en expressief          | Duidelijk en gestructureerd               | Eenvoudig en rechtlijnig                 | Afhankelijk van ontwikkelaarsstijl          |
+| **Architectuurpatroon**          | MVC (Model-View-Controller)              | MVC                                        | MVC                                       | Geen specifieke architectuur, afhankelijk van implementatie |
+| **ORM (Object-Relational Mapping)**| Eloquent                               | Doctrine                                   | Geen ingebouwde ORM                       | Afhankelijk van ontwikkelaarsimplementatie  |
+| **Templating Engine**            | Blade                                    | Twig                                       | Eigen templating engine                  | PHP zelf (geen specifieke engine)            |
+| **CLI-tools en Automatisering**  | Artisan                                  | Symfony Console                            | Beperkte command-line tools              | Afhankelijk van externe tools of implementatie |
+| **Gemeenschap en Ondersteuning** | Actieve gemeenschap en uitgebreide documentatie | Grote gemeenschap en goede documentatie | Gemeenschap, maar minder vergeleken met Laravel en Symfony | Beperkte gemeenschap en documentatie           |
+| **Learning Curve**               | Gemakkelijk voor beginners, maar biedt diepgang voor gevorderden | Steilere leercurve, geschikt voor ervaren ontwikkelaars | Gemakkelijk te leren en snel op te pikken | Afhankelijk van ontwikkelaarservaring          |
+| **Flexibiliteit en Aanpasbaarheid** | Zeer flexibel en aanpasbaar           | Flexibel en aanpasbaar                    | Flexibel en aanpasbaar                    | Afhankelijk van ontwikkelaarsimplementatie  |
+| **Hostingvereisten**             | PHP-hosting vereist                     | PHP-hosting vereist                       | PHP-hosting vereist                       | Alleen PHP vereist                           |
+
+Zoals je ziet, komt Laravel als beste keuze naar voren. Ook hebben we deze keuze gemaakt op basis van de positieve ervaringen van Jonas en Thierry, die zeer tevreden waren met Laravel.
