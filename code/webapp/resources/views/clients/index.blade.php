@@ -5,23 +5,25 @@
     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="clientCreate">
         <thead>
             <tr>
-                <th class="border border-[#f4f4f4] py-2 px-6">ID</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Voornaam</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Achternaam</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Afdeling&lpar;en&rpar;</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Begeleider&lpar;s&rpar;</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Geboortedatum</th>
-                <th class="border border-[#f4f4f4] py-2 px-6">Contactgegevens</th>
-                <th class="border border-[#f4f4f4] py-2 px-">Acties</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">ID</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Voornaam</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Achternaam</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Omschrijving</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Afdeling&lpar;en&rpar;</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Begeleider&lpar;s&rpar;</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Geboortedatum</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Contactgegevens</th>
+                <th class="border border-[#f4f4f4] py-2 px-4">Acties</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($clients as $client)
                 <tr class="font-normal">
-                    <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->id }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->firstname }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->surname }}</td>
-                    <td class="border border-[#f4f4f4] py-2 px-6 align-text-top text-left">
+                    <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->id }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->firstname }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->surname }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->description }}</td>
+                    <td class="border border-[#f4f4f4] py-2 px-4 align-text-top text-left">
                         @foreach ($departmentLists as $departmentList)
                             @if ($departmentList->where('user_id', $client->id)->doesntExist())
                                 <p>Geen afdeling</p>
@@ -34,7 +36,7 @@
                         @endforeach
                     @endforeach
                 </td>
-                <td class="border border-[#f4f4f4] py-2 px-6">
+                <td class="border border-[#f4f4f4] py-2 px-4">
                     @foreach ($userLists as $userList)
                         @if ($userList->where('client_id', $client->id)->doesntExist())
                             <p>Geen begeleider</p>
@@ -47,13 +49,13 @@
                     @endforeach
                 @endforeach
             </td>
-            <td class="border border-[#f4f4f4] py-2 px-6">{{ $client->birthdate }}</td>
-            <td class="border border-[#f4f4f4] py-2 px-6">
+            <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->birthdate }}</td>
+            <td class="border border-[#f4f4f4] py-2 px-4">
                 {{ $client->street . ' ' . $client->houseNumber }} <br>
                 {{ $client->city . ' ' . $client->zipcode }} <br> {{ $client->phoneNumber }}
                 <br> {{ $client->email }}
             </td>
-            <td class="border border-[#f4f4f4] py-2 px-6">
+            <td class="border border-[#f4f4f4] py-2 px-4">
                 <form action="{{ route('clients.destroy', $client->id) }}" method="post">
                     @csrf
                     @method('delete')

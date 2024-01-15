@@ -38,7 +38,10 @@
                             class="border border-[#d2d6de] px-4 py-2 outline-wb-blue mb-5">
                             <option value="man">Man</option>
                             <option value="woman">Vrouw</option>
+                            <option value="x">X</option>
                         </select>
+
+                        <x-form-input name="description" text="Omschrijving" :value="$client" required="false" />
                         <hr>
 
                         <div id='dropdowns'>
