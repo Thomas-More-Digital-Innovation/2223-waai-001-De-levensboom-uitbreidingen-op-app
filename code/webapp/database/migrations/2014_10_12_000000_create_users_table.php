@@ -32,6 +32,7 @@ return new class extends Migration {
             $table->string("city")->nullable();
             $table->string("zipcode")->nullable();
             $table->date("survey")->nullable();
+            $table->string("description")->nullable();
             $table->rememberToken();
             $table->timestamps();
 
