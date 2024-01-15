@@ -30,12 +30,13 @@ class ClientController extends Controller
         Gate::authorize("notClient");
 
         $clients = User::where("user_type_id", 2)->get();
+        $departmentLists = DepartmentList::whereIn('user_id', $clients->pluck('id'))->get();
         $departments = Department::all();
-        $departmentLists = DepartmentList::all();
-        $userLists = UserList::all();
+        $userLists = UserList::whereIn('client_id', $clients->pluck('id'))->get();
         $mentors = User::where("user_type_id", 1)
             ->orWhere("user_type_id", 3)
             ->get();
+            
 
         return view(
             "clients.index",
