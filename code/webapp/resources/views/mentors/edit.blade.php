@@ -119,13 +119,8 @@
         }
 
         function checkRoleChanges(event) {
-            console.log('checkRoleChanges');
-
             let adminCheckbox = document.getElementById('type');
             let originalAdminValue = @json($mentor->user_type_id);
-
-            console.log('originalAdminValue: ' + originalAdminValue);
-            console.log('adminCheckbox.checked: ' + adminCheckbox.checked);
 
             let adminChanged = (originalAdminValue === 1 && !adminCheckbox.checked) || (originalAdminValue !== 1 &&
                 adminCheckbox.checked);
