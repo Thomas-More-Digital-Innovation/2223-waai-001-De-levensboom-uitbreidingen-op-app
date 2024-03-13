@@ -2,6 +2,17 @@
 <title>Waaiburg - Clienten</title>
 @section('content')
     <x-list-title title="Clienten lijst" name="clients.create" />
+
+    <form method="GET" action="{{ route('clients.index') }}">
+        <select name="department_id" id="department-select">
+            <option value="">Selecteer afdeling</option>
+            @foreach($departments as $department)
+                <option value="{{ $department->id }}">{{ $department->name }}</option>
+            @endforeach
+        </select>
+        <button type="submit" class="bg-wb-blue rounded px-4 py-1 mt-5 text-white">Filter</button>
+    </form>
+
     <table class="border-collapse border border-[#f4f4f4] w-full" aria-describedby="clientCreate">
         <thead>
             <tr>
@@ -17,7 +28,7 @@
             </tr>
         </thead>
 
-<tbody>
+        <tbody>
             @foreach ($clients as $client)
                 <tr class="font-normal">
                     <td class="border border-[#f4f4f4] py-2 px-4">{{ $client->id }}</td>
@@ -29,7 +40,7 @@
                             $clientDepartments = $departmentLists->where('user_id', $client->id);
 
                             if ($clientDepartments->isEmpty()) {
-                                echo "<p>Geen afdeling</p>";
+                                echo '<p>Geen afdeling</p>';
                             } else {
                                 foreach ($clientDepartments as $clientDepartment) {
                                     $department = $departments->firstWhere('id', $clientDepartment->department_id);
@@ -45,7 +56,7 @@
                             $clientUserLists = $userLists->where('client_id', $client->id);
 
                             if ($clientUserLists->isEmpty()) {
-                                echo "<p>Geen begeleider</p>";
+                                echo '<p>Geen begeleider</p>';
                             } else {
                                 foreach ($clientUserLists as $clientUserList) {
                                     $mentor = $mentors->firstWhere('id', $clientUserList->mentor_id);
@@ -77,8 +88,8 @@
                 </tr>
             @endforeach
         </tbody>
-</table>
+    </table>
 @endsection
 @section('documentation')
-<x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=3" text="documentatie over clienten" />
+    <x-documentation-link link="/De_Waaiburg_webapp_documentatie.pdf#page=3" text="documentatie over clienten" />
 @endsection
