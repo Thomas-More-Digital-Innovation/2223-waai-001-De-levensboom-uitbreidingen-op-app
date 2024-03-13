@@ -25,34 +25,29 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         Gate::authorize("notClient");
 
-        $departmentId = $request->input('department_id');
-
-        if ($departmentId) {
-            // Filter department list based on the selected department
-            $filteredDepartmentLists = DepartmentList::where('department_id', $departmentId)->get();
-
-            // Get the user IDs from the filtered department list
-            $userIds = $filteredDepartmentLists->pluck('user_id');
-
-            // Query users based on the filtered user IDs
-            $clients = User::whereIn('id', $userIds)->where("user_type_id", 2)->get();
-        } else {
-            // If no department selected, fetch all clients with user_type_id 2
-            $clients = User::where("user_type_id", 2)->get();
-        }
-
-        $departments = Department::all();
+        $clients = User::where("user_type_id", 2)->get();
         $departmentLists = DepartmentList::whereIn('user_id', $clients->pluck('id'))->get();
+        $departments = Department::all();
         $userLists = UserList::whereIn('client_id', $clients->pluck('id'))->get();
         $mentors = User::where("user_type_id", 1)
             ->orWhere("user_type_id", 3)
             ->get();
+            
 
-        return view("clients.index", compact("clients", "departments", "departmentLists", "mentors", "userLists"));
+        return view(
+            "clients.index",
+            compact(
+                "clients",
+                "departments",
+                "departmentLists",
+                "mentors",
+                "userLists"
+            )
+        );
     }
 
     /**
@@ -90,7 +85,7 @@ class ClientController extends Controller
         $user = User::create($request->all());
 
         event(new Registered($user));
-        $user->notify(new CreateAccountApp(env('APP_URL') . "/user#Pass"));
+        $user->notify(new CreateAccountApp(env('APP_URL')."/user#Pass"));
 
         for ($i = 0; $i <= $request->totalDep; $i++) {
             $department = $request->input("department" . $i);
@@ -161,7 +156,7 @@ class ClientController extends Controller
         $survey = $request->input('survey_id');
         $url = InfoContent::find($survey)->first()->url;
         $url = $url . urlencode($id);
-
+        
         User::find($id)->notify(new Survey($url));
         User::find($id)->update(["survey" => now()]);
 
