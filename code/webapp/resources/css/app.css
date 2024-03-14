@@ -9,3 +9,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+    .navbar, .topbar, .documentation, .buttons {
+        display: none;
+    }
+    .test-div {
+        display: block !important;
+    }
+
+    @page { size: auto;  margin: 0mm; }
+}

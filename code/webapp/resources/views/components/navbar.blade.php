@@ -1,8 +1,9 @@
 <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"
     integrity="sha384-Wg6YZl1ug3L+m2P1dI9UyM3bbDxm861GXqDX7y1TetknKz8/0AoMTJT0Ktlm2Tgi" crossorigin="anonymous">
 </script>
-<div class="bg-[#222d32] w-1/6 min-h-screen">
-    <a href="/" class="flex justify-center text-2xl font-bold text-white  w-full px-6 py-3"><img src="/public/logo.svg" alt="navbar logo" /></a>
+<div class="bg-[#222d32] w-1/6 min-h-screen navbar">
+    <a href="/" class="flex justify-center text-2xl font-bold text-white  w-full px-6 py-3"><img
+            src="/public/logo.svg" alt="navbar logo" /></a>
     <div>
         <p class="text-sm text-[#4b646f] bg-[#1a2226] px-6 py-3">Gegevens</p>
         <div class="flex flex-col text-[#b8c7ce]">
